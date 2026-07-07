@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "description": "Behavior-preserving answer composer heuristics. Values are manual and not calibrated yet.",
+    "calibrated": false
+  },
+  "claim_text": {
+    "max_chars": 420,
+    "min_boundary_chars": 180,
+    "context_expansion_max_chars": 260,
+    "context_expansion_max_blocks": 4,
+    "context_expansion_suffixes": [
+      "meliputi:",
+      "yaitu:",
+      "adalah:"
+    ],
+    "context_expansion_block_types": [
+      "list_item",
+      "table_or_row",
+      "paragraph"
+    ],
+    "fallback_claim": "Ketentuan relevan ditemukan pada sumber yang dikutip.",
+    "strip_regexes": [
+      "^\\.\\.\\.",
+      "\\.\\.\\.$",
+      "!\\[[^\\]]*\\]\\([^)]+\\)",
+      "\\|[-:\\s|]+\\|",
+      "^#+\\s*"
+    ],
+    "table_pipe_replacement": "; "
+  },
+  "usable_claim": {
+    "reject_lowercase_start": false,
+    "reject_prefixes": [
+      "peraturan otoritas",
+      "peraturan bank indonesia",
+      "dengan rahmat",
+      "menimbang",
+      "penjelasan atas"
+    ],
+    "reject_fragments": [
+      "lembaran negara",
+      "tambahan lembaran negara",
+      "sehubungan dengan amanat"
+    ],
+    "reject_regexes": [
+      "^\\(?\\d+[a-z]?\\)?\\s+bagi\\b",
+      "^\\(?\\d+[a-z]?\\)?\\s+untuk\\b",
+      "^\\(?\\d+[a-z]?\\)?\\s+dalam hal\\b",
+      "^\\(?\\d+[a-z]?\\)?\\s+atau\\b",
+      "^\\(?\\d+[a-z]?\\)?\\s+dan\\b",
+      "^dimaksud dalam\\b",
+      "^sebagaimana dimaksud\\b"
+    ],
+    "all_caps_regex": "^[A-Z\\s/.\\-0-9()]{40,}$",
+    "reject_section_types": [
+      "table"
+    ],
+    "reject_extraction_flags": [
+      "markdown_table_artifact",
+      "image_placeholder",
+      "form_placeholder_text",
+      "very_short_text"
+    ],
+    "section_type_query_allow_terms": {
+      "table": [
+        "tabel",
+        "table",
+        "matriks",
+        "lampiran",
+        "formulir",
+        "format",
+        "template",
+        "kolom",
+        "xlsx",
+        "excel"
+      ]
+    },
+    "extraction_flag_query_allow_terms": {
+      "markdown_table_artifact": [
+        "tabel",
+        "table",
+        "matriks",
+        "lampiran",
+        "formulir",
+        "format",
+        "template",
+        "kolom",
+        "xlsx",
+        "excel"
+      ],
+      "form_placeholder_text": [
+        "formulir",
+        "format",
+        "template",
+        "lampiran"
+      ]
+    },
+    "min_chars": 30
+  },
+  "item_rank": {
+    "query_overlap_weight": 12.0,
+    "matched_exact_phrase_bonus": 8.0,
+    "query_anchor": {
+      "generic_terms": [
+        "apa",
+        "saja",
+        "aturan",
+        "peraturan",
+        "terkait",
+        "tentang",
+        "bank",
+        "ojk",
+        "bi"
+      ],
+      "min_token_chars": 4,
+      "per_key_token_bonus": 8.0,
+      "acronym_max_chars": 5,
+      "acronym_token_bonus": 10.0,
+      "max_bonus": 28.0
+    },
+    "claim_quality": {
+      "obligation_query_terms": [
+        "kewajiban",
+        "wajib",
+        "harus",
+        "dipatuhi",
+        "pelapor",
+        "pelaporan",
+        "menyampaikan"
+      ],
+      "obligation_claim_terms": [
+        "wajib",
+        "harus",
+        "dilarang",
+        "pihak yang wajib",
+        "pelapor adalah",
+        "menyampaikan laporan",
+        "menyusun dan menyampaikan",
+        "secara lengkap, akurat, terkini, utuh, dan tepat waktu"
+      ],
+      "obligation_match_bonus": 14.0,
+      "definition_query_terms": [
+        "apa itu",
+        "pengertian",
+        "definisi",
+        "yang dimaksud"
+      ],
+      "definition_claim_terms": [
+        "yang dimaksud dengan",
+        "adalah",
+        "yang selanjutnya disingkat"
+      ],
+      "definition_match_bonus": 10.0,
+      "continuation_fragment_patterns": [
+        "^\\(?\\d+[a-z]?\\)?\\s+bagi\\b",
+        "^\\(?\\d+[a-z]?\\)?\\s+untuk\\b",
+        "^\\(?\\d+[a-z]?\\)?\\s+dalam hal\\b",
+        "^\\(?\\d+[a-z]?\\)?\\s+atau\\b",
+        "^\\(?\\d+[a-z]?\\)?\\s+dan\\b",
+        "^dimaksud dalam\\b",
+        "^sebagaimana dimaksud\\b"
+      ],
+      "continuation_fragment_penalty": -18.0,
+      "short_incomplete_suffixes": [
+        "meliputi:",
+        "yaitu:",
+        "adalah:",
+        "sebesar:",
+        "dan/atau"
+      ],
+      "short_incomplete_max_chars": 140,
+      "short_incomplete_penalty": -6.0
+    },
+    "sanction_terms": [
+      "sanksi",
+      "denda",
+      "terlambat",
+      "pelanggaran"
+    ],
+    "sanction_match_bonus": 10.0,
+    "section_type_bonus": {
+      "ayat": 4.0,
+      "pasal": 4.0
+    },
+    "citation_quality_bonus": {
+      "document_page_pasal_ayat": 3.0
+    },
+    "section_type_penalty": {
+      "table": -6.0
+    },
+    "claim_prefix_penalty": {
+      "peraturan otoritas": -10.0,
+      "peraturan bank indonesia": -10.0,
+      "dengan rahmat": -10.0,
+      "menimbang": -10.0
+    }
+  }
+}

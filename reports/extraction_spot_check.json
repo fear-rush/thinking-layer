@@ -1,0 +1,2433 @@
+{
+  "source_path": "processed/source_corpus.ndjson",
+  "targets": [
+    {
+      "name": "BI PJP",
+      "issuer": "BI",
+      "title_patterns": [
+        "Penyedia Jasa Pembayaran",
+        "PBI No.23/6/PBI/2021"
+      ],
+      "summary": {
+        "rows": 2099,
+        "documents": {
+          "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran": 1783,
+          "· Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Lembaga Selain Bank": 187,
+          ". Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Bank": 129
+        },
+        "document_count": 3,
+        "page_count": 215,
+        "section_types": {
+          "pasal": 1102,
+          "ayat": 587,
+          "table": 306,
+          "heading": 84,
+          "paragraph": 18,
+          "list_item": 2
+        },
+        "citation_quality": {
+          "document_page_pasal": 1454,
+          "document_page_pasal_ayat": 602,
+          "document_page": 43
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.146,
+        "document_page_only_rate": 0.02,
+        "article_or_ayat_rate": 0.98,
+        "issue_counts": {
+          "very_short_text": 625,
+          "markdown_table_artifact": 306
+        },
+        "warnings": [
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 4, Pasal 1, ayat (1)",
+          "flags": [],
+          "text": "(1) PJP menyelenggarakan aktivitas yang meliputi:"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 2, Pasal 1",
+          "flags": [],
+          "text": "Pasal 1 Dalam Peraturan Bank Indonesia ini yang dimaksud dengan:"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 1",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| pengaturan | akses | ke | industri, | penyelenggaraan, | |---|---|---|---|---| | pengakhiran penyelenggaraan kegiatan, | | | | pengawasan, |"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "PERATURAN BANK INDONESIA NOMOR 23/6/PBI/2021 TENTANG PENYEDIA JASA PEMBAYARAN DENGAN RAHMAT TUHAN YANG MAHA ESA GUBERNUR BANK INDONESIA, Menimbang : a. bahwa reformasi pengaturan sistem pembayaran termasuk penyediaan jasa pembayaran, perlu dilakukan sejalan dengan pemenuhan prinsip penyelenggaraan sistem pembayaran yang cepat, mudah, murah, aman, dan andal, "
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "mengakomodasi perkembangan model bisnis dan inovasi penyediaan jasa pembayaran dari penyelenggara kepada pengguna jasa, serta keterhubungan dengan penyelenggara atau pihak lain dalam penyelenggaraan sistem pembayaran dalam mendukung digitalisasi ekonomi dan keuangan; c. bahwa perkembangan aktivitas penyediaan jasa sistem pembayaran menuntut dilakukannya peng"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "dan pemrosesan data dan/atau informasi sistem pembayaran;"
+        }
+      ],
+      "evidence_probe": {
+        "query": "peraturan BI tentang penyedia jasa pembayaran apa saja?",
+        "confidence": {
+          "label": "strong",
+          "score": 0.964,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=0.80",
+            "matched_phrase_count=4",
+            "lexical_rate=0.76",
+            "query_coverage=0.80"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "penyedia jasa pembayaran",
+            "pjp",
+            "jasa pembayaran",
+            "perizinan penyedia jasa pembayaran",
+            "penyelenggaraan penyedia jasa pembayaran"
+          ],
+          "issuers": [
+            "BI"
+          ],
+          "by_issuer": {
+            "BI": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "penyedia jasa pembayaran",
+                    "jasa pembayaran"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "pjp"
+                  ],
+                  "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 4, Pasal 1, ayat (1)",
+                  "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+                  "section_type": "ayat",
+                  "snippet": "(1) PJP menyelenggarakan aktivitas yang meliputi:"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "penyedia jasa pembayaran",
+                    "jasa pembayaran"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "penyedia jasa pembayaran",
+                    "jasa pembayaran"
+                  ],
+                  "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 2",
+                  "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+                  "section_type": "paragraph",
+                  "snippet": "2. Peraturan Bank Indonesia Nomor 22/23/PBI/2020 tentang Sistem Pembayaran (Lembaran Negara Republik Indonesia Tahun 2020 Nomor 311, Tambahan Lembaran Negara Republik Indonesia Nomor 6610); MEMUTUSKAN: Menetapkan : PERATURAN BANK INDONESIA TENTANG PENYEDIA JASA PEMBAYARAN. BAB I KETENTUAN UMUM"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "pjp"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [],
+                  "citation": "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP, hlm. 5, Pasal 4, ayat (1)",
+                  "document": "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 4 (1) Pengaturan aspek kelembagaan berupa kepemilikan dan"
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 6
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+            "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 4, Pasal 1, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "(1) PJP menyelenggarakan aktivitas yang meliputi:"
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+            "citation": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran, hlm. 2",
+            "citation_quality": "document_page",
+            "section_type": "paragraph",
+            "snippet": "2. Peraturan Bank Indonesia Nomor 22/23/PBI/2020 tentang Sistem Pembayaran (Lembaran Negara Republik Indonesia Tahun 2020 Nomor 311, Tambahan Lembaran Negara Republik Indonesia Nomor 6610); MEMUTUSKAN: Menetapkan : PERATURAN BANK INDONESIA TENTANG PENYEDIA JASA PEMBAYARAN. BAB I KETENTUAN UMUM"
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+            "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 5, Pasal 5, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 5 (1) Penyelenggara jasa Sistem Pembayaran terdiri atas:"
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
+            "citation": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran, hlm. 4, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) Kebijakan Standar Nasional bertujuan untuk:"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BI PIP",
+      "issuer": "BI",
+      "title_patterns": [
+        "Penyelenggara Infrastruktur Sistem Pembayaran",
+        "PBI No.23/7/PBI/2021"
+      ],
+      "summary": {
+        "rows": 1616,
+        "documents": {
+          "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran": 1506,
+          "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran(PIP)- Lembaga Selain Bank": 56,
+          "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank": 54
+        },
+        "document_count": 3,
+        "page_count": 184,
+        "section_types": {
+          "pasal": 905,
+          "ayat": 469,
+          "table": 188,
+          "heading": 41,
+          "paragraph": 13
+        },
+        "citation_quality": {
+          "document_page_pasal": 1105,
+          "document_page_pasal_ayat": 477,
+          "document_page": 34
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.116,
+        "document_page_only_rate": 0.021,
+        "article_or_ayat_rate": 0.979,
+        "issue_counts": {
+          "very_short_text": 525,
+          "markdown_table_artifact": 188
+        },
+        "warnings": [
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 6, Pasal 2, ayat (1)",
+          "flags": [],
+          "text": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 2, Pasal 1",
+          "flags": [],
+          "text": "Pasal 1 Dalam Peraturan Bank Indonesia ini yang dimaksud dengan:"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page_pasal",
+          "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 6, Pasal 2",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| a. | Kliring; dan/atau | |---|---| | b. | Penyelesaian Akhir, | | bagi | kepentingan anggota PIP. |"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "PERATURAN BANK INDONESIA NOMOR 23/7/PBI/2021 TENTANG PENYELENGGARA INFRASTRUKTUR SISTEM PEMBAYARAN DENGAN RAHMAT TUHAN YANG MAHA ESA GUBERNUR BANK INDONESIA, Menimbang : a. bahwa reformasi pengaturan sistem pembayaran bertujuan untuk mencari titik keseimbangan antara upaya optimalisasi peluang inovasi digital untuk menciptakan sistem pembayaran yang cepat, m"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "mengakomodasi kebutuhan pengaturan berdasarkan perkembangan inovasi dan model bisnis di bidang sistem pembayaran dan penyesuaian ketentuan sistem pembayaran yang berlaku saat ini; c. bahwa perkembangan aktivitas penyelenggaraan infrastruktur sistem pembayaran menuntut dilakukannya penguatan fungsi penyelenggaraan infrastruktur yang dilakukan oleh otoritas da"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "heading",
+          "citation_quality": "document_page",
+          "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 2",
+          "flags": [],
+          "text": "d. bahwa berdasarkan pertimbangan sebagaimana dimaksud"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan BI tentang penyelenggara infrastruktur sistem pembayaran",
+        "confidence": {
+          "label": "strong",
+          "score": 1.0,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=1.00",
+            "matched_phrase_count=10",
+            "lexical_rate=1.00",
+            "query_coverage=0.83"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "penyelenggara infrastruktur sistem pembayaran",
+            "pip",
+            "infrastruktur sistem pembayaran",
+            "sistem bi-rtgs",
+            "sknbi"
+          ],
+          "issuers": [
+            "BI"
+          ],
+          "by_issuer": {
+            "BI": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "penyelenggara infrastruktur sistem pembayaran",
+                    "infrastruktur sistem pembayaran"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "pip"
+                  ],
+                  "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 6, Pasal 2, ayat (1)",
+                  "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "penyelenggara infrastruktur sistem pembayaran",
+                    "infrastruktur sistem pembayaran"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "infrastruktur sistem pembayaran"
+                  ],
+                  "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 29, Pasal 47",
+                  "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+                  "section_type": "pasal",
+                  "snippet": "Pembayaran Bank Indonesia; dan b. pihak lain yang menyelenggarakan infrastruktur Sistem Pembayaran di industri."
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "penyelenggara infrastruktur sistem pembayaran",
+                    "pip",
+                    "infrastruktur sistem pembayaran"
+                  ],
+                  "definition_hits": [
+                    "penyelenggara infrastruktur sistem pembayaran",
+                    "infrastruktur sistem pembayaran"
+                  ],
+                  "snippet_hits": [
+                    "penyelenggara infrastruktur sistem pembayaran",
+                    "infrastruktur sistem pembayaran"
+                  ],
+                  "citation": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank, hlm. 4, Pasal 20, ayat (3)",
+                  "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank",
+                  "section_type": "ayat",
+                  "snippet": "mengajukan permohonan; dan d. tidak termasuk dalam daftar hitam nasional penarik cek atau bilyet giro kosong yang ditatausahakan Bank Indonesia pada saat mengajukan permohonan. Surat pernyataan dibuat dengan bermeterai cukup. Pemegang saham yang menyampaikan surat pernyataan dimaksud adalah pemegang saham sebagaimana dimaksud dalam Pasal 20 ayat (3) PBI Penyelenggara Infrastruktur Sistem Pembayaran. Surat pernyataan ..."
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 5
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+            "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 6, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+            "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 29, Pasal 47",
+            "citation_quality": "document_page_pasal",
+            "section_type": "pasal",
+            "snippet": "Pembayaran Bank Indonesia; dan b. pihak lain yang menyelenggarakan infrastruktur Sistem Pembayaran di industri."
+          },
+          {
+            "issuer": "BI",
+            "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank",
+            "citation": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank, hlm. 4, Pasal 20, ayat (3)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "mengajukan permohonan; dan d. tidak termasuk dalam daftar hitam nasional penarik cek atau bilyet giro kosong yang ditatausahakan Bank Indonesia pada saat mengajukan permohonan. Surat pernyataan dibuat dengan bermeterai cukup. Pemegang saham yang menyampaikan surat pernyataan dimaksud adalah pemegang saham sebagaimana dimaksud dalam Pasal 20 ayat (3) PBI Penyelenggara Infrastruktur Sistem Pembayaran. Surat pernyataan ..."
+          },
+          {
+            "issuer": "BI",
+            "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran(PIP)- Lembaga Selain Bank",
+            "citation": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran(PIP)- Lembaga Selain Bank, hlm. 9, Pasal 20, ayat (3)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "...g saham yang menyampaikan surat pernyataan dimaksud adalah pemegang saham sebagaimana dimaksud dalam Pasal 20 ayat (3) PBI Penyelenggara Infrastruktur Sistem Pembayaran. Surat pernyataan dan jaminan memuat pernyataan bahwa perusahaan tidak sedang dalam: a. pengenaan sanksi; dan/atau b. proses hukum perkara pidana, perdata, dan/atau kepailitan."
+          }
+        ]
+      }
+    },
+    {
+      "name": "BI Sistem Pembayaran",
+      "issuer": "BI",
+      "title_patterns": [
+        "Sistem Pembayaran"
+      ],
+      "summary": {
+        "rows": 3044,
+        "documents": {
+          "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran": 1506,
+          "PBI No.22/23/PBI/2020 - Sistem Pembayaran": 751,
+          "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP": 518,
+          "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran": 159,
+          "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran(PIP)- Lembaga Selain Bank": 56
+        },
+        "document_count": 6,
+        "page_count": 184,
+        "section_types": {
+          "pasal": 1726,
+          "ayat": 917,
+          "table": 311,
+          "heading": 64,
+          "paragraph": 26
+        },
+        "citation_quality": {
+          "document_page_pasal": 2063,
+          "document_page_pasal_ayat": 932,
+          "document_page": 49
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.102,
+        "document_page_only_rate": 0.016,
+        "article_or_ayat_rate": 0.984,
+        "issue_counts": {
+          "very_short_text": 969,
+          "markdown_table_artifact": 311
+        },
+        "warnings": [
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 5, Pasal 5, ayat (1)",
+          "flags": [],
+          "text": "Pasal 5 (1) Penyelenggara jasa Sistem Pembayaran terdiri atas:"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 2, Pasal 1",
+          "flags": [],
+          "text": "Pasal 1 Dalam Peraturan Bank Indonesia ini yang dimaksud dengan:"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page_pasal",
+          "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 5, Pasal 3",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| meningkatkan | efektivitas | pengawasan | serta | |---|---|---|---| | pengawasan berbasis teknologi | | dalam kewajiban | |"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "PERATURAN BANK INDONESIA NOMOR 22/23/PBI/2020 TENTANG SISTEM PEMBAYARAN DENGAN RAHMAT TUHAN YANG MAHA ESA GUBERNUR BANK INDONESIA, Menimbang : a. bahwa perkembangan digitalisasi dan inovasi sistem pembayaran di satu sisi meningkatkan efisiensi industri sistem pembayaran dan percepatan inklusi ekonomi dan keuangan digital, di sisi lain meningkatkan risiko den"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "pembayaran menuntut dilakukannya penataan kembali industri sistem pembayaran melalui reformasi pengaturan sistem pembayaran; c. bahwa diperlukan pengaturan sistem pembayaran yang efektif dan responsif yang meliputi seluruh aspek penyelenggaraan sistem pembayaran guna mengakomodasi perkembangan ekonomi dan keuangan digital; d. bahwa berdasarkan pertimbangan s"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 1",
+          "flags": [],
+          "text": "dimaksud dalam huruf a, huruf b, dan huruf c, perlu menetapkan Peraturan Bank Indonesia tentang Sistem Pembayaran;"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan sistem pembayaran Bank Indonesia",
+        "confidence": {
+          "label": "strong",
+          "score": 0.999,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=1.00",
+            "matched_phrase_count=5",
+            "lexical_rate=0.80",
+            "query_coverage=0.80"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "bank",
+            "bank umum",
+            "buk",
+            "bus",
+            "uus",
+            "bpr",
+            "bprs",
+            "bank syariah",
+            "bank konvensional",
+            "bank umum konvensional",
+            "bank umum syariah",
+            "unit usaha syariah",
+            "bank perekonomian rakyat",
+            "bank perekonomian rakyat syariah"
+          ],
+          "issuers": [
+            "BI"
+          ],
+          "by_issuer": {
+            "BI": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [],
+                  "definition_hits": [
+                    "bank",
+                    "bank umum",
+                    "bank umum syariah"
+                  ],
+                  "snippet_hits": [
+                    "bank",
+                    "bank umum",
+                    "bank umum syariah"
+                  ],
+                  "citation": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran, hlm. 3, Pasal 1",
+                  "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
+                  "section_type": "pasal",
+                  "snippet": "2. Bank adalah bank umum dan bank perkreditan rakyat sebagaimana dimaksud dalam Undang-Undang mengenai perbankan, termasuk kantor cabang bank asing di Indonesia, dan bank umum syariah serta bank pembiayaan rakyat syariah sebagaimana dimaksud dalam Undang-Undang mengenai perbankan syariah. 3. Lembaga Selain Bank adalah badan usaha berbadan hukum Indonesia bukan Bank."
+                }
+              ],
+              "adjacent_matches": [
+                {
+                  "direct": false,
+                  "title_hits": [],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bank"
+                  ],
+                  "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 29, Pasal 47",
+                  "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+                  "section_type": "pasal",
+                  "snippet": "Pembayaran Bank Indonesia; dan b. pihak lain yang menyelenggarakan infrastruktur Sistem Pembayaran di industri."
+                }
+              ],
+              "evidence_count": 8
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+            "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 6, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+            "citation": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran, hlm. 29, Pasal 47",
+            "citation_quality": "document_page_pasal",
+            "section_type": "pasal",
+            "snippet": "Pembayaran Bank Indonesia; dan b. pihak lain yang menyelenggarakan infrastruktur Sistem Pembayaran di industri."
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+            "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 5, Pasal 5, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 5 (1) Penyelenggara jasa Sistem Pembayaran terdiri atas:"
+          },
+          {
+            "issuer": "BI",
+            "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+            "citation": "PBI No.22/23/PBI/2020 - Sistem Pembayaran, hlm. 1",
+            "citation_quality": "document_page",
+            "section_type": "paragraph",
+            "snippet": "pembayaran menuntut dilakukannya penataan kembali industri sistem pembayaran melalui reformasi pengaturan sistem pembayaran; c. bahwa diperlukan pengaturan sistem pembayaran yang efektif dan responsif yang meliputi seluruh aspek penyelenggaraan sistem pembayaran guna mengakomodasi perkembangan ekonomi dan keuangan digital; d. bahwa berdasarkan pertimbangan sebagaimana"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK APU PPT",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Anti Pencucian Uang",
+        "Pencegahan Pendanaan Terorisme"
+      ],
+      "summary": {
+        "rows": 7378,
+        "documents": {
+          "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum": 1203,
+          "Pedoman Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Industri Keuangan Non-Bank": 875,
+          "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan": 789,
+          "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital": 701,
+          "Pedoman Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Penyelenggara Layanan Pinjam Meminjam": 701
+        },
+        "document_count": 15,
+        "page_count": 117,
+        "section_types": {
+          "pasal": 4815,
+          "ayat": 944,
+          "table": 619,
+          "heading": 618,
+          "paragraph": 244,
+          "list_item": 99,
+          "attachment": 39
+        },
+        "citation_quality": {
+          "document_page_pasal": 5847,
+          "document_page_pasal_ayat": 1014,
+          "document_page": 517
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.084,
+        "document_page_only_rate": 0.07,
+        "article_or_ayat_rate": 0.93,
+        "issue_counts": {
+          "very_short_text": 1068,
+          "markdown_table_artifact": 628
+        },
+        "warnings": [
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital, hlm. 29, Pasal 25, ayat (1)",
+          "flags": [],
+          "text": "2) Proses verifikasi face to face dapat dikecualikan dengan proses verifikasi tanpa tatap muka (verifikasi non-face to *face) dengan ketentuan sebagai berikut:* a) verifikasi *non-face to face* dilakukan dengan menggunakan perangkat lunak milik Pedagang dengan perangkat keras milik Pedagang atau perangkat keras milik Nasabah atau calon Nasabah. Contoh: peran"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan, hlm. 3, Pasal 1",
+          "flags": [
+            "very_short_text"
+          ],
+          "text": "Pasal 1"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page",
+          "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan, hlm. 2",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| Jasa | Keuangan | Nomor | 12/POJK.01/2017 | tentang | |---|---|---|---|---| | Penerapan | Anti | Pencucian | Uang dan | Pencegahan |"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan, hlm. 1",
+          "flags": [],
+          "text": "OTORITAS JASA KEUANGAN REPUBLIK INDONESIA SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 8 TAHUN 2023 TENTANG PENERAPAN PROGRAM ANTI PENCUCIAN UANG, PENCEGAHAN PENDANAAN TERORISME, DAN PENCEGAHAN PENDANAAN PROLIFERASI SENJATA PEMUSNAH MASSAL DI SEKTOR JASA KEUANGAN DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN,"
+        },
+        {
+          "document": "Pedoman Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Industri Keuangan Non-Bank",
+          "issuer": "OJK",
+          "file_role": "attachment",
+          "section_type": "attachment",
+          "citation_quality": "document_page",
+          "citation": "Pedoman Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Industri Keuangan Non-Bank, hlm. 1",
+          "flags": [],
+          "text": "LAMPIRAN I SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 37 /SEOJK.05/2017 TENTANG PEDOMAN PENERAPAN PROGRAM ANTI PENCUCIAN UANG DAN PENCEGAHAN PENDANAAN TERORISME DI SEKTOR INDUSTRI KEUANGAN NON BANK"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan, hlm. 1",
+          "flags": [],
+          "text": "Menimbang : a. bahwa untuk melakukan penguatan pencegahan tindak pidana pencucian uang, tindak pidana pendanaan terorisme, dan pendanaan proliferasi senjata pemusnah massal serta untuk mewujudkan integritas di sektor jasa keuangan, Otoritas Jasa Keuangan berkomitmen untuk mendukung regulasi yang sesuai dengan perkembangan prinsip internasional yang mengatur "
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan OJK tentang APU PPT untuk bank",
+        "confidence": {
+          "label": "strong",
+          "score": 0.961,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=1.00",
+            "matched_phrase_count=10",
+            "lexical_rate=0.67",
+            "query_coverage=0.60"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "bank",
+            "bank umum",
+            "buk",
+            "bus",
+            "uus",
+            "bpr",
+            "bprs",
+            "bank syariah",
+            "bank konvensional",
+            "bank umum konvensional",
+            "bank umum syariah",
+            "unit usaha syariah",
+            "bank perekonomian rakyat",
+            "bank perekonomian rakyat syariah"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bank"
+                  ],
+                  "citation": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan, hlm. 2, Pasal 13, ayat (1)",
+                  "document": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan",
+                  "section_type": "ayat",
+                  "snippet": "4. Mengacu ke dalam Pasal 13 POJK APU dan PPT, Bank wajib memiliki kebijakan dan prosedur penerapan program APU dan PPT dalam rangka pengelolaan dan mitigasi risiko Pencucian Uang dan/atau Pendanaan Terorisme yang disesuaikan dengan tingkat risiko yang melekat pada masing-masing Bank. 5. Berdasarkan Pasal 67 ayat (1) POJK APU dan PPT, Bank yang telah"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank",
+                    "bank umum"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bank"
+                  ],
+                  "citation": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum, hlm. 6, Pasal 2, ayat (1)",
+                  "document": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 2 (1) Bank wajib menerapkan program APU dan PPT. (2) Dalam penerapan program APU dan PPT, Bank wajib berpedoman pada"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank",
+                    "bank umum"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [],
+                  "citation": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum, hlm. 8, Pasal 2, ayat (2)",
+                  "document": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+                  "section_type": "ayat",
+                  "snippet": "**(1) (2)** **(1)** **(2)** **a.** **b.** **c.** **- 8 -**"
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 8
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan",
+            "citation": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan, hlm. 2, Pasal 13, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "4. Mengacu ke dalam Pasal 13 POJK APU dan PPT, Bank wajib memiliki kebijakan dan prosedur penerapan program APU dan PPT dalam rangka pengelolaan dan mitigasi risiko Pencucian Uang dan/atau Pendanaan Terorisme yang disesuaikan dengan tingkat risiko yang melekat pada masing-masing Bank. 5. Berdasarkan Pasal 67 ayat (1) POJK APU dan PPT, Bank yang telah"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+            "citation": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum, hlm. 6, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) Bank wajib menerapkan program APU dan PPT. (2) Dalam penerapan program APU dan PPT, Bank wajib berpedoman pada"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+            "citation": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum, hlm. 8, Pasal 2, ayat (2)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "**(1) (2)** **(1)** **(2)** **a.** **b.** **c.** **- 8 -**"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+            "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan, hlm. 6, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) PJK sebagaimana dimaksud dalam Pasal 1 angka 1 terdiri"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK Consumer Protection",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Pelindungan Konsumen",
+        "Perlindungan Konsumen",
+        "Pengaduan Konsumen"
+      ],
+      "summary": {
+        "rows": 3286,
+        "documents": {
+          "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan": 1301,
+          "Perlindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan": 448,
+          "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan": 378,
+          "Pedoman Pelaksanaan Layanan Pengaduan Konsumen di Sektor Jasa Keuangan": 368,
+          "POJK tentang Perlindungan Konsumen Sektor Jasa Keuangan": 308
+        },
+        "document_count": 8,
+        "page_count": 131,
+        "section_types": {
+          "pasal": 1434,
+          "ayat": 1115,
+          "table": 510,
+          "heading": 138,
+          "paragraph": 76,
+          "list_item": 13
+        },
+        "citation_quality": {
+          "document_page_pasal": 1894,
+          "document_page_pasal_ayat": 1267,
+          "document_page": 125
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.155,
+        "document_page_only_rate": 0.038,
+        "article_or_ayat_rate": 0.962,
+        "issue_counts": {
+          "very_short_text": 619,
+          "markdown_table_artifact": 510,
+          "form_placeholder_text": 11
+        },
+        "warnings": [
+          "form_placeholder_text",
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Gugatan oleh Otoritas Jasa Keuangan untuk Pelindungan Konsumen di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Gugatan oleh Otoritas Jasa Keuangan untuk Pelindungan Konsumen di Sektor Jasa Keuangan, hlm. 1, Pasal 30, ayat (1)",
+          "flags": [],
+          "text": "Jasa Keuangan berwenang melakukan pembelaan hukum berupa pengajuan gugatan untuk memperoleh kembali harta kekayaan milik pihak yang dirugikan dan/atau untuk memperoleh ganti kerugian dari pihak yang menyebabkan kerugian sesuai ketentuan Pasal 30 ayat (1) huruf b dan Pasal 30 ayat (2) Undang-Undang Nomor 21 Tahun 2011 tentang Otoritas Jasa Keuangan sebagaiman"
+        },
+        {
+          "document": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1, Pasal 87",
+          "flags": [],
+          "text": "1. Lembaga Jasa Keuangan yang selanjutnya disingkat LJK adalah lembaga yang melaksanakan kegiatan di sektor perbankan, pasar modal, perasuransian, dana pensiun, modal ventura, lembaga keuangan mikro, lembaga pembiayaan, dan lembaga jasa keuangan lainnya. 2. Pelaku Usaha Jasa Keuangan yang selanjutnya disingkat PUJK adalah: a. LJK dan/atau pihak yang melakuka"
+        },
+        {
+          "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page",
+          "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| konsumen | dan | masyarakat, kesadaran pelaku usaha jasa keuangan; | serta | menumbuhkan | |---|---|---|---|---| | bahwa | terdapat | perkembangan konsumen dan masyarakat di sektor jasa keuangan yang | aspek | pelindungan | | disebabkan | oleh | penambahan konsumen dan masyarakat, perluasan pelaku usaha jasa | prinsip | pelindungan |"
+        },
+        {
+          "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1",
+          "flags": [],
+          "text": "OTORITAS JASA KEUANGAN REPUBLIK INDONESIA SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 22 TAHUN 2023 TENTANG PELINDUNGAN KONSUMEN DAN MASYARAKAT DI SEKTOR JASA KEUANGAN DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa dengan berlakunya Undang-Undang Nomor 4 Tahun 2023 tentang Pengembangan da"
+        },
+        {
+          "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1",
+          "flags": [],
+          "text": "keuangan, dan digitalisasi produk dan/atau layanan di sektor jasa keuangan, dan perkembangan industri jasa keuangan yang makin kompleks dan dinamis, sehingga perlu dilakukan penguatan pengaturan mengenai pelindungan konsumen dan masyarakat di sektor jasa keuangan; c. bahwa Peraturan Otoritas Jasa Keuangan Nomor 6/POJK.07/2022 tentang Perlindungan Konsumen da"
+        },
+        {
+          "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1",
+          "flags": [],
+          "text": "dalam huruf a, huruf b, dan huruf c, perlu menetapkan Peraturan Otoritas Jasa Keuangan tentang Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan; Mengingat : 1. Undang-Undang Nomor 21 Tahun 2011 tentang Otoritas Jasa Keuangan (Lembaran Negara Republik Indonesia Tahun 2011 Nomor 111, Tambahan Lembaran Negara Republik Indonesia Nomor 5253) sebagaiman"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan OJK tentang pelindungan konsumen jasa keuangan",
+        "confidence": {
+          "label": "strong",
+          "score": 0.825,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=0.80",
+            "matched_phrase_count=0",
+            "lexical_rate=0.93",
+            "query_coverage=0.67"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "data informasi pribadi konsumen",
+            "pengaduan konsumen",
+            "perlindungan konsumen",
+            "pengaduan",
+            "keluhan",
+            "nasabah",
+            "konsumen",
+            "edukasi",
+            "kerahasiaan data",
+            "data pribadi",
+            "pelindungan konsumen dan masyarakat sektor jasa keuangan",
+            "layanan pengaduan konsumen pelaku usaha jasa keuangan",
+            "kerahasiaan keamanan data informasi pribadi konsumen",
+            "transparansi informasi produk penggunaan data pribadi nasabah"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "konsumen"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "konsumen"
+                  ],
+                  "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 5, Pasal 4, ayat (2)",
+                  "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+                  "section_type": "ayat",
+                  "snippet": "dan/atau mewakili kepentingan PUJK memperlakukan atau melayani Konsumen secara tidak diskriminatif sebagaimana dimaksud pada ayat (2). (4) PUJK dilarang melakukan tindakan yang melanggar ketentuan peraturan perundang-undangan atau norma yang berlaku di masyarakat yang dapat menimbulkan"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "konsumen"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "konsumen"
+                  ],
+                  "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 5, Pasal 2",
+                  "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+                  "section_type": "pasal",
+                  "snippet": "BAB II KETENTUAN PELINDUNGAN KONSUMEN DAN MASYARAKAT DI SEKTOR JASA KEUANGAN Bagian Kesatu Prinsip Pelindungan Konsumen"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "konsumen"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "konsumen"
+                  ],
+                  "citation": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1, Pasal 87, ayat (4)",
+                  "document": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+                  "section_type": "ayat",
+                  "snippet": "Sehubungan dengan amanat Pasal 87 ayat (4) Peraturan Otoritas Jasa Keuangan Nomor 22 Tahun 2023 tentang Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan (Lembaran Negara Republik Indonesia Tahun 2023 Nomor 40/OJK, Tambahan Lembaran Negara Republik Indonesia Nomor 62/OJK) dan kebutuhan Pelaku Usaha Jasa Keuangan mengenai petunjuk pelaksanaan tentang penilaian sendiri terhadap pemenuhan ketentuan pelindungan..."
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 9
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+            "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 5, Pasal 4, ayat (2)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "dan/atau mewakili kepentingan PUJK memperlakukan atau melayani Konsumen secara tidak diskriminatif sebagaimana dimaksud pada ayat (2). (4) PUJK dilarang melakukan tindakan yang melanggar ketentuan peraturan perundang-undangan atau norma yang berlaku di masyarakat yang dapat menimbulkan"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+            "citation": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 5, Pasal 2",
+            "citation_quality": "document_page_pasal",
+            "section_type": "pasal",
+            "snippet": "BAB II KETENTUAN PELINDUNGAN KONSUMEN DAN MASYARAKAT DI SEKTOR JASA KEUANGAN Bagian Kesatu Prinsip Pelindungan Konsumen"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+            "citation": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan, hlm. 1, Pasal 87, ayat (4)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Sehubungan dengan amanat Pasal 87 ayat (4) Peraturan Otoritas Jasa Keuangan Nomor 22 Tahun 2023 tentang Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan (Lembaran Negara Republik Indonesia Tahun 2023 Nomor 40/OJK, Tambahan Lembaran Negara Republik Indonesia Nomor 62/OJK) dan kebutuhan Pelaku Usaha Jasa Keuangan mengenai petunjuk pelaksanaan tentang penilaian sendiri terhadap pemenuhan ketentuan pelindungan..."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Gugatan oleh Otoritas Jasa Keuangan untuk Pelindungan Konsumen di Sektor Jasa Keuangan",
+            "citation": "Gugatan oleh Otoritas Jasa Keuangan untuk Pelindungan Konsumen di Sektor Jasa Keuangan, hlm. 1, Pasal 30, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Jasa Keuangan berwenang melakukan pembelaan hukum berupa pengajuan gugatan untuk memperoleh kembali harta kekayaan milik pihak yang dirugikan dan/atau untuk memperoleh ganti kerugian dari pihak yang menyebabkan kerugian sesuai ketentuan Pasal 30 ayat (1) huruf b dan Pasal 30 ayat (2) Undang-Undang Nomor 21 Tahun 2011 tentang Otoritas Jasa Keuangan sebagaimana telah diubah dengan Undang-Undang Nomor 4 Tahun 2023 tenta..."
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK SLIK",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Sistem Layanan Informasi Keuangan",
+        "SLIK",
+        "Informasi Debitur"
+      ],
+      "summary": {
+        "rows": 6910,
+        "documents": {
+          "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan": 2584,
+          "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan": 1882,
+          "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK)": 1800,
+          "Peraturan Bank Indonesia tentang Sistem Informasi Debitur": 268,
+          "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (POJK SLIK)": 244
+        },
+        "document_count": 6,
+        "page_count": 443,
+        "section_types": {
+          "table": 2409,
+          "pasal": 2251,
+          "paragraph": 1026,
+          "list_item": 426,
+          "heading": 418,
+          "ayat": 380
+        },
+        "citation_quality": {
+          "document_page_pasal": 3894,
+          "document_page": 2634,
+          "document_page_pasal_ayat": 382
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.349,
+        "document_page_only_rate": 0.381,
+        "article_or_ayat_rate": 0.621,
+        "issue_counts": {
+          "markdown_table_artifact": 2405,
+          "very_short_text": 945,
+          "form_placeholder_text": 30
+        },
+        "warnings": [
+          "form_placeholder_text",
+          "high_document_page_only_rate",
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Perubahan Kedua Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SLIK)",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Perubahan Kedua Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SLIK), hlm. 4, Pasal 2, ayat (1)",
+          "flags": [],
+          "text": "(1) Pihak yang wajib menjadi Pelapor meliputi:"
+        },
+        {
+          "document": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK)",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK), hlm. 2, Pasal 2",
+          "flags": [],
+          "text": "1. Berdasarkan Pasal 2 POJK Perubahan POJK PPID SLIK, Pihak yang wajib menjadi Pelapor yaitu: a. Bank Umum yang meliputi:"
+        },
+        {
+          "document": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page",
+          "citation": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan, hlm. 2",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| b. | Bank Perekonomian Rakyat (BPR); | |---|---| | c. | Bank Perekonomian Rakyat Syariah (BPRS); | | d. | Lembaga Pembiayaan yang memberikan Fasilitas Penyediaan Dana: |"
+        },
+        {
+          "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (POJK SLIK)",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (POJK SLIK), hlm. 1",
+          "flags": [],
+          "text": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 64 /POJK.03/2020 TENTANG PERUBAHAN ATAS PERATURAN OTORITAS JASA KEUANGAN NOMOR 18/POJK.03/2017 TENTANG PELAPORAN DAN PERMINTAAN INFORMASI DEBITUR MELALUI SISTEM LAYANAN INFORMASI KEUANGAN DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk memp"
+        },
+        {
+          "document": "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan, hlm. 1",
+          "flags": [],
+          "text": "Yth. Direksi Lembaga Jasa Keuangan di tempat. SALINAN"
+        },
+        {
+          "document": "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "heading",
+          "citation_quality": "document_page",
+          "citation": "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan, hlm. 1",
+          "flags": [],
+          "text": "# SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 50 /SEOJK.03/2017"
+        }
+      ],
+      "evidence_probe": {
+        "query": "apa kewajiban bank terkait pelaporan SLIK?",
+        "confidence": {
+          "label": "strong",
+          "score": 0.948,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=1.00",
+            "matched_phrase_count=3",
+            "lexical_rate=0.58",
+            "query_coverage=0.60"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "bank",
+            "bank umum",
+            "buk",
+            "bus",
+            "uus",
+            "bpr",
+            "bprs",
+            "bank syariah",
+            "bank konvensional",
+            "bank umum konvensional",
+            "bank umum syariah",
+            "unit usaha syariah",
+            "bank perekonomian rakyat",
+            "bank perekonomian rakyat syariah"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank",
+                    "bank perekonomian rakyat"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bpr"
+                  ],
+                  "citation": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat, hlm. 11, Pasal 14, ayat (1)",
+                  "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat",
+                  "section_type": "ayat",
+                  "snippet": "...sangkutan dikenai sanksi administratif berupa denda per jenis Laporan sebagaimana dimaksud dalam Pasal 14 ayat (1) POJK Pelaporan dan TKK BPR dan BPR Syariah, sebesar:"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank",
+                    "bank perekonomian rakyat",
+                    "bank perekonomian rakyat syariah"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bpr"
+                  ],
+                  "citation": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 3, Pasal 1, ayat (1)",
+                  "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+                  "section_type": "ayat",
+                  "snippet": "...ajib menyampaikan Laporan sebagaimana dimaksud pada ayat (1) kepada Otoritas Jasa Keuangan secara daring melalui Sistem Pelaporan Otoritas Jasa Keuangan. (3) Dalam hal terdapat kesalahan data dan/atau informasi dalam Laporan sebagaimana dimaksud pada ayat (2), BPR dan BPR Syariah wajib menyusun dan menyampaikan"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank",
+                    "bank umum"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [],
+                  "citation": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan, hlm. 3, Pasal 4, ayat (1)",
+                  "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+                  "section_type": "ayat",
+                  "snippet": "dimaksud dalam Pasal 4 ayat (1) atau perubahannya"
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 10
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat",
+            "citation": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat, hlm. 11, Pasal 14, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "...sangkutan dikenai sanksi administratif berupa denda per jenis Laporan sebagaimana dimaksud dalam Pasal 14 ayat (1) POJK Pelaporan dan TKK BPR dan BPR Syariah, sebesar:"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK)",
+            "citation": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK), hlm. 11, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "(1) bagi Debitur perseorangan (a) fotokopi identitas diri dengan menunjukkan identitas diri asli antara lain berupa Kartu Tanda Penduduk (KTP) untuk Warga Negara Indonesia (WNI) atau paspor untuk Warga Negara Asing (WNA); atau (b) surat kuasa asli, fotokopi identitas diri pemberi kuasa dan penerima kuasa dengan menunjukkan identitas diri asli dari pemberi kuasa dan penerima kuasa, dalam hal dikuasakan. (2) bagi Debit..."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+            "citation": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 3, Pasal 1, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "...ajib menyampaikan Laporan sebagaimana dimaksud pada ayat (1) kepada Otoritas Jasa Keuangan secara daring melalui Sistem Pelaporan Otoritas Jasa Keuangan. (3) Dalam hal terdapat kesalahan data dan/atau informasi dalam Laporan sebagaimana dimaksud pada ayat (2), BPR dan BPR Syariah wajib menyusun dan menyampaikan"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+            "citation": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan, hlm. 3, Pasal 4, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "dimaksud dalam Pasal 4 ayat (1) atau perubahannya"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK BPR BPRS",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Bank Perekonomian Rakyat",
+        "Bank Perkreditan Rakyat",
+        "BPR",
+        "BPRS"
+      ],
+      "summary": {
+        "rows": 43839,
+        "documents": {
+          "Pelaporan Melalui Sistem Pelaporan OJK dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat Syariah": 3100,
+          "Laporan Bulanan Bank Perkreditan Rakyat": 2707,
+          "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat": 2703,
+          "SEOJK tentang Bank Perkreditan Rakyat": 2294,
+          "Panduan Akuntansi Perbankan bagi Bank Perekonomian Rakyat": 2038
+        },
+        "document_count": 89,
+        "page_count": 718,
+        "section_types": {
+          "pasal": 21997,
+          "table": 5828,
+          "heading": 5594,
+          "ayat": 5581,
+          "paragraph": 2639,
+          "list_item": 1787,
+          "attachment": 413
+        },
+        "citation_quality": {
+          "document_page_pasal": 31616,
+          "document_page": 6447,
+          "document_page_pasal_ayat": 5776
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.133,
+        "document_page_only_rate": 0.147,
+        "article_or_ayat_rate": 0.855,
+        "issue_counts": {
+          "very_short_text": 8371,
+          "markdown_table_artifact": 5893,
+          "form_placeholder_text": 241
+        },
+        "warnings": [
+          "form_placeholder_text",
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 3, Pasal 2, ayat (1)",
+          "flags": [],
+          "text": "(1) BPR dan BPR Syariah wajib menerapkan tata kelola TI yang baik dalam penyelenggaraan TI. (2) Dalam menerapkan tata kelola TI yang baik sebagaimana dimaksud pada ayat (1), BPR dan BPR Syariah mempertimbangkan faktor paling sedikit:"
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 1, Pasal 8",
+          "flags": [],
+          "text": "SALINAN PERATURAN ANGGOTA DEWAN KOMISIONER OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 43/PADK.03/2025 TENTANG PENYELENGGARAAN TEKNOLOGI INFORMASI OLEH BANK PEREKONOMIAN RAKYAT DAN BANK PEREKONOMIAN RAKYAT SYARIAH DENGAN RAHMAT TUHAN YANG MAHA ESA ANGGOTA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa untuk melaksanakan ketentuan sebagaimana "
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 2, Pasal 2",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| c. | Lampiran III yang memuat mengenai manajemen risiko penyelenggaraan TI oleh BPR dan BPR Syariah; | |---|---| | d. | Lampiran IV yang memuat mengenai pedoman ketahanan dan keamanan siber BPR dan BPR Syariah; | | e. | Lampiran V yang memuat mengenai pengelolaan data dan pelindungan data pribadi BPR dan BPR Syariah; dan |"
+        },
+        {
+          "document": "Rencana Bisnis Bank Perekonomian Rakyat",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Rencana Bisnis Bank Perekonomian Rakyat, hlm. 1",
+          "flags": [],
+          "text": "Yth. Direksi Bank Perekonomian Rakyat di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 24/SEOJK.03/2025 TENTANG RENCANA BISNIS BANK PEREKONOMIAN RAKYAT Sehubungan dengan Peraturan Otoritas Jasa Keuangan Nomor 15/POJK.03/2021 tentang Rencana Bisnis Bank Perkreditan Rakyat dan Bank Pembiayaan Rakyat Syariah (Lembaran Negara Repub"
+        },
+        {
+          "document": "Rencana Bisnis Bank Perkreditan Rakyat",
+          "issuer": "OJK",
+          "file_role": "attachment",
+          "section_type": "attachment",
+          "citation_quality": "document_page",
+          "citation": "Rencana Bisnis Bank Perkreditan Rakyat, hlm. 1",
+          "flags": [],
+          "text": "LAMPIRAN SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 52 /SEOJK.03/2016 TENTANG RENCANA BISNIS BANK PERKREDITAN RAKYAT"
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 1, Pasal 8",
+          "flags": [],
+          "text": "Mengingat : 1. Undang-Undang Nomor 21 Tahun 2011 tentang Otoritas Jasa Keuangan (Lembaran Negara Republik Indonesia Tahun 2011 Nomor 111, Tambahan Lembaran Negara Republik Indonesia Nomor 5253) sebagaimana telah diubah dengan Undang-Undang Nomor 4 Tahun 2023 tentang Pengembangan dan Penguatan Sektor Keuangan (Lembaran Negara Republik Indonesia Tahun 2023 Nom"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan OJK untuk BPR dan BPRS",
+        "confidence": {
+          "label": "strong",
+          "score": 0.888,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=0.80",
+            "matched_phrase_count=8",
+            "lexical_rate=0.45",
+            "query_coverage=0.50"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "bank perekonomian rakyat",
+            "bank perekonomian rakyat syariah",
+            "bank perkreditan rakyat",
+            "bank pembiayaan rakyat syariah",
+            "bpr",
+            "bprs",
+            "pelaporan melalui sistem pelaporan otoritas jasa keuangan dan transparansi kondisi keuangan bagi bank perekonomian rakyat",
+            "bank",
+            "bank umum",
+            "buk",
+            "bus",
+            "uus",
+            "bank syariah",
+            "bank konvensional",
+            "bank umum konvensional",
+            "bank umum syariah",
+            "unit usaha syariah"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank perekonomian rakyat",
+                    "bank perekonomian rakyat syariah",
+                    "bank"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bank perekonomian rakyat",
+                    "bank perekonomian rakyat syariah",
+                    "bank"
+                  ],
+                  "citation": "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 1, Pasal 16, ayat (3)",
+                  "document": "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+                  "section_type": "ayat",
+                  "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 7 TAHUN 2024 TENTANG BANK PEREKONOMIAN RAKYAT DAN BANK PEREKONOMIAN RAKYAT SYARIAH DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang: bahwa untuk melaksanakan ketentuan Pasal 16 ayat (3), Pasal 18 ayat (3), Pasal 19A ayat (2), Pasal 23 ayat (3), Pasal 28 ayat (4), Pasal 28A ayat (3), dan Pasal 37 ayat (6) Undang-Undan..."
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank perekonomian rakyat",
+                    "bank perekonomian rakyat syariah",
+                    "bank"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bpr"
+                  ],
+                  "citation": "Kualitas Aset Bank Perekonomian Rakyat Syariah, hlm. 5, Pasal 3, ayat (1)",
+                  "document": "Kualitas Aset Bank Perekonomian Rakyat Syariah",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 3 (1) BPR Syariah wajib melakukan penilaian dan penetapan"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "bank perekonomian rakyat",
+                    "bank perekonomian rakyat syariah",
+                    "bank"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "bank perekonomian rakyat",
+                    "bank perekonomian rakyat syariah",
+                    "bprs",
+                    "bank",
+                    "bank syariah"
+                  ],
+                  "citation": "Penyelenggaraan Produk Bank Perekonomian Rakyat Syariah, hlm. 1",
+                  "document": "Penyelenggaraan Produk Bank Perekonomian Rakyat Syariah",
+                  "section_type": "paragraph",
+                  "snippet": "... Edaran Otoritas Jasa Keuangan ini yang dimaksud dengan: a. Bank Perekonomian Rakyat Syariah yang selanjutnya disingkat BPRS adalah jenis bank syariah yang dalam kegiatannya tidak memberikan jasa dalam lalu lintas giral secara langsung."
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 10
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+            "citation": "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 1, Pasal 16, ayat (3)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 7 TAHUN 2024 TENTANG BANK PEREKONOMIAN RAKYAT DAN BANK PEREKONOMIAN RAKYAT SYARIAH DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang: bahwa untuk melaksanakan ketentuan Pasal 16 ayat (3), Pasal 18 ayat (3), Pasal 19A ayat (2), Pasal 23 ayat (3), Pasal 28 ayat (4), Pasal 28A ayat (3), dan Pasal 37 ayat (6) Undang-Undan..."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Kualitas Aset Bank Perekonomian Rakyat Syariah",
+            "citation": "Kualitas Aset Bank Perekonomian Rakyat Syariah, hlm. 5, Pasal 3, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 3 (1) BPR Syariah wajib melakukan penilaian dan penetapan"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Penyelenggaraan Produk Bank Perekonomian Rakyat Syariah",
+            "citation": "Penyelenggaraan Produk Bank Perekonomian Rakyat Syariah, hlm. 1",
+            "citation_quality": "document_page",
+            "section_type": "paragraph",
+            "snippet": "... Edaran Otoritas Jasa Keuangan ini yang dimaksud dengan: a. Bank Perekonomian Rakyat Syariah yang selanjutnya disingkat BPRS adalah jenis bank syariah yang dalam kegiatannya tidak memberikan jasa dalam lalu lintas giral secara langsung."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+            "citation": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah, hlm. 3, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "(1) BPR dan BPR Syariah wajib menerapkan tata kelola TI yang baik dalam penyelenggaraan TI. (2) Dalam menerapkan tata kelola TI yang baik sebagaimana dimaksud pada ayat (1), BPR dan BPR Syariah mempertimbangkan faktor paling sedikit:"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK Modal Ventura",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Modal Ventura"
+      ],
+      "summary": {
+        "rows": 17703,
+        "documents": {
+          "Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura": 3446,
+          "Laporan Bulanan Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah": 1774,
+          "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya": 1473,
+          "Perubahan Atas Surat Edaran Otoritas Jasa Keuangan Nomor 25/SEOJK.05/2019 tentang Laporan Bulanan Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah": 1469,
+          "Penyelenggaraan Usaha Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah": 1161
+        },
+        "document_count": 24,
+        "page_count": 376,
+        "section_types": {
+          "pasal": 9642,
+          "ayat": 4245,
+          "table": 2892,
+          "heading": 857,
+          "paragraph": 62,
+          "list_item": 5
+        },
+        "citation_quality": {
+          "document_page_pasal": 12955,
+          "document_page_pasal_ayat": 4665,
+          "document_page": 83
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.163,
+        "document_page_only_rate": 0.005,
+        "article_or_ayat_rate": 0.995,
+        "issue_counts": {
+          "markdown_table_artifact": 2892,
+          "very_short_text": 2846,
+          "form_placeholder_text": 68
+        },
+        "warnings": [
+          "form_placeholder_text",
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Perubahan Atas Surat Edaran Otoritas Jasa Keuangan Nomor 25/SEOJK.05/2019 tentang Laporan Bulanan Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Perubahan Atas Surat Edaran Otoritas Jasa Keuangan Nomor 25/SEOJK.05/2019 tentang Laporan Bulanan Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah, hlm. 1, Pasal 128, ayat (4)",
+          "flags": [],
+          "text": "Sehubungan dengan amanat Pasal 128 ayat (4) Peraturan Otoritas Jasa Keuangan Nomor 25 Tahun 2023 tentang Penyelenggaraan Usaha Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah (Lembaran Negara Republik Indonesia Tahun 2023 Nomor 43/OJK, Tambahan Lembaran Negara Republik Indonesia Nomor 65/OJK) dan mengingat adanya kebutuhan penyempurnaan pos-pos"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya, hlm. 1, Pasal 5",
+          "flags": [],
+          "text": "dimaksud pada huruf a, perlu menetapkan Peraturan Anggota Dewan Komisioner Otoritas Jasa Keuangan tentang Penerapan Manajemen Risiko bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya; Mengingat : 1. Peraturan Otoritas Jasa Keuangan Nomor 42 Tahun 2024 tentang Penerapan Manajemen Risiko Bagi Lembaga P"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya, hlm. 1, Pasal 5",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| Lembaga | Keuangan | Mikro, | dan | Lembaga Jasa | |---|---|---|---|---| | Keuangan | Lainnya | (Lembaran Indonesia Tahun 2024 Nomor 55/OJK, Tambahan | Negara | Republik |"
+        },
+        {
+          "document": "Kantor Perwakilan Lembaga Pembiayaan, Perusahaan Modal Ventura, dan Lembaga Jasa Keuangan Lainnya yang Berkantor Pusat di Luar Negeri",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Kantor Perwakilan Lembaga Pembiayaan, Perusahaan Modal Ventura, dan Lembaga Jasa Keuangan Lainnya yang Berkantor Pusat di Luar Negeri, hlm. 1",
+          "flags": [],
+          "text": "PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 41 TAHUN 2025 TENTANG KANTOR PERWAKILAN LEMBAGA PEMBIAYAAN, PERUSAHAAN MODAL VENTURA, DAN LEMBAGA JASA KEUANGAN LAINNYA YANG BERKANTOR PUSAT DI LUAR NEGERI DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk mewujudkan kepastian hukum, keadilan,"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya, hlm. 1, Pasal 2, ayat (4)",
+          "flags": [],
+          "text": "SALINAN PERATURAN ANGGOTA DEWAN KOMISIONER OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 48/PADK.06/2025 TENTANG PENERAPAN MANAJEMEN RISIKO BAGI LEMBAGA PEMBIAYAAN, PERUSAHAAN MODAL VENTURA, LEMBAGA KEUANGAN MIKRO, DAN LEMBAGA JASA KEUANGAN LAINNYA DENGAN RAHMAT TUHAN YANG MAHA ESA ANGGOTA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Penerapan Manajemen Risiko Bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya, hlm. 1, Pasal 5, ayat (4)",
+          "flags": [],
+          "text": "Pasal 5 ayat (4), Pasal 25 ayat (4), Pasal 26 ayat (8), Pasal 27 ayat (2), Pasal 29 ayat (10), Pasal 33 ayat (9), Pasal 35 ayat (5), dan Pasal 36 ayat (6) Peraturan Otoritas Jasa Keuangan Nomor 42 Tahun 2024 tentang Penerapan Manajemen Risiko bagi Lembaga Pembiayaan, Perusahaan Modal Ventura, Lembaga Keuangan Mikro, dan Lembaga Jasa Keuangan Lainnya (Lembara"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan penyelenggaraan usaha perusahaan modal ventura",
+        "confidence": {
+          "label": "strong",
+          "score": 1.0,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=1.00",
+            "matched_phrase_count=5",
+            "lexical_rate=0.98",
+            "query_coverage=0.83"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "perusahaan modal ventura",
+            "modal ventura",
+            "pmv",
+            "penyelenggaraan usaha perusahaan modal ventura",
+            "perizinan usaha kelembagaan perusahaan modal ventura",
+            "laporan bulanan perusahaan modal ventura perusahaan modal ventura syariah",
+            "tata kelola perusahaan modal ventura"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "perusahaan modal ventura",
+                    "modal ventura",
+                    "penyelenggaraan usaha perusahaan modal ventura"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "perusahaan modal ventura",
+                    "modal ventura",
+                    "penyelenggaraan usaha perusahaan modal ventura"
+                  ],
+                  "citation": "Penyelenggaraan Usaha Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah, hlm. 1, Pasal 106, ayat (6)",
+                  "document": "Penyelenggaraan Usaha Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah",
+                  "section_type": "ayat",
+                  "snippet": "OTORITAS JASA KEUANGAN REPUBLIK INDONESIA SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 25 TAHUN 2023 TENTANG PENYELENGGARAAN USAHA PERUSAHAAN MODAL VENTURA DAN PERUSAHAAN MODAL VENTURA SYARIAH DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa untuk melaksanakan amanat Pasal 106 ayat (6),"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "perusahaan modal ventura",
+                    "modal ventura",
+                    "penyelenggaraan usaha perusahaan modal ventura"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "modal ventura",
+                    "pmv"
+                  ],
+                  "citation": "POJK tentang Penyelenggaraan Usaha Perusahaan Modal Ventura, hlm. 6, Pasal 2, ayat (1)",
+                  "document": "POJK tentang Penyelenggaraan Usaha Perusahaan Modal Ventura",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 2 (1) PMV menyelenggarakan Usaha Modal Ventura yang"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "perusahaan modal ventura",
+                    "modal ventura"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "pmv"
+                  ],
+                  "citation": "POJK tentang Perizinan Usaha dan Kelembagaan Perusahaan Modal Ventura, hlm. 7, Pasal 2, ayat (1)",
+                  "document": "POJK tentang Perizinan Usaha dan Kelembagaan Perusahaan Modal Ventura",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 2 (1) PMV dan PMVS harus didirikan dalam bentuk badan"
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 10
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Penyelenggaraan Usaha Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah",
+            "citation": "Penyelenggaraan Usaha Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah, hlm. 1, Pasal 106, ayat (6)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "OTORITAS JASA KEUANGAN REPUBLIK INDONESIA SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 25 TAHUN 2023 TENTANG PENYELENGGARAAN USAHA PERUSAHAAN MODAL VENTURA DAN PERUSAHAAN MODAL VENTURA SYARIAH DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa untuk melaksanakan amanat Pasal 106 ayat (6),"
+          },
+          {
+            "issuer": "OJK",
+            "document": "POJK tentang Penyelenggaraan Usaha Perusahaan Modal Ventura",
+            "citation": "POJK tentang Penyelenggaraan Usaha Perusahaan Modal Ventura, hlm. 6, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) PMV menyelenggarakan Usaha Modal Ventura yang"
+          },
+          {
+            "issuer": "OJK",
+            "document": "POJK tentang Perizinan Usaha dan Kelembagaan Perusahaan Modal Ventura",
+            "citation": "POJK tentang Perizinan Usaha dan Kelembagaan Perusahaan Modal Ventura, hlm. 7, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) PMV dan PMVS harus didirikan dalam bentuk badan"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Laporan Bulanan Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah",
+            "citation": "Laporan Bulanan Perusahaan Modal Ventura dan Perusahaan Modal Ventura Syariah, hlm. 1, Pasal 2, ayat (6)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Yth. 1. Direksi Perusahaan Modal Ventura; dan 2. Direksi Perusahaan Modal Ventura Syariah, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 25 /SEOJK.05/2019 TENTANG LAPORAN BULANAN PERUSAHAAN MODAL VENTURA DAN PERUSAHAAN MODAL VENTURA SYARIAH Sehubungan dengan amanat Pasal 2 ayat (6), Pasal 4 ayat (6), dan Pasal 10 Peraturan Otoritas Jasa Keuangan Nomor 3/POJK.05/2013 tentang Laporan Bulanan Lembaga Jasa..."
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK Perusahaan Pembiayaan",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Perusahaan Pembiayaan"
+      ],
+      "summary": {
+        "rows": 29818,
+        "documents": {
+          "Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura": 3446,
+          "Perubahan Atas Surat Edaran Otoritas Jasa Keuangan Nomor 4/SEOJK.05/2016 tentang Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan": 2072,
+          "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah": 2007,
+          "Laporan Bulanan Perusahaan Pembiayaan Infrastruktur": 1835,
+          "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan": 1341
+        },
+        "document_count": 43,
+        "page_count": 435,
+        "section_types": {
+          "pasal": 16423,
+          "ayat": 5459,
+          "table": 3678,
+          "heading": 2249,
+          "attachment": 1524,
+          "paragraph": 434,
+          "list_item": 51
+        },
+        "citation_quality": {
+          "document_page_pasal": 21463,
+          "document_page_pasal_ayat": 6023,
+          "document_page": 2332
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.123,
+        "document_page_only_rate": 0.078,
+        "article_or_ayat_rate": 0.926,
+        "issue_counts": {
+          "very_short_text": 4522,
+          "markdown_table_artifact": 3852,
+          "form_placeholder_text": 120
+        },
+        "warnings": [
+          "form_placeholder_text",
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah, hlm. 3, Pasal 2, ayat (1)",
+          "flags": [],
+          "text": "Pasal 2 (1) Kewajiban Perusahaan Pembiayaan untuk"
+        },
+        {
+          "document": "Penyelenggaraan Beli Sekarang Bayar Nanti (Buy Now Pay Later) Bagi Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Penyelenggaraan Beli Sekarang Bayar Nanti (Buy Now Pay Later) Bagi Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah, hlm. 1, Pasal 19J",
+          "flags": [],
+          "text": "Nomor 59/OJK, Tambahan Lembaran Negara Republik Indonesia Nomor 127/OJK) sebagaimana telah diubah dengan Peraturan Otoritas Jasa Keuangan Nomor 35 Tahun 2025 tentang Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 46 Tahun 2024 tentang Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura (L"
+        },
+        {
+          "document": "Perubahan Peraturan Otoritas Jasa Keuangan 46 Tahun 2024 tentang Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page_pasal",
+          "citation": "Perubahan Peraturan Otoritas Jasa Keuangan 46 Tahun 2024 tentang Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura, hlm. 4, Pasal 71",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| yang | mengakibatkan | perubahan | PSP | wajib | |---|---|---|---|---| | memperoleh Keuangan. | persetujuan | dari | Otoritas | Jasa |"
+        },
+        {
+          "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 4/POJK.05/2018 Tentang Perusahaan Pembiayaan Sekunder Perumahan",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 4/POJK.05/2018 Tentang Perusahaan Pembiayaan Sekunder Perumahan, hlm. 1",
+          "flags": [],
+          "text": "OTORITAS JASA KEUANGAN REPUBLIK INDONESIA SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 12 /POJK.05/2022 TENTANG PERUBAHAN ATAS PERATURAN OTORITAS JASA KEUANGAN NOMOR 4/POJK.05/2018 TENTANG PERUSAHAAN PEMBIAYAAN SEKUNDER PERUMAHAN DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk menduku"
+        },
+        {
+          "document": "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan",
+          "issuer": "OJK",
+          "file_role": "attachment",
+          "section_type": "attachment",
+          "citation_quality": "document_page",
+          "citation": "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan, hlm. 1",
+          "flags": [],
+          "text": "LAMPIRAN I SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 4/SEOJK.05/2016 TENTANG LAPORAN BULANAN PERUSAHAAN PEMBIAYAAN SYARIAH DAN UNIT USAHA SYARIAH DARI PERUSAHAAN PEMBIAYAAN"
+        },
+        {
+          "document": "Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura, hlm. 1, Pasal 106, ayat (6)",
+          "flags": [],
+          "text": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 46 TAHUN 2024 TENTANG PENGEMBANGAN DAN PENGUATAN PERUSAHAAN PEMBIAYAAN, PERUSAHAAN PEMBIAYAAN INFRASTRUKTUR, DAN PERUSAHAAN MODAL VENTURA DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa untuk melaksanakan ketentuan Pasal 106 ayat (6), Pasal 107 ayat"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan OJK tentang perusahaan pembiayaan",
+        "confidence": {
+          "label": "strong",
+          "score": 0.968,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=1.00",
+            "matched_phrase_count=5",
+            "lexical_rate=0.78",
+            "query_coverage=0.50"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "perusahaan pembiayaan",
+            "laporan bulanan perusahaan pembiayaan",
+            "pembiayaan syariah",
+            "lembaga pembiayaan",
+            "multifinance",
+            "penyelenggaraan usaha perusahaan pembiayaan",
+            "perizinan usaha kelembagaan perusahaan pembiayaan",
+            "laporan bulanan perusahaan pembiayaan perusahaan pembiayaan syariah",
+            "permohonan perizinan persetujuan pelaporan perusahaan pembiayaan"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "perusahaan pembiayaan",
+                    "laporan bulanan perusahaan pembiayaan",
+                    "pembiayaan syariah"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "perusahaan pembiayaan"
+                  ],
+                  "citation": "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah, hlm. 3, Pasal 2, ayat (1)",
+                  "document": "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah",
+                  "section_type": "ayat",
+                  "snippet": "Pasal 2 (1) Kewajiban Perusahaan Pembiayaan untuk"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "perusahaan pembiayaan",
+                    "pembiayaan syariah"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "perusahaan pembiayaan",
+                    "pembiayaan syariah"
+                  ],
+                  "citation": "Permohonan Perizinan, Persetujuan, dan Pelaporan Secara Elektronik bagi Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah, hlm. 1, Pasal 114, ayat (5)",
+                  "document": "Permohonan Perizinan, Persetujuan, dan Pelaporan Secara Elektronik bagi Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah",
+                  "section_type": "ayat",
+                  "snippet": "Yth. 1. Direksi Perusahaan Pembiayaan; dan 2. Direksi Perusahaan Pembiayaan Syariah, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 20/SEOJK.06/2023 TENTANG PERMOHONAN PERIZINAN, PERSETUJUAN, DAN PELAPORAN SECARA ELEKTRONIK BAGI PERUSAHAAN PEMBIAYAAN DAN PERUSAHAAN PEMBIAYAAN SYARIAH Sehubungan dengan amanat Pasal 114 ayat (5) Peraturan Otoritas Jasa Keuangan Nomor 47/POJK.05/2020 ten..."
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "perusahaan pembiayaan",
+                    "laporan bulanan perusahaan pembiayaan",
+                    "pembiayaan syariah"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "perusahaan pembiayaan",
+                    "laporan bulanan perusahaan pembiayaan",
+                    "pembiayaan syariah"
+                  ],
+                  "citation": "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan, hlm. 1, Pasal 2, ayat (6)",
+                  "document": "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan",
+                  "section_type": "ayat",
+                  "snippet": "Yth. 1. Direksi atau yang setara pada Perusahaan Pembiayaan Syariah; dan 2. Direksi atau yang setara pada Perusahaan Pembiayaan yang mempunyai Unit Usaha Syariah, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 4/SEOJK.05/2016 TENTANG LAPORAN BULANAN PERUSAHAAN PEMBIAYAAN SYARIAH DAN UNIT USAHA SYARIAH DARI PERUSAHAAN PEMBIAYAAN Sehubungan dengan amanat Pasal 2 ayat (6), Pasal 4 ayat (6), dan Pasal 10 Pe..."
+                }
+              ],
+              "adjacent_matches": [],
+              "evidence_count": 10
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah",
+            "citation": "Laporan Bulanan Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah, hlm. 3, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Pasal 2 (1) Kewajiban Perusahaan Pembiayaan untuk"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Permohonan Perizinan, Persetujuan, dan Pelaporan Secara Elektronik bagi Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah",
+            "citation": "Permohonan Perizinan, Persetujuan, dan Pelaporan Secara Elektronik bagi Perusahaan Pembiayaan dan Perusahaan Pembiayaan Syariah, hlm. 1, Pasal 114, ayat (5)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Yth. 1. Direksi Perusahaan Pembiayaan; dan 2. Direksi Perusahaan Pembiayaan Syariah, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 20/SEOJK.06/2023 TENTANG PERMOHONAN PERIZINAN, PERSETUJUAN, DAN PELAPORAN SECARA ELEKTRONIK BAGI PERUSAHAAN PEMBIAYAAN DAN PERUSAHAAN PEMBIAYAAN SYARIAH Sehubungan dengan amanat Pasal 114 ayat (5) Peraturan Otoritas Jasa Keuangan Nomor 47/POJK.05/2020 ten..."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan",
+            "citation": "Laporan Bulanan Perusahaan Pembiayaan Syariah dan Unit Usaha Syariah dari Perusahaan Pembiayaan, hlm. 1, Pasal 2, ayat (6)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Yth. 1. Direksi atau yang setara pada Perusahaan Pembiayaan Syariah; dan 2. Direksi atau yang setara pada Perusahaan Pembiayaan yang mempunyai Unit Usaha Syariah, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 4/SEOJK.05/2016 TENTANG LAPORAN BULANAN PERUSAHAAN PEMBIAYAAN SYARIAH DAN UNIT USAHA SYARIAH DARI PERUSAHAAN PEMBIAYAAN Sehubungan dengan amanat Pasal 2 ayat (6), Pasal 4 ayat (6), dan Pasal 10 Pe..."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Perizinan Usaha dan Kelembagaan Perusahaan Pembiayaan",
+            "citation": "Perizinan Usaha dan Kelembagaan Perusahaan Pembiayaan, hlm. 6, Pasal 2, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "(1) Perusahaan harus didirikan dalam bentuk badan hukum: a. perseroan terbatas; atau b. koperasi. (2) Perusahaan yang berbentuk badan hukum perseroan terbatas sebagaimana dimaksud pada ayat (1) huruf a, sahamnya dimiliki oleh: a. warga negara Indonesia; b. badan usaha Indonesia; c. badan hukum Indonesia; d. badan usaha asing atau lembaga asing; e. negara Republik Indonesia; dan/atau"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OJK Aset Keuangan Digital",
+      "issuer": "OJK",
+      "title_patterns": [
+        "Aset Keuangan Digital",
+        "Aset Kripto"
+      ],
+      "summary": {
+        "rows": 5485,
+        "documents": {
+          "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto": 2478,
+          "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital": 745,
+          "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital": 701,
+          "Penilaian Kemampuan dan Kepatutan Serta Penilaian Kembali Bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto": 598,
+          "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto": 575
+        },
+        "document_count": 6,
+        "page_count": 178,
+        "section_types": {
+          "pasal": 2742,
+          "ayat": 820,
+          "table": 757,
+          "heading": 517,
+          "paragraph": 352,
+          "list_item": 297
+        },
+        "citation_quality": {
+          "document_page_pasal": 3756,
+          "document_page": 930,
+          "document_page_pasal_ayat": 799
+        },
+        "page_rate": 1.0,
+        "table_rate": 0.138,
+        "document_page_only_rate": 0.17,
+        "article_or_ayat_rate": 0.843,
+        "issue_counts": {
+          "very_short_text": 927,
+          "markdown_table_artifact": 757,
+          "form_placeholder_text": 255
+        },
+        "warnings": [
+          "form_placeholder_text",
+          "markdown_table_artifact",
+          "very_short_text"
+        ]
+      },
+      "examples": [
+        {
+          "document": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "ayat",
+          "citation_quality": "document_page_pasal_ayat",
+          "citation": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital, hlm. 1, Pasal 76, ayat (8)",
+          "flags": [],
+          "text": "Yth. Direksi Penyelenggara Perdagangan Aset Keuangan Digital, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 34/SEOJK.07/2025 TENTANG RENCANA BISNIS PENYELENGGARA PERDAGANGAN ASET KEUANGAN DIGITAL Sehubungan dengan amanat Pasal 76 ayat (8) Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggara Perdagangan "
+        },
+        {
+          "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "pasal",
+          "citation_quality": "document_page_pasal",
+          "citation": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 2, Pasal 1",
+          "flags": [],
+          "text": "106) diubah sebagai berikut: 1. Ketentuan Pasal 1 diubah sehingga berbunyi sebagai berikut:"
+        },
+        {
+          "document": "Penilaian Kemampuan dan Kepatutan Serta Penilaian Kembali Bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "table",
+          "citation_quality": "document_page",
+          "citation": "Penilaian Kemampuan dan Kepatutan Serta Penilaian Kembali Bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto, hlm. 2",
+          "flags": [
+            "markdown_table_artifact"
+          ],
+          "text": "| 1) | calon | Pihak | Utama Penyelenggara IAKD merupakan: | pengendali, | yaitu | PSP | dari | |---|---|---|---|---|---|---|---| | | a) | | akan melakukan pembelian, | orang perseorangan dan/atau badan hukum yang | | menerima hibah, | |"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital, hlm. 1",
+          "flags": [],
+          "text": "Yth. Direksi Pedagang Aset Keuangan Digital, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 16/SEOJK.07/2025 TENTANG PENERAPAN PROGRAM ANTI PENCUCIAN UANG, PENCEGAHAN PENDANAAN TERORISME, DAN PENCEGAHAN PENDANAAN PROLIFERASI SENJATA PEMUSNAH MASSAL BAGI PEDAGANG ASET KEUANGAN DIGITAL Sehubungan dengan berlakunya Peraturan Oto"
+        },
+        {
+          "document": "Penilaian Kemampuan dan Kepatutan serta Penilaian Kembali bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Penilaian Kemampuan dan Kepatutan serta Penilaian Kembali bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto, hlm. 1",
+          "flags": [],
+          "text": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 16 TAHUN 2025 TENTANG PENILAIAN KEMAMPUAN DAN KEPATUTAN SERTA PENILAIAN KEMBALI BAGI PIHAK UTAMA DI SEKTOR INOVASI TEKNOLOGI SEKTOR KEUANGAN SERTA ASET KEUANGAN DIGITAL DAN ASET KRIPTO DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk mencipt"
+        },
+        {
+          "document": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+          "issuer": "OJK",
+          "file_role": "primary_regulation",
+          "section_type": "paragraph",
+          "citation_quality": "document_page",
+          "citation": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 1",
+          "flags": [],
+          "text": "Yth. Direksi Penyelenggara Perdagangan Aset Keuangan Digital termasuk Aset Kripto, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 20/SEOJK.07/2024 TENTANG PENYELENGGARAAN PERDAGANGAN ASET KEUANGAN DIGITAL TERMASUK ASET KRIPTO Sehubungan dengan berlakunya Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelengga"
+        }
+      ],
+      "evidence_probe": {
+        "query": "aturan OJK tentang perdagangan aset keuangan digital termasuk aset kripto",
+        "confidence": {
+          "label": "strong",
+          "score": 0.841,
+          "reasons": [
+            "primary_rate=1.00",
+            "page_rate=1.00",
+            "article_rate=0.80",
+            "matched_phrase_count=0",
+            "lexical_rate=1.00",
+            "query_coverage=0.71"
+          ],
+          "must_say_not_found": false
+        },
+        "topic_coverage": {
+          "applies": false,
+          "terms": [
+            "kripto",
+            "penyelenggaraan perdagangan aset keuangan digital"
+          ],
+          "issuers": [
+            "OJK"
+          ],
+          "by_issuer": {
+            "OJK": {
+              "label": "direct",
+              "direct": true,
+              "direct_matches": [
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "kripto",
+                    "penyelenggaraan perdagangan aset keuangan digital"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "kripto",
+                    "penyelenggaraan perdagangan aset keuangan digital"
+                  ],
+                  "citation": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 14, Pasal 12, ayat (1)",
+                  "document": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+                  "section_type": "ayat",
+                  "snippet": "PEMBERITAHUAN DIMULAINYA PERDAGANGAN ASET KRIPTO Dalam rangka melaksanakan amanat Pasal 12 ayat (1) POJK Nomor … tentang Penyelenggaraan Perdagangan Aset Keuangan Digital termasuk Aset Kripto terkait kewajiban Pedagang untuk memberitahukan dimulainya perdagangan Aset Kripto kepada Otoritas Jasa Keuangan, kami yang bertandatangan di bawah ini: Nama Pedagang : Kode Pedagang :"
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "kripto",
+                    "penyelenggaraan perdagangan aset keuangan digital"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "kripto",
+                    "penyelenggaraan perdagangan aset keuangan digital"
+                  ],
+                  "citation": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 1, Pasal 312, ayat (1)",
+                  "document": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+                  "section_type": "ayat",
+                  "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 27 TAHUN 2024 TENTANG PENYELENGGARAAN PERDAGANGAN ASET KEUANGAN DIGITAL TERMASUK ASET KRIPTO DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk mendukung perkembangan sektor jasa keuangan dan melaksanakan kewenangan pengaturan dan pengawasan sebagaimana dimaksud dalam Undang-Undang Nomor 4 Tahun 2023 t..."
+                },
+                {
+                  "direct": true,
+                  "title_hits": [
+                    "kripto",
+                    "penyelenggaraan perdagangan aset keuangan digital"
+                  ],
+                  "definition_hits": [],
+                  "snippet_hits": [],
+                  "citation": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 5, Pasal 3A, ayat (1)",
+                  "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+                  "section_type": "ayat",
+                  "snippet": "(1) Aset Keuangan Digital terdiri atas:"
+                }
+              ],
+              "adjacent_matches": [
+                {
+                  "direct": false,
+                  "title_hits": [],
+                  "definition_hits": [],
+                  "snippet_hits": [
+                    "kripto"
+                  ],
+                  "citation": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital, hlm. 1, Pasal 76, ayat (8)",
+                  "document": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital",
+                  "section_type": "ayat",
+                  "snippet": "Yth. Direksi Penyelenggara Perdagangan Aset Keuangan Digital, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 34/SEOJK.07/2025 TENTANG RENCANA BISNIS PENYELENGGARA PERDAGANGAN ASET KEUANGAN DIGITAL Sehubungan dengan amanat Pasal 76 ayat (8) Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggara Perdagangan Aset Keuangan Digital Termasuk Aset Kripto (Lembaran Negara ..."
+                }
+              ],
+              "evidence_count": 8
+            }
+          },
+          "missing_direct_issuers": [],
+          "downgrade_required": false,
+          "downgrade_label": "partial",
+          "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+          "policy": {
+            "direct_title_required_for_comparison": true,
+            "snippet_only_counts_as_adjacent": true
+          }
+        },
+        "top_citations": [
+          {
+            "issuer": "OJK",
+            "document": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+            "citation": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 14, Pasal 12, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "PEMBERITAHUAN DIMULAINYA PERDAGANGAN ASET KRIPTO Dalam rangka melaksanakan amanat Pasal 12 ayat (1) POJK Nomor … tentang Penyelenggaraan Perdagangan Aset Keuangan Digital termasuk Aset Kripto terkait kewajiban Pedagang untuk memberitahukan dimulainya perdagangan Aset Kripto kepada Otoritas Jasa Keuangan, kami yang bertandatangan di bawah ini: Nama Pedagang : Kode Pedagang :"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+            "citation": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 1, Pasal 312, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 27 TAHUN 2024 TENTANG PENYELENGGARAAN PERDAGANGAN ASET KEUANGAN DIGITAL TERMASUK ASET KRIPTO DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk mendukung perkembangan sektor jasa keuangan dan melaksanakan kewenangan pengaturan dan pengawasan sebagaimana dimaksud dalam Undang-Undang Nomor 4 Tahun 2023 t..."
+          },
+          {
+            "issuer": "OJK",
+            "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+            "citation": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto, hlm. 5, Pasal 3A, ayat (1)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "(1) Aset Keuangan Digital terdiri atas:"
+          },
+          {
+            "issuer": "OJK",
+            "document": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital",
+            "citation": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital, hlm. 1, Pasal 76, ayat (8)",
+            "citation_quality": "document_page_pasal_ayat",
+            "section_type": "ayat",
+            "snippet": "Yth. Direksi Penyelenggara Perdagangan Aset Keuangan Digital, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 34/SEOJK.07/2025 TENTANG RENCANA BISNIS PENYELENGGARA PERDAGANGAN ASET KEUANGAN DIGITAL Sehubungan dengan amanat Pasal 76 ayat (8) Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggara Perdagangan Aset Keuangan Digital Termasuk Aset Kripto (Lembaran Negara ..."
+          }
+        ]
+      }
+    }
+  ]
+}

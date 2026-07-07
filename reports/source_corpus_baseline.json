@@ -1,0 +1,1900 @@
+{
+  "rows": 537355,
+  "documents": 1562,
+  "files": 2471,
+  "sources": {
+    "ease-bi": 31713,
+    "peraturan-ojk": 505642
+  },
+  "issuers": {
+    "BI": 31713,
+    "OJK": 505642
+  },
+  "source_priority": {
+    "primary": 521902,
+    "secondary": 15453
+  },
+  "file_roles": {
+    "primary_regulation": 509613,
+    "operational_requirement": 2185,
+    "secondary_faq": 11498,
+    "secondary_summary": 3955,
+    "attachment": 10104
+  },
+  "section_types": {
+    "paragraph": 24534,
+    "table": 62382,
+    "pasal": 268113,
+    "ayat": 88434,
+    "heading": 56759,
+    "list_item": 11576,
+    "faq": 11508,
+    "abstrak": 3945,
+    "attachment": 10104
+  },
+  "citation_quality": {
+    "document_page": 73996,
+    "document_page_pasal": 368466,
+    "document_page_pasal_ayat": 94893
+  },
+  "sikepo_metadata_coverage": {
+    "primary_ojk_keys": 1513,
+    "sikepo_keys": 422,
+    "matched_keys": 93,
+    "primary_without_sikepo_metadata": 1420,
+    "sikepo_without_primary_document": 329,
+    "loose_number_match": {
+      "primary_ojk_keys": 1510,
+      "sikepo_keys": 422,
+      "matched_keys": 94,
+      "primary_without_sikepo_metadata": 1416,
+      "sikepo_without_primary_document": 328,
+      "note": "Loose matching ignores year because OJK effective year and Sikepo issuance year can differ."
+    },
+    "primary_without_sikepo_examples": [
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 02 /pm/2004|2004",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiid1-tentang-penyelenggara-perdagangan-surat-utang-negara",
+            "title": "III. D.1. Penyelenggara Perdagangan Surat Utang Negara Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 02 /pm/2004",
+            "year": "2004",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 09/bl/2006|2006",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vb2-tentang-perizinan-wakil-agen-penjual-efek-reksa-dana",
+            "title": "V.B.2. Perizinan Wakil Agen Penjual Efek Reksa Dana Berdasarkan Keputusan Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 09/bl/2006",
+            "year": "2006",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 10/bl/2006|2016",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vb3-tentang-pendaftaran-agen-penjual-efek-reksa-dana",
+            "title": "V.B.3. Pendaftaran Agen Penjual Efek Reksa Dana Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 10/bl/2006",
+            "year": "2016",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 108 /bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiic8-tentang-komisaris-lembaga-penyimpanan-dan-penyelesaian",
+            "title": "III. C8. Komisaris Lembaga Penyimpanan dan Penyelesaian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 108 /bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 13/bl/2009|2009",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiib3-tentang-direktur-lembaga-kliring-dan-penjaminan",
+            "title": "III. B3. Direktur Lembaga Kliring dan Penjaminan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 13/bl/2009",
+            "year": "2009",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 14/bl/2009|2009",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiic3-tentang-direktur-lembaga-penyimpanan-dan-penyelesaian",
+            "title": "III. C.3. Direktur Lembaga Penyimpanan dan Penyelesaian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 14/bl/2009",
+            "year": "2009",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 178/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vg5-tentang-perubahan-peraturan-tentang-fungsi-manajer-investasi-berkaitan-dengan-efek-beragun-aset",
+            "title": "V.G.5. Perubahan Peraturan tentang Fungsi Manajer Investasi Berkaitan dengan Efek Beragun Aset (Asset Backed Securities) Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 178/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 181/bl/2007|2016",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iij1-tentang-pengenaan-biaya-tahunan-atas-bursa-efek,-lembaga-kliring-dan-penjaminan,-serta-lembaga-penyimpanan",
+            "title": "II.J.1. Pengenaan Biaya Tahunan Atas Bursa Efek, Lembaga Kliring dan Penjaminan, serta Lembaga Penyimpanan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 181/bl/2007",
+            "year": "2016",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 27/pm/2000|2000",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vd8-tentang-kegiatan-perusahaan-efek-di-berbagai-lokasi",
+            "title": "V.D.8. Kegiatan Perusahaan Efek di Berbagai Lokasi Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 27/pm/2000",
+            "year": "2000",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 29/pm/1998|1998",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiic6-tentang-prosedur-operasi-dan-pengendalian-intern-lembaga-penyimpana-dan-penyelesaian",
+            "title": "III. C6. Prosedur Operasi dan Pengendalian Intern Lembaga Penyimpana dan Penyelesaian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 29/pm/1998",
+            "year": "1998",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 309/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vic3-tentang-hubungan-kredit-dan-penjaminan-antara-wali-amanat-dengan-emiten",
+            "title": "VI. C3. Hubungan Kredit dan Penjaminan Antara Wali Amanat dengan Emiten Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 309/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 327/bl/2012|2012",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vib2-tentang-pembuatan-nomor-tunggal-identitas-pemodal-pada-lembaga-penyimpanan-dan-penyelesaian",
+            "title": "VI. B2. Pembuatan Nomor tunggal Identitas Pemodal pada Lembaga Penyimpanan dan Penyelesaian Oleh Biro Administrasi Efek atau Emiten dan Perusahaan Publik yang Menyelenggarakan Administrasi Efek Sendiri",
+            "number": "kep- 327/bl/2012",
+            "year": "2012",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 334 /bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-va1-tentang-perizinan-perusahaan-efek",
+            "title": "V.A.1. Perizinan Perusahaan Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 334 /bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 39/pm/2003|2003",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiie1-tentang-kontrak-berjangka-dan-opsi-atas-efek-atau-indeks-efek",
+            "title": "III. E.1. Kontrak Berjangka dan Opsi Atas Efek atau Indeks Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 39/pm/2003",
+            "year": "2003",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 401/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-xib2-tentang-pembelian-kembali-saham-yang-dikeluarkan-oleh-emiten-dalam-kondisi-pasar-yang-berpotensi-krisis",
+            "title": "XI. B2. Pembelian Kembali saham yang Dikeluarkan Oleh Emiten atau Perusahaan Publikdalam Kondisi Pasar yang Berpotensi Krisis",
+            "number": "kep- 401/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 412/bl/2010|2010",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vic4-tentang-ketentuan-umum-dan-kontrak-perwaliamanatan-efek-bersifat-utang",
+            "title": "VI. C4. Ketentuan Umum dan Kontrak Perwaliamanatan Efek Bersifat Utang Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 412/bl/2010",
+            "year": "2010",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 423 /bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ix15-tentang-pernyataan-pendaftaran-dalam-rangka-penawaran-umum-oleh-dana-investasi-real-estat-berbentuk-kontrak",
+            "title": "IX.15. Pernyataan Pendaftaran dalam Rangka Penawaran Umum Oleh Dana Investasi Real Estat Berbentuk Kontrak Investasi Kolektif Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 423 /bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 424/bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixc16-tentang-pedoman-mengenai-bentuk-dan-isi-prospektus-dalam-rangka-penawaran-umum-oleh-dana-investasi-real-estat",
+            "title": "IX.C.16. Pedoman Mengenai bentuk dan Isi Prospektus dalam Rangka Penawaran Umum Oleh Dana Investasi Real Estat Berbentuk Kontrak Investasi Kolektif Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 424/bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 425/bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixm1-tentang-pedoman-bagi-manajer-investasi-dan-bank-kustodian-yang-melakukan-pengelolaan-dana-investasi-real-estat",
+            "title": "IX.M.1. Pedoman Bagi Manajer Investasi dan Bank Kustodian yang Melakukan Pengelolaan Dana Investasi Real Estat Berbentuk Kontrak Investasi Kolektif Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 425/bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 430/bl/2012|2012",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixa14-tentang-akad-akad-yang-digunakan-dalam-penerbitan-efek-syariah-di-pasar-modal",
+            "title": "IX. A14. Akad-Akad yang Digunakan dalam Penerbitan Efek Syariah di Pasar Modal Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 430/bl/2012",
+            "year": "2012",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 432/bl/2010|2010",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixd6-tentang-pengeluaran-saham-dengan-nilai-nominal-berbeda",
+            "title": "IX. D6. Pengeluaran Saham dengan Nilai Nominal Berbeda Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 432/bl/2010",
+            "year": "2010",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 440/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-kep-440bl2008-tentang-penilaian-surat-utang-atau-surat-berharga-lain-yang-diterbitkan-oleh-negara-dan-obligasi",
+            "title": "Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan Nomor KEP-440/BL/2008 tentang Penilaian Surat Utang atau Surat Berharga Lain yang Diterbitkan Oleh Negara dan Obligasi",
+            "number": "kep- 440/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 45/pm/2004|2004",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixi6-tentang-direksi-dan-komisaris-emiten-dan-perusahaan-publik",
+            "title": "IX. I6. Direksi dan Komisaris Emiten dan Perusahaan Publik Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 45/pm/2004",
+            "year": "2004",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 460/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-xe1-tentang-kewajiban-penyampaian-laporan-berkala-oleh-perusahaan-efek",
+            "title": "X.E.1. Kewajiban Penyampaian Laporan Berkala oleh Perusahaan Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 460/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 47/pm/1997|1997",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-via2-tentang-fungsi-bank-kustodian-berkaitan-dengan-efek-beragun-aset-(asset-backed-securities)",
+            "title": "VI. A2. Fungsi Bank Kustodian Berkaitan dengan Efek Beragun Aset (Asset Backed Securities) Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 47/pm/1997",
+            "year": "1997",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 479/bl/2009|2009",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-va3-tentang-perizinan-perusahaan-efek-yang-melakukan-kegiatan-usaha-sebagai-manajer-investasi",
+            "title": "V.A.3. Perizinan Perusahaan Efek yang Melakukan Kegiatan Usaha Sebagai Manajer Investasi Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 479/bl/2009",
+            "year": "2009",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 48/pm/1997|1997",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-via3-tentang-rekening-efek-pada-kustodian",
+            "title": "VI. A3. Rekening Efek Pada Kustodian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep- 48/pm/1997",
+            "year": "1997",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 480/bl/2009|2009",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-vd11-tentang-pedoman-pelaksanaan-fungsi-fungsi-manajer-investasi",
+            "title": "V.D.11. Pedoman Pelaksanaan Fungsi-Fungsi Manajer Investasi Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 480/bl/2009",
+            "year": "2009",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 493/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixk1-tentang-perubahan-peraturan-tentang-pedoman-kontrak-investasi-kolektif-efek-beragun-aset",
+            "title": "IX.K.1. Perubahan Peraturan tentang Pedoman Kontrak Investasi Kolektif Efek Beragun Aset (Asset Backed Securities) Berdasarkan Keputusan Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 493/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 496/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixi7-tentang-pembentukan-dan-pedoman-penyusunan-piagam-unit-audit-internal",
+            "title": "IX. I7. Pembentukan dan Pedoman Penyusunan Piagam Unit Audit Internal Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 496/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 555/bl/2010|2016",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixa15-tentang-penawaran-umum-berkelanjutan",
+            "title": "IX. A15.Penawaran Umum Berkelanjutan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 555/bl/2010",
+            "year": "2016",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 63/bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-viiig14-tentang-pedoman-penyajian-laporan-keuangan-daerah",
+            "title": "VIII. G14. Pedoman Penyajian Laporan Keuangan Daerah Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 63/bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 65/bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-viiig16-tentang-keputusan-pedoman-penyusunan-surat-pernyataan-kepala-daerah-di-bidang-akuntansi-",
+            "title": "VIII. G16. Keputusan Pedoman Penyusunan Surat Pernyataan Kepala Daerah di Bidang Akuntansi dalam Rangka Penawaran Umum Obligasi Daerah Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 65/bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 669/bl/2012|2012",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-xh1-tentang-laporan-biro-administrasi-efek--dan-perusahaan-publik-yang-menyelenggarakan-administrasi-efek-sendiri",
+            "title": "X. H1. Laporan Biro Administrasi Efekatau Emiten dan Perusahaan Publik yang Menyelenggarakan Administrasi Efek Sendiri",
+            "number": "kep- 669/bl/2012",
+            "year": "2012",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 67/bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixc13-tentang-pedoman-mengenai-bentuk-dan-isi-prospektus-dalam-rangka-penawaran-umum-obligasi-daerah",
+            "title": "IX. C13. Pedoman Mengenai Bentuk dan Isi Prospektus dalam Rangka Penawaran Umum Obligasi Daerah Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 67/bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep- 68/bl/2007|2007",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixc14-tentang-pedoman-mengenai-bentuk-dan-isi-prospektus-ringkas-dalam-rangka-penawaran-obligasi-daerah",
+            "title": "IX. C14. Pedoman Mengenai Bentuk dan Isi Prospektus Ringkas dalam Rangka Penawaran Obligasi Daerah Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep- 68/bl/2007",
+            "year": "2007",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-01/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iif4-tentang-pemeriksaan-reksa-dana",
+            "title": "II. F.4. Pemeriksaan Reksa Dana Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-01/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-02/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-tentang-perizinan-bursa-efek",
+            "title": "III.A.1. Keputusan Ketua Badan Pengawas Pasar Modal Nomor KEP-02/PM/1996 tentang Perizinan Bursa Efek",
+            "number": "kep-02/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-03/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-tentang-tata-cara-pembuatan-peraturan-oleh-bursa-efek",
+            "title": "III.A.2. Tata Cara Pembuatan Peraturan oleh Bursa Efek",
+            "number": "kep-03/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-05/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-tentang-tata-cara-penyusunan-serta-pengajuan-rencana-anggaran-dan-penggunaan-laba-bursa-efek",
+            "title": "III.A4. Tata Cara Penyusunan serta Pengajuan Rencana Anggaran dan Penggunaan Laba Bursa Efek Berdasarkan Keputusan Badan Pengawas Pasar Modal",
+            "number": "kep-05/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-05/pm/2004|2004",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixa12-tentang-penawaran-umum-oleh-pemegang-saham",
+            "title": "IX. A12. Penawaran Umum oleh Pemegang Saham Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-05/pm/2004",
+            "year": "2004",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-06/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-tentang-tata-cara-pemberian-persetujuan-anggaran-dasar-bursa-efek",
+            "title": "III.A5. Tata Cara Pemberian Persetujuan Anggaran Dasar Bursa Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-06/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-06/pm/2001|2001",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixa6-tentang-pembatasan-atas-saham-yang-diterbitkan-sebelum-penawaran-umum",
+            "title": "IX. A6.Pembatasan Atas Saham yang Diterbitkan Sebelum Penawaran Umum Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-06/pm/2001",
+            "year": "2001",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-07/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiib1-tentang-perizinan-lembaga-kliring-dan-penjaminan",
+            "title": "III. B1. Perizinan Lembaga Kliring dan Penjaminan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-07/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-08/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiib2-tentang-tata-cara-pembuatan-peraturan-oleh-lembaga-kliring-dan-penjaminan",
+            "title": "III. B2. Tata Cara Pembuatan Peraturan oleh Lembaga Kliring dan Penjaminan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-08/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-08/pm/2000|2000",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixd2-tentang-perubahan-peraturan-nomor-ixd2",
+            "title": "IX. D2. Perubahan Peraturan Nomor IX. D2. tentang Pedoman Mengenai Bentuk dan Isi Pernyataan Pendaftaran dalam Rangka Penerbitan Hak Memesan Efek Terlebih Dahulu Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-08/pm/2000",
+            "year": "2000",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-09/pm/2000|2000",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-ixd3-tentang-perubahan-peraturan-nomor-ixd3",
+            "title": "IX. D3. Perubahan Peraturan Nomor IX. D3. tentang Pedoman Mengenai Bentuk dan Isi Prospektus dalam Rangka Penerbitan Hak Memesan Efek Terlebih Dahulu Berdasarkan Keputusan Kepala Badan Pengawas Pasar Modal",
+            "number": "kep-09/pm/2000",
+            "year": "2000",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-10/pm/1996|1996",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-iiib4-tentang-tata-cara-penyusunan-serta-pengajuan-rencana-anggaran-dan-penggunaan-laba",
+            "title": "III. B4. Tata Cara Penyusunan Serta Pengajuan Rencana Anggaran dan Penggunaan Laba Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-10/pm/1996",
+            "year": "1996",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-105/bl/2010|2010",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-xib2-tentang-pembelian-kembali-saham-yang-dikeluarkan-oleh-emiten-atau-perusahaan-publik",
+            "title": "XI. B2. Pembelian Kembali Saham yang Dikeluarkan Oleh Emiten atau Perusahaan Publik Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan",
+            "number": "kep-105/bl/2010",
+            "year": "2010",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      },
+      {
+        "key": "OJK|KLASIFIKASI BAPEPAM|kep-106/bl/2008|2008",
+        "items": [
+          {
+            "source": "peraturan-ojk",
+            "source_id": "bapepam-tentang-komisaris-bursa-efek",
+            "title": "III.A.12. Komisaris Bursa Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+            "number": "kep-106/bl/2008",
+            "year": "2008",
+            "bank_slug": null,
+            "bank_name": null
+          }
+        ]
+      }
+    ],
+    "sikepo_without_primary_examples": [
+      {
+        "key": "OJK|PADK|42/padk.03/2025|2025",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__066573c3-f0fd-41c0-a5c4-785e94a63cb1",
+            "title": "Perintah Tertulis Untuk Penanganan Permasalahan Bank Melalui Penggabungan, Peleburan, Pengambilalihan, Integrasi, dan/atau Konversi",
+            "number": "42/padk.03/2025",
+            "year": "2025",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__6e1a5ce4-4cd8-426b-b00d-a137aff6b73f",
+            "title": "Perintah Tertulis Untuk Penanganan Permasalahan Bank Melalui Penggabungan, Peleburan, Pengambilalihan, Integrasi, dan/atau Konversi",
+            "number": "42/padk.03/2025",
+            "year": "2025",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PADK|43/padk.03/2025|2025",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__160bb292-807e-459f-aa25-a96539b58cec",
+            "title": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Syariah",
+            "number": "43/padk.03/2025",
+            "year": "2025",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|1/6/pbi/1999|1999",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__dfb326da-c19d-4129-ab9d-b654ee20f0dd",
+            "title": "Penugasan Direktur Kepatuhan (Compliance Director) dan Penerapan Standar Pelaksanaan Fungsi Audit Intern Bank Umum",
+            "number": "1/6/pbi/1999",
+            "year": "1999",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|10/1/pbi/2008|2008",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__7d034152-8b12-4ab6-b730-34f3b847ded2",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 8/5/PBI/2006 Tentang Mediasi Perbankan",
+            "number": "10/1/pbi/2008",
+            "year": "2008",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__1ffbd177-c487-4ee0-a48f-ebc3e4f9d732",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 8/5/PBI/2006 Tentang Mediasi Perbankan",
+            "number": "10/1/pbi/2008",
+            "year": "2008",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__8b1054b8-c991-4c21-b0e6-8683d82b9c1c",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 8/5/PBI/2006 Tentang Mediasi Perbankan",
+            "number": "10/1/pbi/2008",
+            "year": "2008",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|10/38/pbi/2008|2008",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__86e43a0c-6f86-4539-8a81-5329701df2cb",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 7/31/PBI/2005 Tentang Transaksi Derivatif",
+            "number": "10/38/pbi/2008",
+            "year": "2008",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|10/39/pbi/2008|2008",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__474fa8e2-cfdf-4681-8b8a-671e74088d55",
+            "title": "Peraturan Pelaksanaan Penanganan Khusus Permasalahan Perbankan Pascabencana Nasional di Provinsi Naggroe Aceh Darussalam dan Kepulauan Nias, Provinsi Sumatera Utara",
+            "number": "10/39/pbi/2008",
+            "year": "2008",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__81872e0a-dd89-45eb-8141-7dbd3c4c5b8a",
+            "title": "Peraturan Pelaksanaan Penanganan Khusus Permasalahan Perbankan Pascabencana Nasional di Provinsi Nanggroe Aceh Darussalam dan Kepulauan Nias, Provinsi Sumatera Utara",
+            "number": "10/39/pbi/2008",
+            "year": "2008",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|10/40/pbi/2008|2008",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__69339e71-6ae3-4a90-a8b6-41ce507b2ff5",
+            "title": "Laporan Bulanan Bank Umum",
+            "number": "10/40/pbi/2008",
+            "year": "2008",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|11/1/pbi/2009|2009",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__fbf17397-6a49-4234-b1b5-9fa9895c3d7c",
+            "title": "Bank Umum",
+            "number": "11/1/pbi/2009",
+            "year": "2009",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|11/18/pbi/2009|2009",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__c84e3ef3-35b3-4de8-925d-57c335c9d229",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 10/40/PBI/2008 Tentang Laporan Bulanan Bank Umum",
+            "number": "11/18/pbi/2009",
+            "year": "2009",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|11/19/pbi/2009|2009",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__6e886f7d-43d4-4fee-b0d7-b76daa665c84",
+            "title": "Sertifikasi Manajemen Risiko Bagi Pengurus dan Pejabat Bank Umum",
+            "number": "11/19/pbi/2009",
+            "year": "2009",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__3e1c693a-b9ac-4b0c-b88c-e6b879942248",
+            "title": "Sertifikasi Manajemen Risiko bagi Pengurus dan Pejabat Bank Umum",
+            "number": "11/19/pbi/2009",
+            "year": "2009",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__f5d56f31-576e-47da-8d70-73f42afb9c2c",
+            "title": "Sertifikasi Manajemen Risiko bagi Pengurus dan Pejabat Bank Umum",
+            "number": "11/19/pbi/2009",
+            "year": "2009",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|11/27/pbi/2009|2009",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__009b2f6c-0f56-4c44-a01a-8d3fea76bd29",
+            "title": "Perubahan atas PBI 7/17/PBI/2005 tentang Perlakuan Khusus terhadap Kredit Bank Pasca Bencana Alam di Propinsi Daerah Istimewa Yogyakarta dan Daerah Sekitarnya di Propinsi Jawa Tengah",
+            "number": "11/27/pbi/2009",
+            "year": "2009",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|11/33/pbi/2009|2009",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__bdd4f503-9feb-4197-b9c9-0fe7e3a2010f",
+            "title": "Pelaksanaan Good Corporate Governance Bagi Bank Umum Syariah dan Unit Usaha Syariah",
+            "number": "11/33/pbi/2009",
+            "year": "2009",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__475f1442-8965-42fa-9074-8fd8c772f35d",
+            "title": "Pelaksanaan Good Corporate Governance Bagi Bank Umum Syariah dan Unit Usaha Syariah",
+            "number": "11/33/pbi/2009",
+            "year": "2009",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|12/2/pbi/2010|2010",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__292289ae-2440-4787-b574-ec64e18a847b",
+            "title": "Perubahan Kedua Atas Peraturan Bank Indonesia Nomor 10/40/PBI/2008 Tentang Laporan Bulanan Bank Umum",
+            "number": "12/2/pbi/2010",
+            "year": "2010",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|12/22/pbi/2010|2010",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__f5f7b77a-4ce0-47ba-90e7-d2ca5dabc855",
+            "title": "Pedagang Valuta Asing",
+            "number": "12/22/pbi/2010",
+            "year": "2010",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__0ca5ea49-0d97-4c82-b5fe-39da4cc28626",
+            "title": "Pedagang Valuta Asing",
+            "number": "12/22/pbi/2010",
+            "year": "2010",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|12/7/pbi/2010|2010",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__1061539d-d457-4553-aa02-a9951b98886b",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 11/19/PBI/2009 Tentang Sertifikasi Manajemen Risiko Bagi Pengurus dan Pejabat Bank Umum",
+            "number": "12/7/pbi/2010",
+            "year": "2010",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__4349a31f-abee-4d08-867b-5e4706e5351f",
+            "title": "Perubahan atas Peraturan Bank Indonesia Nomor 11/19/PBI/2009 tentang Sertifikasi Manajemen Risiko bagi Pengurus dan Pejabat Bank Umum",
+            "number": "12/7/pbi/2010",
+            "year": "2010",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__7a6997f2-d4f2-4e05-9aaf-6a59f8fd6add",
+            "title": "Perubahan atas Peraturan Bank Indonesia Nomor 11/19/PBI/2009 tentang Sertifikasi Manajemen Risiko bagi Pengurus dan Pejabat Bank Umum",
+            "number": "12/7/pbi/2010",
+            "year": "2010",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|13/12/pbi/2011|2011",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__65d84007-e71e-400f-a7bd-2690cbd14b49",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 5/26/PBI/2003 tentang Laporan Bulanan Bank Umum Syariah",
+            "number": "13/12/pbi/2011",
+            "year": "2011",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|13/19/pbi/2011|2011",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__75d8b11b-1571-4734-9153-9b6937b74a33",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 8/12/PBI/2006 Tentang Laporan Berkala Bank Umum",
+            "number": "13/19/pbi/2011",
+            "year": "2011",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__eb4011b8-948e-4f36-84ec-b64267868c08",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 8/12/PBI/2006 Tentang Laporan Berkala Bank Umum",
+            "number": "13/19/pbi/2011",
+            "year": "2011",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__6092d8ff-4b65-421e-a134-5fbfdda753fc",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 8/12/PBI/2006 Tentang Laporan Berkala Bank Umum",
+            "number": "13/19/pbi/2011",
+            "year": "2011",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|13/27/pbi/2011|2011",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__c2bd874e-7af0-4e28-b212-c5cde980fc18",
+            "title": "Perubahan Atas Peraturan Bank Indonesia Nomor 11/1/PBI/2009 Tentang Bank Umum",
+            "number": "13/27/pbi/2011",
+            "year": "2011",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|13/5/pbi/2011|2011",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__7e226d99-a92f-4aa4-9043-e0bef4418898",
+            "title": "Batas Maksimum Penyaluran Dana Bank Pembiayaan Rakyat Syariah",
+            "number": "13/5/pbi/2011",
+            "year": "2011",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|13/8/pbi/2011|2011",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__a2278bb6-6848-4175-9c96-cdb4ae7315f5",
+            "title": "Laporan Harian Bank Umum",
+            "number": "13/8/pbi/2011",
+            "year": "2011",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__56f83643-bc8b-46c7-b319-b0acf37f6f52",
+            "title": "Laporan Harian Bank Umum",
+            "number": "13/8/pbi/2011",
+            "year": "2011",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__07ca3e77-7ca1-42f5-bfc0-eb3f85d9d052",
+            "title": "Laporan Harian Bank Umum",
+            "number": "13/8/pbi/2011",
+            "year": "2011",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|14/12/pbi/2012|2012",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__02e0ce44-7cd7-4716-ac85-8952e3ac32b0",
+            "title": "Laporan Kantor Pusat Bank Umum",
+            "number": "14/12/pbi/2012",
+            "year": "2012",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__9094ae99-207f-4138-a2f4-05b486cf81b0",
+            "title": "Laporan Kantor Pusat Bank Umum",
+            "number": "14/12/pbi/2012",
+            "year": "2012",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__e5b852ce-7792-4ad9-b343-f0b7f1f31d96",
+            "title": "Laporan Kantor Pusat Bank Umum",
+            "number": "14/12/pbi/2012",
+            "year": "2012",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|14/6/pbi/2012|2012",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__75a77579-c260-41b2-ad5b-68feee977709",
+            "title": "Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
+            "number": "14/6/pbi/2012",
+            "year": "2012",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__08e9e40c-79cc-4f7b-9d49-4a92515415d2",
+            "title": "Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
+            "number": "14/6/pbi/2012",
+            "year": "2012",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__7f59782b-1788-437b-b593-ac049870badc",
+            "title": "Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
+            "number": "14/6/pbi/2012",
+            "year": "2012",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|15/4/pbi/2013|2013",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__1b061330-7e7e-4ec3-8491-d0542bdef3ad",
+            "title": "Laporan Stabilitas Moneter dan Sistem Keuangan Bulanan Bank Umum Syariah dan Unit Usaha Syariah",
+            "number": "15/4/pbi/2013",
+            "year": "2013",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__1ad8eb38-56f2-4bce-8980-43a75a107810",
+            "title": "Laporan Stabilitas Moneter dan Sistem Keuangan Bulanan Bank Umum Syariah dan Unit Usaha Syariah",
+            "number": "15/4/pbi/2013",
+            "year": "2013",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|18/21/pbi/2016|2016",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__251c2020-1881-40f5-81d6-48192f76e72d",
+            "title": "Perubahan atas Peraturan Bank Indonesia Nomor 9/14/PBI/2007 tentang Sistem Informasi Debitur",
+            "number": "18/21/pbi/2016",
+            "year": "2016",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__4ac531dc-d7e9-4225-9223-288689d4ef1b",
+            "title": "Perubahan atas Peraturan Bank Indonesia Nomor 9/14/PBI/2007 tentang Sistem Informasi Debitur",
+            "number": "18/21/pbi/2016",
+            "year": "2016",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|2/15/pbi/2000|2000",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__8d6f00f7-fb7b-4a0b-9d0b-c6c20bef27fb",
+            "title": "Perubahan Surat Keputusan Direksi Bank Indonesia No.31/150/KEP/DIR Tanggal 12 November 1998 Tentang Restrukturisasi Kredit",
+            "number": "2/15/pbi/2000",
+            "year": "2000",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|2/19/pbi/2000|2000",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__801d0f45-7cb4-4e96-8d45-c6a6d6177f43",
+            "title": "Persyaratan dan Tata Cara Pemberian Perintah atau Izin Tertulis Membuka Rahasia Bank",
+            "number": "2/19/pbi/2000",
+            "year": "2000",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__5cba17e3-24cd-4557-8455-d9d5b9083117",
+            "title": "Persyaratan dan Tata Cara Pemberian Perintah atau Izin Tertulis Membuka Rahasia Bank",
+            "number": "2/19/pbi/2000",
+            "year": "2000",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__b0b6ec95-9c18-4d25-b21c-c68acc51371d",
+            "title": "Persyaratan dan Tata Cara Pemberian Perintah atau Izin Tertulis Membuka Rahasia Bank",
+            "number": "2/19/pbi/2000",
+            "year": "2000",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|7/3/pbi/2005|2005",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__70b59cd7-5c25-4d22-bd16-1afd8f7ecdbe",
+            "title": "Batas Maksimum Pemberian Kredit",
+            "number": "7/3/pbi/2005",
+            "year": "2005",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__7fa93740-e25b-45bd-8102-c31ebfb517d8",
+            "title": "Batas Maksimum Pemberian Kredit Bank Umum",
+            "number": "7/3/pbi/2005",
+            "year": "2005",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|7/31/pbi/2005|2005",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__86b4aaf9-93bb-45cd-b78f-92c7c31ccde2",
+            "title": "Transaksi Derivatif",
+            "number": "7/31/pbi/2005",
+            "year": "2005",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|7/9/pbi/2005|2005",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__aaff4826-43a8-44d5-b2b6-178a95865dd8",
+            "title": "Laporan Bulanan Bank Perkreditan Rakyat Syariah",
+            "number": "7/9/pbi/2005",
+            "year": "2005",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|PBI|8/12/pbi/2006|2006",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__3d8552cc-1189-4c22-af0a-cdd380e2d2de",
+            "title": "Laporan Berkala Bank Umum",
+            "number": "8/12/pbi/2006",
+            "year": "2006",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__7348cc1e-6e16-4acc-b908-16fb49e95bac",
+            "title": "Laporan Berkala Bank Umum",
+            "number": "8/12/pbi/2006",
+            "year": "2006",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__7805f9f3-89de-4943-8af2-172251776296",
+            "title": "Laporan Berkala Bank Umum",
+            "number": "8/12/pbi/2006",
+            "year": "2006",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|1 tahun 2024|2024",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__016cfae0-b029-46c2-a02e-e0a62ab791a5",
+            "title": "Kualitas Aset Bank Perekonomian Rakyat",
+            "number": "1 tahun 2024",
+            "year": "2024",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|1/pojk.03/2019|2019",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__b3054473-af60-4421-a374-d1c460ab77a8",
+            "title": "Penerapan Fungsi Audit Intern Pada Bank Umum",
+            "number": "1/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__a131e23f-4ae0-481d-a74c-fff22e3837ee",
+            "title": "Penerapan Fungsi Audit Intern Pada Bank Umum",
+            "number": "1/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|1/pojk.03/2022|2022",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__32e7bb0b-2bf1-440d-8609-de64d31780be",
+            "title": "Layanan Keuangan Tanpa Kantor Dalam Rangka Keuangan Inklusif",
+            "number": "1/pojk.03/2022",
+            "year": "2022",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__40e1f028-2d12-4e61-be5f-d2bdaf6061ee",
+            "title": "Layanan Keuangan Tanpa Kantor Dalam Rangka Keuangan Inklusif",
+            "number": "1/pojk.03/2022",
+            "year": "2022",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__04978c74-85a6-4d7c-9ed3-6d069852275d",
+            "title": "Layanan Keuangan Tanpa Kantor Dalam Rangka Keuangan Inklusif",
+            "number": "1/pojk.03/2022",
+            "year": "2022",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|1/pojk.03/2026|2026",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__b44acde3-eb8a-462c-9c1e-427d3338a3cb",
+            "title": "Penggunaan Tenaga Kerja Asing Dan Program Alih Pengetahuan Oleh Bank Umum",
+            "number": "1/pojk.03/2026",
+            "year": "2026",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|10/pojk.03/2016|2016",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__2bd82387-3c06-4234-b1d3-7174ad9a1363",
+            "title": "Pemenuhan Ketentuan Bank Perkreditan Rakyat dan Transformasi Badan Kredit Desa yang Diberikan Status Sebagai Bank Perkreditan Rakyat",
+            "number": "10/pojk.03/2016",
+            "year": "2016",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|11/pojk.03/2016|2016",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__df5bf667-2e26-4e91-b985-1e441147dc53",
+            "title": "Kewajiban Penyediaan Modal Minimum Bank Umum",
+            "number": "11/pojk.03/2016",
+            "year": "2016",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|11/pojk.03/2019|2019",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__8feb8634-bf01-4574-8ce6-59e00e80d5ac",
+            "title": "Prinsip Kehati-hatian dalam Aktivitas Sekuritisasi Aset Bagi Bank Umum",
+            "number": "11/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__c184cb46-3b8f-4db1-ab55-86036ee6fa3a",
+            "title": "Prinsip Kehati-hatian dalam Aktivitas Sekuritisasi Aset Bagi Bank Umum",
+            "number": "11/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|11/pojk.03/2020|2020",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__a698bb26-1808-4310-8db5-6644e5627aef",
+            "title": "Stimulus Perekonomian Nasional Sebagai Kebijakan Countecyclical Dampak Penyebaran Coronavirus Disease 2019",
+            "number": "11/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__b09f3a06-6e9e-4552-b16e-30b641dc0563",
+            "title": "Stimulus Perekonomian Nasional Sebagai Kebijakan Countercyclical Dampak Penyebaran Coronavirus Disease 2019",
+            "number": "11/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__f48e8266-efcb-40cd-8acd-bc171da95e7b",
+            "title": "Stimulus Perekonomian Nasional Sebagai Kebijakan Countercyclical Dampak Penyebaran Coronavirus Disease 2019",
+            "number": "11/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|11/pojk.03/2022|2022",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__4f266b04-98cf-4488-bdb2-fd5656d60e08",
+            "title": "Penyelenggaraan Teknologi Informasi Oleh Bank Umum",
+            "number": "11/pojk.03/2022",
+            "year": "2022",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__7ae986c2-7305-43b1-9058-355a678c8bed",
+            "title": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
+            "number": "11/pojk.03/2022",
+            "year": "2022",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__4e75225c-383e-452a-a4ab-d40c432b749c",
+            "title": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
+            "number": "11/pojk.03/2022",
+            "year": "2022",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|12 tahun 2024|2024",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__a79f2384-d45a-4612-aaaa-fa92b986904e",
+            "title": "Penetapan Strategi Anti Fraud Bagi Lembaga Jasa Keuangan",
+            "number": "12 tahun 2024",
+            "year": "2024",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__c3666a1d-9de2-439b-ab75-700724299f25",
+            "title": "Penetapan Strategi Anti Fraud Bagi Lembaga Jasa Keuangan",
+            "number": "12 tahun 2024",
+            "year": "2024",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|12/pojk.01/2017|2017",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__e0f58b8c-ddad-467a-a4d5-3f4eac141473",
+            "title": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan",
+            "number": "12/pojk.01/2017",
+            "year": "2017",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__f962263e-c007-42c1-b4e7-d0095ed94a02",
+            "title": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Jasa Keuangan",
+            "number": "12/pojk.01/2017",
+            "year": "2017",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__7a8449a9-6d2e-4470-9aac-c70f746c9539",
+            "title": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Jasa Keuangan",
+            "number": "12/pojk.01/2017",
+            "year": "2017",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|12/pojk.03/2018|2018",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__2f883953-1a66-4741-a569-2f689eea267a",
+            "title": "Penyelenggaraan Layanan Perbankan Digital oleh Bank Umum",
+            "number": "12/pojk.03/2018",
+            "year": "2018",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__16762819-d4b9-44b0-ba67-46561d2e192f",
+            "title": "Penyelenggaraan Layanan Perbankan Digital oleh Bank Umum",
+            "number": "12/pojk.03/2018",
+            "year": "2018",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__19c62715-32f6-4eec-9e68-91a252d8df10",
+            "title": "Penyelenggaraan Layanan Perbankan Digital oleh Bank Umum",
+            "number": "12/pojk.03/2018",
+            "year": "2018",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|12/pojk.03/2019|2019",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__dd2f0b23-1fcb-4837-8108-48e2b92b0b5c",
+            "title": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+            "number": "12/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__7508d922-f1df-42fb-b2e0-8ec69ece8b7a",
+            "title": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+            "number": "12/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__5daaa52a-2d57-4d2b-ba95-5628ae501a26",
+            "title": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+            "number": "12/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|12/pojk.03/2020|2020",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__44bff4f4-d1cf-4d11-b9fb-b42f21413d7b",
+            "title": "Konsolidasi Bank Umum",
+            "number": "12/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__f141724d-0c77-418a-b88c-ba7b9e7ea268",
+            "title": "Konsolidasi Bank Umum",
+            "number": "12/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__6e961c51-325f-4169-8cbb-5974bcd1b8ba",
+            "title": "Konsolidasi Bank Umum",
+            "number": "12/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|12/pojk.03/2021|2021",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__84c36c57-c4bb-4815-9b13-c2296a328be3",
+            "title": "Bank Umum",
+            "number": "12/pojk.03/2021",
+            "year": "2021",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|13 tahun 2024|2024",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__b8eed3ee-c192-4126-88bb-06843ca36563",
+            "title": "Transparansi Dan Publikasi Suku Bunga Dasar Kredit Bagi Bank Umum Konvensional",
+            "number": "13 tahun 2024",
+            "year": "2024",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|13/pojk.03/2017|2017",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__55ae9537-9017-4e14-a153-ca46d5bc9dcf",
+            "title": "Penggunaan Jasa Akuntan Publik dan Kantor Akuntan Publik Dalam Kegiatan Jasa Keuangan",
+            "number": "13/pojk.03/2017",
+            "year": "2017",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__abf5a209-7183-417a-8434-b4beedf14c47",
+            "title": "Penggunaan Jasa Akuntan Publik dan Kantor Akuntan Publik dalam Kegiatan Jasa Keuangan",
+            "number": "13/pojk.03/2017",
+            "year": "2017",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__3106563d-8a0a-437b-8015-228a78e85ae8",
+            "title": "Penggunaan Jasa Akuntan Publik dan Kantor Akuntan Publik Dalam Kegiatan Jasa Keuangan",
+            "number": "13/pojk.03/2017",
+            "year": "2017",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|13/pojk.03/2019|2019",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-konvensional__fde98a58-f650-4872-8699-774f607b67d7",
+            "title": "Pelaporan Bank Perkreditan Rakyat dan Bank Pembiayaan Rakyat Syariah Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+            "number": "13/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bpr-konvensional",
+            "bank_name": "BPR Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bpr-syariah__80e7bf9d-e8e2-4997-ba6e-070b770c7aa9",
+            "title": "Pelaporan Bank Perkreditan Rakyat dan Bank Pembiayaan Rakyat Syariah Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+            "number": "13/pojk.03/2019",
+            "year": "2019",
+            "bank_slug": "bpr-syariah",
+            "bank_name": "BPR Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|13/pojk.03/2020|2020",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__af693a7c-c3d7-4bef-adac-e07559774b27",
+            "title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 38/POJK.03/2016 Tentang Penerapan Manajemen Risiko Dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+            "number": "13/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__056ace2c-659f-4438-9f38-b9d7d968b824",
+            "title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 38/POJK.03/2016 Tentang Penerapan Manajemen Risiko Dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+            "number": "13/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__aefaa972-e1ea-4195-b666-451cf402d838",
+            "title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 38/POJK.03/2016 Tentang Penerapan Manajemen Risiko Dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+            "number": "13/pojk.03/2020",
+            "year": "2020",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      },
+      {
+        "key": "OJK|POJK|13/pojk.03/2021|2021",
+        "items": [
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-konvensional__2eaacb02-936e-499f-a024-df906ad5f418",
+            "title": "Penyelenggaraan Produk Bank Umum",
+            "number": "13/pojk.03/2021",
+            "year": "2021",
+            "bank_slug": "bank-umum-konvensional",
+            "bank_name": "Bank Umum Konvensional"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "bank-umum-syariah__e71c7b2e-0fdd-4db9-9161-7d0fd8ff6873",
+            "title": "Penyelenggaraan Produk Bank Umum",
+            "number": "13/pojk.03/2021",
+            "year": "2021",
+            "bank_slug": "bank-umum-syariah",
+            "bank_name": "Bank Umum Syariah"
+          },
+          {
+            "source": "sikepo-ojk",
+            "source_id": "unit-usaha-syariah__10b346a0-f599-4030-9670-2f32a97b0c90",
+            "title": "Penyelenggaraan Produk Bank Umum",
+            "number": "13/pojk.03/2021",
+            "year": "2021",
+            "bank_slug": "unit-usaha-syariah",
+            "bank_name": "Unit Usaha Syariah"
+          }
+        ]
+      }
+    ]
+  }
+}

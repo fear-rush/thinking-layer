@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "description": "Strict direct-topic coverage gate for cross-regulator regulation/comparison questions.",
+    "calibrated": false
+  },
+  "coverage": {
+    "enabled": true,
+    "min_issuers": 2,
+    "comparison_intents": [
+      "compare_regulations",
+      "find_regulations"
+    ],
+    "direct_title_required_for_comparison": true,
+    "definition_section_types": [
+      "pasal",
+      "ayat"
+    ],
+    "definition_markers": [
+      "yang dimaksud dengan",
+      "dalam peraturan ini yang dimaksud",
+      "adalah"
+    ],
+    "adjacent_only_label": "adjacent_only",
+    "direct_label": "direct",
+    "missing_label": "missing",
+    "downgrade_label": "partial",
+    "downgrade_reason": "cross_regulator_missing_direct_topic_coverage",
+    "generic_adjacent_terms": [
+      "perizinan",
+      "pelaporan",
+      "pembayaran",
+      "jasa keuangan",
+      "aset keuangan digital",
+      "aset kripto",
+      "sistem pembayaran",
+      "otoritas berwenang"
+    ]
+  },
+  "audit": {
+    "queries": [
+      "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+      "berikan aku aturan terkait penyedia jasa pembayaran dari BI dan OJK",
+      "bandingkan aturan sistem pembayaran menurut BI dan OJK",
+      "apa saja aturan APU PPT dari BI dan OJK yang perlu dipetakan?",
+      "bandingkan ketentuan perlindungan konsumen dari BI dan OJK untuk jasa keuangan"
+    ]
+  }
+}

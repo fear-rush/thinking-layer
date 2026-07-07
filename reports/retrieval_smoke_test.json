@@ -1,0 +1,1690 @@
+[
+  {
+    "query": "aturan terkait penyedia jasa pembayaran dari BI dan OJK",
+    "plan": {
+      "raw_query": "aturan terkait penyedia jasa pembayaran dari BI dan OJK",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "OJK",
+        "BI"
+      ],
+      "entities": [
+        "pjp"
+      ],
+      "topics": [
+        "payments"
+      ],
+      "searches": [
+        {
+          "query": "aturan terkait penyedia jasa pembayaran dari BI dan OJK",
+          "issuer": null,
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "perizinan penyedia jasa pembayaran",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "perizinan penyedia jasa pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "penyelenggaraan penyedia jasa pembayaran",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "penyelenggaraan penyedia jasa pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "penyedia jasa pembayaran",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "BI",
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 32.70096180555555,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 4,
+        "pasal": "Pasal 1",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "(1) PJP menyelenggarakan aktivitas yang meliputi:"
+      },
+      {
+        "score": 24.000000000000004,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 2,
+        "pasal": "Pasal 1",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "1. Sistem Pembayaran adalah suatu sistem yang mencakup seperangkat aturan, lembaga, mekanisme, infrastruktur, sumber dana untuk pembayaran, dan akses ke sumber dana untuk pembayaran, yang digunakan untuk melaksanakan pemindahan dana guna memenuhi suatu kewajiban yang timbul dari suatu kegiatan ekonomi."
+      },
+      {
+        "score": 20.571428571428573,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 17,
+        "pasal": "Pasal 22",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 22 (1) Persyaratan izin terkait aspek kelembagaan harus"
+      },
+      {
+        "score": 18.115515151515154,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Permohonan Perizinan, Permohonan Persetujuan, dan Pelaporan Secara Elektronik Bagi Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+        "page": 47,
+        "pasal": "Pasal 9",
+        "ayat": "(1)",
+        "block_type": "table_or_row",
+        "snippet": "26. - Bukti pelunasan pembayaran biaya perizinan dalam - Pasal 9 ayat (1) - Nomor - Sistem - Penerimaan; rangka pemberian izin usaha - huruf o POJK Nomor - Informasi OJK (SIPO): [......]"
+      },
+      {
+        "score": 18.0,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 9,
+        "pasal": "Pasal 10",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "4. penyediaan infrastruktur dan sistem bagi PJP lain untuk melakukan pemrosesan transaksi pembayaran (white labelling); 5. layanan meneruskan dana (disbursement) kepada Penyedia Barang dan/atau Jasa; dan 6. layanan penunjang lainnya yang terkait dengan penyelenggaraan aktivitas PJP. Bagian Kedua Perizinan PJP Paragraf 1 Izin sebagai PJP"
+      },
+      {
+        "score": 17.69147619047619,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 23,
+        "pasal": "Pasal 30",
+        "ayat": "(2)",
+        "block_type": "article",
+        "snippet": "dimaksud dalam Pasal 30 huruf a dilakukan melalui sistem elektronik sesuai dengan ketentuan Peraturan Bank Indonesia mengenai perizinan terpadu Bank Indonesia melalui front office perizinan. (2) Dalam hal sistem elektronik sebagaimana dimaksud pada ayat (1) belum dapat diimplementasikan untuk perizinan tertentu atau mengalami gangguan, mekanisme dan tata cara pengajuan izin dilakukan sesuai dengan ketentuan Peraturan..."
+      },
+      {
+        "score": 17.69147619047619,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "table_or_row",
+        "snippet": "pengaturan - akses - ke - industri, - penyelenggaraan,; pengakhiran penyelenggaraan kegiatan, - pengawasan,"
+      },
+      {
+        "score": 16.767871794871795,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+        "page": 40,
+        "pasal": "Pasal 85",
+        "ayat": "(1)",
+        "block_type": "paragraph",
+        "snippet": "melalui uang elektronik sebagaimana dimaksud pada ayat (1) dapat menggunakan penyedia jasa pembayaran yang telah memperoleh izin dari instansi atau otoritas yang berwenang pada sistem pembayaran. (4) Penggunaan uang elektronik oleh penyedia jasa pembayaran dalam proses transaksi perdagangan Pasar Aset Keuangan Digital dilakukan sesuai dengan ketentuan peraturan perundangundangan di sektor keuangan dan sistem pembayar..."
+      }
+    ]
+  },
+  {
+    "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+    "plan": {
+      "raw_query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+      "intents": [
+        "compare_regulations"
+      ],
+      "issuers": [
+        "OJK",
+        "BI"
+      ],
+      "entities": [
+        "pjp"
+      ],
+      "topics": [
+        "payments"
+      ],
+      "searches": [
+        {
+          "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+          "issuer": null,
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "perizinan penyedia jasa pembayaran",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "perizinan penyedia jasa pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "penyelenggaraan penyedia jasa pembayaran",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "penyelenggaraan penyedia jasa pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        },
+        {
+          "query": "penyedia jasa pembayaran",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "entity:pjp"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "BI",
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 32.70096180555555,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 4,
+        "pasal": "Pasal 1",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "(1) PJP menyelenggarakan aktivitas yang meliputi:"
+      },
+      {
+        "score": 24.000000000000004,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 17,
+        "pasal": "Pasal 22",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 22 (1) Persyaratan izin terkait aspek kelembagaan harus"
+      },
+      {
+        "score": 20.571428571428573,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 9,
+        "pasal": "Pasal 10",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "4. penyediaan infrastruktur dan sistem bagi PJP lain untuk melakukan pemrosesan transaksi pembayaran (white labelling); 5. layanan meneruskan dana (disbursement) kepada Penyedia Barang dan/atau Jasa; dan 6. layanan penunjang lainnya yang terkait dengan penyelenggaraan aktivitas PJP. Bagian Kedua Perizinan PJP Paragraf 1 Izin sebagai PJP"
+      },
+      {
+        "score": 18.115515151515154,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Permohonan Perizinan, Permohonan Persetujuan, dan Pelaporan Secara Elektronik Bagi Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+        "page": 47,
+        "pasal": "Pasal 9",
+        "ayat": "(1)",
+        "block_type": "table_or_row",
+        "snippet": "26. - Bukti pelunasan pembayaran biaya perizinan dalam - Pasal 9 ayat (1) - Nomor - Sistem - Penerimaan; rangka pemberian izin usaha - huruf o POJK Nomor - Informasi OJK (SIPO): [......]"
+      },
+      {
+        "score": 18.088384615384616,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+        "page": 40,
+        "pasal": "Pasal 85",
+        "ayat": "(1)",
+        "block_type": "paragraph",
+        "snippet": "melalui uang elektronik sebagaimana dimaksud pada ayat (1) dapat menggunakan penyedia jasa pembayaran yang telah memperoleh izin dari instansi atau otoritas yang berwenang pada sistem pembayaran. (4) Penggunaan uang elektronik oleh penyedia jasa pembayaran dalam proses transaksi perdagangan Pasar Aset Keuangan Digital dilakukan sesuai dengan ketentuan peraturan perundangundangan di sektor keuangan dan sistem pembayar..."
+      },
+      {
+        "score": 18.0,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 32,
+        "pasal": "Pasal 47",
+        "ayat": "(1)",
+        "block_type": "paragraph",
+        "snippet": "...3 merupakan sertifikasi dan/atau standar yang berlaku umum, yang ditetapkan oleh Bank Indonesia, otoritas, atau lembaga terkait yang disesuaikan dengan jenis aktivitas yang diselenggarakan PJP dan/atau klasifikasi PJP. (5) Pengamanan data dan/atau informasi sebagaimana dimaksud pada ayat (1) huruf d, termasuk namun tidak terbatas pada pengamanan data dan/atau informasi terkait Pengguna Jasa, instrumen pembayaran, dan..."
+      },
+      {
+        "score": 17.69147619047619,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 23,
+        "pasal": "Pasal 30",
+        "ayat": "(2)",
+        "block_type": "article",
+        "snippet": "dimaksud dalam Pasal 30 huruf a dilakukan melalui sistem elektronik sesuai dengan ketentuan Peraturan Bank Indonesia mengenai perizinan terpadu Bank Indonesia melalui front office perizinan. (2) Dalam hal sistem elektronik sebagaimana dimaksud pada ayat (1) belum dapat diimplementasikan untuk perizinan tertentu atau mengalami gangguan, mekanisme dan tata cara pengajuan izin dilakukan sesuai dengan ketentuan Peraturan..."
+      },
+      {
+        "score": 17.69147619047619,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "table_or_row",
+        "snippet": "pengaturan - akses - ke - industri, - penyelenggaraan,; pengakhiran penyelenggaraan kegiatan, - pengawasan,"
+      }
+    ]
+  },
+  {
+    "query": "SNAP Standar Nasional Open API Pembayaran",
+    "plan": {
+      "raw_query": "SNAP Standar Nasional Open API Pembayaran",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "BI"
+      ],
+      "entities": [],
+      "topics": [
+        "snap",
+        "payments"
+      ],
+      "searches": [
+        {
+          "query": "SNAP Standar Nasional Open API Pembayaran",
+          "issuer": "BI",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "standar nasional open api pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:snap"
+        },
+        {
+          "query": "implementasi standar nasional open application programming interface pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:snap"
+        },
+        {
+          "query": "developer site snap pengujian open api pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:snap"
+        },
+        {
+          "query": "transfer dana uang elektronik alat pembayaran menggunakan kartu",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:payments"
+        },
+        {
+          "query": "penyelenggara infrastruktur sistem pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:payments"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [
+        "Standar Nasional Open Application Programming Interface Pembayaran"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "BI"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 43.55555555555555,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 4,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Kebijakan SNAP bertujuan untuk:"
+      },
+      {
+        "score": 30.303030303030308,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 3,
+        "pasal": "Pasal 1",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "3. Standar Nasional Open API Pembayaran yang selanjutnya disingkat SNAP adalah standar nasional Open API Pembayaran yang ditetapkan oleh Bank Indonesia. 4. Penyedia Jasa Pembayaran yang selanjutnya disingkat PJP adalah bank atau lembaga selain bank yang menyediakan jasa untuk memfasilitasi transaksi pembayaran kepada pengguna jasa. 5. Penyedia Layanan Open API Pembayaran yang selanjutnya"
+      },
+      {
+        "score": 27.777777777777786,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 2,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "table_or_row",
+        "snippet": "Peraturan - Anggota - Dewan - Gubernur - tentang; Implementasi - Standar - Nasional - Open - Application"
+      },
+      {
+        "score": 25.974025974025974,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 4,
+        "pasal": "Pasal 1",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "BAB II TUJUAN DAN RUANG LINGKUP DALAM KEBIJAKAN STANDAR NASIONAL OPEN API PEMBAYARAN"
+      },
+      {
+        "score": 25.641025641025642,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 20,
+        "pasal": "Pasal 16",
+        "ayat": "(1)",
+        "block_type": "paragraph",
+        "snippet": "melakukan pengujian Open API Pembayaran pada aplikasi pengujian Open API Pembayaran berbasis SNAP pada *Developer Site SNAP sebagaimana dimaksud pada ayat (1)* dapat mengunduh hasil pengujian Open API Pembayaran pada Developer Site SNAP."
+      },
+      {
+        "score": 25.388533333333328,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+        "page": 6,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
+      },
+      {
+        "score": 23.80952380952381,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "dan efisiensi dalam penyelenggaraan sistem pembayaran, perlu ditetapkan standar nasional *open application* *programming interface pembayaran;* d. bahwa berdasarkan pertimbangan sebagaimana dimaksud dalam huruf a, huruf b, dan huruf c, perlu menetapkan"
+      },
+      {
+        "score": 22.727272727272727,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+        "page": 3,
+        "pasal": "Pasal 1",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "disebut Penyedia Layanan adalah PJP yang menyediakan layanan Open API Pembayaran berbasis SNAP. 6. Pengguna Layanan *Open* API Pembayaran yang selanjutnya disebut Pengguna Layanan adalah PJP atau pihak selain PJP yang menggunakan layanan Open API Pembayaran berbasis SNAP. 7. PJP Pengguna Layanan Open API Pembayaran yang selanjutnya disebut PJP Pengguna Layanan adalah PJP yang menggunakan layanan Open API Pembayaran b..."
+      }
+    ]
+  },
+  {
+    "query": "QRIS pengembangan aktivitas produk kerja sama",
+    "plan": {
+      "raw_query": "QRIS pengembangan aktivitas produk kerja sama",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "BI"
+      ],
+      "entities": [],
+      "topics": [
+        "qris"
+      ],
+      "searches": [
+        {
+          "query": "QRIS pengembangan aktivitas produk kerja sama",
+          "issuer": "BI",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "qris pengembangan aktivitas produk kerja sama",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:qris"
+        },
+        {
+          "query": "implementasi standar nasional quick response code untuk pembayaran",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:qris"
+        },
+        {
+          "query": "quick response code indonesia standard",
+          "issuer": "BI",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:qris"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [
+        "Quick Response Code"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "BI"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 28.26755555555555,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 4,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) QR Code Pembayaran memiliki fungsi utama untuk"
+      },
+      {
+        "score": 23.40909090909091,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 3,
+        "pasal": "Pasal 1",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "5. Standar Nasional QR Code Pembayaran (Quick Response *Code Indonesian Standard) yang selanjutnya disebut QRIS* adalah Standar QR Code Pembayaran yang ditetapkan oleh Bank Indonesia untuk digunakan dalam memfasilitasi transaksi pembayaran di Indonesia. 6. Transaksi QRIS adalah transaksi pembayaran yang difasilitasi dengan QR Code Pembayaran berdasarkan QRIS."
+      },
+      {
+        "score": 20.064935064935064,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 25,
+        "pasal": "Pasal 11",
+        "ayat": "(1)",
+        "block_type": "paragraph",
+        "snippet": "Ayat (1) Persetujuan yang diajukan merupakan persetujuan untuk pengembangan produk dan aktivitas jasa sistem pembayaran sebagaimana dimaksud dalam ketentuan Bank Indonesia yang mengatur mengenai penyelenggaraan pemrosesan transaksi pembayaran. Ayat (2) Cukup jelas. Ayat (3) Surat pernyataan komitmen untuk menerapkan QRIS paling sedikit memuat pernyataan dan komitmen untuk menerapkan QRIS dan mematuhi ketentuan Bank I..."
+      },
+      {
+        "score": 18.027777777777782,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 2,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "heading",
+        "snippet": "d. bahwa penetapan standar nasional quick response code"
+      },
+      {
+        "score": 17.55681818181818,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 5,
+        "pasal": "Pasal 4",
+        "ayat": "(2)",
+        "block_type": "paragraph",
+        "snippet": "ditetapkan oleh Bank Indonesia sesuai dengan ketentuan Bank Indonesia yang mengatur mengenai GPN (NPG). (2) Pengelolaan QRIS dilakukan oleh Lembaga Standar yang telah ditetapkan oleh Bank Indonesia sebagai Lembaga Standar dalam GPN (NPG) untuk teknologi quick response *code.* (3) QRIS terdiri atas spesifikasi teknis dan operasional yang dituangkan dalam dokumen QRIS. (4) Spesifikasi teknis dan operasional sebagaimana..."
+      },
+      {
+        "score": 15.606060606060606,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 7,
+        "pasal": "Pasal 9",
+        "ayat": "(2)",
+        "block_type": "list_item",
+        "snippet": "(2) Dalam menetapkan skema dan biaya pemrosesan Transaksi QRIS sebagaimana dimaksud pada ayat (1), Bank Indonesia dapat mempertimbangkan rekomendasi dari Lembaga Standar. BAB IV PEMROSESAN TRANSAKSI QRIS Bagian Kesatu Para Pihak dalam Pemrosesan Transaksi QRIS"
+      },
+      {
+        "score": 15.452380952380953,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 2,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "MEMUTUSKAN: Menetapkan: PERATURAN ANGGOTA DEWAN GUBERNUR TENTANG IMPLEMENTASI STANDAR NASIONAL QUICK RESPONSE CODE UNTUK PEMBAYARAN."
+      },
+      {
+        "score": 14.23076923076923,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "primary_regulation",
+        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+        "page": 5,
+        "pasal": "Pasal 3",
+        "ayat": "(2)",
+        "block_type": "paragraph",
+        "snippet": "statis dan QR Code Pembayaran dinamis. (2) Model penggunaan QR Code Pembayaran terdiri atas *merchant presented mode dan customer presented mode.* BAB III STANDAR NASIONAL QR CODE PEMBAYARAN (QUICK RESPONSE CODE INDONESIAN STANDARD)"
+      }
+    ]
+  },
+  {
+    "query": "pelaporan bank umum melalui sistem pelaporan OJK",
+    "plan": {
+      "raw_query": "pelaporan bank umum melalui sistem pelaporan OJK",
+      "intents": [
+        "procedure"
+      ],
+      "issuers": [
+        "OJK"
+      ],
+      "entities": [
+        "bank_umum",
+        "bank"
+      ],
+      "topics": [
+        "reporting"
+      ],
+      "searches": [
+        {
+          "query": "pelaporan bank umum melalui sistem pelaporan OJK",
+          "issuer": "OJK",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "pelaporan melalui sistem pelaporan otoritas jasa keuangan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        },
+        {
+          "query": "transparansi publikasi laporan bank",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        },
+        {
+          "query": "laporan berkala laporan bulanan laporan tahunan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [],
+      "title_group_hits": [
+        [
+          "Pelaporan",
+          "Bank Umum",
+          "Sistem Pelaporan Otoritas Jasa Keuangan"
+        ]
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 31.490666666666662,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 3,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan/atau"
+      },
+      {
+        "score": 31.36445454545454,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+        "page": 3,
+        "pasal": "Pasal 4",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "dimaksud dalam Pasal 4 ayat (1) atau perubahannya"
+      },
+      {
+        "score": 28.728700000000003,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan Melalui Sistem Pelaporan OJK dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat Syariah",
+        "page": 12,
+        "pasal": "Pasal 14",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "... bersangkutan dikenai sanksi administratif berupa denda per jenis Laporan sebagaimana dimaksud dalam Pasal 14 ayat (1) POJK Pelaporan dan TKK BPR dan BPR Syariah, sebesar:"
+      },
+      {
+        "score": 27.87951515151514,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+        "page": 3,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menyusun dan menyampaikan Laporan"
+      },
+      {
+        "score": 26.992,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 3,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan"
+      },
+      {
+        "score": 24.624600000000004,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_faq",
+        "document_title": "Pelaporan Melalui Sistem Pelaporan OJK dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat Syariah",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "BPR Syariah wajib menyampaikan: a. Laporan Berkala yang disampaikan kepada Otoritas Jasa Keuangan secara rutin setiap periode tertentu meliputi yang disampaikan dalam periode bulanan, triwulanan, semesteran, dan tahunan; dan b. Laporan Insidental yang disampaikan kepada Otoritas Jasa Keuangan pada kondisi tertentu dan sifat penyampaiannya tidak secara rutin."
+      },
+      {
+        "score": 23.763888888888893,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan Bank Umum Konvensional Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+        "page": 17,
+        "pasal": "Pasal 18",
+        "ayat": null,
+        "block_type": "list_item",
+        "snippet": "a. Peraturan Otoritas Jasa dan Keuangan Tahun Transparansi Publikasi Laporan Bank kesatu, b. Peraturan Otoritas Jasa kedua, Keuangan Tahun Pelaporan Bank Umum"
+      },
+      {
+        "score": 23.618,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "performance, as well as risk exposure and bank's regulatory capital also provide information regarding bank parent company, subsidiary company, sister company, related companies, and bank business group to provide comprehensive information; c. Whereas for the efficiency of the bank supervision process for bank also an issuer and/or public company, it is deemed to"
+      }
+    ]
+  },
+  {
+    "query": "SLIK pelaporan permintaan informasi debitur",
+    "plan": {
+      "raw_query": "SLIK pelaporan permintaan informasi debitur",
+      "intents": [
+        "procedure"
+      ],
+      "issuers": [
+        "OJK"
+      ],
+      "entities": [],
+      "topics": [
+        "slik",
+        "reporting"
+      ],
+      "searches": [
+        {
+          "query": "SLIK pelaporan permintaan informasi debitur",
+          "issuer": "OJK",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "pelaporan permintaan informasi debitur",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:slik"
+        },
+        {
+          "query": "slik informasi debitur",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:slik"
+        },
+        {
+          "query": "pelaporan melalui sistem pelaporan otoritas jasa keuangan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        },
+        {
+          "query": "sistem layanan informasi keuangan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:slik"
+        },
+        {
+          "query": "laporan berkala laporan bulanan laporan tahunan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 0.98,
+      "accepted": true,
+      "title_hits": [
+        "Pelaporan dan Permintaan Informasi Debitur",
+        "Sistem Layanan Informasi Keuangan"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 0.8
+    },
+    "results": [
+      {
+        "score": 52.266666666666666,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK)",
+        "page": 11,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "(1) bagi Debitur perseorangan (a) fotokopi identitas diri dengan menunjukkan identitas diri asli antara lain berupa Kartu Tanda Penduduk (KTP) untuk Warga Negara Indonesia (WNI) atau paspor untuk Warga Negara Asing (WNA); atau (b) surat kuasa asli, fotokopi identitas diri pemberi kuasa dan penerima kuasa dengan menunjukkan identitas diri asli dari pemberi kuasa dan penerima kuasa, dalam hal dikuasakan. (2) bagi Debit..."
+      },
+      {
+        "score": 47.182545454545455,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "Yth. 1. Direksi Lembaga Jasa Keuangan; dan 2. Pimpinan atau Pengurus Lembaga lain bukan Lembaga Jasa Keuangan, di tempat."
+      },
+      {
+        "score": 44.8,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_faq",
+        "document_title": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK)",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "2. Pokok-pokok penyempurnaan ketentuan dalam SEOJK ini adalah sebagai berikut:"
+      },
+      {
+        "score": 40.44218181818181,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan",
+        "page": 2,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "1. Sesuai dengan Pasal 2 Ayat (1) POJK PPID SLIK, pihak yang wajib menjadi Pelapor adalah: a. Bank Umum yang meliputi:"
+      },
+      {
+        "score": 39.199999999999996,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Perubahan Kedua Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SLIK)",
+        "page": 4,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "(1) Pihak yang wajib menjadi Pelapor meliputi:"
+      },
+      {
+        "score": 35.386909090909086,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan",
+        "page": 5,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Pihak yang wajib menjadi Pelapor adalah:"
+      },
+      {
+        "score": 34.844444444444434,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_faq",
+        "document_title": "Perubahan Kedua Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SLIK)",
+        "page": 2,
+        "pasal": "Pasal 15",
+        "ayat": null,
+        "block_type": "article",
+        "snippet": "Sesuai Pasal 15 POJK SLIK, Pelapor dapat meminta Informasi Debitur pada SLIK setelah memenuhi kewajiban penyampaian Laporan Debitur."
+      },
+      {
+        "score": 32.66666666666667,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (POJK SLIK)",
+        "page": 5,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Pihak yang wajib menjadi Pelapor meliputi:"
+      }
+    ]
+  },
+  {
+    "query": "APU PPT pencegahan pendanaan terorisme",
+    "plan": {
+      "raw_query": "APU PPT pencegahan pendanaan terorisme",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "OJK"
+      ],
+      "entities": [],
+      "topics": [
+        "apu_ppt"
+      ],
+      "searches": [
+        {
+          "query": "APU PPT pencegahan pendanaan terorisme",
+          "issuer": "OJK",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "anti pencucian uang pencegahan pendanaan terorisme",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:apu_ppt"
+        },
+        {
+          "query": "program apu ppt sektor jasa keuangan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:apu_ppt"
+        },
+        {
+          "query": "pencegahan pendanaan proliferasi senjata pemusnah massal",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:apu_ppt"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [
+        "Anti Pencucian Uang",
+        "Pencegahan Pendanaan Terorisme"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 43.27442424242424,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan",
+        "page": 2,
+        "pasal": "Pasal 13",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "4. Mengacu ke dalam Pasal 13 POJK APU dan PPT, Bank wajib memiliki kebijakan dan prosedur penerapan program APU dan PPT dalam rangka pengelolaan dan mitigasi risiko Pencucian Uang dan/atau Pendanaan Terorisme yang disesuaikan dengan tingkat risiko yang melekat pada masing-masing Bank. 5. Berdasarkan Pasal 67 ayat (1) POJK APU dan PPT, Bank yang telah"
+      },
+      {
+        "score": 37.16872727272726,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Pasar Modal",
+        "page": 12,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "3) Risiko Nasabah PJK di Sektor Pasar Modal harus memperhatikan risiko yang mungkin timbul dari nasabah. Untuk itu, PJK di Sektor Pasar Modal perlu mengategorikan nasabah berdasarkan tingkat risiko. Pengategorian tersebut dapat mengacu pada klasifikasi risiko yang ditetapkan oleh PJK di Sektor Pasar Modal, sesuai dengan ketentuan peraturan perundang-undangan dan standar internasional yang berlaku. Beberapa kategori n..."
+      },
+      {
+        "score": 36.1142564102564,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+        "page": 6,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) PJK sebagaimana dimaksud dalam Pasal 1 angka 1 terdiri"
+      },
+      {
+        "score": 32.589454545454544,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+        "page": 8,
+        "pasal": "Pasal 2",
+        "ayat": "(2)",
+        "block_type": "paragraph",
+        "snippet": "**(1) (2)** **(1)** **(2)** **a.** **b.** **c.** **- 8 -**"
+      },
+      {
+        "score": 30.95507692307692,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital",
+        "page": 29,
+        "pasal": "Pasal 25",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "2) Proses verifikasi face to face dapat dikecualikan dengan proses verifikasi tanpa tatap muka (verifikasi non-face to *face) dengan ketentuan sebagai berikut:* a) verifikasi *non-face to face* dilakukan dengan menggunakan perangkat lunak milik Pedagang dengan perangkat keras milik Pedagang atau perangkat keras milik Nasabah atau calon Nasabah. Contoh: perangkat lunak milik Pedagang dan perangkat keras milik Nasabah ..."
+      },
+      {
+        "score": 28.968404040404035,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+        "page": 6,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menerapkan program APU dan PPT. (2) Dalam penerapan program APU dan PPT, Bank wajib berpedoman pada"
+      },
+      {
+        "score": 27.712121212121215,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "heading",
+        "snippet": "# PENCEGAHAN PENDANAAN TERORISME BAGI BANK UMUM"
+      },
+      {
+        "score": 26.07156363636364,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Pedoman Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme Bagi Lembaga Keuangan Mikro",
+        "page": 31,
+        "pasal": "Pasal 68",
+        "ayat": "(1)",
+        "block_type": "list_item",
+        "snippet": "(1) identitas yang memuat: (2) nama lengkap termasuk nama alias (jika ada); (3) nomor dokumen identitas; (4) alamat tempat tinggal sesuai dokumen identitas dan alamat tempat tinggal lain (jika ada); (5) tempat dan tanggal lahir; (6) kewarganegaraan; (7) pekerjaan; (8) alamat dan nomor telepon tempat kerja (jika"
+      }
+    ]
+  },
+  {
+    "query": "layanan keuangan digital bank umum",
+    "plan": {
+      "raw_query": "layanan keuangan digital bank umum",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "OJK"
+      ],
+      "entities": [
+        "bank_umum",
+        "bank"
+      ],
+      "topics": [
+        "technology_risk"
+      ],
+      "searches": [
+        {
+          "query": "layanan keuangan digital bank umum",
+          "issuer": "OJK",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "layanan digital oleh bank umum",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "penyelenggaraan layanan perbankan digital",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "penyelenggaraan teknologi informasi oleh bank perekonomian rakyat bank perekonomian rakyat syariah",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "penerapan manajemen risiko penggunaan teknologi informasi bank umum",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "penyelenggaraan teknologi informasi oleh bank umum",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 0.96,
+      "accepted": true,
+      "title_hits": [
+        "Layanan Digital oleh Bank Umum",
+        "Layanan Perbankan Digital"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 0.6
+    },
+    "results": [
+      {
+        "score": 43.845549999999996,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Layanan Digital oleh Bank Umum",
+        "page": 3,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Layanan Digital diselenggarakan oleh:"
+      },
+      {
+        "score": 38.10566666666666,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penyelenggaraan Layanan Perbankan Digital oleh Bank Umum",
+        "page": 4,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank dapat menyelenggarakan Layanan Perbankan"
+      },
+      {
+        "score": 37.5819,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_faq",
+        "document_title": "Layanan Digital oleh Bank Umum",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "sistem elektronik OJK."
+      },
+      {
+        "score": 32.884162499999995,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_summary",
+        "document_title": "Layanan Digital oleh Bank Umum",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "- Dasar Hukum Peraturan Otoritas Jasa Keuangan ini adalah: UU No. 7 Tahun 1992, UU No. 21 Tahun 2008, UU No. 21 Tahun 2011, dan UU No.4 Tahun 2023. - Dalam POJK ini mengatur antara lain:"
+      },
+      {
+        "score": 27.286,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+        "page": 2,
+        "pasal": "Pasal 8",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "...NFORMASI 1. Dalam rangka menerapkan manajemen risiko penggunaan Teknologi Informasi untuk mendukung kelangsungan bisnis Bank terutama pelayanan kepada nasabah, Bank wajib memiliki kebijakan, standar, dan prosedur penggunaan Teknologi Informasi serta wajib menerapkan kebijakan, standar, dan prosedur penggunaan Teknologi Informasi secara konsisten dan berkesinambungan sebagaimana telah diatur dalam Pasal 8 ayat (1) POJ..."
+      },
+      {
+        "score": 27.132575757575758,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Layanan Digital oleh Bank Umum",
+        "page": 2,
+        "pasal": "Pasal 1",
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "Dalam Peraturan Otoritas Jasa Keuangan ini yang dimaksud dengan: 1. Bank Umum yang selanjutnya disebut Bank adalah bank yang melaksanakan kegiatan usaha secara konvensional atau melaksanakan kegiatan usaha berdasarkan prinsip syariah, yang dalam kegiatannya memberikan jasa dalam lalu lintas pembayaran, termasuk kantor cabang dari bank yang berkedudukan di luar negeri dan unit usaha syariah. 2. Lembaga Jasa Keuangan y..."
+      },
+      {
+        "score": 26.344022727272726,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Bank Umum",
+        "page": 6,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Setiap pihak yang melakukan kegiatan penghimpunan"
+      },
+      {
+        "score": 25.192533333333326,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
+        "page": 9,
+        "pasal": "Pasal 2",
+        "ayat": "(2)",
+        "block_type": "article",
+        "snippet": "Dalam menerapkan tata kelola TI yang baik, Bank mempertimbangkan paling sedikit 7 (tujuh) faktor sebagaimana dimaksud dalam Pasal 2 ayat (2) POJK PTI, yaitu: a. Strategi dan Tujuan Bisnis Bank Tata kelola TI disesuaikan dengan strategi dan tujuan bisnis dari Bank. Strategi dan tujuan bisnis Bank mencerminkan arah bisnis dan kebutuhan dari pemangku kepentingan (stakeholders). Dalam penentuan strategi dan tujuan bisnis..."
+      }
+    ]
+  },
+  {
+    "query": "manajemen risiko teknologi informasi bank umum",
+    "plan": {
+      "raw_query": "manajemen risiko teknologi informasi bank umum",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "OJK"
+      ],
+      "entities": [
+        "bank",
+        "bank_umum"
+      ],
+      "topics": [
+        "technology_risk",
+        "risk_management"
+      ],
+      "searches": [
+        {
+          "query": "manajemen risiko teknologi informasi bank umum",
+          "issuer": "OJK",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "penerapan manajemen risiko penggunaan teknologi informasi bank umum",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "penyelenggaraan teknologi informasi oleh bank perekonomian rakyat bank perekonomian rakyat syariah",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "penyelenggaraan teknologi informasi oleh bank umum",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:technology_risk"
+        },
+        {
+          "query": "manajemen risiko bank umum",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:risk_management"
+        },
+        {
+          "query": "manajemen risiko lembaga jasa keuangan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:risk_management"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 1.0,
+      "accepted": true,
+      "title_hits": [
+        "Manajemen Risiko",
+        "Teknologi Informasi",
+        "Bank Umum"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 1.0
+    },
+    "results": [
+      {
+        "score": 52.266666666666666,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+        "page": 2,
+        "pasal": "Pasal 8",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "INFORMASI 1. Dalam rangka menerapkan manajemen risiko penggunaan Teknologi Informasi untuk mendukung kelangsungan bisnis Bank terutama pelayanan kepada nasabah, Bank wajib memiliki kebijakan, standar, dan prosedur penggunaan Teknologi Informasi serta wajib menerapkan kebijakan, standar, dan prosedur penggunaan Teknologi Informasi secara konsisten dan berkesinambungan sebagaimana telah diatur dalam Pasal 8 ayat (1) PO..."
+      },
+      {
+        "score": 44.8,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "POJK tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+        "page": 6,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menerapkan manajemen risiko secara"
+      },
+      {
+        "score": 39.199999999999996,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 38/POJK.03/2016 tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+        "page": 3,
+        "pasal": "Pasal 21",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 21 (1) Bank wajib menempatkan Sistem Elektronik pada Pusat Data dan Pusat Pemulihan Bencana di wilayah Indonesia. (2) Bank hanya dapat menempatkan Sistem Elektronik pada Pusat Data dan/atau Pusat Pemulihan Bencana di luar wilayah Indonesia sepanjang memperoleh persetujuan dari Otoritas Jasa Keuangan. (3) Sistem Elektronik yang dapat ditempatkan pada Pusat Data dan/atau Pusat Pemulihan Bencana di luar wilayah In..."
+      },
+      {
+        "score": 36.10420512820512,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
+        "page": 9,
+        "pasal": "Pasal 2",
+        "ayat": "(2)",
+        "block_type": "article",
+        "snippet": "Dalam menerapkan tata kelola TI yang baik, Bank mempertimbangkan paling sedikit 7 (tujuh) faktor sebagaimana dimaksud dalam Pasal 2 ayat (2) POJK PTI, yaitu: a. Strategi dan Tujuan Bisnis Bank Tata kelola TI disesuaikan dengan strategi dan tujuan bisnis dari Bank. Strategi dan tujuan bisnis Bank mencerminkan arah bisnis dan kebutuhan dari pemangku kepentingan (stakeholders). Dalam penentuan strategi dan tujuan bisnis..."
+      },
+      {
+        "score": 33.49733333333334,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Manajemen Risiko Bagi Bank Umum",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "3. Penyempurnaan pedoman penerapan Manajemen Risiko sebagaimana dimaksud pada angka 2 dilakukan paling lambat 30 (tiga puluh) hari sejak Surat Edaran Otoritas Jasa Keuangan ini ditetapkan. 4. Bank..."
+      },
+      {
+        "score": 30.946461538461534,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penyelenggaraan Teknologi Informasi Oleh Bank Umum",
+        "page": 4,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menerapkan tata kelola TI yang baik dalam"
+      },
+      {
+        "score": 30.303030303030308,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "POJK tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+        "page": 13,
+        "pasal": "Pasal 14",
+        "ayat": null,
+        "block_type": "article",
+        "snippet": "Pasal 14 Bagi bank umum konvensional yang memiliki unit usaha syariah wajib memiliki sistem yang dapat menghasilkan laporan terpisah bagi kegiatan unit usaha syariah."
+      },
+      {
+        "score": 29.55555555555555,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Lembaga Jasa Keuangan Nonbank",
+        "page": 6,
+        "pasal": "Pasal 3",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 3 (1) LJKNB wajib menerapkan manajemen risiko secara"
+      }
+    ]
+  },
+  {
+    "query": "transparansi publikasi laporan bank umum",
+    "plan": {
+      "raw_query": "transparansi publikasi laporan bank umum",
+      "intents": [
+        "find_regulations"
+      ],
+      "issuers": [
+        "OJK"
+      ],
+      "entities": [
+        "bank",
+        "bank_umum"
+      ],
+      "topics": [
+        "reporting"
+      ],
+      "searches": [
+        {
+          "query": "transparansi publikasi laporan bank umum",
+          "issuer": "OJK",
+          "role": null,
+          "include_secondary": true,
+          "reason": "raw_user_query"
+        },
+        {
+          "query": "transparansi publikasi laporan bank",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        },
+        {
+          "query": "laporan berkala laporan bulanan laporan tahunan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        },
+        {
+          "query": "pelaporan melalui sistem pelaporan otoritas jasa keuangan",
+          "issuer": "OJK",
+          "role": "primary_regulation",
+          "include_secondary": true,
+          "reason": "topic:reporting"
+        }
+      ]
+    },
+    "evaluation": {
+      "score": 0.98,
+      "accepted": true,
+      "title_hits": [
+        "Transparansi",
+        "Publikasi Laporan",
+        "Bank Umum"
+      ],
+      "title_group_hits": [],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "page_citation_rate": 1.0,
+      "primary_rate": 0.8
+    },
+    "results": [
+      {
+        "score": 51.50879999999999,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 3,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan/atau"
+      },
+      {
+        "score": 44.1504,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 3,
+        "pasal": "Pasal 2",
+        "ayat": "(1)",
+        "block_type": "article",
+        "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan"
+      },
+      {
+        "score": 38.6316,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "performance, as well as risk exposure and bank's regulatory capital also provide information regarding bank parent company, subsidiary company, sister company, related companies, and bank business group to provide comprehensive information; c. Whereas for the efficiency of the bank supervision process for bank also an issuer and/or public company, it is deemed to"
+      },
+      {
+        "score": 34.33919999999999,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_faq",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 2,
+        "pasal": "Pasal 7",
+        "ayat": "(4)",
+        "block_type": "article",
+        "snippet": "# 3. Pasal 7 ayat (4) POJK ini mengatur Bank wajib memiliki Pejabat Eksekutif"
+      },
+      {
+        "score": 31.276848484848475,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank Umum Konvensional",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "negeri, Laporan Publikasi terdiri atas:"
+      },
+      {
+        "score": 30.905279999999998,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_summary",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "CATATAN: - Peraturan Otoritas Jasa Keuangan ini mulai berlaku setelah 6 (enam) bulan terhitung sejak diundangkan. - Peraturan Otoritas Jasa Keuangan ini diundangkan pada tanggal 8 Agustus 2025 dan ditetapkan pada tanggal 4 Agustus 2025."
+      },
+      {
+        "score": 28.149163636363635,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "primary_regulation",
+        "document_title": "Transparansi dan Publikasi Laporan Bank Umum Konvensional",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "Laporan Publikasi Bank Umum Konvensional sebagaimana tercantum dalam Lampiran Surat Edaran Otoritas Jasa Keuangan ini yang merupakan bagian tidak terpisahkan dari Surat Edaran Otoritas Jasa Keuangan."
+      },
+      {
+        "score": 28.095709090909093,
+        "source": "peraturan-ojk",
+        "issuer": "OJK",
+        "file_role": "secondary_summary",
+        "document_title": "Transparansi dan Publikasi Laporan Bank",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "block_type": "paragraph",
+        "snippet": "3. Informasi yang dipublikasi dan dilaporkan Bank secara umum terdiri atas:"
+      }
+    ]
+  }
+]

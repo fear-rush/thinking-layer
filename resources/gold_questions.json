@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ojk_advertising_bank",
+    "query": "apa saja peraturan periklanan yang harus dipatuhi oleh bank?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"],
+    "notes": "Marketing and advertising rules for financial services."
+  },
+  {
+    "id": "ojk_promo_nasabah",
+    "query": "aturan apa yang mengatur iklan produk bank dan promosi ke nasabah?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"],
+    "notes": "Natural wording for promotion and customer marketing."
+  },
+  {
+    "id": "bi_pjp_rules",
+    "query": "peraturan BI tentang penyedia jasa pembayaran apa saja?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Penyedia Jasa Pembayaran"],
+    "notes": "Core BI PJP regulation."
+  },
+  {
+    "id": "bi_pjp_requirements",
+    "query": "dokumen apa yang perlu disiapkan untuk izin penyedia jasa pembayaran bank?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Dokumen Persyaratan Izin Penyedia Jasa Pembayaran", "Penyedia Jasa Pembayaran"],
+    "notes": "Ease BI operational requirement documents should be allowed as supporting evidence."
+  },
+  {
+    "id": "bi_qris_requirements",
+    "query": "dokumen apa yang perlu disiapkan untuk pengembangan QRIS?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Quick Response Code"],
+    "notes": "QRIS regulation and related requirements."
+  },
+  {
+    "id": "bi_snap",
+    "query": "aturan standar nasional open api pembayaran SNAP",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Standar Nasional Open Application Programming Interface Pembayaran"],
+    "notes": "SNAP regulation."
+  },
+  {
+    "id": "ojk_slik_obligation",
+    "query": "apa kewajiban bank terkait pelaporan SLIK?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Sistem Layanan Informasi Keuangan", "Pelaporan dan Permintaan Informasi Debitur"],
+    "notes": "SLIK reporting obligation."
+  },
+  {
+    "id": "ojk_bank_reporting",
+    "query": "pelaporan bank umum melalui sistem pelaporan OJK diatur dimana?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Pelaporan Bank Umum", "Sistem Pelaporan Otoritas Jasa Keuangan"],
+    "notes": "Bank reporting via OJK reporting system."
+  },
+  {
+    "id": "ojk_late_report_sanction",
+    "query": "sanksi apa kalau bank terlambat menyampaikan laporan ke OJK?",
+    "expected_behavior": "partial",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Pelaporan Bank Umum", "Sanksi Administratif", "Transparansi"],
+    "notes": "May need answer composer to connect reporting obligation and sanctions articles."
+  },
+  {
+    "id": "ojk_consumer_data",
+    "query": "aturan OJK tentang perlindungan data pribadi nasabah",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Informasi Pribadi Konsumen", "Pelindungan Konsumen"],
+    "notes": "Personal data and consumer protection."
+  },
+  {
+    "id": "ojk_complaint",
+    "query": "ketentuan layanan pengaduan konsumen di sektor jasa keuangan",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Layanan Pengaduan Konsumen", "Pelindungan Konsumen"],
+    "notes": "Consumer complaint handling."
+  },
+  {
+    "id": "ojk_it_risk",
+    "query": "apa dasar hukum manajemen risiko teknologi informasi bank?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Manajemen Risiko", "Teknologi Informasi", "Bank Umum"],
+    "notes": "IT risk management for banks."
+  },
+  {
+    "id": "ojk_digital_bank",
+    "query": "aturan layanan digital bank umum",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Layanan Digital oleh Bank Umum", "Layanan Perbankan Digital"],
+    "notes": "Digital banking services."
+  },
+  {
+    "id": "ojk_cyber_bpr",
+    "query": "ketentuan keamanan siber untuk BPR dan BPRS",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Teknologi Informasi oleh Bank Perekonomian Rakyat", "BPR"],
+    "notes": "BPR/BPRS IT and cyber resilience."
+  },
+  {
+    "id": "ojk_apu_ppt_bank",
+    "query": "peraturan anti pencucian uang dan pendanaan terorisme untuk bank",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Anti Pencucian Uang", "Pencegahan Pendanaan Terorisme"],
+    "notes": "APU PPT."
+  },
+  {
+    "id": "ojk_fit_proper",
+    "query": "apa syarat fit and proper test direksi bank?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Penilaian Kemampuan dan Kepatutan", "Uji Kemampuan dan Kepatutan"],
+    "notes": "Fit and proper for bank directors."
+  },
+  {
+    "id": "ojk_governance_sharia",
+    "query": "regulasi tata kelola bank syariah",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Tata Kelola Syariah", "Bank Umum Syariah"],
+    "notes": "Sharia bank governance."
+  },
+  {
+    "id": "ojk_business_plan",
+    "query": "aturan rencana bisnis bank umum",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Rencana Bisnis Bank Umum"],
+    "notes": "Bank business plan."
+  },
+  {
+    "id": "ojk_publication_report",
+    "query": "transparansi publikasi laporan bank umum",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Transparansi", "Publikasi Laporan", "Bank"],
+    "notes": "Publication and transparency reporting."
+  },
+  {
+    "id": "ojk_crypto",
+    "query": "peraturan terbaru tentang aset kripto di OJK",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Aset Keuangan Digital", "Aset Kripto"],
+    "notes": "Crypto asset regulation."
+  },
+  {
+    "id": "ojk_fintech_lending",
+    "query": "aturan layanan pendanaan bersama berbasis teknologi informasi",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Layanan Pendanaan Bersama Berbasis Teknologi Informasi", "LPBBTI"],
+    "notes": "Fintech lending."
+  },
+  {
+    "id": "ojk_insurance_marketing",
+    "query": "aturan pemasaran produk asuransi yang harus dipatuhi perusahaan asuransi",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Pemasaran Produk Asuransi", "Produk Asuransi"],
+    "notes": "Insurance product marketing."
+  },
+  {
+    "id": "ojk_capital_market_ads",
+    "query": "aturan promosi pemasaran efek termasuk iklan kepada publik",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Promosi Pemasaran Efek", "Iklan"],
+    "notes": "Capital market advertising."
+  },
+  {
+    "id": "ojk_capital_requirement",
+    "query": "ketentuan kewajiban penyediaan modal minimum bank umum",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Kewajiban Penyediaan Modal Minimum", "Bank Umum"],
+    "notes": "Bank capital requirement."
+  },
+  {
+    "id": "bi_pip_rules",
+    "query": "peraturan BI tentang penyelenggara infrastruktur sistem pembayaran",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Penyelenggara Infrastruktur Sistem Pembayaran"],
+    "notes": "BI PIP regulation."
+  },
+  {
+    "id": "bi_payment_system_compare",
+    "query": "apa perbedaan aturan BI dan OJK tentang sistem pembayaran?",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Sistem Pembayaran"],
+    "notes": "OJK side may be indirect; evidence should at least retrieve BI payment system."
+  },
+  {
+    "id": "cross_pjp_ojk_bi",
+    "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "expected_documents": ["Penyedia Jasa Pembayaran"],
+    "notes": "Cross-regulator comparison may need answer layer to separate direct BI PJP from adjacent OJK rules."
+  },
+  {
+    "id": "not_found_mars",
+    "query": "aturan yang mengatur planet mars untuk bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "notes": "Nonsense query should trigger not found."
+  },
+  {
+    "id": "not_found_layoff",
+    "query": "aturan OJK tentang tata cara PHK karyawan bank karena efisiensi internal",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "notes": "Employment layoff rules should not be answered from financial regulation corpus unless strong evidence exists."
+  },
+  {
+    "id": "not_found_recipe",
+    "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "notes": "Out-of-domain query should trigger not found."
+  }
+]

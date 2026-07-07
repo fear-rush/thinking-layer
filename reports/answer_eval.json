@@ -1,0 +1,2434 @@
+[
+  {
+    "spec": {
+      "id": "ojk_advertising_bank",
+      "query": "apa saja peraturan periklanan yang harus dipatuhi oleh bank?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"
+      ],
+      "notes": "Marketing and advertising rules for financial services."
+    },
+    "evaluation": {
+      "id": "ojk_advertising_bank",
+      "query": "apa saja peraturan periklanan yang harus dipatuhi oleh bank?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.796,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=1",
+          "lexical_rate=0.34",
+          "query_coverage=0.50"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"
+      ],
+      "top_documents": [
+        {
+          "document": "Saluran Pemasaran Produk Asuransi Melalui Kerja Sama Dengan Bank (Bancassurance)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Saluran Pemasaran Produk Asuransi melalui Kerja Sama dengan Bank (Bancassurance)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Produk Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Marketing and advertising rules for financial services."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_promo_nasabah",
+      "query": "aturan apa yang mengatur iklan produk bank dan promosi ke nasabah?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"
+      ],
+      "notes": "Natural wording for promotion and customer marketing."
+    },
+    "evaluation": {
+      "id": "ojk_promo_nasabah",
+      "query": "aturan apa yang mengatur iklan produk bank dan promosi ke nasabah?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.955,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=2",
+          "lexical_rate=0.66",
+          "query_coverage=0.86"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 5,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan"
+      ],
+      "top_documents": [
+        {
+          "document": "Saluran Pemasaran Produk Asuransi Melalui Kerja Sama Dengan Bank (Bancassurance)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Saluran Pemasaran Produk Asuransi melalui Kerja Sama dengan Bank (Bancassurance)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Produk Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Natural wording for promotion and customer marketing."
+    }
+  },
+  {
+    "spec": {
+      "id": "bi_pjp_rules",
+      "query": "peraturan BI tentang penyedia jasa pembayaran apa saja?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "notes": "Core BI PJP regulation."
+    },
+    "evaluation": {
+      "id": "bi_pjp_rules",
+      "query": "peraturan BI tentang penyedia jasa pembayaran apa saja?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.982,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=5",
+          "lexical_rate=0.88",
+          "query_coverage=0.80"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "top_documents": [
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PADG Nomor 12 Tahun 2024 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Core BI PJP regulation."
+    }
+  },
+  {
+    "spec": {
+      "id": "bi_pjp_requirements",
+      "query": "dokumen apa yang perlu disiapkan untuk izin penyedia jasa pembayaran bank?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Dokumen Persyaratan Izin Penyedia Jasa Pembayaran",
+        "Penyedia Jasa Pembayaran"
+      ],
+      "notes": "Ease BI operational requirement documents should be allowed as supporting evidence."
+    },
+    "evaluation": {
+      "id": "bi_pjp_requirements",
+      "query": "dokumen apa yang perlu disiapkan untuk izin penyedia jasa pembayaran bank?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=5",
+          "lexical_rate=0.94",
+          "query_coverage=0.86"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Dokumen Persyaratan Izin Penyedia Jasa Pembayaran",
+        "Penyedia Jasa Pembayaran"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Dokumen Persyaratan Izin Penyedia Jasa Pembayaran",
+        "Penyedia Jasa Pembayaran"
+      ],
+      "top_documents": [
+        {
+          "document": ". Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Bank",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
+        },
+        {
+          "document": "· Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Lembaga Selain Bank",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PADG Nomor 12 Tahun 2024 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Ease BI operational requirement documents should be allowed as supporting evidence."
+    }
+  },
+  {
+    "spec": {
+      "id": "bi_qris_requirements",
+      "query": "dokumen apa yang perlu disiapkan untuk pengembangan QRIS?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Quick Response Code"
+      ],
+      "notes": "QRIS regulation and related requirements."
+    },
+    "evaluation": {
+      "id": "bi_qris_requirements",
+      "query": "dokumen apa yang perlu disiapkan untuk pengembangan QRIS?",
+      "expected_behavior": "answerable",
+      "score": 0.938,
+      "accepted": true,
+      "status": "partial",
+      "confidence": {
+        "label": "partial",
+        "score": 0.733,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=0",
+          "lexical_rate=0.26",
+          "query_coverage=0.75"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Quick Response Code"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Quick Response Code"
+      ],
+      "top_documents": [
+        {
+          "document": ". Matriks Dokumen Tambahan untuk Pengembangan QRIS.",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
+        },
+        {
+          "document": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.22/8/PBI/2020 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "QRIS regulation and related requirements."
+    }
+  },
+  {
+    "spec": {
+      "id": "bi_snap",
+      "query": "aturan standar nasional open api pembayaran SNAP",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Standar Nasional Open Application Programming Interface Pembayaran"
+      ],
+      "notes": "SNAP regulation."
+    },
+    "evaluation": {
+      "id": "bi_snap",
+      "query": "aturan standar nasional open api pembayaran SNAP",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=2",
+          "lexical_rate=0.96",
+          "query_coverage=0.86"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Standar Nasional Open Application Programming Interface Pembayaran"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Standar Nasional Open Application Programming Interface Pembayaran"
+      ],
+      "top_documents": [
+        {
+          "document": "PADG No.23/15/PADG/2021 - Implementasi Standar Nasional Open Application Programming Interface Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "SNAP regulation."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_slik_obligation",
+      "query": "apa kewajiban bank terkait pelaporan SLIK?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Sistem Layanan Informasi Keuangan",
+        "Pelaporan dan Permintaan Informasi Debitur"
+      ],
+      "notes": "SLIK reporting obligation."
+    },
+    "evaluation": {
+      "id": "ojk_slik_obligation",
+      "query": "apa kewajiban bank terkait pelaporan SLIK?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.948,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=3",
+          "lexical_rate=0.58",
+          "query_coverage=0.60"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Sistem Layanan Informasi Keuangan",
+        "Pelaporan dan Permintaan Informasi Debitur"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Sistem Layanan Informasi Keuangan",
+        "Pelaporan dan Permintaan Informasi Debitur"
+      ],
+      "top_documents": [
+        {
+          "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SEOJK SLIK)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Perubahan Kedua Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SLIK)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "SLIK reporting obligation."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_bank_reporting",
+      "query": "pelaporan bank umum melalui sistem pelaporan OJK diatur dimana?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Pelaporan Bank Umum",
+        "Sistem Pelaporan Otoritas Jasa Keuangan"
+      ],
+      "notes": "Bank reporting via OJK reporting system."
+    },
+    "evaluation": {
+      "id": "ojk_bank_reporting",
+      "query": "pelaporan bank umum melalui sistem pelaporan OJK diatur dimana?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.979,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=6",
+          "lexical_rate=0.86",
+          "query_coverage=0.50"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Pelaporan Bank Umum",
+        "Sistem Pelaporan Otoritas Jasa Keuangan"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Pelaporan Bank Umum",
+        "Sistem Pelaporan Otoritas Jasa Keuangan"
+      ],
+      "top_documents": [
+        {
+          "document": "Pelaporan Bank Umum Syariah dan Unit Usaha Syariah melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Bank Umum Konvensional Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Melalui Sistem Pelaporan OJK dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Bank reporting via OJK reporting system."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_late_report_sanction",
+      "query": "sanksi apa kalau bank terlambat menyampaikan laporan ke OJK?",
+      "expected_behavior": "partial",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Pelaporan Bank Umum",
+        "Sanksi Administratif",
+        "Transparansi"
+      ],
+      "notes": "May need answer composer to connect reporting obligation and sanctions articles."
+    },
+    "evaluation": {
+      "id": "ojk_late_report_sanction",
+      "query": "sanksi apa kalau bank terlambat menyampaikan laporan ke OJK?",
+      "expected_behavior": "partial",
+      "score": 0.938,
+      "accepted": true,
+      "status": "partial",
+      "confidence": {
+        "label": "partial",
+        "score": 0.769,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=0",
+          "lexical_rate=0.46",
+          "query_coverage=0.80"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 5,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Pelaporan Bank Umum",
+        "Sanksi Administratif",
+        "Transparansi"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Pelaporan Bank Umum",
+        "Sanksi Administratif",
+        "Transparansi"
+      ],
+      "top_documents": [
+        {
+          "document": "Transparansi dan Publikasi Laporan Bank",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Tata Cara Penagihan Sanksi Administratif Berupa Denda di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Transparansi dan Publikasi Laporan Bank Umum Konvensional",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Bank Umum Konvensional Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "May need answer composer to connect reporting obligation and sanctions articles."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_consumer_data",
+      "query": "aturan OJK tentang perlindungan data pribadi nasabah",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Informasi Pribadi Konsumen",
+        "Pelindungan Konsumen"
+      ],
+      "notes": "Personal data and consumer protection."
+    },
+    "evaluation": {
+      "id": "ojk_consumer_data",
+      "query": "aturan OJK tentang perlindungan data pribadi nasabah",
+      "expected_behavior": "answerable",
+      "score": 0.938,
+      "accepted": true,
+      "status": "partial",
+      "confidence": {
+        "label": "partial",
+        "score": 0.763,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=0",
+          "lexical_rate=0.51",
+          "query_coverage=0.67"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 4,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Informasi Pribadi Konsumen",
+        "Pelindungan Konsumen"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Informasi Pribadi Konsumen",
+        "Pelindungan Konsumen"
+      ],
+      "top_documents": [
+        {
+          "document": "SEOJK tentang Kerahasiaan dan Keamanan Data dan atau Informasi Pribadi Konsumen",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Peraturan Bank Indonesia Nomor 7/6/PBI/2005",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Pelayanan dan Penyelesaian Pengaduan Konsumen pada Pelaku Usaha Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Personal data and consumer protection."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_complaint",
+      "query": "ketentuan layanan pengaduan konsumen di sektor jasa keuangan",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Layanan Pengaduan Konsumen",
+        "Pelindungan Konsumen"
+      ],
+      "notes": "Consumer complaint handling."
+    },
+    "evaluation": {
+      "id": "ojk_complaint",
+      "query": "ketentuan layanan pengaduan konsumen di sektor jasa keuangan",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=3",
+          "lexical_rate=0.98",
+          "query_coverage=1.00"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Layanan Pengaduan Konsumen",
+        "Pelindungan Konsumen"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Layanan Pengaduan Konsumen",
+        "Pelindungan Konsumen"
+      ],
+      "top_documents": [
+        {
+          "document": "Layanan Pengaduan Konsumen di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Pelayanan dan Penyelesaian Pengaduan Konsumen pada Pelaku Usaha Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pedoman Pelaksanaan Layanan Pengaduan Konsumen di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Consumer complaint handling."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_it_risk",
+      "query": "apa dasar hukum manajemen risiko teknologi informasi bank?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Manajemen Risiko",
+        "Teknologi Informasi",
+        "Bank Umum"
+      ],
+      "notes": "IT risk management for banks."
+    },
+    "evaluation": {
+      "id": "ojk_it_risk",
+      "query": "apa dasar hukum manajemen risiko teknologi informasi bank?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=14",
+          "lexical_rate=1.00",
+          "query_coverage=0.71"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Manajemen Risiko",
+        "Teknologi Informasi",
+        "Bank Umum"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Manajemen Risiko",
+        "Teknologi Informasi",
+        "Bank Umum"
+      ],
+      "top_documents": [
+        {
+          "document": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "POJK tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 38/POJK.03/2016 tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko Bagi Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "IT risk management for banks."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_digital_bank",
+      "query": "aturan layanan digital bank umum",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Layanan Digital oleh Bank Umum",
+        "Layanan Perbankan Digital"
+      ],
+      "notes": "Digital banking services."
+    },
+    "evaluation": {
+      "id": "ojk_digital_bank",
+      "query": "aturan layanan digital bank umum",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=8",
+          "lexical_rate=0.95",
+          "query_coverage=0.75"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Layanan Digital oleh Bank Umum",
+        "Layanan Perbankan Digital"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Layanan Digital oleh Bank Umum",
+        "Layanan Perbankan Digital"
+      ],
+      "top_documents": [
+        {
+          "document": "Layanan Digital oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Layanan Perbankan Digital oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "POJK tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Digital banking services."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_cyber_bpr",
+      "query": "ketentuan keamanan siber untuk BPR dan BPRS",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Teknologi Informasi oleh Bank Perekonomian Rakyat",
+        "BPR"
+      ],
+      "notes": "BPR/BPRS IT and cyber resilience."
+    },
+    "evaluation": {
+      "id": "ojk_cyber_bpr",
+      "query": "ketentuan keamanan siber untuk BPR dan BPRS",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=10",
+          "lexical_rate=0.70",
+          "query_coverage=1.00"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Teknologi Informasi oleh Bank Perekonomian Rakyat",
+        "BPR"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Teknologi Informasi oleh Bank Perekonomian Rakyat"
+      ],
+      "top_documents": [
+        {
+          "document": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Standar Penyelenggaraan Teknologi Informasi bagi Bank Perkreditan Rakyat dan Bank Pembiayaan Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "POJK tentang Standar Penyelenggaraan Teknologi Informasi bagi Bank Perkreditan Rakyat dan Bank Pembiayaan Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Kualitas Aset Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "BPR/BPRS IT and cyber resilience."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_apu_ppt_bank",
+      "query": "peraturan anti pencucian uang dan pendanaan terorisme untuk bank",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Anti Pencucian Uang",
+        "Pencegahan Pendanaan Terorisme"
+      ],
+      "notes": "APU PPT."
+    },
+    "evaluation": {
+      "id": "ojk_apu_ppt_bank",
+      "query": "peraturan anti pencucian uang dan pendanaan terorisme untuk bank",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=5",
+          "lexical_rate=1.00",
+          "query_coverage=1.00"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Anti Pencucian Uang",
+        "Pencegahan Pendanaan Terorisme"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Anti Pencucian Uang",
+        "Pencegahan Pendanaan Terorisme"
+      ],
+      "top_documents": [
+        {
+          "document": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Perbankan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal di Sektor Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Pasar Modal",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal bagi Pedagang Aset Keuangan Digital",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "APU PPT."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_fit_proper",
+      "query": "apa syarat fit and proper test direksi bank?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penilaian Kemampuan dan Kepatutan",
+        "Uji Kemampuan dan Kepatutan"
+      ],
+      "notes": "Fit and proper for bank directors."
+    },
+    "evaluation": {
+      "id": "ojk_fit_proper",
+      "query": "apa syarat fit and proper test direksi bank?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.866,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=0",
+          "lexical_rate=0.87",
+          "query_coverage=0.86"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penilaian Kemampuan dan Kepatutan",
+        "Uji Kemampuan dan Kepatutan"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Penilaian Kemampuan dan Kepatutan",
+        "Uji Kemampuan dan Kepatutan"
+      ],
+      "top_documents": [
+        {
+          "document": "Peraturan Bank Indonesia tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Perkreditan Rakyat",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Peraturan Bank Indonesia tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Penilaian Kemampuan dan Kepatutan bagi Calon Pemegang Saham Pengendali, Calon Anggota Direksi, dan Calon Anggota Dewan Komisaris Bank",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Surat Edaran Bank Indonesia tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Fit and proper for bank directors."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_governance_sharia",
+      "query": "regulasi tata kelola bank syariah",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Tata Kelola Syariah",
+        "Bank Umum Syariah"
+      ],
+      "notes": "Sharia bank governance."
+    },
+    "evaluation": {
+      "id": "ojk_governance_sharia",
+      "query": "regulasi tata kelola bank syariah",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.955,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.60",
+          "matched_phrase_count=4",
+          "lexical_rate=0.90",
+          "query_coverage=0.80"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Tata Kelola Syariah",
+        "Bank Umum Syariah"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Tata Kelola Syariah",
+        "Bank Umum Syariah"
+      ],
+      "top_documents": [
+        {
+          "document": "Penerapan Tata Kelola Bagi Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Tata Kelola Syariah Bagi Bank Perekonomian Rakyat Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Tata Kelola Syariah bagi Bank Umum Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penerapan Tata Kelola Syariah Bagi Bank Umum Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Sharia bank governance."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_business_plan",
+      "query": "aturan rencana bisnis bank umum",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Rencana Bisnis Bank Umum"
+      ],
+      "notes": "Bank business plan."
+    },
+    "evaluation": {
+      "id": "ojk_business_plan",
+      "query": "aturan rencana bisnis bank umum",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.896,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.20",
+          "matched_phrase_count=4",
+          "lexical_rate=0.94",
+          "query_coverage=0.75"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Rencana Bisnis Bank Umum"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Rencana Bisnis Bank Umum"
+      ],
+      "top_documents": [
+        {
+          "document": "Rencana Bisnis Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Rencana Bisnis Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Rencana Bisnis Lembaga Jasa Keuangan Non Bank",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "POJK tentang Rencana Bisnis Bank",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Bank business plan."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_publication_report",
+      "query": "transparansi publikasi laporan bank umum",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Transparansi",
+        "Publikasi Laporan",
+        "Bank"
+      ],
+      "notes": "Publication and transparency reporting."
+    },
+    "evaluation": {
+      "id": "ojk_publication_report",
+      "query": "transparansi publikasi laporan bank umum",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.941,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.40",
+          "matched_phrase_count=2",
+          "lexical_rate=0.87",
+          "query_coverage=1.00"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Transparansi",
+        "Publikasi Laporan",
+        "Bank"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Transparansi",
+        "Publikasi Laporan",
+        "Bank"
+      ],
+      "top_documents": [
+        {
+          "document": "Transparansi dan Publikasi Laporan Bank",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Transparansi dan Publikasi Laporan Bank Umum Konvensional",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Transparansi dan Publikasi Laporan Bank Umum Syariah dan Unit Usaha Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "POJK tentang Transparansi dan Publikasi Laporan Bank",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pelaporan Bank Umum Konvensional Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Publication and transparency reporting."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_crypto",
+      "query": "peraturan terbaru tentang aset kripto di OJK",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Aset Keuangan Digital",
+        "Aset Kripto"
+      ],
+      "notes": "Crypto asset regulation."
+    },
+    "evaluation": {
+      "id": "ojk_crypto",
+      "query": "peraturan terbaru tentang aset kripto di OJK",
+      "expected_behavior": "answerable",
+      "score": 0.938,
+      "accepted": true,
+      "status": "partial",
+      "confidence": {
+        "label": "partial",
+        "score": 0.77,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=0",
+          "lexical_rate=0.60",
+          "query_coverage=0.60"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 3,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Aset Keuangan Digital",
+        "Aset Kripto"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Aset Keuangan Digital",
+        "Aset Kripto"
+      ],
+      "top_documents": [
+        {
+          "document": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penilaian Kemampuan dan Kepatutan Serta Penilaian Kembali Bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penilaian Kemampuan dan Kepatutan serta Penilaian Kembali bagi Pihak Utama di Sektor Inovasi Teknologi Sektor Keuangan serta Aset Keuangan Digital dan Aset Kripto",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Rencana Bisnis Penyelenggara Perdagangan Aset Keuangan Digital",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Crypto asset regulation."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_fintech_lending",
+      "query": "aturan layanan pendanaan bersama berbasis teknologi informasi",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+        "LPBBTI"
+      ],
+      "notes": "Fintech lending."
+    },
+    "evaluation": {
+      "id": "ojk_fintech_lending",
+      "query": "aturan layanan pendanaan bersama berbasis teknologi informasi",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=5",
+          "lexical_rate=1.00",
+          "query_coverage=0.83"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 1,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+        "LPBBTI"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+        "LPBBTI"
+      ],
+      "top_documents": [
+        {
+          "document": "Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penilaian Tingkat Kesehatan Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Permohonan Perizinan, Permohonan Persetujuan, dan Pelaporan Secara Elektronik Bagi Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Penyelenggaraan Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Tata Cara dan Mekanisme Penyampaian Data Transaksi Pendanaan dan Pelaporan Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi (LPBBTI)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Fintech lending."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_insurance_marketing",
+      "query": "aturan pemasaran produk asuransi yang harus dipatuhi perusahaan asuransi",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Pemasaran Produk Asuransi",
+        "Produk Asuransi"
+      ],
+      "notes": "Insurance product marketing."
+    },
+    "evaluation": {
+      "id": "ojk_insurance_marketing",
+      "query": "aturan pemasaran produk asuransi yang harus dipatuhi perusahaan asuransi",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=4",
+          "lexical_rate=0.98",
+          "query_coverage=0.67"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 1,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Pemasaran Produk Asuransi",
+        "Produk Asuransi"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Pemasaran Produk Asuransi",
+        "Produk Asuransi"
+      ],
+      "top_documents": [
+        {
+          "document": "Saluran Pemasaran Produk Asuransi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Produk Asuransi dan Saluran Pemasaran Produk Asuransi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Pelaporan Produk Asuransi bagi Perusahaan Asuransi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Saluran Pemasaran Produk Asuransi Melalui Kerja Sama Dengan Bank (Bancassurance)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "SEOJK tentang Saluran Pemasaran Produk Asuransi melalui Kerja Sama dengan Bank (Bancassurance)",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Insurance product marketing."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_capital_market_ads",
+      "query": "aturan promosi pemasaran efek termasuk iklan kepada publik",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Promosi Pemasaran Efek",
+        "Iklan"
+      ],
+      "notes": "Capital market advertising."
+    },
+    "evaluation": {
+      "id": "ojk_capital_market_ads",
+      "query": "aturan promosi pemasaran efek termasuk iklan kepada publik",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.993,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=6",
+          "lexical_rate=0.73",
+          "query_coverage=0.83"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Promosi Pemasaran Efek",
+        "Iklan"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Promosi Pemasaran Efek",
+        "Iklan"
+      ],
+      "top_documents": [
+        {
+          "document": "Promosi Pemasaran Efek Termasuk Iklan, Brosur, atau Komunikasi Lainnya kepada Publik",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "XI. A9. Promosi Pemasaran Efek Termasuk Iklan, Brosur, atau Komunikasi lainnya Kepada Publik Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "POJK tentang Keterbukaan Atas Informasi atau Fakta Material oleh Emiten atau Perusahaan Publik",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Bentuk dan Isi Laporan Tahunan Emiten atau Perusahaan Publik",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Sekretaris Perusahaan Emiten atau Perusahaan Publik",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Capital market advertising."
+    }
+  },
+  {
+    "spec": {
+      "id": "ojk_capital_requirement",
+      "query": "ketentuan kewajiban penyediaan modal minimum bank umum",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Kewajiban Penyediaan Modal Minimum",
+        "Bank Umum"
+      ],
+      "notes": "Bank capital requirement."
+    },
+    "evaluation": {
+      "id": "ojk_capital_requirement",
+      "query": "ketentuan kewajiban penyediaan modal minimum bank umum",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=5",
+          "lexical_rate=1.00",
+          "query_coverage=0.83"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "expected_documents": [
+        "Kewajiban Penyediaan Modal Minimum",
+        "Bank Umum"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Kewajiban Penyediaan Modal Minimum",
+        "Bank Umum"
+      ],
+      "top_documents": [
+        {
+          "document": "POJK tentang Kewajiban Penyediaan Modal Minimum Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Kewajiban Penyediaan Modal Minimum Bank Umum Syariah",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI tentang Kewajiban Penyediaan Modal Minimum Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Peraturan Bank Indonesia tentang Kewajiban Penyediaan Modal Minimum Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Peraturan Bank Indonesia tentang Kewajiban Penyediaan Modal Minimum Bank Umum dengan Memperhitungkan Risiko Pasar",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Bank capital requirement."
+    }
+  },
+  {
+    "spec": {
+      "id": "bi_pip_rules",
+      "query": "peraturan BI tentang penyelenggara infrastruktur sistem pembayaran",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Penyelenggara Infrastruktur Sistem Pembayaran"
+      ],
+      "notes": "BI PIP regulation."
+    },
+    "evaluation": {
+      "id": "bi_pip_rules",
+      "query": "peraturan BI tentang penyelenggara infrastruktur sistem pembayaran",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 1.0,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=10",
+          "lexical_rate=1.00",
+          "query_coverage=0.83"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Penyelenggara Infrastruktur Sistem Pembayaran"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Penyelenggara Infrastruktur Sistem Pembayaran"
+      ],
+      "top_documents": [
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
+        },
+        {
+          "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran(PIP)- Lembaga Selain Bank",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
+        },
+        {
+          "document": "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "BI PIP regulation."
+    }
+  },
+  {
+    "spec": {
+      "id": "bi_payment_system_compare",
+      "query": "apa perbedaan aturan BI dan OJK tentang sistem pembayaran?",
+      "expected_behavior": "partial",
+      "required_issuers": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Sistem Pembayaran"
+      ],
+      "notes": "OJK side may be indirect; evidence should at least retrieve BI payment system."
+    },
+    "evaluation": {
+      "id": "bi_payment_system_compare",
+      "query": "apa perbedaan aturan BI dan OJK tentang sistem pembayaran?",
+      "expected_behavior": "partial",
+      "score": 0.938,
+      "accepted": true,
+      "status": "partial",
+      "confidence": {
+        "label": "partial",
+        "score": 0.935,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=5",
+          "lexical_rate=0.73",
+          "query_coverage=0.50",
+          "cross_regulator_missing_direct_topic_coverage",
+          "missing_direct_issuers=['OJK']",
+          "topic_terms=['penyedia jasa pembayaran', 'penyelenggara infrastruktur sistem pembayaran', 'transfer dana', 'uang elektronik', 'e-money', 'kartu kredit', 'kartu debit', 'merchant', 'transfer dana uang elektronik alat pembayaran menggunakan kartu']"
+        ],
+        "must_say_not_found": false,
+        "previous_label": "strong"
+      },
+      "citation_count": 6,
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "expected_documents": [
+        "Sistem Pembayaran"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Sistem Pembayaran"
+      ],
+      "top_documents": [
+        {
+          "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Pendaftaran Penyelenggara Inovasi Teknologi Sektor Keuangan",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "OJK side may be indirect; evidence should at least retrieve BI payment system."
+    }
+  },
+  {
+    "spec": {
+      "id": "cross_pjp_ojk_bi",
+      "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+      "expected_behavior": "partial",
+      "required_issuers": [
+        "BI",
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "notes": "Cross-regulator comparison may need answer layer to separate direct BI PJP from adjacent OJK rules."
+    },
+    "evaluation": {
+      "id": "cross_pjp_ojk_bi",
+      "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+      "expected_behavior": "partial",
+      "score": 0.938,
+      "accepted": true,
+      "status": "partial",
+      "confidence": {
+        "label": "partial",
+        "score": 0.999,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=5",
+          "lexical_rate=0.91",
+          "query_coverage=0.62",
+          "cross_regulator_missing_direct_topic_coverage",
+          "missing_direct_issuers=['OJK']",
+          "topic_terms=['penyedia jasa pembayaran', 'pjp', 'jasa pembayaran', 'perizinan penyedia jasa pembayaran', 'penyelenggaraan penyedia jasa pembayaran']"
+        ],
+        "must_say_not_found": false,
+        "previous_label": "strong"
+      },
+      "citation_count": 3,
+      "required_issuers": [
+        "BI",
+        "OJK"
+      ],
+      "issuer_hits": [
+        "BI",
+        "OJK"
+      ],
+      "expected_documents": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "expected_document_mode": "any",
+      "document_hits": [
+        "Penyedia Jasa Pembayaran"
+      ],
+      "top_documents": [
+        {
+          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PADG Nomor 12 Tahun 2024 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Perubahan Atas Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Permohonan Perizinan, Permohonan Persetujuan, dan Pelaporan Secara Elektronik Bagi Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        }
+      ],
+      "failure_reasons": [],
+      "notes": "Cross-regulator comparison may need answer layer to separate direct BI PJP from adjacent OJK rules."
+    }
+  },
+  {
+    "spec": {
+      "id": "not_found_mars",
+      "query": "aturan yang mengatur planet mars untuk bank",
+      "expected_behavior": "not_found",
+      "required_issuers": [],
+      "expected_documents": [],
+      "notes": "Nonsense query should trigger not found."
+    },
+    "evaluation": {
+      "id": "not_found_mars",
+      "query": "aturan yang mengatur planet mars untuk bank",
+      "expected_behavior": "not_found",
+      "score": 1.0,
+      "accepted": true,
+      "status": "not_found",
+      "confidence": {
+        "label": "weak",
+        "score": 0.709,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.60",
+          "matched_phrase_count=0",
+          "lexical_rate=0.39",
+          "query_coverage=0.60",
+          "generic_entity_only_insufficient_support",
+          "low_coverage_without_exact_phrase_support"
+        ],
+        "must_say_not_found": true
+      },
+      "citation_count": 0,
+      "required_issuers": [],
+      "issuer_hits": [],
+      "expected_documents": [],
+      "expected_document_mode": "any",
+      "document_hits": [],
+      "top_documents": [],
+      "failure_reasons": [],
+      "notes": "Nonsense query should trigger not found."
+    }
+  },
+  {
+    "spec": {
+      "id": "not_found_layoff",
+      "query": "aturan OJK tentang tata cara PHK karyawan bank karena efisiensi internal",
+      "expected_behavior": "not_found",
+      "required_issuers": [],
+      "expected_documents": [],
+      "notes": "Employment layoff rules should not be answered from financial regulation corpus unless strong evidence exists."
+    },
+    "evaluation": {
+      "id": "not_found_layoff",
+      "query": "aturan OJK tentang tata cara PHK karyawan bank karena efisiensi internal",
+      "expected_behavior": "not_found",
+      "score": 1.0,
+      "accepted": true,
+      "status": "not_found",
+      "confidence": {
+        "label": "weak",
+        "score": 0.751,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=0",
+          "lexical_rate=0.54",
+          "query_coverage=0.50",
+          "generic_entity_only_insufficient_support"
+        ],
+        "must_say_not_found": true
+      },
+      "citation_count": 0,
+      "required_issuers": [],
+      "issuer_hits": [],
+      "expected_documents": [],
+      "expected_document_mode": "any",
+      "document_hits": [],
+      "top_documents": [],
+      "failure_reasons": [],
+      "notes": "Employment layoff rules should not be answered from financial regulation corpus unless strong evidence exists."
+    }
+  },
+  {
+    "spec": {
+      "id": "not_found_recipe",
+      "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
+      "expected_behavior": "not_found",
+      "required_issuers": [],
+      "expected_documents": [],
+      "notes": "Out-of-domain query should trigger not found."
+    },
+    "evaluation": {
+      "id": "not_found_recipe",
+      "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
+      "expected_behavior": "not_found",
+      "score": 1.0,
+      "accepted": true,
+      "status": "not_found",
+      "confidence": {
+        "label": "weak",
+        "score": 0.737,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.80",
+          "matched_phrase_count=0",
+          "lexical_rate=0.34",
+          "query_coverage=0.67",
+          "generic_entity_only_insufficient_support"
+        ],
+        "must_say_not_found": true
+      },
+      "citation_count": 0,
+      "required_issuers": [],
+      "issuer_hits": [],
+      "expected_documents": [],
+      "expected_document_mode": "any",
+      "document_hits": [],
+      "top_documents": [],
+      "failure_reasons": [],
+      "notes": "Out-of-domain query should trigger not found."
+    }
+  }
+]

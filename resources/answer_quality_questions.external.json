@@ -1,0 +1,135 @@
+[
+  {
+    "id": "ai_external_quality_bi_front_office_perizinan",
+    "query": "bagaimana aturan BI tentang front office perizinan terpadu?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "required_terms": ["Perizinan"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_bi_transfer_dana",
+    "query": "apa dasar hukum BI untuk penyelenggaraan transfer dana?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "required_terms": ["Transfer Dana"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_bi_pasar_uang",
+    "query": "aturan BI tentang pasar uang dan pasar valuta asing",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "required_terms": ["Pasar Uang"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_bi_pelindungan_konsumen",
+    "query": "aturan pelindungan konsumen yang diawasi Bank Indonesia",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "required_terms": ["Pelindungan Konsumen"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_ojk_bpr_bmpk",
+    "query": "batas maksimum pemberian kredit untuk BPR dan BPRS",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "required_terms": ["Batas Maksimum Pemberian Kredit"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_ojk_laporan_bpr",
+    "query": "pelaporan laporan bulanan bank perekonomian rakyat ke OJK",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "required_terms": ["Laporan Bulanan"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_ojk_pergadaian",
+    "query": "aturan usaha pergadaian dan perusahaan pergadaian",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "required_terms": ["Pergadaian"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_ojk_modal_ventura",
+    "query": "aturan penyelenggaraan usaha perusahaan modal ventura",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "required_terms": ["Modal Ventura"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 1,
+    "max_answer_chars": 4500,
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_quality_cross_pjp",
+    "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "required_terms": ["Penyedia Jasa Pembayaran"],
+    "required_uncertainty_terms": ["parsial"],
+    "required_citation_terms": ["hlm."],
+    "min_citations": 2,
+    "max_answer_chars": 5500,
+    "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+  },
+  {
+    "id": "ai_external_quality_not_found_kursi",
+    "query": "pengadaan kursi kantor untuk cabang bank diatur dimana?",
+    "expected_behavior": "not_found",
+    "required_terms": ["Tidak ditemukan"],
+    "required_uncertainty_terms": ["tidak akan menyimpulkan"],
+    "required_citation_terms": [],
+    "min_citations": 0,
+    "max_answer_chars": 1200,
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  },
+  {
+    "id": "ai_external_quality_not_found_seragam",
+    "query": "aturan warna seragam sales cabang bank menurut OJK",
+    "expected_behavior": "not_found",
+    "required_terms": ["Tidak ditemukan"],
+    "required_uncertainty_terms": ["tidak akan menyimpulkan"],
+    "required_citation_terms": [],
+    "min_citations": 0,
+    "max_answer_chars": 1200,
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  },
+  {
+    "id": "ai_external_quality_not_found_kopi",
+    "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
+    "expected_behavior": "not_found",
+    "required_terms": ["Tidak ditemukan"],
+    "required_uncertainty_terms": ["tidak akan menyimpulkan"],
+    "required_citation_terms": [],
+    "min_citations": 0,
+    "max_answer_chars": 1200,
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  }
+]

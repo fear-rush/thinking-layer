@@ -1,0 +1,54 @@
+{
+  "documents": {
+    "canonical_manifest_files": 2475,
+    "extracted_rows": 2475,
+    "unique_extracted_files": 2471,
+    "remaining_unextracted": 0,
+    "statuses": {
+      "extracted_ok": 2475
+    },
+    "sources": {
+      "ease-bi": 80,
+      "peraturan-ojk": 2395
+    },
+    "roles": {
+      "primary_regulation": 1641,
+      "operational_requirement": 26,
+      "secondary_faq": 368,
+      "secondary_summary": 362,
+      "attachment": 78
+    }
+  },
+  "blocks": {
+    "total": 537355,
+    "sources": {
+      "ease-bi": 31713,
+      "peraturan-ojk": 505642
+    },
+    "roles": {
+      "primary_regulation": 509613,
+      "operational_requirement": 2185,
+      "secondary_faq": 11498,
+      "secondary_summary": 3955,
+      "attachment": 10104
+    },
+    "types": {
+      "paragraph": 229672,
+      "table_or_row": 64655,
+      "article": 90823,
+      "list_item": 87250,
+      "heading": 62519,
+      "qa_or_faq": 2436
+    },
+    "citation_fields_present": {
+      "page": 537355,
+      "pasal": 463359,
+      "ayat": 97041
+    }
+  },
+  "skipped_or_needs_review": {
+    "total": 0,
+    "reasons": {},
+    "remaining_unextracted": []
+  }
+}

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "ai_external_bi_front_office_perizinan",
+    "query": "bagaimana aturan BI tentang front office perizinan terpadu?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_layanan_kebanksentralan",
+    "query": "ketentuan layanan kebanksentralan Bank Indonesia diatur di mana?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Layanan Kebanksentralan"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_transfer_dana",
+    "query": "apa dasar hukum BI untuk penyelenggaraan transfer dana?",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Transfer Dana"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_pengelolaan_uang_rupiah",
+    "query": "peraturan tentang pengelolaan uang rupiah oleh Bank Indonesia",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Pengelolaan Uang Rupiah"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_kupva_bb",
+    "query": "ketentuan kegiatan usaha penukaran valuta asing bukan bank",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Penukaran Valuta Asing Bukan Bank"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_pasar_uang_puva",
+    "query": "aturan BI tentang pasar uang dan pasar valuta asing",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Pasar Uang dan Pasar Valuta Asing"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_dealer_utama_puva",
+    "query": "aturan dealer utama di pasar uang dan valuta asing",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Dealer Utama"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_operasi_moneter",
+    "query": "ketentuan kepesertaan operasi moneter Bank Indonesia",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Kepesertaan Operasi Moneter"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_pelindungan_konsumen",
+    "query": "aturan pelindungan konsumen yang diawasi Bank Indonesia",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Pelindungan Konsumen"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_bi_uang_kertas_asing",
+    "query": "ketentuan pembawaan uang kertas asing ke luar daerah pabean Indonesia",
+    "expected_behavior": "answerable",
+    "required_issuers": ["BI"],
+    "expected_documents": ["Pembawaan Uang Kertas Asing"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_bank_kustodian",
+    "query": "aturan laporan bank umum sebagai kustodian",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Laporan Bank Umum Sebagai Kustodian"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_bpr_bmpk",
+    "query": "batas maksimum pemberian kredit untuk BPR dan BPRS",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Batas Maksimum Pemberian Kredit"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_lcr_nsfr_syariah",
+    "query": "ketentuan liquidity coverage ratio dan net stable funding ratio untuk bank umum syariah",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Liquidity Coverage Ratio"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_kebijakan_perkreditan",
+    "query": "aturan penyusunan kebijakan perkreditan bank umum",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Kebijakan Perkreditan"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_lppi",
+    "query": "aturan lembaga pengelola informasi perkreditan",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Lembaga Pengelola Informasi Perkreditan"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_laporan_bulanan_bpr",
+    "query": "pelaporan laporan bulanan bank perekonomian rakyat ke OJK",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Laporan Bulanan Bank Perkreditan Rakyat"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_laporan_dana_pensiun",
+    "query": "ketentuan laporan berkala dana pensiun",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Laporan Berkala Dana Pensiun"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_pergadaian",
+    "query": "aturan usaha pergadaian dan perusahaan pergadaian",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Usaha Pergadaian"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_lkm",
+    "query": "ketentuan penyelenggaraan usaha lembaga keuangan mikro",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Lembaga Keuangan Mikro"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_ojk_modal_ventura",
+    "query": "aturan penyelenggaraan usaha perusahaan modal ventura",
+    "expected_behavior": "answerable",
+    "required_issuers": ["OJK"],
+    "expected_documents": ["Penyelenggaraan Usaha Perusahaan Modal Ventura"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; not blind reviewer validation."
+  },
+  {
+    "id": "ai_external_cross_consumer_bi_ojk",
+    "query": "bandingkan ketentuan perlindungan konsumen dari BI dan OJK untuk jasa keuangan",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "expected_documents": ["Pelindungan Konsumen"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+  },
+  {
+    "id": "ai_external_cross_apu_ppt_bi_ojk",
+    "query": "apa saja aturan APU PPT dari BI dan OJK yang perlu dipetakan?",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "expected_documents": ["Anti Pencucian Uang"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+  },
+  {
+    "id": "ai_external_cross_payment_system",
+    "query": "bandingkan aturan sistem pembayaran menurut BI dan OJK",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "expected_documents": ["Sistem Pembayaran"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+  },
+  {
+    "id": "ai_external_cross_pjp",
+    "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "expected_documents": ["Penyedia Jasa Pembayaran"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+  },
+  {
+    "id": "ai_external_cross_pelindungan_data",
+    "query": "aturan BI dan OJK mengenai perlindungan data konsumen jasa keuangan",
+    "expected_behavior": "partial",
+    "required_issuers": ["BI", "OJK"],
+    "expected_documents": ["Konsumen"],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+  },
+  {
+    "id": "ai_external_not_found_pengadaan_kursi",
+    "query": "aturan OJK tentang standar pembelian kursi kantor cabang bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  },
+  {
+    "id": "ai_external_not_found_seragam_sales",
+    "query": "ketentuan BI tentang warna seragam tim sales bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  },
+  {
+    "id": "ai_external_not_found_menu_kantin",
+    "query": "peraturan OJK mengenai menu makan siang di kantin bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  },
+  {
+    "id": "ai_external_not_found_penilaian_karyawan",
+    "query": "aturan BI tentang format penilaian kinerja karyawan marketing bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  },
+  {
+    "id": "ai_external_not_found_resep_kopi",
+    "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
+    "expected_behavior": "not_found",
+    "required_issuers": [],
+    "expected_documents": [],
+    "expected_document_mode": "any",
+    "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+  }
+]
