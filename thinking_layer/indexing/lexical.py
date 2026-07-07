@@ -321,6 +321,7 @@ def format_search_results(query: str, results: list[dict[str, Any]]) -> str:
         citation = row.get("citation") or {}
         pasal = citation.get("pasal") or "-"
         ayat = citation.get("ayat") or "-"
+        huruf = citation.get("huruf") or "-"
         lines.extend(
             [
                 f"## {index}. {row.get('document_title')}",
@@ -328,7 +329,7 @@ def format_search_results(query: str, results: list[dict[str, Any]]) -> str:
                 f"- Score: `{row.get('_score'):.3f}`",
                 f"- Source: `{row.get('source')}` / `{row.get('issuer')}`",
                 f"- Role: `{row.get('file_role')}`",
-                f"- Citation: page `{citation.get('page')}`, `{pasal}`, `{ayat}`",
+                f"- Citation: page `{citation.get('page')}`, `{pasal}`, `{ayat}`, `{huruf}`",
                 f"- Block type: `{row.get('block_type')}`",
                 "",
                 snippet(row.get("text") or "", query),

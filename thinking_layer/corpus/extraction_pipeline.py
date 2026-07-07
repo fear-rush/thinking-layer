@@ -85,6 +85,7 @@ def write_extraction_summary() -> None:
         "page": sum(1 for row in blocks if row.get("page_start")),
         "pasal": sum(1 for row in blocks if row.get("pasal")),
         "ayat": sum(1 for row in blocks if row.get("ayat")),
+        "huruf": sum(1 for row in blocks if row.get("huruf")),
     }
 
     summary = {

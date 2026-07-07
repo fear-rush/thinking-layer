@@ -25,6 +25,10 @@ class CitationTests(unittest.TestCase):
             citation_quality_for_block({**base, "page_start": 3, "pasal": "Pasal 2", "ayat": "(1)"}),
             "document_page_pasal_ayat",
         )
+        self.assertEqual(
+            citation_quality_for_block({**base, "page_start": 3, "pasal": "Pasal 2", "ayat": "(1)", "huruf": "huruf a"}),
+            "document_page_pasal_ayat_huruf",
+        )
 
     def test_normalize_source_corpus_block_preserves_citation_contract(self) -> None:
         row = normalize_source_corpus_block(
@@ -44,14 +48,17 @@ class CitationTests(unittest.TestCase):
                 "block_type": "article",
                 "pasal": "Pasal 4",
                 "ayat": "(2)",
+                "huruf": "huruf b",
                 "text": "Pelaku usaha wajib menyampaikan laporan.",
             }
         )
 
         self.assertEqual(row["source_priority"], "primary")
         self.assertEqual(row["section_type"], "ayat")
-        self.assertEqual(row["citation_quality"], "document_page_pasal_ayat")
-        self.assertEqual(row["citation"]["text"], "POJK Contoh, hlm. 10, Pasal 4, ayat (2)")
+        self.assertEqual(row["citation_quality"], "document_page_pasal_ayat_huruf")
+        self.assertEqual(row["huruf"], "huruf b")
+        self.assertEqual(row["citation"]["huruf"], "huruf b")
+        self.assertEqual(row["citation"]["text"], "POJK Contoh, hlm. 10, Pasal 4, ayat (2), huruf b")
         self.assertTrue(row["citation_policy"]["must_say_not_found_when_unsure"])
 
     def test_normalize_source_corpus_block_cleans_table_text(self) -> None:

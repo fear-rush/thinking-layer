@@ -22,20 +22,21 @@
     "attachment": 10104
   },
   "section_types": {
-    "paragraph": 24534,
+    "paragraph": 24917,
     "table": 62382,
-    "pasal": 268113,
-    "ayat": 88434,
+    "pasal": 292827,
+    "ayat": 64572,
     "heading": 56759,
-    "list_item": 11576,
+    "list_item": 10341,
     "faq": 11508,
     "abstrak": 3945,
     "attachment": 10104
   },
   "citation_quality": {
     "document_page": 73996,
-    "document_page_pasal": 368466,
-    "document_page_pasal_ayat": 94893
+    "document_page_pasal": 394602,
+    "document_page_pasal_ayat": 40115,
+    "document_page_pasal_ayat_huruf": 28642
   },
   "sikepo_metadata_coverage": {
     "primary_ojk_keys": 1513,

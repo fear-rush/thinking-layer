@@ -146,15 +146,47 @@ def detect_pasal(text: str, current_pasal: str | None = None) -> str | None:
     config = heuristic_section("extraction_heuristics", "citations")
     match = re.search(str(config.get("pasal_regex", r"\bPasal\s+(\d+[A-Z]?)\b")), text, flags=re.IGNORECASE)
     if match:
+        if current_pasal and match.start() > 0:
+            return current_pasal
         return f"Pasal {match.group(1)}"
     return current_pasal
 
 
-def detect_ayat(text: str) -> str | None:
+def detect_ayat(text: str, current_ayat: str | None = None) -> str | None:
     config = heuristic_section("extraction_heuristics", "citations")
+    match = re.match(str(config.get("ayat_start_regex", r"^\s*(?:Ayat\s*)?\((\d+[a-z]?)\)")), text, flags=re.IGNORECASE)
+    if match:
+        return f"({match.group(1)})"
+    match = re.match(str(config.get("ayat_word_start_regex", r"^\s*Ayat\s+(\d+[a-z]?)\b")), text, flags=re.IGNORECASE)
+    if match:
+        return f"({match.group(1)})"
+    if current_ayat:
+        return None
     match = re.search(str(config.get("ayat_regex", r"(^|\s)\((\d+[a-z]?)\)")), text, flags=re.IGNORECASE)
     if match:
         return f"({match.group(2)})"
+    match = re.search(str(config.get("ayat_word_regex", r"\bayat\s+(\d+[a-z]?)\b")), text, flags=re.IGNORECASE)
+    if match:
+        return f"({match.group(1)})"
+    return None
+
+
+def detect_huruf(text: str, allow_context_reference: bool = True) -> str | None:
+    config = heuristic_section("extraction_heuristics", "citations")
+    match = re.match(str(config.get("huruf_label_regex", r"^\s*Huruf\s+([a-z])\b")), text, flags=re.IGNORECASE)
+    if match:
+        return f"huruf {match.group(1).lower()}"
+    match = re.match(str(config.get("huruf_list_regex", r"^\(?([a-z])\)?[.)]\s+")), text)
+    if match:
+        return f"huruf {match.group(1).lower()}"
+    if allow_context_reference:
+        match = re.search(
+            str(config.get("huruf_context_regex", r"\bayat\s+\(?\d+[a-z]?\)?\s+huruf\s+([a-z])\b")),
+            text,
+            flags=re.IGNORECASE,
+        )
+        if match:
+            return f"huruf {match.group(1).lower()}"
     return None
 
 
@@ -263,6 +295,7 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
     block_id_config = heuristic_section("extraction_heuristics", "block_id")
     blocks: list[dict[str, Any]] = []
     current_pasal: str | None = None
+    current_ayat: str | None = None
     heading_path: list[str] = []
     last_table_header: list[str] = []
 
@@ -270,8 +303,12 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
         page_num = page.get("page_num")
         page_text = page.get("markdown") or page.get("text") or ""
         for index, block_text in enumerate(sentence_like_blocks(page_text)):
+            previous_pasal = current_pasal
             current_pasal = detect_pasal(block_text, current_pasal)
-            ayat = detect_ayat(block_text)
+            if current_pasal != previous_pasal:
+                current_ayat = None
+            detected_ayat = detect_ayat(block_text, current_ayat)
+            detected_huruf = detect_huruf(block_text, allow_context_reference=not current_ayat or bool(detected_ayat))
 
             if is_heading(block_text):
                 heading_text = block_text[: int(heading_config.get("heading_text_max_chars", 120))]
@@ -281,6 +318,13 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                     heading_path = [*heading_path, heading_text]
 
             block_type = detect_block_type(block_text, manifest["file_role"])
+            if detected_ayat:
+                current_ayat = detected_ayat
+            if block_type == "table_or_row":
+                ayat = detected_ayat
+            else:
+                ayat = detected_ayat or (current_ayat if detected_huruf else None)
+            huruf = detected_huruf
             markdown_text = normalize_extracted_text(block_text, block_type)
             geometry_text = geometry_text_for_block(block_text, page) if block_type == "table_or_row" else None
             table_context = None
@@ -292,7 +336,7 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                     last_table_header = header
                 markdown_text, table_context = enrich_table_block_text(block_text, markdown_text, manifest, last_table_header)
             normalized_block_text = geometry_text or markdown_text
-            block_id_seed = f"{manifest['file_id']}:{page_num}:{index}:{current_pasal or ''}:{ayat or ''}"
+            block_id_seed = f"{manifest['file_id']}:{page_num}:{index}:{current_pasal or ''}:{ayat or ''}:{huruf or ''}"
             block_id = slugify(block_id_seed)[: int(block_id_config.get("slug_max_chars", 180))]
             blocks.append(
                 {
@@ -313,6 +357,7 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                     "heading_path": heading_path,
                     "pasal": current_pasal,
                     "ayat": ayat,
+                    "huruf": huruf,
                     "text": normalized_block_text,
                     "text_markdown": markdown_text,
                     "text_geometry": geometry_text,
@@ -322,11 +367,13 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                         "page": page_num,
                         "pasal": current_pasal,
                         "ayat": ayat,
+                        "huruf": huruf,
                     },
                     "confidence": {
                         "page": "high" if page_num else "missing",
                         "pasal": "medium" if current_pasal else "missing",
                         "ayat": "medium" if ayat else "missing",
+                        "huruf": "medium" if huruf else "missing",
                     },
                 }
             )

@@ -50,7 +50,13 @@
   },
   "citations": {
     "pasal_regex": "\\bPasal\\s+(\\d+[A-Z]?)\\b",
-    "ayat_regex": "(^|\\s)\\((\\d+[a-z]?)\\)"
+    "ayat_start_regex": "^\\s*(?:Ayat\\s*)?\\((\\d+[a-z]?)\\)",
+    "ayat_word_start_regex": "^\\s*Ayat\\s+(\\d+[a-z]?)\\b",
+    "ayat_regex": "(^|\\s)\\((\\d+[a-z]?)\\)",
+    "ayat_word_regex": "\\bayat\\s+(\\d+[a-z]?)\\b",
+    "huruf_label_regex": "^\\s*Huruf\\s+([a-z])\\b",
+    "huruf_context_regex": "\\bayat\\s+\\(?\\d+[a-z]?\\)?\\s+huruf\\s+([a-z])\\b",
+    "huruf_list_regex": "^\\(?([a-z])\\)?[.)]\\s+"
   },
   "block_type": {
     "article_regex": "\\bpasal\\s+\\d+[a-z]?\\b",

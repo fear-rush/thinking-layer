@@ -741,7 +741,7 @@ These fixes must happen before semantic retrieval, embedding indexes, or LLM ans
 - [x] Install LibreOffice and extract the remaining `12` Office operational documents, especially QRIS/SNAP matrices.
 - [x] Compare LiteParse extraction against a small MinerU/layout-parser sample before switching parsers.
 - [x] Add document/page visual spot checks for high-value failed cases.
-- [ ] Improve Pasal/Ayat/Huruf extraction for non-standard formats.
+- [x] Improve Pasal/Ayat/Huruf extraction for non-standard formats.
 - [x] Add table-specific handling for XLSX and regulation attachments.
 
 ### 6. Improve Lexicon And Query Understanding

@@ -39,6 +39,8 @@ def citation_quality_for_block(block: dict[str, Any]) -> str:
     has_document = bool(block.get("document_title") or (block.get("citation") or {}).get("document"))
     if not has_document:
         return "missing_document"
+    if block.get("page_start") and block.get("pasal") and block.get("ayat") and block.get("huruf"):
+        return "document_page_pasal_ayat_huruf"
     if block.get("page_start") and block.get("pasal") and block.get("ayat"):
         return "document_page_pasal_ayat"
     if block.get("page_start") and block.get("pasal"):
@@ -56,6 +58,8 @@ def citation_text_for_block(block: dict[str, Any]) -> str:
         parts.append(str(block["pasal"]))
     if block.get("ayat"):
         parts.append(f"ayat {block['ayat']}")
+    if block.get("huruf"):
+        parts.append(str(block["huruf"]))
     return ", ".join(parts)
 
 
@@ -84,7 +88,7 @@ def normalize_source_corpus_block(block: dict[str, Any]) -> dict[str, Any]:
         "heading_path": block.get("heading_path") or [],
         "pasal": block.get("pasal"),
         "ayat": block.get("ayat"),
-        "huruf": None,
+        "huruf": block.get("huruf"),
         "text": text,
         "text_markdown": block.get("text_markdown"),
         "text_geometry": block.get("text_geometry"),
@@ -93,7 +97,7 @@ def normalize_source_corpus_block(block: dict[str, Any]) -> dict[str, Any]:
             "page": block.get("page_start"),
             "pasal": block.get("pasal"),
             "ayat": block.get("ayat"),
-            "huruf": None,
+            "huruf": block.get("huruf"),
             "text": citation_text_for_block(block),
             "quality": citation_quality,
         },
