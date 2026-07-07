@@ -9,7 +9,7 @@ from .metadata import short_hash
 from ..config.paths import RAW_LITEPARSE_DIR
 from ..common.text import normalize_space, slugify
 from .geometry import geometry_text_for_block
-from .normalization import normalize_extracted_text
+from .normalization import markdown_table_rows, normalize_extracted_text, normalize_table_row
 
 
 def safe_text(value: str | None) -> str:
@@ -173,6 +173,60 @@ def detect_block_type(text: str, file_role: str) -> str:
     return "paragraph"
 
 
+def markdown_table_header(block_text: str) -> list[str]:
+    rows = markdown_table_rows(block_text)
+    if len(rows) < 2:
+        return []
+    header = rows[0]
+    if len(header) < 2:
+        return []
+    normalized_cells = [normalize_space(cell).lower() for cell in header]
+    joined = " ".join(normalized_cells)
+    first_cell = normalized_cells[0]
+    header_terms = ("dokumen", "persyaratan", "penjelasan", "service", "scenario", "expected", "request")
+    term_hits = sum(1 for term in header_terms if term in joined)
+    if first_cell in {"no", "no.", "nomor"} and term_hits >= 1:
+        return header
+    if term_hits >= 3:
+        return header
+    return []
+
+
+def table_has_separator_after_header(block_text: str) -> bool:
+    lines = [line for line in block_text.splitlines() if "|" in line]
+    return len(lines) >= 2 and is_table_separator(lines[1])
+
+
+def should_apply_table_context(manifest: dict[str, Any]) -> bool:
+    suffix = Path(str(manifest.get("resolved_path") or "")).suffix.lower()
+    return suffix in {".xlsx", ".docx", ".ods", ".odt"} or manifest.get("file_role") in {"attachment", "operational_requirement"}
+
+
+def table_context_prefix(header: list[str]) -> str:
+    columns = " | ".join(normalize_table_row([cell]) for cell in header if cell)
+    return f"Kolom tabel: {columns}."
+
+
+def enrich_table_block_text(
+    block_text: str,
+    markdown_text: str,
+    manifest: dict[str, Any],
+    last_table_header: list[str],
+) -> tuple[str, dict[str, Any] | None]:
+    if not last_table_header or not should_apply_table_context(manifest):
+        return markdown_text, None
+    if markdown_table_header(block_text):
+        return markdown_text, None
+    if not markdown_table_rows(block_text):
+        return markdown_text, None
+    prefix = table_context_prefix(last_table_header)
+    return normalize_space(f"{prefix} {markdown_text}"), {
+        "type": "continued_table",
+        "columns": last_table_header,
+        "source": "previous_table_header",
+    }
+
+
 def raw_output_path(file_id: str) -> Path:
     config = heuristic_section("extraction_heuristics", "raw_output")
     return RAW_LITEPARSE_DIR / f"{slugify(file_id)[: int(config.get('slug_max_chars', 160))]}-{short_hash(file_id)}.json"
@@ -210,6 +264,7 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
     blocks: list[dict[str, Any]] = []
     current_pasal: str | None = None
     heading_path: list[str] = []
+    last_table_header: list[str] = []
 
     for page in pages:
         page_num = page.get("page_num")
@@ -228,6 +283,14 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
             block_type = detect_block_type(block_text, manifest["file_role"])
             markdown_text = normalize_extracted_text(block_text, block_type)
             geometry_text = geometry_text_for_block(block_text, page) if block_type == "table_or_row" else None
+            table_context = None
+            if block_type == "table_or_row":
+                header = markdown_table_header(block_text)
+                if header and table_has_separator_after_header(block_text):
+                    last_table_header = header
+                elif header and not last_table_header:
+                    last_table_header = header
+                markdown_text, table_context = enrich_table_block_text(block_text, markdown_text, manifest, last_table_header)
             normalized_block_text = geometry_text or markdown_text
             block_id_seed = f"{manifest['file_id']}:{page_num}:{index}:{current_pasal or ''}:{ayat or ''}"
             block_id = slugify(block_id_seed)[: int(block_id_config.get("slug_max_chars", 180))]
@@ -253,6 +316,7 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                     "text": normalized_block_text,
                     "text_markdown": markdown_text,
                     "text_geometry": geometry_text,
+                    "table_context": table_context,
                     "citation": {
                         "document": manifest["title"],
                         "page": page_num,

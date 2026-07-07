@@ -96,6 +96,51 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(payload["text_items"][0]["x"], 10)
         self.assertEqual(payload["text_items"][0]["words"][1]["text"], "wajib")
 
+    def test_table_continuation_carries_header_for_xlsx_pages(self) -> None:
+        manifest = {
+            "canonical_id": "doc-1",
+            "file_id": "file-1",
+            "source": "ease-bi",
+            "issuer": "BI",
+            "file_role": "operational_requirement",
+            "title": "Skenario Pengujian",
+            "regulation_type": None,
+            "number": None,
+            "year": None,
+            "resolved_path": "downloads/ease-bi/Skenario Functional Test.xlsx",
+        }
+        pages = [
+            {
+                "page_num": 2,
+                "markdown": "\n".join(
+                    [
+                        "| No | Service | Scenario | Expected Result | Request |",
+                        "|---|---|---|---|---|",
+                        "| 1.1 | Any Service | Access Token Invalid | Error Code: 401xx01 | |",
+                    ]
+                ),
+            },
+            {
+                "page_num": 3,
+                "markdown": "\n".join(
+                    [
+                        "| 1.2 | Any Service | Unauthorized Signature | Error Code: 401xx00 | |",
+                        "|---|---|---|---|---|",
+                        "| 1.3 | Any Service | Invalid Format | Error Code: 400xx00 | |",
+                    ]
+                ),
+            },
+        ]
+
+        blocks = [block for block in extract_blocks(manifest, pages) if block["block_type"] == "table_or_row"]
+
+        self.assertEqual(len(blocks), 2)
+        self.assertIsNone(blocks[0]["table_context"])
+        self.assertEqual(blocks[1]["table_context"]["type"], "continued_table")
+        self.assertEqual(blocks[1]["table_context"]["columns"], ["No", "Service", "Scenario", "Expected Result", "Request"])
+        self.assertIn("Kolom tabel: No | Service | Scenario | Expected Result | Request.", blocks[1]["text"])
+        self.assertIn("1.2 - Any Service - Unauthorized Signature", blocks[1]["text"])
+
 
 if __name__ == "__main__":
     unittest.main()
