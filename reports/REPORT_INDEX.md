@@ -10,6 +10,7 @@ This directory contains only regenerated current-baseline reports. JSON files ar
 - `ocr_needed.md/json`: files skipped because OCR is needed or extraction failed.
 - `parser_comparison_sample.md/json`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
 - `source_corpus_baseline.md/json`: citation-ready source corpus summary.
+- `visual_spot_check.md/json`: rendered page review for QRIS, SNAP, XLSX, and GMRA extraction quality.
 
 ## Heuristics And Answer Correctness
 

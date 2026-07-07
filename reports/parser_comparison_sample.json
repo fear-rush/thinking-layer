@@ -328,12 +328,12 @@
     "reasons": [
       "Current LiteParse baseline has extracted all manifest files and preserves page-level citation anchors.",
       "LayoutParser's useful layout-detection path is not currently runnable in the Python 3.14 project environment without extra Detectron2 build work.",
-      "MinerU is not installed locally, so no equivalent sample output is available yet.",
-      "The recovered Office cases are now searchable, but XLSX/table layout remains the main quality risk to review visually."
+      "MinerU is not part of the active baseline: it is a full document parser rather than a LiteParse OCR backend, and full-corpus runtime is not acceptable on the current local machine.",
+      "The recovered Office cases are now searchable, and XLSX/table layout remains the main quality risk to review visually."
     ],
     "next_actions": [
       "Run visual page checks for the sampled QRIS, SNAP, XLSX, and GMRA pages.",
-      "If a parser switch is still desired, evaluate candidates in a separate Python 3.12 tool environment with pinned model dependencies.",
+      "Keep PaddleOCR as the selective OCR backend integrated through LiteParse.",
       "Prioritize table-specific handling for XLSX and regulation attachments before replacing the whole parser."
     ]
   }

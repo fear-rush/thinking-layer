@@ -1,0 +1,52 @@
+{
+  "scope": {
+    "render_tooling": [
+      "LibreOffice headless conversion for Office files",
+      "pypdfium2 temporary page rendering"
+    ],
+    "temporary_render_dir": "/private/tmp/thinking-layer-visual-check"
+  },
+  "cases": [
+    {
+      "name": "BI QRIS Office Matrix",
+      "source": "downloads/ease-bi/dokumen-persyaratan-pedoman/2. Dokumen Pedoman dan Persyaratan Permohonan Persetujuan dan Pelaporan SP Ritel/j. Matriks Tambahan Dokumen Pengembangan QRIS.docx",
+      "pages_reviewed": [1],
+      "visual_finding": "Table is legible with clear columns for requirement, document availability, and explanation.",
+      "extraction_risk": "LiteParse captures the table as Markdown, but metadata fields above the table are flattened and may lose label/value pairing."
+    },
+    {
+      "name": "BI SNAP Office Matrix",
+      "source": "downloads/ease-bi/dokumen-persyaratan-pedoman/4. Standar Nasional Open API Pembayaran (SNAP)/Matriks Tambahan_Pengembangan dengan SNAP.docx",
+      "pages_reviewed": [1, 2, 3],
+      "visual_finding": "Page 1 is a clear table. Pages 2-3 are continuation pages with most useful text in the rightmost explanation column and mostly blank left columns.",
+      "extraction_risk": "Continuation pages can lose row/column context; page 3 has table borders visually but weak table markers in extracted Markdown."
+    },
+    {
+      "name": "BI SNAP Functional Test XLSX",
+      "source": "downloads/ease-bi/dokumen-persyaratan-pedoman/4. Standar Nasional Open API Pembayaran (SNAP)/Skenario Functional Test_v.2810.xlsx",
+      "pages_reviewed": [1, 2, 3],
+      "visual_finding": "Page 1 is a linked table of contents. Pages 2-3 are clean spreadsheet tables. Page 3 starts mid-table.",
+      "extraction_risk": "Extracted Markdown rows are useful, but page-boundary continuation creates synthetic table starts and can separate rows from the original header."
+    },
+    {
+      "name": "OJK GMRA Attachment",
+      "source": "downloads/peraturan-ojk/global-master-repurchase-agreement-indonesia/Lampiran 3 GMRA.pdf",
+      "pages_reviewed": [44, 62, 86],
+      "visual_finding": "Bilingual two-column layout is visually legible. Text is dense and aligned by paragraph pairs.",
+      "extraction_risk": "Reading order can interleave English and Indonesian column text; retrieval remains useful, but answer snippets may mix languages or split paired clauses."
+    }
+  ],
+  "findings": [
+    "No rendered sample showed clipped text, black pages, unreadable glyphs, or failed Office conversion.",
+    "The recovered QRIS/SNAP Office files are visually valid and searchable enough for the current baseline.",
+    "The weakest area is table continuity, especially continuation pages where the header row is absent or where the source page starts in the middle of an XLSX table.",
+    "GMRA-style bilingual attachments need caution because visual columns do not always map cleanly to single-language answer snippets."
+  ],
+  "decision": "Keep LiteParse plus selective PaddleOCR as the baseline. Do not add MinerU to the active path for this corpus on the current local machine.",
+  "follow_up_work": [
+    "Add table-continuation handling for XLSX pages that start mid-table.",
+    "Preserve table headers across page boundaries for Office and spreadsheet conversions.",
+    "Add a targeted check for bilingual two-column pages so final answer snippets prefer Indonesian text when available.",
+    "Keep visual spot checks as a regression gate when extraction heuristics change."
+  ]
+}
