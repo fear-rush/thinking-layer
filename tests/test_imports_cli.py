@@ -9,6 +9,7 @@ class ImportCliTests(unittest.TestCase):
         modules = [
             "thinking_layer.cli",
             "thinking_layer.corpus.build",
+            "thinking_layer.corpus.parser_comparison",
             "thinking_layer.indexing.lexical",
             "thinking_layer.indexing.sqlite",
             "thinking_layer.retrieval.query_tools",

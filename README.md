@@ -534,6 +534,7 @@ Current development reports:
 - `reports/answer_quality_eval.md`: 12/12 accepted, average score `1.000`.
 - `reports/ai_external_holdout_manifest.json`: AI-authored external-style run; evidence 30/30, answer 30/30, answer quality 12/12. This is not blind reviewer validation.
 - `reports/extraction_spot_check.md`: extraction/citation spot check for high-value BI/OJK regulation areas.
+- `reports/parser_comparison_sample.md`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
 - `reports/cross_regulator_coverage_audit.md`: direct-vs-adjacent topic coverage audit for BI/OJK comparison queries.
 - `reports/answer_noise_audit.md`: legal boilerplate/noise audit for final answer composition.
 
@@ -737,7 +738,7 @@ These fixes must happen before semantic retrieval, embedding indexes, or LLM ans
 - [x] OCR-replace all primary-regulation OCR-needed files and selected secondary/operational OCR-needed PDFs, then rebuild source corpus and search index.
 - [x] Recover `seojk 11-2015.pdf` with bounded `--target-pages 1-50` after full-file parsing hit a trailing page boundary error.
 - [x] Install LibreOffice and extract the remaining `12` Office operational documents, especially QRIS/SNAP matrices.
-- [ ] Compare LiteParse extraction against a small MinerU/layout-parser sample before switching parsers.
+- [x] Compare LiteParse extraction against a small MinerU/layout-parser sample before switching parsers.
 - [ ] Add document/page visual spot checks for high-value failed cases.
 - [ ] Improve Pasal/Ayat/Huruf extraction for non-standard formats.
 - [ ] Add table-specific handling for XLSX and regulation attachments.

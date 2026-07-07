@@ -1,0 +1,340 @@
+{
+  "purpose": "Compare current LiteParse baseline against a small MinerU/layout-parser sample before switching parsers.",
+  "candidate_parser_status": {
+    "layoutparser": {
+      "available_in_project_env": false,
+      "detectron2_backend_available_in_project_env": false,
+      "isolated_probe_results": [
+        {
+          "command": "uv run --with layoutparser python -c 'import layoutparser as lp; ...'",
+          "result": "installed layoutparser 0.3.4, Detectron2LayoutModel not exposed"
+        },
+        {
+          "command": "uv run --with 'layoutparser[layoutmodels]' python -c 'import layoutparser as lp; ...'",
+          "result": "installed layoutparser 0.3.4 plus torch/torchvision/timm, Detectron2LayoutModel still not exposed"
+        },
+        {
+          "command": "uv run --with layoutparser --with torchvision --with 'detectron2 @ git+https://github.com/facebookresearch/detectron2.git@v0.5' ...",
+          "result": "failed to build detectron2 under Python 3.14 build isolation because torch is not declared as a build dependency"
+        }
+      ],
+      "docs_basis": "LayoutParser docs show PubLayNet comparison requires Detectron2LayoutModel with a Detectron2 backend."
+    },
+    "mineru": {
+      "available_in_project_env": false,
+      "cli_available": false,
+      "probe_results": [
+        "mineru not found",
+        "magic-pdf not found"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "name": "BI QRIS Office Matrix",
+      "file_id": "ease-bi-dokumen-persyaratan-pedoman-1201-0-matriks-dokumen-tambahan-untuk-pengembangan-qris",
+      "focus_pages": [
+        1
+      ],
+      "reason": "Recently recovered Office document; table-heavy operational QRIS requirements.",
+      "raw_path": "processed/raw/liteparse/ease-bi-dokumen-persyaratan-pedoman-1201-0-matriks-dokumen-tambahan-untuk-pengembangan-qris-70630f8630be.json",
+      "source_rows": 9,
+      "section_types": {
+        "heading": 4,
+        "paragraph": 3,
+        "table": 2
+      },
+      "citation_quality": {
+        "document_page": 9
+      },
+      "extraction_methods": {
+        "markdown": 9
+      },
+      "status": "extracted_ok",
+      "resolved_path": "downloads/ease-bi/dokumen-persyaratan-pedoman/2. Dokumen Pedoman dan Persyaratan Permohonan Persetujuan dan Pelaporan SP Ritel/j. Matriks Tambahan Dokumen Pengembangan QRIS.docx",
+      "page_count": 2,
+      "total_text_chars": 1433,
+      "liteparse_options": {
+        "ocr_enabled": false,
+        "ocr_server_url": null,
+        "ocr_language": null,
+        "output_format": "markdown",
+        "quiet": false,
+        "dpi": 150.0,
+        "preserve_very_small_text": false,
+        "num_workers": 4,
+        "image_mode": "off",
+        "extract_links": true,
+        "emit_word_boxes": true
+      },
+      "pages": [
+        {
+          "page": 1,
+          "width": 841.8897705078125,
+          "height": 595.303955078125,
+          "text_chars": 1157,
+          "markdown_chars": 1242,
+          "text_item_count": 59,
+          "table_marker_count": 42,
+          "heading_marker_count": 5,
+          "text_preview": "April 2012 Matriks Tambahan Penjelasan Kelengkapan Dokumen Pendukung Pengembangan QRIS Data Pemohon Nama Pemohon : PT ……………… Jenis Permohonan : Permohonan Persetujuan Pengembangan ……………. Dokumen Surat : 1. Surat No…………….. tanggal …………….. perihal: ………………….. Dokumen1 No. Persyarata",
+          "markdown_preview": "# Matriks Tambahan Penjelasan Kelengkapan Dokumen Pendukung Pengembangan QRIS ## Data Pemohon Nama Pemohon Jenis Permohonan ## Dokumen Surat : PT ……………… : Permohonan Persetujuan Pengembangan ……………. : 1. Surat No…………….. tanggal …………….. perihal: ………………….. --- | No. | Persyaratan Do"
+        }
+      ]
+    },
+    {
+      "name": "BI SNAP Office Matrix",
+      "file_id": "ease-bi-dokumen-persyaratan-pedoman-1256-0-matriks-tambahan-pengembangan-dengan-snap",
+      "focus_pages": [
+        1,
+        2,
+        3
+      ],
+      "reason": "Recently recovered Office document; SNAP implementation requirements with tables and lists.",
+      "raw_path": "processed/raw/liteparse/ease-bi-dokumen-persyaratan-pedoman-1256-0-matriks-tambahan-pengembangan-dengan-snap-e7e974975ca4.json",
+      "source_rows": 29,
+      "section_types": {
+        "pasal": 16,
+        "table": 5,
+        "paragraph": 4,
+        "heading": 3,
+        "ayat": 1
+      },
+      "citation_quality": {
+        "document_page_pasal": 20,
+        "document_page": 8,
+        "document_page_pasal_ayat": 1
+      },
+      "extraction_methods": {
+        "markdown": 27,
+        "geometry_list": 2
+      },
+      "status": "extracted_ok",
+      "resolved_path": "downloads/ease-bi/dokumen-persyaratan-pedoman/4. Standar Nasional Open API Pembayaran (SNAP)/Matriks Tambahan_Pengembangan dengan SNAP.docx",
+      "page_count": 6,
+      "total_text_chars": 11101,
+      "liteparse_options": {
+        "ocr_enabled": false,
+        "ocr_server_url": null,
+        "ocr_language": null,
+        "output_format": "markdown",
+        "quiet": false,
+        "dpi": 150.0,
+        "preserve_very_small_text": false,
+        "num_workers": 4,
+        "image_mode": "off",
+        "extract_links": true,
+        "emit_word_boxes": true
+      },
+      "pages": [
+        {
+          "page": 1,
+          "width": 841.8897705078125,
+          "height": 595.303955078125,
+          "text_chars": 1414,
+          "markdown_chars": 1523,
+          "text_item_count": 61,
+          "table_marker_count": 45,
+          "heading_marker_count": 4,
+          "text_preview": "April 2012 SNAP Dokumen No.xxx tanggal xxx Matriks Kelengkapan Dokumen Pendukung Bagi Penyedia Layanan Pengembangan Aktivitas dan/atau Pengembangan Produk yang Disertai Kerja Sama Berbasis SNAP Data Pemohon Nama Pemohon : PT ……………… Jenis Permohonan : Permohonan Persetujuan Pengem",
+          "markdown_preview": "April 2012 **SNAP** Dokumen No.xxx tanggal xxx Matriks Kelengkapan Dokumen Pendukung Bagi Penyedia Layanan **Pengembangan Aktivitas dan/atau Pengembangan Produk yang Disertai Kerja Sama Berbasis SNAP** ## Data Pemohon | Nama Pemohon | : PT ……………… | |---|---| | Jenis Permohonan | "
+        },
+        {
+          "page": 2,
+          "width": 841.8897705078125,
+          "height": 595.303955078125,
+          "text_chars": 2017,
+          "markdown_chars": 2074,
+          "text_item_count": 56,
+          "table_marker_count": 24,
+          "heading_marker_count": 2,
+          "text_preview": "April 2012 layanan termasuk ketaatan terhadap ketentuan PADG SNAP.  Dokumen sebagaimana dimaksud dalam pasal 20 ayat (3) PADG SNAP dilengkapi dengan nomor dan tanggal dokumen. 3 Dokumen prosedur operasional standar Dokumen yang disampaikan: asesmen kelayakan pengguna layanan Dok",
+          "markdown_preview": "layanan termasuk ketaatan terhadap ketentuan PADG SNAP. ---  Dokumen sebagaimana dimaksud dalam pasal 20 ayat (3) PADG SNAP dilengkapi dengan nomor dan tanggal dokumen. 3 Dokumen prosedur operasional standar **Dokumen yang disampaikan:** --- asesmen kelayakan pengguna layanan **"
+        },
+        {
+          "page": 3,
+          "width": 841.8897705078125,
+          "height": 595.303955078125,
+          "text_chars": 2081,
+          "markdown_chars": 2057,
+          "text_item_count": 56,
+          "table_marker_count": 0,
+          "heading_marker_count": 0,
+          "text_preview": "April 2012 b. mengidentifikasi risiko dan mitigasi risiko terhadap proses bisnis dan teknologi informasi dari PJP Pengguna Layanan berdasarkan kebijakan dan kriteria masing-masing Penyedia Layanan 3. Mekanisme atau prosedur uji tuntas (due diligence) kepada pengguna atau calon pe",
+          "markdown_preview": "b. mengidentifikasi risiko dan mitigasi risiko terhadap proses bisnis dan --- teknologi informasi dari PJP Pengguna Layanan berdasarkan kebijakan dan kriteria masing-masing Penyedia Layanan 3. Mekanisme atau prosedur uji tuntas (due diligence) kepada pengguna atau calon pengguna."
+        }
+      ]
+    },
+    {
+      "name": "BI SNAP Functional Test XLSX",
+      "file_id": "ease-bi-dokumen-persyaratan-pedoman-1206-0-skenario-pengujian",
+      "focus_pages": [
+        1,
+        2,
+        3
+      ],
+      "reason": "Large spreadsheet conversion with many empty converted pages; good stress case for XLSX layout.",
+      "raw_path": "processed/raw/liteparse/ease-bi-dokumen-persyaratan-pedoman-1206-0-skenario-pengujian-0abd9537e916.json",
+      "source_rows": 165,
+      "section_types": {
+        "paragraph": 90,
+        "table": 55,
+        "heading": 20
+      },
+      "citation_quality": {
+        "document_page": 165
+      },
+      "extraction_methods": {
+        "markdown": 165
+      },
+      "status": "extracted_ok",
+      "resolved_path": "downloads/ease-bi/dokumen-persyaratan-pedoman/4. Standar Nasional Open API Pembayaran (SNAP)/Skenario Functional Test_v.2810.xlsx",
+      "page_count": 126,
+      "total_text_chars": 60060,
+      "liteparse_options": {
+        "ocr_enabled": false,
+        "ocr_server_url": null,
+        "ocr_language": null,
+        "output_format": "markdown",
+        "quiet": false,
+        "dpi": 150.0,
+        "preserve_very_small_text": false,
+        "num_workers": 4,
+        "image_mode": "off",
+        "extract_links": true,
+        "emit_word_boxes": true
+      },
+      "pages": [
+        {
+          "page": 1,
+          "width": 595.303955078125,
+          "height": 841.8897705078125,
+          "text_chars": 435,
+          "markdown_chars": 442,
+          "text_item_count": 23,
+          "table_marker_count": 0,
+          "heading_marker_count": 4,
+          "text_preview": "Daftar Isi 1 Card Registration 12 Request for Payment 2 Account Registration 13 Interbank Bulk Transfer 3 Balance Service 14 Customer Top Up 4 Transaction History List 15 Bulk Cash In 5 Transaction History Detail 16 Transfer to Bank 6 Bank Statement 17 Transfer to OTC 7 Intrabank",
+          "markdown_preview": "## Daftar Isi 1 Card Registration 2 Account Registration 3 Balance Service 4 Transaction History List 5 Transaction History Detail 6 Bank Statement 7 Intrabank Transfer # 8 Interbank Transfer 9 RTGS Transfer 10 SKNBI Transfer 11 Transfer VA 12 Request for Payment 13 Interbank Bul"
+        },
+        {
+          "page": 2,
+          "width": 792.0,
+          "height": 612.0,
+          "text_chars": 1003,
+          "markdown_chars": 1153,
+          "text_item_count": 57,
+          "table_marker_count": 66,
+          "heading_marker_count": 0,
+          "text_preview": "No Service Scenario Expected Result Request 1.1 Any Service Access Token Invalid Error Code: 401xx01 Error Message: \"Access Token Invalid\" 1.2 Any Service Unauthorized . Signature Error Code: 401xx00 Error Message: \"Unauthorized Signature\" 1.3 Any Service Unauthorized . stringToS",
+          "markdown_preview": "| No | Service | Scenario | Expected Result | Request | |---|---|---|---|---| | 1.1 | Any Service | Access Token Invalid | Error Code: 401xx01 Error Message: \"Access Token Invalid\" | | | 1.2 | Any Service | Unauthorized . Signature | Error Code: 401xx00 Error Message: \"Unauthoriz"
+        },
+        {
+          "page": 3,
+          "width": 792.0,
+          "height": 612.0,
+          "text_chars": 1133,
+          "markdown_chars": 1275,
+          "text_item_count": 56,
+          "table_marker_count": 66,
+          "heading_marker_count": 0,
+          "text_preview": "1.10 API Card Registration OTP Needed Response Code: 2000100 Response Message: \"success\" 1.11 API Card Registration Timeout Request to AIS Error Code: 5040100 Error Message: \"Timeout Request to AIS\" 1.12 API Card Registration Timeout Request to PIAS Error Code: 5040100 Error Mess",
+          "markdown_preview": "| 1.10 | API Card Registration | OTP Needed | Response Code: 2000100 Response Message: \"success\" | | |---|---|---|---|---| | 1.11 | API Card Registration | Timeout Request to AIS | Error Code: 5040100 Error Message: \"Timeout Request to AIS\" | | | 1.12 | API Card Registration | Ti"
+        }
+      ]
+    },
+    {
+      "name": "OJK GMRA Attachment",
+      "file_id": "peraturan-ojk-global-master-repurchase-agreement-indonesia-2-lampiran-3-gmra-pdf",
+      "focus_pages": [
+        44,
+        62,
+        86
+      ],
+      "reason": "Long PDF attachment with dense legal/table content and known citation-sensitive retrieval hits.",
+      "raw_path": "processed/raw/liteparse/peraturan-ojk-global-master-repurchase-agreement-indonesia-2-lampiran-3-gmra-pdf-6caae7534f43.json",
+      "source_rows": 905,
+      "section_types": {
+        "attachment": 905
+      },
+      "citation_quality": {
+        "document_page_pasal": 546,
+        "document_page": 353,
+        "document_page_pasal_ayat": 6
+      },
+      "extraction_methods": {
+        "markdown": 904,
+        "geometry_list": 1
+      },
+      "status": "extracted_ok",
+      "resolved_path": "downloads/peraturan-ojk/global-master-repurchase-agreement-indonesia/Lampiran 3 GMRA.pdf",
+      "page_count": 122,
+      "total_text_chars": 333052,
+      "liteparse_options": {
+        "ocr_enabled": false,
+        "ocr_server_url": null,
+        "ocr_language": null,
+        "output_format": "markdown",
+        "quiet": false,
+        "dpi": 150.0,
+        "preserve_very_small_text": false,
+        "num_workers": 4,
+        "image_mode": "off",
+        "extract_links": true,
+        "emit_word_boxes": true
+      },
+      "pages": [
+        {
+          "page": 44,
+          "width": 936.1199951171875,
+          "height": 612.1199951171875,
+          "text_chars": 2798,
+          "markdown_chars": 2797,
+          "text_item_count": 73,
+          "table_marker_count": 0,
+          "heading_marker_count": 0,
+          "text_preview": "44 messaging details, set out in Annex I hereto. rincinya disebutkan dalam Lampiran I Perjanjian ini. (b) Subject to sub-paragraph (c) below, any such notice or other (b) Dengan tunduk pada sub-paragraf (c) di bawah, setiap communication shall be effective- pemberitahuan atau kom",
+          "markdown_preview": "messaging details, set out in Annex I hereto. rincinya disebutkan dalam Lampiran I Perjanjian ini. (b) Subject to sub-paragraph (c) below, any such notice or other communication shall be effective- (i) if in writing and delivered in person or by courier, at the time when it is de"
+        },
+        {
+          "page": 62,
+          "width": 936.1199951171875,
+          "height": 612.1199951171875,
+          "text_chars": 2184,
+          "markdown_chars": 2187,
+          "text_item_count": 64,
+          "table_marker_count": 0,
+          "heading_marker_count": 3,
+          "text_preview": "62 Simple interest shall accrue daily and shall be payable as Bunga yang diperhitungkan dari jumlah pokok (simple interest) agreed between the parties or, failing agreement, monthly. akan dijumlahkan secara harian dan akan terutang sebagaimana disepakati oleh para pihak atau, apa",
+          "markdown_preview": "Simple interest shall accrue daily and shall be payable as agreed between the parties or, failing agreement, monthly. Bunga yang diperhitungkan dari jumlah pokok (simple interest) akan dijumlahkan secara harian dan akan terutang sebagaimana disepakati oleh para pihak atau, apabil"
+        },
+        {
+          "page": 86,
+          "width": 936.1199951171875,
+          "height": 612.1199951171875,
+          "text_chars": 3058,
+          "markdown_chars": 3055,
+          "text_item_count": 77,
+          "table_marker_count": 0,
+          "heading_marker_count": 0,
+          "text_preview": "86 deemed to accrue on a daily basis from (and including) tidak termasuk) tanggal penghitungan namun belum dibayar. the issue date or the last Income Payment Date (as the Untuk tujuan ini, Penghasilan yang belum dibayar harus case may be) to (but excluding) the next Income Paymen",
+          "markdown_preview": "deemed to accrue on a daily basis from (and including) the issue date or the last Income Payment Date (as the case may be) to (but excluding) the next Income Payment Date or the maturity date (whichever is the earlier); tidak termasuk) tanggal penghitungan namun belum dibayar. Un"
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "summary": "Do not switch parsers yet.",
+    "reasons": [
+      "Current LiteParse baseline has extracted all manifest files and preserves page-level citation anchors.",
+      "LayoutParser's useful layout-detection path is not currently runnable in the Python 3.14 project environment without extra Detectron2 build work.",
+      "MinerU is not installed locally, so no equivalent sample output is available yet.",
+      "The recovered Office cases are now searchable, but XLSX/table layout remains the main quality risk to review visually."
+    ],
+    "next_actions": [
+      "Run visual page checks for the sampled QRIS, SNAP, XLSX, and GMRA pages.",
+      "If a parser switch is still desired, evaluate candidates in a separate Python 3.12 tool environment with pinned model dependencies.",
+      "Prioritize table-specific handling for XLSX and regulation attachments before replacing the whole parser."
+    ]
+  }
+}

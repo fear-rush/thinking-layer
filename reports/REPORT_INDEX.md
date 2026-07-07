@@ -8,6 +8,7 @@ This directory contains only regenerated current-baseline reports. JSON files ar
 - `extraction_summary.md/json`: LiteParse extraction summary from existing processed outputs.
 - `extraction_spot_check.md/json`: focused extraction/citation spot check for high-value BI/OJK regulation areas.
 - `ocr_needed.md/json`: files skipped because OCR is needed or extraction failed.
+- `parser_comparison_sample.md/json`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
 - `source_corpus_baseline.md/json`: citation-ready source corpus summary.
 
 ## Heuristics And Answer Correctness

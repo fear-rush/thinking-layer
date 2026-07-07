@@ -7,6 +7,7 @@ from .answer.noise import cmd_answer_noise_audit
 from .answer.quality import cmd_eval_answer_quality
 from .corpus.build import cmd_all, cmd_audit, cmd_build
 from .corpus.extraction_pipeline import cmd_extract, cmd_rebuild_blocks, cmd_report
+from .corpus.parser_comparison import cmd_parser_comparison
 from .corpus.source_corpus import cmd_build_source_corpus
 from .corpus.spot_check import cmd_extraction_spot_check
 from .config.heuristic_audit import cmd_heuristics_audit
@@ -62,6 +63,9 @@ def main() -> None:
     extraction_spot_check_parser = subparsers.add_parser("extraction-spot-check", help="Spot-check extraction/citation quality for high-value documents.")
     extraction_spot_check_parser.add_argument("--source-corpus", default=None, help="Path to source_corpus.ndjson. Defaults to processed/source_corpus.ndjson.")
     extraction_spot_check_parser.set_defaults(func=cmd_extraction_spot_check)
+
+    parser_comparison_parser = subparsers.add_parser("parser-comparison", help="Write small LiteParse vs MinerU/layout-parser comparison report.")
+    parser_comparison_parser.set_defaults(func=cmd_parser_comparison)
 
     index_parser = subparsers.add_parser("build-index", help="Build persisted local BM25 search index.")
     index_parser.add_argument("--limit", type=int, default=None, help="Only index the first N blocks, for development.")
