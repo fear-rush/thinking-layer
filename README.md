@@ -785,7 +785,9 @@ The first bounded report is a useful diagnostic, but not yet a final model-selec
 
 Corrected bounded result: BM25 remains the production baseline. BM25 MRR is `0.869`; corrected dense MRR is `0.1611–0.1689`; RRF MRR is `0.85`; GTE is locally incompatible with the current runtime. No candidate cleared the retrieval gate.
 
-Next concrete steps before advancing the lexicon/query-understanding phase:
+Semantic retrieval and reranking are deferred intentionally, not abandoned. They should resume only when a new model/runtime/hardware setup or a product requirement justifies another isolated bounded experiment. The trigger is a candidate that beats BM25 on MRR and Recall@10/20 without reducing issuer coverage or increasing citation/evidence noise. Until then, the unchecked semantic items below are future acceptance gates, not current release blockers.
+
+Current retrieval decision:
 
 1. Keep BM25/title retrieval in production and proceed with manual intents and failure-driven aliases.
 2. Leave full-corpus semantic benchmarking and reranking blocked; revisit them only if a new candidate or hardware/runtime change justifies another isolated gate.
@@ -797,6 +799,8 @@ Next concrete steps before advancing the lexicon/query-understanding phase:
 - [ ] Evaluate late-interaction retrieval if single-vector embeddings miss article-level legal distinctions.
 
 ### 9. Production Hardening Later
+
+Permission handling is conditional: implement it only if the corpus becomes user-specific or access-restricted. For the current local/public corpus, the next applicable hardening step is an API/service wrapper after the CLI behavior remains stable.
 
 - [x] Add incremental ingestion and stale-index detection for the BM25/source-corpus index. Use `build-index --incremental` for append-only updates.
 - [x] Add source/version timeline metadata for regulation updates: stable version/series keys, lifecycle dates/status, supersession relationships, and safe down-ranking of explicitly outdated records.
