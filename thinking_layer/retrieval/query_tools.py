@@ -46,6 +46,8 @@ def matched_items(query: str, items: list[dict[str, Any]]) -> list[dict[str, Any
     matches = []
     for item in items:
         patterns = item.get("patterns") or []
+        if any(contains_pattern(query, pattern) for pattern in item.get("exclude_patterns") or []):
+            continue
         hit_patterns = [pattern for pattern in patterns if contains_pattern(query, pattern)]
         if hit_patterns:
             enriched = dict(item)

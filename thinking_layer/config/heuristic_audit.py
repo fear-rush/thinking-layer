@@ -18,6 +18,7 @@ CONFIG_CATEGORIES = {
     "evaluation_rubrics": "evaluation_rubric",
     "extraction_heuristics": "parser_heuristic",
     "lexicon_extraction": "manual_domain_seed",
+    "semantic_retrieval": "standard_ir",
 }
 
 SECTION_CATEGORIES = {

@@ -50,6 +50,7 @@ Pipeline code lives under `thinking_layer/`:
 - `corpus/build.py`: canonical metadata/file-manifest build and audit CLI commands.
 - `corpus/source_corpus.py`: citation-ready source corpus build and Sikepo metadata coverage report.
 - `indexing/lexical.py`: stopwords, tokenization, in-memory BM25 index, lexical scoring, result formatting.
+- `indexing/semantic.py`: isolated SentenceTransformers-compatible dense index and search path.
 - `indexing/sqlite.py`: persisted SQLite index build/read/search.
 - `indexing/title.py`: document-title representatives and title retrieval.
 - `retrieval/query_tools.py`: query lexicon loading, pattern matching, and query overlap helpers.
@@ -64,6 +65,7 @@ Pipeline code lives under `thinking_layer/`:
 - `evaluation/answer.py`: answer evaluation.
 - `evaluation/holdout.py`: external holdout workflow.
 - `evaluation/natural.py`: broad natural-language retrieval evaluation.
+- `evaluation/semantic.py`: bounded BM25, dense-model, and RRF retrieval benchmark.
 - `lexicon/candidates.py`: deterministic lexicon candidate extraction and generated draft lexicon.
 - `lexicon/merge.py`: reviewed/generated lexicon merge.
 - `cli.py`: command-line parser only.
@@ -84,6 +86,9 @@ uv run python -m thinking_layer.cli extract --progress-every 25 --verbose
 uv run python -m thinking_layer.cli report
 uv run python -m thinking_layer.cli build-source-corpus --include-secondary
 uv run python -m thinking_layer.cli build-index
+
+# Optional semantic-retrieval spike; this is separate from the BM25 baseline.
+uv run python -m thinking_layer.cli build-semantic-index --model intfloat/multilingual-e5-small --batch-size 32
 ```
 
 Use `--resume` only when continuing an interrupted full extraction run. For targeted OCR or Office retries, use `--file-id ... --replace-existing` so the existing corpus rows are preserved.
@@ -92,6 +97,7 @@ Then test retrieval and answers:
 
 ```bash
 uv run python -m thinking_layer.cli search "penyedia jasa pembayaran" --include-secondary --limit 10
+uv run python -m thinking_layer.cli semantic-search "peraturan BI tentang penyedia jasa pembayaran" --issuer BI --include-secondary --limit 10
 uv run python -m thinking_layer.cli evidence "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
 uv run python -m thinking_layer.cli answer "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
 ```
@@ -359,6 +365,12 @@ Office documents and LibreOffice:
 
 LiteParse needs LibreOffice for `.docx`, `.xlsx`, `.pptx`, `.odt`, `.ods`, and `.odp` files. If `soffice` or `libreoffice` is not on `PATH`, these rows are skipped with `libreoffice_not_found` and listed in `reports/ocr_needed.*`. This is important for operational BI documents such as QRIS/SNAP matrices; queries like `apa saja kelengkapan atau matriks yang diperlukan dalam pengembangan qris?` may be incomplete until these files are extracted.
 
+PDF visual spot checks use the project dependencies `pypdfium2` and `pillow`. Poppler is also required for the CLI fallback renderer (`pdftoppm`). On macOS, install it with:
+
+```bash
+brew install poppler
+```
+
 On macOS:
 
 ```bash
@@ -476,6 +488,8 @@ Outputs:
 - `processed/lexicon/candidates.json`
 - `reports/lexicon_candidates.md`
 - `resources/query_lexicon.generated.json`
+- `resources/query_lexicon.reviewed.json`
+- `resources/query_lexicon.merged.json`
 
 Generated lexicon files are intentionally not kept in the clean baseline. Regenerate them only when doing lexicon review. If you create a reviewed file, merge it explicitly:
 
@@ -527,12 +541,14 @@ Development evaluation files:
 Current development reports:
 
 - `reports/REPORT_INDEX.md`: concise map of every current report.
-- `reports/retrieval_smoke_test.md`: 10/10 accepted, average score `0.996`.
+- `reports/retrieval_smoke_test.md`: 10/10 accepted, average score `0.998` after primary-first ranking correction.
 - `reports/natural_language_eval.md`: 15/15 accepted, average score `0.999`.
 - `reports/evidence_eval.md`: 30/30 accepted, average score `0.990`.
 - `reports/answer_eval.md`: 30/30 accepted, average score `0.988`.
 - `reports/answer_quality_eval.md`: 12/12 accepted, average score `1.000`.
-- `reports/ai_external_holdout_manifest.json`: AI-authored external-style run; evidence 30/30, answer 30/30, answer quality 12/12. This is not blind reviewer validation.
+- `reports/blind_external_holdout_manifest.json`: reviewer-owned holdout; evidence `18/19`, answer `18/19`, answer quality `9/10`.
+- `reports/blind_external_holdout_triage.md`: classified holdout failures; the holdout is consumed and must not be used for tuning.
+- `reports/semantic_retrieval_benchmark.md`: bounded three-model BM25/dense/RRF comparison; dense and RRF do not yet beat BM25.
 - `reports/extraction_spot_check.md`: extraction/citation spot check for high-value BI/OJK regulation areas.
 - `reports/parser_comparison_sample.md`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
 - `reports/visual_spot_check.md`: rendered page review for QRIS, SNAP, XLSX, and GMRA extraction quality.
@@ -553,30 +569,15 @@ For honest validation, use the reviewer-owned external holdout files:
 - `resources/holdout_questions.external.json`
 - `resources/answer_quality_questions.external.json`
 
-The current checked-in files may be used for AI-authored external-style regression, but they are not blind validation because they were created inside the same development loop. To reset them for a reviewer-owned blind holdout:
+The current checked-in files are reviewer-owned and were written before the validation run. They are now a consumed blind holdout: do not tune code or labels against them without recording that the run is no longer blind. Create a fresh holdout set for any post-failure tuning.
 
-Have a reviewer replace both external files before looking at retrieval results. The validator rejects placeholder template IDs unless `--allow-template` is passed for a dry run.
-
-For the AI-authored external-style run, use a distinct report prefix:
+The consumed blind run was executed with:
 
 ```bash
 uv run python -m thinking_layer.cli validate-holdout \
   --gold-file resources/holdout_questions.external.json \
   --quality-file resources/answer_quality_questions.external.json \
-  --report-prefix ai_external_holdout \
-  --max-searches 6 \
-  --result-limit 10 \
-  --per-document-limit 2 \
-  --progress
-```
-
-After a reviewer fills the files independently, run:
-
-```bash
-uv run python -m thinking_layer.cli validate-holdout \
-  --gold-file resources/holdout_questions.external.json \
-  --quality-file resources/answer_quality_questions.external.json \
-  --report-prefix external_holdout \
+  --report-prefix blind_external_holdout \
   --max-searches 6 \
   --result-limit 10 \
   --per-document-limit 2
@@ -591,6 +592,8 @@ Outputs:
 - `reports/<prefix>_review_checklist.md`
 
 Do not use dry-run template reports as validation evidence.
+
+The blind run produced `18/19` evidence, `18/19` answer, and `9/10` answer-quality acceptance. See `reports/blind_external_holdout_triage.md` for failure classification.
 
 ## Retrieval And Answer Requirements
 
@@ -660,7 +663,7 @@ This phase is behavior-preserving. Do not tune accuracy here. The goal is to mak
 - [x] Deduplicate in-memory BM25 and SQLite BM25 ranking helpers so both paths share the same scoring constants.
 - [x] Add `reports/heuristics_audit.md` listing each heuristic, value, category, runtime impact, rationale, and calibration status.
 - [x] Run unit tests and all development evaluations after the refactor.
-- [ ] If metrics change, investigate and report the reason instead of adding query-specific shortcuts.
+- [x] If metrics change, investigate and report the reason instead of adding query-specific shortcuts. See `reports/regression_audit.md`.
 
 Heuristic categories should be explicit:
 
@@ -676,12 +679,10 @@ Heuristic categories should be explicit:
 - [x] Freeze current development reports as regression baseline.
 - [x] Initialize external holdout files from templates.
 - [x] Add external holdout reviewer guide.
-- [x] Run AI-authored external-style holdout and record it as non-blind.
-- [x] Classify current AI-authored external-style failures.
-- [ ] Create blind external holdout questions before looking at outputs.
-- [ ] Run `validate-holdout`.
-- [ ] Classify failures as retrieval, citation extraction, parsing, answer composition, answer quality, or gold-label issue.
-- [ ] Do not tune code against the blind holdout without logging that the run is no longer blind.
+- [x] Create blind external holdout questions before looking at outputs.
+- [x] Run `validate-holdout` with report prefix `blind_external_holdout`.
+- [x] Classify failures as retrieval/refusal-boundary and gold-label/evaluation-rubric issues. See `reports/blind_external_holdout_triage.md`.
+- [x] Do not tune code against the blind holdout; the consumed holdout is preserved without post-run tuning.
 
 ### 4. Urgent Answer Correctness Fixes
 
@@ -724,7 +725,7 @@ These fixes must happen before semantic retrieval, embedding indexes, or LLM ans
   - evidence eval
   - answer eval
   - answer-quality eval
-  - AI-authored external-style holdout
+  - reviewer-owned blind external holdout
 - [x] Do not weaken answer-quality noise checks or relabel the PJP case as answerable without manual legal review.
 
 ### 5. Improve Extraction Quality
@@ -746,21 +747,35 @@ These fixes must happen before semantic retrieval, embedding indexes, or LLM ans
 
 ### 6. Improve Lexicon And Query Understanding
 
-- [ ] Regenerate and review `reports/lexicon_candidates.md` when resuming lexicon work.
-- [ ] Approve high-confidence generated entities/topics/aliases.
-- [ ] Merge reviewed lexicon into a tested runtime lexicon.
+- [x] Regenerate and review `reports/lexicon_candidates.md` when resuming lexicon work.
+- [x] Approve a reviewed subset of high-confidence generated entities/topics/aliases. See `reports/lexicon_review.md`.
+- [x] Merge the reviewed lexicon into the separately tested `resources/query_lexicon.merged.json`; keep the active runtime lexicon unchanged until a broader evaluation gate.
 - [ ] Keep intents mostly manual because they represent user behavior, not document vocabulary.
 - [ ] Add failure-driven aliases only when supported by corpus evidence or real user queries.
 
-### 7. Introduce Semantic Retrieval Carefully
+### 7. Benchmark Hybrid Retrieval Before Adoption
 
-- [ ] Keep BM25/title retrieval as the baseline.
-- [ ] Add SentenceTransformers embedding index as a second retriever, not a replacement.
-- [ ] Evaluate hybrid retrieval against the same smoke, natural, evidence, answer, and external holdout sets.
-- [ ] Keep reranking and LLM usage behind measurable eval gates.
-- [ ] Only introduce LLM answer composition after evidence quality is stable.
+Current decision: keep BM25/title retrieval as the production baseline. On the bounded 5,000-block benchmark, the best dense/RRF result did not exceed BM25, so semantic retrieval is not enabled in the normal search, evidence, or answer paths.
 
-### 8. Production Hardening Later
+- [x] Keep BM25/title retrieval as the production baseline and freeze its current reports.
+- [x] Add a SentenceTransformers-compatible semantic retriever behind a separate CLI/runtime path.
+- [x] Benchmark a bounded multilingual model matrix selected by Indonesian coverage, retrieval task results, license, model size, and local latency; do not select solely by aggregate MTEB rank. See `reports/semantic_retrieval_benchmark.md`; full-corpus rerun remains pending.
+- [x] Build a persisted dense index with model ID, normalization, dimension, corpus signature, and chunking metadata for a bounded 5,000-block smoke index; full-corpus benchmarking remains pending.
+- [x] Compare BM25-only, dense-only, and BM25+dense Reciprocal Rank Fusion on bounded retrieval metrics. The current result does not justify adoption: dense retrieval is substantially below BM25 and RRF does not improve it. Evidence, answer, quality, and fresh-holdout comparisons remain pending.
+- [x] Measure bounded Recall@5/10/20, MRR, expected-document recall, and issuer coverage. Citation coverage, refusal precision, and evidence-noise rate remain pending until a candidate improves retrieval.
+- [ ] Add a top-50/100 reranking experiment using a cross-encoder or late-interaction model only after hybrid retrieval clears the evaluation gates.
+- [ ] Keep role, issuer, direct-topic, and citation-confidence gates after semantic retrieval and reranking.
+- [ ] Only introduce query expansion, CRAG-style retrieval correction, or LLM answer composition after the hybrid baseline is measured and stable.
+
+Next concrete step: rerun the benchmark over the full `537,355`-block source corpus, then evaluate any candidate that clears retrieval gates through evidence, answer-quality, and a fresh holdout. Do not promote a model based on the bounded benchmark alone.
+
+### 8. Later Research Options
+
+- [ ] Evaluate grounded multi-query expansion with RRF only if vocabulary-mismatch failures remain after hybrid retrieval.
+- [ ] Evaluate hierarchical or graph retrieval for regulation references, supersession, and source timelines.
+- [ ] Evaluate late-interaction retrieval if single-vector embeddings miss article-level legal distinctions.
+
+### 9. Production Hardening Later
 
 - [ ] Add incremental ingestion and stale-index detection.
 - [ ] Add source/version timeline handling for regulation updates.

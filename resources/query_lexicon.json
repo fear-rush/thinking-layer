@@ -216,6 +216,7 @@
     {
       "name": "advertising_marketing",
       "patterns": ["periklanan", "iklan", "promosi", "pemasaran", "marketing", "brosur", "penawaran produk", "campaign"],
+      "exclude_patterns": ["seragam", "pakaian", "uniform"],
       "expansions": [
         "iklan pemasaran produk bank",
         "iklan pemasaran produk layanan jasa keuangan",

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "description": "Isolated semantic retrieval benchmark configuration. This path does not replace BM25.",
+    "calibrated": false
+  },
+  "default_model": "intfloat/multilingual-e5-small",
+  "model_candidates": [
+    "intfloat/multilingual-e5-small",
+    "intfloat/multilingual-e5-base",
+    "BAAI/bge-m3"
+  ],
+  "batch_size": 32,
+  "normalize_embeddings": true,
+  "default_limit": 10,
+  "max_text_chars": 6000
+}

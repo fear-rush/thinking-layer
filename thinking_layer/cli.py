@@ -16,7 +16,9 @@ from .evaluation.evidence import cmd_eval_evidence
 from .evaluation.holdout import cmd_validate_holdout
 from .evaluation.natural import cmd_eval_natural
 from .evaluation.retrieval import cmd_smoke_test
+from .evaluation.semantic import cmd_benchmark_retrieval
 from .indexing.sqlite import cmd_build_index
+from .indexing.semantic import cmd_build_semantic_index, cmd_semantic_search
 from .lexicon.candidates import cmd_extract_lexicon_candidates
 from .lexicon.merge import cmd_merge_lexicon
 from .config.paths import ROOT
@@ -70,6 +72,22 @@ def main() -> None:
     index_parser = subparsers.add_parser("build-index", help="Build persisted local BM25 search index.")
     index_parser.add_argument("--limit", type=int, default=None, help="Only index the first N blocks, for development.")
     index_parser.set_defaults(func=cmd_build_index)
+
+    semantic_index_parser = subparsers.add_parser("build-semantic-index", help="Build an isolated persisted semantic index.")
+    semantic_index_parser.add_argument("--model", default=None, help="SentenceTransformer model ID. Defaults to semantic retrieval config.")
+    semantic_index_parser.add_argument("--limit", type=int, default=None, help="Only index the first N blocks for development.")
+    semantic_index_parser.add_argument("--batch-size", type=int, default=None, help="Embedding batch size.")
+    semantic_index_parser.add_argument("--normalize-embeddings", action=argparse.BooleanOptionalAction, default=None, help="Normalize embeddings before dot-product search.")
+    semantic_index_parser.set_defaults(func=cmd_build_semantic_index)
+
+    semantic_search_parser = subparsers.add_parser("semantic-search", help="Search the isolated persisted semantic index.")
+    semantic_search_parser.add_argument("query", help="Semantic search query.")
+    semantic_search_parser.add_argument("--issuer", choices=["OJK", "BI"], default=None)
+    semantic_search_parser.add_argument("--source", choices=["peraturan-ojk", "ease-bi", "sikepo-ojk"], default=None)
+    semantic_search_parser.add_argument("--role", default=None)
+    semantic_search_parser.add_argument("--include-secondary", action="store_true")
+    semantic_search_parser.add_argument("--limit", type=int, default=10)
+    semantic_search_parser.set_defaults(func=cmd_semantic_search)
 
     source_corpus_parser = subparsers.add_parser("build-source-corpus", help="Write normalized citation-ready source corpus from extracted blocks.")
     source_corpus_parser.add_argument("--include-secondary", action="store_true", help="Include FAQ and summary rows. Off by default for a primary-first baseline.")
@@ -186,6 +204,18 @@ def main() -> None:
     eval_natural_parser.add_argument("--max-searches", type=int, default=6, help="Maximum planned searches per query.")
     eval_natural_parser.add_argument("--limit", type=int, default=8, help="Number of merged results per query.")
     eval_natural_parser.set_defaults(func=cmd_eval_natural)
+
+    benchmark_parser = subparsers.add_parser("benchmark-retrieval", help="Compare BM25, dense, and RRF retrieval on development gold questions.")
+    benchmark_parser.add_argument("--models", default=None, help="Comma-separated SentenceTransformer model IDs. Defaults to semantic config candidates.")
+    benchmark_parser.add_argument("--corpus-limit", type=int, default=5000, help="Bounded source-corpus blocks for the benchmark.")
+    benchmark_parser.add_argument("--candidate-limit", type=int, default=20, help="Candidate results per retriever before metric cutoffs and RRF.")
+    benchmark_parser.add_argument("--question-limit", type=int, default=None, help="Evaluate only the first N gold questions.")
+    benchmark_parser.add_argument("--gold-file", default=None, help="Gold questions JSON; defaults to resources/gold_questions.json.")
+    benchmark_parser.add_argument("--batch-size", type=int, default=32, help="Embedding batch size.")
+    benchmark_parser.add_argument("--normalize-embeddings", action=argparse.BooleanOptionalAction, default=True, help="Normalize embeddings before dot-product search.")
+    benchmark_parser.add_argument("--report-prefix", default=None, help="Report filename prefix under reports/.")
+    benchmark_parser.add_argument("--progress", action="store_true", help="Print model and query progress.")
+    benchmark_parser.set_defaults(func=cmd_benchmark_retrieval)
 
     validate_holdout_parser = subparsers.add_parser("validate-holdout", help="Run external holdout evidence, answer, and answer-quality validation.")
     validate_holdout_parser.add_argument("--gold-file", required=True, help="External holdout questions JSON.")

@@ -17,6 +17,7 @@ This directory contains only regenerated current-baseline reports. JSON files ar
 - `heuristics_audit.md`: active values loaded from `resources/config/`.
 - `answer_noise_audit.md/json`: legal boilerplate/noise classification over the current source corpus.
 - `cross_regulator_coverage_audit.md/json`: direct-vs-adjacent topic coverage for BI/OJK comparison queries.
+- `regression_audit.md`: comparison of current development evaluations against the frozen regression baseline.
 
 ## Development Evaluations
 
@@ -25,11 +26,15 @@ This directory contains only regenerated current-baseline reports. JSON files ar
 - `evidence_eval.md/json`: evidence-pack evaluation against `resources/gold_questions.json`.
 - `answer_eval.md/json`: deterministic answer evaluation against `resources/gold_questions.json`.
 - `answer_quality_eval.md/json`: answer presentation/quality checks against `resources/answer_quality_questions.json`.
+- `development_issue_triage.md`: separate development investigation and verification for holdout findings.
+- `lexicon_review.md`: reviewed generated lexicon candidates and merged-artifact verification.
+- `semantic_retrieval_smoke.md`: bounded SentenceTransformers dense-retrieval implementation smoke check; not a quality benchmark.
+- `semantic_retrieval_benchmark.md/json`: bounded model-matrix comparison of BM25, dense retrieval, and RRF; current result does not justify adoption.
 
-## External-Style Validation
+## External Validation
 
-- `ai_external_holdout_manifest.json`: summary for the AI-authored external-style run.
-- `ai_external_holdout_evidence.md/json`: evidence results for `resources/holdout_questions.external.json`.
-- `ai_external_holdout_answer.md/json`: answer results for `resources/holdout_questions.external.json`.
-- `ai_external_holdout_answer_quality.md/json`: answer-quality results for `resources/answer_quality_questions.external.json`.
-- `ai_external_holdout_review_checklist.md`: checklist reminding that this run is not blind reviewer validation.
+- `blind_external_holdout_manifest.json`: reviewer-owned blind validation summary from 2026-07-11.
+- `blind_external_holdout_evidence.md/json`: blind evidence results.
+- `blind_external_holdout_answer.md/json`: blind answer results.
+- `blind_external_holdout_answer_quality.md/json`: blind answer-quality results.
+- `blind_external_holdout_triage.md`: classified blind-holdout failures.

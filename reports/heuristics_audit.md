@@ -286,6 +286,34 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
 
+### `answer_ranking.claim_text.context_expansion_max_chars`
+
+- Value: `260`
+- Category: `corpus_noise_filter`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.claim_text.context_expansion_max_blocks`
+
+- Value: `4`
+- Category: `corpus_noise_filter`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.claim_text.context_expansion_suffixes`
+
+- Value: `["meliputi:", "yaitu:", "adalah:"]`
+- Category: `corpus_noise_filter`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.claim_text.context_expansion_block_types`
+
+- Value: `["list_item", "table_or_row", "paragraph"]`
+- Category: `corpus_noise_filter`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
 ### `answer_ranking.claim_text.fallback_claim`
 
 - Value: `Ketentuan relevan ditemukan pada sumber yang dikutip.`
@@ -324,6 +352,13 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 ### `answer_ranking.usable_claim.reject_fragments`
 
 - Value: `["lembaran negara", "tambahan lembaran negara", "sehubungan dengan amanat"]`
+- Category: `corpus_noise_filter`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.usable_claim.reject_regexes`
+
+- Value: `["^\\(?\\d+[a-z]?\\)?\\s+bagi\\b", "^\\(?\\d+[a-z]?\\)?\\s+untuk\\b", "^\\(?\\d+[a-z]?\\)?\\s+dalam hal\\b", "^\\(?\\d+[a-z]?\\)?\\s+atau\\b", "^\\(?\\d+[a-z]?\\)?\\s+dan\\b", "^dimaksud dalam\\b", "^sebagaimana dimaksud\\b"]`
 - Category: `corpus_noise_filter`
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
@@ -387,6 +422,125 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 ### `answer_ranking.item_rank.matched_exact_phrase_bonus`
 
 - Value: `8.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.query_anchor.generic_terms`
+
+- Value: `["apa", "saja", "aturan", "peraturan", "terkait", "tentang", "bank", "ojk", "bi"]`
+- Category: `corpus_noise_filter`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.query_anchor.min_token_chars`
+
+- Value: `4`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.query_anchor.per_key_token_bonus`
+
+- Value: `8.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.query_anchor.acronym_max_chars`
+
+- Value: `5`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.query_anchor.acronym_token_bonus`
+
+- Value: `10.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.query_anchor.max_bonus`
+
+- Value: `28.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.obligation_query_terms`
+
+- Value: `["kewajiban", "wajib", "harus", "dipatuhi", "pelapor", "pelaporan", "menyampaikan"]`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.obligation_claim_terms`
+
+- Value: `["wajib", "harus", "dilarang", "pihak yang wajib", "pelapor adalah", "menyampaikan laporan", "menyusun dan menyampaikan", "secara lengkap, akurat, terkini, utuh, dan tepat waktu"]`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.obligation_match_bonus`
+
+- Value: `14.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.definition_query_terms`
+
+- Value: `["apa itu", "pengertian", "definisi", "yang dimaksud"]`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.definition_claim_terms`
+
+- Value: `["yang dimaksud dengan", "adalah", "yang selanjutnya disingkat"]`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.definition_match_bonus`
+
+- Value: `10.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.continuation_fragment_patterns`
+
+- Value: `["^\\(?\\d+[a-z]?\\)?\\s+bagi\\b", "^\\(?\\d+[a-z]?\\)?\\s+untuk\\b", "^\\(?\\d+[a-z]?\\)?\\s+dalam hal\\b", "^\\(?\\d+[a-z]?\\)?\\s+atau\\b", "^\\(?\\d+[a-z]?\\)?\\s+dan\\b", "^dimaksud dalam\\b", "^sebagaimana dimaksud\\b"]`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.continuation_fragment_penalty`
+
+- Value: `-18.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.short_incomplete_suffixes`
+
+- Value: `["meliputi:", "yaitu:", "adalah:", "sebesar:", "dan/atau"]`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.short_incomplete_max_chars`
+
+- Value: `140`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `answer_ranking.item_rank.claim_quality.short_incomplete_penalty`
+
+- Value: `-6.0`
 - Category: `manual_domain_policy`
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
@@ -1230,6 +1384,48 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
 
+### `extraction_heuristics.ocr.enabled`
+
+- Value: `False`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.ocr.server_url`
+
+- Value: `http://localhost:8829/ocr`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.ocr.language`
+
+- Value: `en`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.ocr.dpi`
+
+- Value: `150`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.ocr.num_workers`
+
+- Value: `1`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.ocr.description`
+
+- Value: `Optional LiteParse OCR profile for PaddleOCR HTTP server. Indonesian regulatory PDFs use Latin script; keep language=en to avoid model reloads. Keep disabled for full-corpus baseline; enable only for OCR-needed samples.`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
 ### `extraction_heuristics.sentence_blocks.flush_on_blank_min_chars`
 
 - Value: `350`
@@ -1349,9 +1545,51 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
 
+### `extraction_heuristics.citations.ayat_start_regex`
+
+- Value: `^\s*(?:Ayat\s*)?\((\d+[a-z]?)\)`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.citations.ayat_word_start_regex`
+
+- Value: `^\s*Ayat\s+(\d+[a-z]?)\b`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
 ### `extraction_heuristics.citations.ayat_regex`
 
 - Value: `(^|\s)\((\d+[a-z]?)\)`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.citations.ayat_word_regex`
+
+- Value: `\bayat\s+(\d+[a-z]?)\b`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.citations.huruf_label_regex`
+
+- Value: `^\s*Huruf\s+([a-z])\b`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.citations.huruf_context_regex`
+
+- Value: `\bayat\s+\(?\d+[a-z]?\)?\s+huruf\s+([a-z])\b`
+- Category: `parser_heuristic`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `extraction_heuristics.citations.huruf_list_regex`
+
+- Value: `^\(?([a-z])\)?[.)]\s+`
 - Category: `parser_heuristic`
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
@@ -2106,6 +2344,41 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
 
+### `retrieval_ranking.planned_result.role_multiplier.primary_regulation`
+
+- Value: `1.6`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.role_multiplier.attachment`
+
+- Value: `1.05`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.role_multiplier.operational_requirement`
+
+- Value: `0.72`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.role_multiplier.secondary_faq`
+
+- Value: `0.58`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.role_multiplier.secondary_summary`
+
+- Value: `0.5`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
 ### `retrieval_ranking.planned_result.reason_boost.title`
 
 - Value: `1.4`
@@ -2313,5 +2586,52 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 
 - Value: `["pengertian definisi pasal 1", "ketentuan umum definisi"]`
 - Category: `manual_domain_seed`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+## resources/config/semantic_retrieval.json
+
+- Description: Isolated semantic retrieval benchmark configuration. This path does not replace BM25.
+- Calibrated: `False`
+
+### `semantic_retrieval.default_model`
+
+- Value: `intfloat/multilingual-e5-small`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.model_candidates`
+
+- Value: `["intfloat/multilingual-e5-small", "intfloat/multilingual-e5-base", "BAAI/bge-m3"]`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.batch_size`
+
+- Value: `32`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.normalize_embeddings`
+
+- Value: `True`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.default_limit`
+
+- Value: `10`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.max_text_chars`
+
+- Value: `6000`
+- Category: `standard_ir`
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`

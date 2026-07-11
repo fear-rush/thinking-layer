@@ -1,0 +1,72 @@
+{
+  "created_at": "2026-07-11T14:24:37",
+  "report_prefix": "blind_external_holdout",
+  "gold_file": "resources/holdout_questions.external.json",
+  "quality_file": "resources/answer_quality_questions.external.json",
+  "allow_template": false,
+  "parameters": {
+    "max_searches": 6,
+    "result_limit": 10,
+    "per_document_limit": 2,
+    "max_documents": 6,
+    "max_citations_per_document": 2
+  },
+  "reports": {
+    "evidence_md": "reports/blind_external_holdout_evidence.md",
+    "evidence_json": "reports/blind_external_holdout_evidence.json",
+    "answer_md": "reports/blind_external_holdout_answer.md",
+    "answer_json": "reports/blind_external_holdout_answer.json",
+    "answer_quality_md": "reports/blind_external_holdout_answer_quality.md",
+    "answer_quality_json": "reports/blind_external_holdout_answer_quality.json",
+    "review_checklist_md": "reports/blind_external_holdout_review_checklist.md"
+  },
+  "results": {
+    "evidence": {
+      "accepted": 18,
+      "total": 19,
+      "average_score": 0.945,
+      "failures": [
+        {
+          "id": "blind_not_found_staff_uniform",
+          "query": "apa ketentuan BI mengenai warna seragam petugas pemasaran bank?",
+          "score": 0.0,
+          "failure_reasons": [
+            "expected not_found but evidence did not require refusal"
+          ]
+        }
+      ]
+    },
+    "answer": {
+      "accepted": 18,
+      "total": 19,
+      "average_score": 0.944,
+      "failures": [
+        {
+          "id": "blind_not_found_staff_uniform",
+          "query": "apa ketentuan BI mengenai warna seragam petugas pemasaran bank?",
+          "score": 0.0,
+          "failure_reasons": [
+            "expected not_found status",
+            "not-found answer should not cite evidence as support"
+          ]
+        }
+      ]
+    },
+    "answer_quality": {
+      "accepted": 9,
+      "total": 10,
+      "average_score": 0.993,
+      "failures": [
+        {
+          "id": "blind_quality_cross_consumer",
+          "query": "apa perbedaan ruang lingkup pelindungan konsumen menurut BI dan OJK?",
+          "score": 0.93,
+          "failure_reasons": [
+            "has_uncertainty_terms",
+            "partial_has_uncertainty"
+          ]
+        }
+      ]
+    }
+  }
+}

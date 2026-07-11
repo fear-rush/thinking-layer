@@ -16,7 +16,7 @@ No failures.
 - Accepted: `True`
 - Score: `1.0`
 - Status: `answerable`
-- Citation count: `6`
+- Citation count: `5`
 - Failure reasons: `[]`
 - Warnings: `[]`
 
@@ -25,7 +25,7 @@ No failures.
 - Accepted: `True`
 - Score: `1.0`
 - Status: `answerable`
-- Citation count: `6`
+- Citation count: `5`
 - Failure reasons: `[]`
 - Warnings: `[]`
 

@@ -166,6 +166,7 @@ def planned_result_score(raw_query: str, search: dict[str, Any], search_rank: in
             float(config.get("title_quality_max_bonus", 0.70)),
             float(row.get("_title_score") or 0.0) / float(config.get("title_quality_score_divisor", 160.0)),
         )
+    role_multiplier = float((config.get("role_multiplier") or {}).get(row.get("file_role"), 1.0))
     return (
         rank_score
         * plan_reason_boost(search["reason"])
@@ -173,6 +174,7 @@ def planned_result_score(raw_query: str, search: dict[str, Any], search_rank: in
         * overlap_boost
         * title_quality
         * sector_alignment_factor(raw_query, title)
+        * role_multiplier
     )
 
 def cmd_planned_search(args: argparse.Namespace) -> None:

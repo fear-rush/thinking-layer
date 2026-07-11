@@ -1,128 +1,45 @@
 [
   {
     "spec": {
-      "id": "ai_external_quality_bi_front_office_perizinan",
-      "query": "bagaimana aturan BI tentang front office perizinan terpadu?",
+      "id": "blind_quality_bi_transfer_dana",
+      "query": "apa dasar hukum Bank Indonesia untuk penyelenggaraan transfer dana?",
       "expected_behavior": "answerable",
       "required_issuers": [
         "BI"
       ],
       "required_terms": [
-        "Perizinan"
+        "Transfer Dana"
       ],
       "required_citation_terms": [
         "hlm."
       ],
       "min_citations": 1,
       "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
+      "notes": "Fresh reviewer-owned blind holdout question."
     },
     "evaluation": {
-      "id": "ai_external_quality_bi_front_office_perizinan",
-      "query": "bagaimana aturan BI tentang front office perizinan terpadu?",
+      "id": "blind_quality_bi_transfer_dana",
+      "query": "apa dasar hukum Bank Indonesia untuk penyelenggaraan transfer dana?",
       "expected_behavior": "answerable",
       "score": 1.0,
       "accepted": true,
       "status": "answerable",
       "confidence": {
         "label": "strong",
-        "score": 0.84,
+        "score": 0.827,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=1.00",
           "matched_phrase_count=0",
-          "lexical_rate=0.82",
-          "query_coverage=0.67"
+          "lexical_rate=0.61",
+          "query_coverage=0.86"
         ],
         "must_say_not_found": false
       },
-      "citation_count": 4,
-      "source_line_count": 4,
-      "answer_chars": 1869,
-      "required_terms": [
-        "Perizinan"
-      ],
-      "term_hits": [
-        "Perizinan"
-      ],
-      "required_uncertainty_terms": [],
-      "uncertainty_hits": [],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "citation_term_hits": [
-        "hlm."
-      ],
-      "required_issuers": [
-        "BI"
-      ],
-      "issuer_hits": [
-        "BI"
-      ],
-      "primary_rate": 1.0,
-      "noisy_hits": [],
-      "truncated_bullets": [],
-      "checks": {
-        "status_matches_expected": true,
-        "not_found_has_no_citations": true,
-        "has_required_terms": true,
-        "has_uncertainty_terms": true,
-        "has_required_citation_terms": true,
-        "has_min_citations": true,
-        "source_lines_match_citation_count": true,
-        "has_required_issuers": true,
-        "primary_sources_first_enough": true,
-        "not_too_long": true,
-        "no_noisy_fragments": true,
-        "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
-      },
-      "failure_reasons": [],
-      "warnings": []
-    }
-  },
-  {
-    "spec": {
-      "id": "ai_external_quality_bi_transfer_dana",
-      "query": "apa dasar hukum BI untuk penyelenggaraan transfer dana?",
-      "expected_behavior": "answerable",
-      "required_issuers": [
-        "BI"
-      ],
-      "required_terms": [
-        "Transfer Dana"
-      ],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "min_citations": 1,
-      "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
-    },
-    "evaluation": {
-      "id": "ai_external_quality_bi_transfer_dana",
-      "query": "apa dasar hukum BI untuk penyelenggaraan transfer dana?",
-      "expected_behavior": "answerable",
-      "score": 1.0,
-      "accepted": true,
-      "status": "partial",
-      "confidence": {
-        "label": "partial",
-        "score": 0.774,
-        "reasons": [
-          "primary_rate=1.00",
-          "page_rate=1.00",
-          "article_rate=1.00",
-          "matched_phrase_count=0",
-          "lexical_rate=0.38",
-          "query_coverage=0.67"
-        ],
-        "must_say_not_found": false
-      },
-      "citation_count": 5,
-      "source_line_count": 5,
-      "answer_chars": 2438,
+      "citation_count": 6,
+      "source_line_count": 6,
+      "answer_chars": 3057,
       "required_terms": [
         "Transfer Dana"
       ],
@@ -167,377 +84,377 @@
   },
   {
     "spec": {
-      "id": "ai_external_quality_bi_pasar_uang",
-      "query": "aturan BI tentang pasar uang dan pasar valuta asing",
+      "id": "blind_quality_bi_kupva",
+      "query": "apa aturan BI untuk kegiatan usaha penukaran valuta asing bukan bank?",
       "expected_behavior": "answerable",
       "required_issuers": [
         "BI"
       ],
       "required_terms": [
-        "Pasar Uang"
+        "Penukaran Valuta Asing"
       ],
       "required_citation_terms": [
         "hlm."
       ],
       "min_citations": 1,
       "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
+      "notes": "Fresh reviewer-owned blind holdout question."
     },
     "evaluation": {
-      "id": "ai_external_quality_bi_pasar_uang",
-      "query": "aturan BI tentang pasar uang dan pasar valuta asing",
+      "id": "blind_quality_bi_kupva",
+      "query": "apa aturan BI untuk kegiatan usaha penukaran valuta asing bukan bank?",
       "expected_behavior": "answerable",
       "score": 1.0,
       "accepted": true,
       "status": "answerable",
       "confidence": {
         "label": "strong",
-        "score": 0.993,
-        "reasons": [
-          "primary_rate=1.00",
-          "page_rate=1.00",
-          "article_rate=1.00",
-          "matched_phrase_count=4",
-          "lexical_rate=0.84",
-          "query_coverage=0.67"
-        ],
-        "must_say_not_found": false
-      },
-      "citation_count": 5,
-      "source_line_count": 5,
-      "answer_chars": 2487,
-      "required_terms": [
-        "Pasar Uang"
-      ],
-      "term_hits": [
-        "Pasar Uang"
-      ],
-      "required_uncertainty_terms": [],
-      "uncertainty_hits": [],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "citation_term_hits": [
-        "hlm."
-      ],
-      "required_issuers": [
-        "BI"
-      ],
-      "issuer_hits": [
-        "BI"
-      ],
-      "primary_rate": 1.0,
-      "noisy_hits": [],
-      "truncated_bullets": [],
-      "checks": {
-        "status_matches_expected": true,
-        "not_found_has_no_citations": true,
-        "has_required_terms": true,
-        "has_uncertainty_terms": true,
-        "has_required_citation_terms": true,
-        "has_min_citations": true,
-        "source_lines_match_citation_count": true,
-        "has_required_issuers": true,
-        "primary_sources_first_enough": true,
-        "not_too_long": true,
-        "no_noisy_fragments": true,
-        "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
-      },
-      "failure_reasons": [],
-      "warnings": []
-    }
-  },
-  {
-    "spec": {
-      "id": "ai_external_quality_bi_pelindungan_konsumen",
-      "query": "aturan pelindungan konsumen yang diawasi Bank Indonesia",
-      "expected_behavior": "answerable",
-      "required_issuers": [
-        "BI"
-      ],
-      "required_terms": [
-        "Pelindungan Konsumen"
-      ],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "min_citations": 1,
-      "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
-    },
-    "evaluation": {
-      "id": "ai_external_quality_bi_pelindungan_konsumen",
-      "query": "aturan pelindungan konsumen yang diawasi Bank Indonesia",
-      "expected_behavior": "answerable",
-      "score": 1.0,
-      "accepted": true,
-      "status": "answerable",
-      "confidence": {
-        "label": "strong",
-        "score": 0.803,
+        "score": 0.956,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=0.60",
-          "matched_phrase_count=0",
-          "lexical_rate=0.87",
-          "query_coverage=0.83"
-        ],
-        "must_say_not_found": false
-      },
-      "citation_count": 1,
-      "source_line_count": 1,
-      "answer_chars": 830,
-      "required_terms": [
-        "Pelindungan Konsumen"
-      ],
-      "term_hits": [
-        "Pelindungan Konsumen"
-      ],
-      "required_uncertainty_terms": [],
-      "uncertainty_hits": [],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "citation_term_hits": [
-        "hlm."
-      ],
-      "required_issuers": [
-        "BI"
-      ],
-      "issuer_hits": [
-        "BI"
-      ],
-      "primary_rate": 1.0,
-      "noisy_hits": [],
-      "truncated_bullets": [],
-      "checks": {
-        "status_matches_expected": true,
-        "not_found_has_no_citations": true,
-        "has_required_terms": true,
-        "has_uncertainty_terms": true,
-        "has_required_citation_terms": true,
-        "has_min_citations": true,
-        "source_lines_match_citation_count": true,
-        "has_required_issuers": true,
-        "primary_sources_first_enough": true,
-        "not_too_long": true,
-        "no_noisy_fragments": true,
-        "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
-      },
-      "failure_reasons": [],
-      "warnings": []
-    }
-  },
-  {
-    "spec": {
-      "id": "ai_external_quality_ojk_bpr_bmpk",
-      "query": "batas maksimum pemberian kredit untuk BPR dan BPRS",
-      "expected_behavior": "answerable",
-      "required_issuers": [
-        "OJK"
-      ],
-      "required_terms": [
-        "Batas Maksimum Pemberian Kredit"
-      ],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "min_citations": 1,
-      "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
-    },
-    "evaluation": {
-      "id": "ai_external_quality_ojk_bpr_bmpk",
-      "query": "batas maksimum pemberian kredit untuk BPR dan BPRS",
-      "expected_behavior": "answerable",
-      "score": 1.0,
-      "accepted": true,
-      "status": "answerable",
-      "confidence": {
-        "label": "strong",
-        "score": 0.862,
-        "reasons": [
-          "primary_rate=1.00",
-          "page_rate=1.00",
-          "article_rate=0.80",
-          "matched_phrase_count=0",
+          "matched_phrase_count=3",
           "lexical_rate=0.94",
-          "query_coverage=1.00"
-        ],
-        "must_say_not_found": false
-      },
-      "citation_count": 6,
-      "source_line_count": 6,
-      "answer_chars": 2639,
-      "required_terms": [
-        "Batas Maksimum Pemberian Kredit"
-      ],
-      "term_hits": [
-        "Batas Maksimum Pemberian Kredit"
-      ],
-      "required_uncertainty_terms": [],
-      "uncertainty_hits": [],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "citation_term_hits": [
-        "hlm."
-      ],
-      "required_issuers": [
-        "OJK"
-      ],
-      "issuer_hits": [
-        "OJK"
-      ],
-      "primary_rate": 1.0,
-      "noisy_hits": [],
-      "truncated_bullets": [],
-      "checks": {
-        "status_matches_expected": true,
-        "not_found_has_no_citations": true,
-        "has_required_terms": true,
-        "has_uncertainty_terms": true,
-        "has_required_citation_terms": true,
-        "has_min_citations": true,
-        "source_lines_match_citation_count": true,
-        "has_required_issuers": true,
-        "primary_sources_first_enough": true,
-        "not_too_long": true,
-        "no_noisy_fragments": true,
-        "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
-      },
-      "failure_reasons": [],
-      "warnings": []
-    }
-  },
-  {
-    "spec": {
-      "id": "ai_external_quality_ojk_laporan_bpr",
-      "query": "pelaporan laporan bulanan bank perekonomian rakyat ke OJK",
-      "expected_behavior": "answerable",
-      "required_issuers": [
-        "OJK"
-      ],
-      "required_terms": [
-        "Laporan Bulanan"
-      ],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "min_citations": 1,
-      "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
-    },
-    "evaluation": {
-      "id": "ai_external_quality_ojk_laporan_bpr",
-      "query": "pelaporan laporan bulanan bank perekonomian rakyat ke OJK",
-      "expected_behavior": "answerable",
-      "score": 1.0,
-      "accepted": true,
-      "status": "answerable",
-      "confidence": {
-        "label": "strong",
-        "score": 0.975,
-        "reasons": [
-          "primary_rate=1.00",
-          "page_rate=1.00",
-          "article_rate=1.00",
-          "matched_phrase_count=1",
-          "lexical_rate=1.00",
-          "query_coverage=1.00"
-        ],
-        "must_say_not_found": false
-      },
-      "citation_count": 6,
-      "source_line_count": 6,
-      "answer_chars": 3729,
-      "required_terms": [
-        "Laporan Bulanan"
-      ],
-      "term_hits": [
-        "Laporan Bulanan"
-      ],
-      "required_uncertainty_terms": [],
-      "uncertainty_hits": [],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "citation_term_hits": [
-        "hlm."
-      ],
-      "required_issuers": [
-        "OJK"
-      ],
-      "issuer_hits": [
-        "OJK"
-      ],
-      "primary_rate": 1.0,
-      "noisy_hits": [],
-      "truncated_bullets": [],
-      "checks": {
-        "status_matches_expected": true,
-        "not_found_has_no_citations": true,
-        "has_required_terms": true,
-        "has_uncertainty_terms": true,
-        "has_required_citation_terms": true,
-        "has_min_citations": true,
-        "source_lines_match_citation_count": true,
-        "has_required_issuers": true,
-        "primary_sources_first_enough": true,
-        "not_too_long": true,
-        "no_noisy_fragments": true,
-        "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
-      },
-      "failure_reasons": [],
-      "warnings": []
-    }
-  },
-  {
-    "spec": {
-      "id": "ai_external_quality_ojk_pergadaian",
-      "query": "aturan usaha pergadaian dan perusahaan pergadaian",
-      "expected_behavior": "answerable",
-      "required_issuers": [
-        "OJK"
-      ],
-      "required_terms": [
-        "Pergadaian"
-      ],
-      "required_citation_terms": [
-        "hlm."
-      ],
-      "min_citations": 1,
-      "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
-    },
-    "evaluation": {
-      "id": "ai_external_quality_ojk_pergadaian",
-      "query": "aturan usaha pergadaian dan perusahaan pergadaian",
-      "expected_behavior": "answerable",
-      "score": 1.0,
-      "accepted": true,
-      "status": "answerable",
-      "confidence": {
-        "label": "strong",
-        "score": 1.0,
-        "reasons": [
-          "primary_rate=1.00",
-          "page_rate=1.00",
-          "article_rate=1.00",
-          "matched_phrase_count=5",
-          "lexical_rate=0.91",
           "query_coverage=0.75"
         ],
         "must_say_not_found": false
       },
-      "citation_count": 1,
-      "source_line_count": 1,
-      "answer_chars": 1053,
+      "citation_count": 6,
+      "source_line_count": 6,
+      "answer_chars": 3971,
+      "required_terms": [
+        "Penukaran Valuta Asing"
+      ],
+      "term_hits": [
+        "Penukaran Valuta Asing"
+      ],
+      "required_uncertainty_terms": [],
+      "uncertainty_hits": [],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "citation_term_hits": [
+        "hlm."
+      ],
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "primary_rate": 1.0,
+      "noisy_hits": [],
+      "truncated_bullets": [],
+      "checks": {
+        "status_matches_expected": true,
+        "not_found_has_no_citations": true,
+        "has_required_terms": true,
+        "has_uncertainty_terms": true,
+        "has_required_citation_terms": true,
+        "has_min_citations": true,
+        "source_lines_match_citation_count": true,
+        "has_required_issuers": true,
+        "primary_sources_first_enough": true,
+        "not_too_long": true,
+        "no_noisy_fragments": true,
+        "no_truncated_bullets": true,
+        "partial_has_uncertainty": true
+      },
+      "failure_reasons": [],
+      "warnings": []
+    }
+  },
+  {
+    "spec": {
+      "id": "blind_quality_bi_operasi_moneter",
+      "query": "apa ketentuan kepesertaan dalam operasi moneter Bank Indonesia?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "BI"
+      ],
+      "required_terms": [
+        "Operasi Moneter"
+      ],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "min_citations": 1,
+      "max_answer_chars": 4500,
+      "notes": "Fresh reviewer-owned blind holdout question."
+    },
+    "evaluation": {
+      "id": "blind_quality_bi_operasi_moneter",
+      "query": "apa ketentuan kepesertaan dalam operasi moneter Bank Indonesia?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.868,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=0",
+          "lexical_rate=0.90",
+          "query_coverage=0.83"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 2,
+      "source_line_count": 2,
+      "answer_chars": 1512,
+      "required_terms": [
+        "Operasi Moneter"
+      ],
+      "term_hits": [
+        "Operasi Moneter"
+      ],
+      "required_uncertainty_terms": [],
+      "uncertainty_hits": [],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "citation_term_hits": [
+        "hlm."
+      ],
+      "required_issuers": [
+        "BI"
+      ],
+      "issuer_hits": [
+        "BI"
+      ],
+      "primary_rate": 1.0,
+      "noisy_hits": [],
+      "truncated_bullets": [],
+      "checks": {
+        "status_matches_expected": true,
+        "not_found_has_no_citations": true,
+        "has_required_terms": true,
+        "has_uncertainty_terms": true,
+        "has_required_citation_terms": true,
+        "has_min_citations": true,
+        "source_lines_match_citation_count": true,
+        "has_required_issuers": true,
+        "primary_sources_first_enough": true,
+        "not_too_long": true,
+        "no_noisy_fragments": true,
+        "no_truncated_bullets": true,
+        "partial_has_uncertainty": true
+      },
+      "failure_reasons": [],
+      "warnings": []
+    }
+  },
+  {
+    "spec": {
+      "id": "blind_quality_ojk_bmpk",
+      "query": "bagaimana ketentuan batas maksimum pemberian kredit bagi BPR dan BPRS?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "required_terms": [
+        "Batas Maksimum Pemberian Kredit"
+      ],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "min_citations": 1,
+      "max_answer_chars": 4500,
+      "notes": "Fresh reviewer-owned blind holdout question."
+    },
+    "evaluation": {
+      "id": "blind_quality_ojk_bmpk",
+      "query": "bagaimana ketentuan batas maksimum pemberian kredit bagi BPR dan BPRS?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.879,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=0",
+          "lexical_rate=0.86",
+          "query_coverage=1.00"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "source_line_count": 6,
+      "answer_chars": 2617,
+      "required_terms": [
+        "Batas Maksimum Pemberian Kredit"
+      ],
+      "term_hits": [
+        "Batas Maksimum Pemberian Kredit"
+      ],
+      "required_uncertainty_terms": [],
+      "uncertainty_hits": [],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "citation_term_hits": [
+        "hlm."
+      ],
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "primary_rate": 1.0,
+      "noisy_hits": [],
+      "truncated_bullets": [],
+      "checks": {
+        "status_matches_expected": true,
+        "not_found_has_no_citations": true,
+        "has_required_terms": true,
+        "has_uncertainty_terms": true,
+        "has_required_citation_terms": true,
+        "has_min_citations": true,
+        "source_lines_match_citation_count": true,
+        "has_required_issuers": true,
+        "primary_sources_first_enough": true,
+        "not_too_long": true,
+        "no_noisy_fragments": true,
+        "no_truncated_bullets": true,
+        "partial_has_uncertainty": true
+      },
+      "failure_reasons": [],
+      "warnings": []
+    }
+  },
+  {
+    "spec": {
+      "id": "blind_quality_ojk_lcr_nsfr",
+      "query": "aturan OJK apa yang mengatur liquidity coverage ratio dan net stable funding ratio untuk bank umum syariah?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "required_terms": [
+        "Liquidity Coverage Ratio"
+      ],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "min_citations": 1,
+      "max_answer_chars": 4500,
+      "notes": "Fresh reviewer-owned blind holdout question."
+    },
+    "evaluation": {
+      "id": "blind_quality_ojk_lcr_nsfr",
+      "query": "aturan OJK apa yang mengatur liquidity coverage ratio dan net stable funding ratio untuk bank umum syariah?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.924,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=0.40",
+          "matched_phrase_count=10",
+          "lexical_rate=0.94",
+          "query_coverage=0.73"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "source_line_count": 6,
+      "answer_chars": 3359,
+      "required_terms": [
+        "Liquidity Coverage Ratio"
+      ],
+      "term_hits": [
+        "Liquidity Coverage Ratio"
+      ],
+      "required_uncertainty_terms": [],
+      "uncertainty_hits": [],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "citation_term_hits": [
+        "hlm."
+      ],
+      "required_issuers": [
+        "OJK"
+      ],
+      "issuer_hits": [
+        "OJK"
+      ],
+      "primary_rate": 1.0,
+      "noisy_hits": [],
+      "truncated_bullets": [],
+      "checks": {
+        "status_matches_expected": true,
+        "not_found_has_no_citations": true,
+        "has_required_terms": true,
+        "has_uncertainty_terms": true,
+        "has_required_citation_terms": true,
+        "has_min_citations": true,
+        "source_lines_match_citation_count": true,
+        "has_required_issuers": true,
+        "primary_sources_first_enough": true,
+        "not_too_long": true,
+        "no_noisy_fragments": true,
+        "no_truncated_bullets": true,
+        "partial_has_uncertainty": true
+      },
+      "failure_reasons": [],
+      "warnings": []
+    }
+  },
+  {
+    "spec": {
+      "id": "blind_quality_ojk_pergadaian",
+      "query": "apa aturan OJK tentang usaha pergadaian dan perusahaan pergadaian?",
+      "expected_behavior": "answerable",
+      "required_issuers": [
+        "OJK"
+      ],
+      "required_terms": [
+        "Pergadaian"
+      ],
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "min_citations": 1,
+      "max_answer_chars": 4500,
+      "notes": "Fresh reviewer-owned blind holdout question."
+    },
+    "evaluation": {
+      "id": "blind_quality_ojk_pergadaian",
+      "query": "apa aturan OJK tentang usaha pergadaian dan perusahaan pergadaian?",
+      "expected_behavior": "answerable",
+      "score": 1.0,
+      "accepted": true,
+      "status": "answerable",
+      "confidence": {
+        "label": "strong",
+        "score": 0.997,
+        "reasons": [
+          "primary_rate=1.00",
+          "page_rate=1.00",
+          "article_rate=1.00",
+          "matched_phrase_count=7",
+          "lexical_rate=0.91",
+          "query_coverage=0.60"
+        ],
+        "must_say_not_found": false
+      },
+      "citation_count": 6,
+      "source_line_count": 6,
+      "answer_chars": 3229,
       "required_terms": [
         "Pergadaian"
       ],
@@ -582,8 +499,8 @@
   },
   {
     "spec": {
-      "id": "ai_external_quality_ojk_modal_ventura",
-      "query": "aturan penyelenggaraan usaha perusahaan modal ventura",
+      "id": "blind_quality_ojk_modal_ventura",
+      "query": "apa peraturan OJK untuk penyelenggaraan usaha perusahaan modal ventura?",
       "expected_behavior": "answerable",
       "required_issuers": [
         "OJK"
@@ -596,11 +513,11 @@
       ],
       "min_citations": 1,
       "max_answer_chars": 4500,
-      "notes": "AI-authored external-style holdout; not blind reviewer validation."
+      "notes": "Fresh reviewer-owned blind holdout question."
     },
     "evaluation": {
-      "id": "ai_external_quality_ojk_modal_ventura",
-      "query": "aturan penyelenggaraan usaha perusahaan modal ventura",
+      "id": "blind_quality_ojk_modal_ventura",
+      "query": "apa peraturan OJK untuk penyelenggaraan usaha perusahaan modal ventura?",
       "expected_behavior": "answerable",
       "score": 1.0,
       "accepted": true,
@@ -614,7 +531,7 @@
           "article_rate=1.00",
           "matched_phrase_count=5",
           "lexical_rate=0.98",
-          "query_coverage=0.83"
+          "query_coverage=0.86"
         ],
         "must_say_not_found": false
       },
@@ -665,8 +582,8 @@
   },
   {
     "spec": {
-      "id": "ai_external_quality_cross_pjp",
-      "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+      "id": "blind_quality_cross_pjp",
+      "query": "bandingkan ketentuan BI dan OJK mengenai penyedia jasa pembayaran.",
       "expected_behavior": "partial",
       "required_issuers": [
         "BI",
@@ -683,25 +600,25 @@
       ],
       "min_citations": 2,
       "max_answer_chars": 5500,
-      "notes": "AI-authored external-style holdout; cross-regulator, likely partial."
+      "notes": "Fresh reviewer-owned blind cross-regulator question."
     },
     "evaluation": {
-      "id": "ai_external_quality_cross_pjp",
-      "query": "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran",
+      "id": "blind_quality_cross_pjp",
+      "query": "bandingkan ketentuan BI dan OJK mengenai penyedia jasa pembayaran.",
       "expected_behavior": "partial",
       "score": 1.0,
       "accepted": true,
       "status": "partial",
       "confidence": {
         "label": "partial",
-        "score": 1.0,
+        "score": 0.934,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
-          "article_rate=1.00",
+          "article_rate=0.80",
           "matched_phrase_count=5",
-          "lexical_rate=0.96",
-          "query_coverage=0.62",
+          "lexical_rate=0.88",
+          "query_coverage=0.57",
           "cross_regulator_missing_direct_topic_coverage",
           "missing_direct_issuers=['OJK']",
           "topic_terms=['penyedia jasa pembayaran', 'pjp', 'jasa pembayaran', 'perizinan penyedia jasa pembayaran', 'penyelenggaraan penyedia jasa pembayaran']"
@@ -711,7 +628,7 @@
       },
       "citation_count": 3,
       "source_line_count": 3,
-      "answer_chars": 2241,
+      "answer_chars": 2713,
       "required_terms": [
         "Penyedia Jasa Pembayaran"
       ],
@@ -762,68 +679,81 @@
   },
   {
     "spec": {
-      "id": "ai_external_quality_not_found_kursi",
-      "query": "pengadaan kursi kantor untuk cabang bank diatur dimana?",
-      "expected_behavior": "not_found",
+      "id": "blind_quality_cross_consumer",
+      "query": "apa perbedaan ruang lingkup pelindungan konsumen menurut BI dan OJK?",
+      "expected_behavior": "partial",
+      "required_issuers": [
+        "BI",
+        "OJK"
+      ],
       "required_terms": [
-        "Tidak ditemukan"
+        "Pelindungan Konsumen"
       ],
       "required_uncertainty_terms": [
-        "tidak akan menyimpulkan"
+        "parsial"
       ],
-      "required_citation_terms": [],
-      "min_citations": 0,
-      "max_answer_chars": 1200,
-      "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+      "required_citation_terms": [
+        "hlm."
+      ],
+      "min_citations": 2,
+      "max_answer_chars": 5500,
+      "notes": "Fresh reviewer-owned blind cross-regulator question."
     },
     "evaluation": {
-      "id": "ai_external_quality_not_found_kursi",
-      "query": "pengadaan kursi kantor untuk cabang bank diatur dimana?",
-      "expected_behavior": "not_found",
-      "score": 1.0,
-      "accepted": true,
-      "status": "not_found",
+      "id": "blind_quality_cross_consumer",
+      "query": "apa perbedaan ruang lingkup pelindungan konsumen menurut BI dan OJK?",
+      "expected_behavior": "partial",
+      "score": 0.93,
+      "accepted": false,
+      "status": "answerable",
       "confidence": {
-        "label": "weak",
-        "score": 0.814,
+        "label": "strong",
+        "score": 0.802,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=1.00",
           "matched_phrase_count=0",
-          "lexical_rate=0.71",
-          "query_coverage=0.57",
-          "generic_entity_only_insufficient_support"
+          "lexical_rate=0.63",
+          "query_coverage=0.57"
         ],
-        "must_say_not_found": true
+        "must_say_not_found": false
       },
-      "citation_count": 0,
-      "source_line_count": 0,
-      "answer_chars": 175,
+      "citation_count": 4,
+      "source_line_count": 4,
+      "answer_chars": 2293,
       "required_terms": [
-        "Tidak ditemukan"
+        "Pelindungan Konsumen"
       ],
       "term_hits": [
-        "Tidak ditemukan"
+        "Pelindungan Konsumen"
       ],
       "required_uncertainty_terms": [
-        "tidak akan menyimpulkan"
+        "parsial"
       ],
-      "uncertainty_hits": [
-        "tidak akan menyimpulkan"
+      "uncertainty_hits": [],
+      "required_citation_terms": [
+        "hlm."
       ],
-      "required_citation_terms": [],
-      "citation_term_hits": [],
-      "required_issuers": [],
-      "issuer_hits": [],
-      "primary_rate": 0.0,
+      "citation_term_hits": [
+        "hlm."
+      ],
+      "required_issuers": [
+        "BI",
+        "OJK"
+      ],
+      "issuer_hits": [
+        "BI",
+        "OJK"
+      ],
+      "primary_rate": 1.0,
       "noisy_hits": [],
       "truncated_bullets": [],
       "checks": {
         "status_matches_expected": true,
         "not_found_has_no_citations": true,
         "has_required_terms": true,
-        "has_uncertainty_terms": true,
+        "has_uncertainty_terms": false,
         "has_required_citation_terms": true,
         "has_min_citations": true,
         "source_lines_match_citation_count": true,
@@ -832,16 +762,19 @@
         "not_too_long": true,
         "no_noisy_fragments": true,
         "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
+        "partial_has_uncertainty": false
       },
-      "failure_reasons": [],
+      "failure_reasons": [
+        "has_uncertainty_terms",
+        "partial_has_uncertainty"
+      ],
       "warnings": []
     }
   },
   {
     "spec": {
-      "id": "ai_external_quality_not_found_seragam",
-      "query": "aturan warna seragam sales cabang bank menurut OJK",
+      "id": "blind_quality_not_found_furniture",
+      "query": "apakah ada aturan OJK tentang standar pembelian meja dan kursi untuk kantor cabang bank?",
       "expected_behavior": "not_found",
       "required_terms": [
         "Tidak ditemukan"
@@ -852,11 +785,11 @@
       "required_citation_terms": [],
       "min_citations": 0,
       "max_answer_chars": 1200,
-      "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
+      "notes": "Fresh reviewer-owned blind out-of-scope question."
     },
     "evaluation": {
-      "id": "ai_external_quality_not_found_seragam",
-      "query": "aturan warna seragam sales cabang bank menurut OJK",
+      "id": "blind_quality_not_found_furniture",
+      "query": "apakah ada aturan OJK tentang standar pembelian meja dan kursi untuk kantor cabang bank?",
       "expected_behavior": "not_found",
       "score": 1.0,
       "accepted": true,
@@ -867,91 +800,11 @@
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
-          "article_rate=1.00",
+          "article_rate=0.80",
           "matched_phrase_count=0",
-          "lexical_rate=0.45",
-          "query_coverage=0.43",
-          "generic_entity_only_insufficient_support",
-          "low_coverage_without_exact_phrase_support"
-        ],
-        "must_say_not_found": true
-      },
-      "citation_count": 0,
-      "source_line_count": 0,
-      "answer_chars": 175,
-      "required_terms": [
-        "Tidak ditemukan"
-      ],
-      "term_hits": [
-        "Tidak ditemukan"
-      ],
-      "required_uncertainty_terms": [
-        "tidak akan menyimpulkan"
-      ],
-      "uncertainty_hits": [
-        "tidak akan menyimpulkan"
-      ],
-      "required_citation_terms": [],
-      "citation_term_hits": [],
-      "required_issuers": [],
-      "issuer_hits": [],
-      "primary_rate": 0.0,
-      "noisy_hits": [],
-      "truncated_bullets": [],
-      "checks": {
-        "status_matches_expected": true,
-        "not_found_has_no_citations": true,
-        "has_required_terms": true,
-        "has_uncertainty_terms": true,
-        "has_required_citation_terms": true,
-        "has_min_citations": true,
-        "source_lines_match_citation_count": true,
-        "has_required_issuers": true,
-        "primary_sources_first_enough": true,
-        "not_too_long": true,
-        "no_noisy_fragments": true,
-        "no_truncated_bullets": true,
-        "partial_has_uncertainty": true
-      },
-      "failure_reasons": [],
-      "warnings": []
-    }
-  },
-  {
-    "spec": {
-      "id": "ai_external_quality_not_found_kopi",
-      "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
-      "expected_behavior": "not_found",
-      "required_terms": [
-        "Tidak ditemukan"
-      ],
-      "required_uncertainty_terms": [
-        "tidak akan menyimpulkan"
-      ],
-      "required_citation_terms": [],
-      "min_citations": 0,
-      "max_answer_chars": 1200,
-      "notes": "AI-authored external-style holdout; out of regulatory corpus scope."
-    },
-    "evaluation": {
-      "id": "ai_external_quality_not_found_kopi",
-      "query": "ketentuan BI tentang resep membuat kopi di kantor bank",
-      "expected_behavior": "not_found",
-      "score": 1.0,
-      "accepted": true,
-      "status": "not_found",
-      "confidence": {
-        "label": "weak",
-        "score": 0.677,
-        "reasons": [
-          "primary_rate=1.00",
-          "page_rate=1.00",
-          "article_rate=0.40",
-          "matched_phrase_count=0",
-          "lexical_rate=0.44",
-          "query_coverage=0.50",
-          "generic_entity_only_insufficient_support",
-          "low_coverage_without_exact_phrase_support"
+          "lexical_rate=0.49",
+          "query_coverage=0.67",
+          "generic_entity_only_insufficient_support"
         ],
         "must_say_not_found": true
       },

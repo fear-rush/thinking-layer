@@ -1,0 +1,182 @@
+{
+  "entities": [
+    {
+      "name": "transparansi_dan_publikasi_laporan_bank_umum_konvensional",
+      "patterns": ["Transparansi dan Publikasi Laporan Bank Umum Konvensional"],
+      "expansions": ["Transparansi dan Publikasi Laporan Bank Umum Konvensional"],
+      "exact_phrases": ["Transparansi dan Publikasi Laporan Bank Umum Konvensional"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact regulation title with high title and heading support.",
+      "confidence": "high",
+      "support_count": 2382
+    },
+    {
+      "name": "pedoman_perlakuan_akuntansi_perusahaan_efek",
+      "patterns": ["Pedoman Perlakuan Akuntansi Perusahaan Efek"],
+      "expansions": ["Pedoman Perlakuan Akuntansi Perusahaan Efek"],
+      "exact_phrases": ["Pedoman Perlakuan Akuntansi Perusahaan Efek"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact regulation title with high title and heading support.",
+      "confidence": "high",
+      "support_count": 1599
+    },
+    {
+      "name": "rencana_bisnis_bank_umum_syariah_dan_unit_usaha_syariah",
+      "patterns": ["Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah"],
+      "expansions": ["Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah"],
+      "exact_phrases": ["Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact regulation title; useful sector-specific entity.",
+      "confidence": "high",
+      "support_count": 1048
+    },
+    {
+      "name": "penilaian_tingkat_maturitas_digital_bank_umum",
+      "patterns": ["Penilaian Tingkat Maturitas Digital Bank Umum"],
+      "expansions": ["Penilaian Tingkat Maturitas Digital Bank Umum"],
+      "exact_phrases": ["Penilaian Tingkat Maturitas Digital Bank Umum"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact regulation title with high heading support.",
+      "confidence": "high",
+      "support_count": 611
+    },
+    {
+      "name": "usaha_pergadaian",
+      "patterns": ["Usaha Pergadaian"],
+      "expansions": ["Usaha Pergadaian"],
+      "exact_phrases": ["Usaha Pergadaian"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "High-support title phrase that complements the existing pergadaian entity.",
+      "confidence": "high",
+      "support_count": 442
+    },
+    {
+      "name": "layanan_kebanksentralan",
+      "patterns": ["Layanan Kebanksentralan"],
+      "expansions": ["Layanan Kebanksentralan"],
+      "exact_phrases": ["Layanan Kebanksentralan"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact BI regulation title; excluded the noisy single-word Layanan alias.",
+      "confidence": "high",
+      "support_count": 241
+    },
+    {
+      "name": "kegiatan_usaha_penukaran_valuta_asing",
+      "patterns": ["Kegiatan Usaha Penukaran Valuta Asing", "KUPVA"],
+      "expansions": ["Kegiatan Usaha Penukaran Valuta Asing"],
+      "exact_phrases": ["Kegiatan Usaha Penukaran Valuta Asing", "KUPVA"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "High-support BI entity with a verified acronym alias.",
+      "confidence": "high",
+      "support_count": 271
+    },
+    {
+      "name": "persetujuan_bank_umum_sebagai_kustodian",
+      "patterns": ["Persetujuan Bank Umum Sebagai Kustodian"],
+      "expansions": ["Persetujuan Bank Umum Sebagai Kustodian"],
+      "exact_phrases": ["Persetujuan Bank Umum Sebagai Kustodian"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact regulation title with high heading support.",
+      "confidence": "high",
+      "support_count": 112
+    }
+  ],
+  "topics": [
+    {
+      "name": "bentuk_dan_susunan_laporan_bulanan",
+      "patterns": ["Bentuk dan susunan Laporan Bulanan"],
+      "expansions": ["Bentuk dan susunan Laporan Bulanan"],
+      "exact_phrases": ["Bentuk dan susunan Laporan Bulanan"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "High-support reporting phrase; specific enough for query expansion.",
+      "confidence": "high",
+      "support_count": 6063
+    },
+    {
+      "name": "laporan_insidental",
+      "patterns": ["Laporan Insidental"],
+      "expansions": ["Laporan Insidental"],
+      "exact_phrases": ["Laporan Insidental"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Specific reporting topic with high support.",
+      "confidence": "high",
+      "support_count": 4269
+    },
+    {
+      "name": "pemasaran_produk_dan_layanan_jasa_keuangan",
+      "patterns": ["pemasaran produk dan layanan jasa keuangan"],
+      "expansions": ["pemasaran produk dan layanan jasa keuangan"],
+      "exact_phrases": ["pemasaran produk dan layanan jasa keuangan"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Specific marketing topic; does not use the broad single-word pemasaran pattern.",
+      "confidence": "high",
+      "support_count": 1878
+    },
+    {
+      "name": "laporan_debitur",
+      "patterns": ["Laporan Debitur"],
+      "expansions": ["Laporan Debitur"],
+      "exact_phrases": ["Laporan Debitur"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "High-support reporting topic relevant to SLIK and credit information.",
+      "confidence": "high",
+      "support_count": 1763
+    },
+    {
+      "name": "penilaian_kemampuan_dan_kepatutan",
+      "patterns": ["Penilaian Kemampuan dan Kepatutan"],
+      "expansions": ["Penilaian Kemampuan dan Kepatutan"],
+      "exact_phrases": ["Penilaian Kemampuan dan Kepatutan"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact governance topic with high support.",
+      "confidence": "high",
+      "support_count": 1517
+    },
+    {
+      "name": "global_master_repurchase_agreement_indonesia",
+      "patterns": ["Global Master Repurchase Agreement Indonesia"],
+      "expansions": ["Global Master Repurchase Agreement Indonesia"],
+      "exact_phrases": ["Global Master Repurchase Agreement Indonesia"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Exact attachment and regulation topic with high support.",
+      "confidence": "high",
+      "support_count": 1338
+    },
+    {
+      "name": "pelanggaran_bmpk",
+      "patterns": ["Pelanggaran BMPK"],
+      "expansions": ["Pelanggaran BMPK"],
+      "exact_phrases": ["Pelanggaran BMPK"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Specific prudential topic with high support.",
+      "confidence": "high",
+      "support_count": 538
+    },
+    {
+      "name": "layanan_pengaduan",
+      "patterns": ["Layanan Pengaduan"],
+      "expansions": ["Layanan Pengaduan"],
+      "exact_phrases": ["Layanan Pengaduan"],
+      "generated": true,
+      "approved": true,
+      "review_notes": "Specific consumer-protection topic with high support.",
+      "confidence": "high",
+      "support_count": 358
+    }
+  ]
+}
