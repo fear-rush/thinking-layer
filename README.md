@@ -100,6 +100,7 @@ uv run python -m thinking_layer.cli search "penyedia jasa pembayaran" --include-
 uv run python -m thinking_layer.cli semantic-search "peraturan BI tentang penyedia jasa pembayaran" --issuer BI --include-secondary --limit 10
 uv run python -m thinking_layer.cli evidence "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
 uv run python -m thinking_layer.cli answer "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
+uv run python -m thinking_layer.cli trace-query "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
 ```
 
 ## Try System Output
@@ -169,6 +170,8 @@ uv run python -m thinking_layer.cli answer "aturan yang mengatur planet mars unt
 ```
 
 Commands with `--write-report` write Markdown and JSON files under `reports/` using the query slug in the filename.
+
+`trace-query` writes a compact JSON observability record containing the query plan, retrieval counts and top evidence metadata, citation quality, extraction flags, confidence/refusal decision, and answer summary. It does not enable semantic retrieval or change ranking behavior.
 
 ## CLI Commands
 
@@ -542,7 +545,7 @@ Current development reports:
 
 - `reports/REPORT_INDEX.md`: concise map of every current report.
 - `reports/retrieval_smoke_test.md`: 10/10 accepted, average score `0.998` after primary-first ranking correction.
-- `reports/natural_language_eval.md`: 15/15 accepted, average score `0.999`.
+- `reports/natural_language_eval.md`: 15/15 accepted, average score `0.989` after the serial post-lexicon rerun; see `reports/regression_audit.md` for comparison with the frozen baseline.
 - `reports/evidence_eval.md`: 30/30 accepted, average score `0.990`.
 - `reports/answer_eval.md`: 30/30 accepted, average score `0.988`.
 - `reports/answer_quality_eval.md`: 12/12 accepted, average score `1.000`.
@@ -793,5 +796,5 @@ Next concrete steps before advancing the lexicon/query-understanding phase:
 - [ ] Add incremental ingestion and stale-index detection.
 - [ ] Add source/version timeline handling for regulation updates.
 - [ ] Add permission model if the corpus becomes user-specific or restricted.
-- [ ] Add observability for query plans, retrieved evidence, refusal reasons, and citation quality.
+- [x] Add local `trace-query` observability for query plans, retrieved evidence, refusal reasons, citation quality, and answer summaries.
 - [ ] Add API/service wrapper only after local CLI behavior is stable.

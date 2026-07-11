@@ -6,6 +6,7 @@ import unittest
 from thinking_layer.evaluation.semantic import rrf_results, write_report
 from thinking_layer.lexicon.merge import merge_generated_lexicon
 from thinking_layer.indexing.semantic import _role_texts, semantic_model_settings, semantic_text
+from thinking_layer.observability import trace_from_answer
 
 
 class ImportCliTests(unittest.TestCase):
@@ -23,6 +24,7 @@ class ImportCliTests(unittest.TestCase):
             "thinking_layer.retrieval.evidence",
             "thinking_layer.answer.composer",
             "thinking_layer.answer.quality",
+            "thinking_layer.observability",
             "thinking_layer.evaluation.evidence",
             "thinking_layer.evaluation.answer",
             "thinking_layer.evaluation.holdout",
@@ -107,6 +109,41 @@ class ImportCliTests(unittest.TestCase):
         merged = merge_generated_lexicon(base, reviewed)
 
         self.assertEqual(merged["topics"][0]["patterns"], ["perlindungan konsumen", "pelindungan konsumen"])
+
+    def test_query_trace_records_operational_decisions_and_retrieval_quality(self) -> None:
+        answer = {
+            "status": "not_found",
+            "citation_count": 0,
+            "composer": "template",
+            "answer": "Tidak ditemukan dalam dokumen yang tersedia.\n",
+            "documents_used": [],
+            "evidence_pack": {
+                "query": "aturan planet mars",
+                "plan": {
+                    "intents": ["find_regulations"],
+                    "issuers": [None],
+                    "entities": [],
+                    "topics": [],
+                    "searches": [{"query": "aturan planet mars", "reason": "raw_user_query"}],
+                },
+                "confidence": {
+                    "label": "not_found",
+                    "score": 0.1,
+                    "must_say_not_found": True,
+                    "reasons": ["no evidence retrieved"],
+                },
+                "documents": [],
+                "ungrouped_evidence": [],
+            },
+        }
+
+        trace = trace_from_answer(answer, generated_at="2026-07-11T00:00:00+00:00")
+
+        self.assertEqual(trace["schema_version"], 1)
+        self.assertEqual(trace["decision"]["status"], "not_found")
+        self.assertTrue(trace["decision"]["refused"])
+        self.assertEqual(trace["retrieval"]["evidence_count"], 0)
+        self.assertEqual(trace["query_plan"]["search_count"], 1)
 
     def test_rrf_fuses_ranked_lists_without_duplicate_blocks(self) -> None:
         lexical = [{"file_id": "a", "page_start": 1, "text": "same"}, {"file_id": "b", "page_start": 1, "text": "other"}]

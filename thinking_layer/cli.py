@@ -21,6 +21,7 @@ from .indexing.sqlite import cmd_build_index
 from .indexing.semantic import cmd_build_semantic_index, cmd_semantic_search
 from .lexicon.candidates import cmd_extract_lexicon_candidates
 from .lexicon.merge import cmd_merge_lexicon
+from .observability import cmd_trace_query
 from .config.paths import ROOT
 from .retrieval.evidence import cmd_evidence
 from .retrieval.planning import cmd_plan_query
@@ -162,6 +163,18 @@ def main() -> None:
     answer_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum citations per document in the answer.")
     answer_parser.add_argument("--write-report", action="store_true", help="Write markdown and JSON answer reports.")
     answer_parser.set_defaults(func=cmd_answer)
+
+    trace_parser = subparsers.add_parser("trace-query", help="Record query-plan, retrieval, refusal, citation, and answer observability.")
+    trace_parser.add_argument("query", help="Natural-language user query.")
+    trace_parser.add_argument("--max-searches", type=int, default=8, help="Maximum planned searches.")
+    trace_parser.add_argument("--limit", type=int, default=12, help="Merged evidence blocks.")
+    trace_parser.add_argument("--per-document-limit", type=int, default=3, help="Maximum evidence blocks per document.")
+    trace_parser.add_argument("--max-documents", type=int, default=6, help="Maximum documents used in the answer.")
+    trace_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum citations per document.")
+    trace_parser.add_argument("--top-evidence", type=int, default=10, help="Number of evidence summaries to retain in the trace.")
+    trace_parser.add_argument("--write-report", action="store_true", help="Write a JSON trace under reports/.")
+    trace_parser.add_argument("--output", default=None, help="Optional JSON trace output path.")
+    trace_parser.set_defaults(func=cmd_trace_query)
 
     eval_answer_parser = subparsers.add_parser("eval-answer", help="Evaluate deterministic answers against manually curated gold questions.")
     eval_answer_parser.add_argument("--gold-file", default=None, help="Path to gold questions JSON. Defaults to resources/gold_questions.json.")
