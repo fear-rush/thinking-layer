@@ -229,14 +229,14 @@
     },
     {
       "name": "consumer_protection",
-      "patterns": ["perlindungan konsumen", "pengaduan", "keluhan", "nasabah", "konsumen", "edukasi", "kerahasiaan data", "data pribadi"],
+      "patterns": ["perlindungan konsumen", "pelindungan konsumen", "pengaduan", "keluhan", "nasabah", "konsumen", "edukasi", "kerahasiaan data", "data pribadi"],
       "expansions": [
         "pelindungan konsumen dan masyarakat sektor jasa keuangan",
         "layanan pengaduan konsumen pelaku usaha jasa keuangan",
         "kerahasiaan keamanan data informasi pribadi konsumen",
         "transparansi informasi produk penggunaan data pribadi nasabah"
       ],
-      "exact_phrases": ["data informasi pribadi konsumen", "pengaduan konsumen"],
+      "exact_phrases": ["data informasi pribadi konsumen", "pengaduan konsumen", "pelindungan konsumen"],
       "issuer": "OJK"
     },
     {
@@ -357,7 +357,7 @@
     },
     {
       "name": "fit_and_proper",
-      "patterns": ["fit and proper", "kemampuan dan kepatutan", "pihak utama", "direksi komisaris psp"],
+      "patterns": ["fit and proper", "kemampuan dan kepatutan", "uji kemampuan dan kepatutan", "pihak utama", "direksi komisaris psp"],
       "expansions": ["penilaian kemampuan dan kepatutan", "pihak utama lembaga jasa keuangan", "calon pemegang saham pengendali direksi dewan komisaris"]
     },
     {

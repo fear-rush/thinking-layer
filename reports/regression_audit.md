@@ -4,17 +4,17 @@ Date: 2026-07-11
 
 ## Result
 
-The 44-test unit suite passed. Development evaluation acceptance remained unchanged:
+The post-lexicon serial gate passed. Development evaluation acceptance remained green:
 
 | Evaluation | Frozen baseline | Current run | Result |
 | --- | --- | --- | --- |
 | Retrieval smoke | 10/10, average `0.996` | 10/10, average `0.998` after ranking fix | Recovered; primary-first behavior improved |
-| Natural language | 15/15, average `0.999` | 15/15, average `0.999` | Unchanged report |
-| Evidence | 30/30, average `0.990` | 30/30, average `0.990` | Unchanged report |
-| Answer | 30/30, average `0.988` | 30/30, average `0.988` | Unchanged report |
+| Natural language | 15/15, average `0.999` | 15/15, average `0.989` | Accepted; ranking/Pasal ordering changed, but no question failed |
+| Evidence | 30/30, average `0.990` | 30/30, average `0.990` | Accepted after serial rerun |
+| Answer | 30/30, average `0.988` | 30/30, average `0.988` | Accepted after serial rerun |
 | Answer quality | 12/12, average `1.000` | 12/12, average `1.000` | Accepted; output shape changed |
 
-The natural-language, evidence, and answer evaluations were not regenerated to completion in this run because their corpus scans were too slow after concurrent execution was stopped. Their checked-in reports were unchanged and remain the prior baseline; they should be rerun serially before the next release gate.
+The unit suite was also rerun with `52/52` tests passing. The two approved aliases (`pelindungan konsumen` and `uji kemampuan dan kepatutan`) did not change any gold natural-language query plan when compared against the pre-alias runtime lexicon. The natural-language score difference is therefore a regenerated ranking/Pasal-ordering difference rather than an alias-induced acceptance regression.
 
 ## Findings
 

@@ -17,7 +17,7 @@ No failures.
 - Score: `1.0`
 - Status: `answerable`
 - Confidence: `strong`
-- Citation count: `6`
+- Citation count: `5`
 - Document hits: `['Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan']`
 - Issuer hits: `['OJK']`
 
@@ -37,7 +37,7 @@ No failures.
 - Score: `1.0`
 - Status: `answerable`
 - Confidence: `strong`
-- Citation count: `6`
+- Citation count: `5`
 - Document hits: `['Penyedia Jasa Pembayaran']`
 - Issuer hits: `['BI']`
 
@@ -67,7 +67,7 @@ No failures.
 - Score: `1.0`
 - Status: `answerable`
 - Confidence: `strong`
-- Citation count: `6`
+- Citation count: `3`
 - Document hits: `['Standar Nasional Open Application Programming Interface Pembayaran']`
 - Issuer hits: `['BI']`
 
@@ -227,7 +227,7 @@ No failures.
 - Score: `1.0`
 - Status: `answerable`
 - Confidence: `strong`
-- Citation count: `1`
+- Citation count: `2`
 - Document hits: `['Pemasaran Produk Asuransi', 'Produk Asuransi']`
 - Issuer hits: `['OJK']`
 
@@ -257,7 +257,7 @@ No failures.
 - Score: `1.0`
 - Status: `answerable`
 - Confidence: `strong`
-- Citation count: `6`
+- Citation count: `4`
 - Document hits: `['Penyelenggara Infrastruktur Sistem Pembayaran']`
 - Issuer hits: `['BI']`
 

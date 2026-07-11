@@ -24,6 +24,25 @@ def semantic_config() -> dict[str, Any]:
     return load_heuristic_config("semantic_retrieval")
 
 
+def semantic_model_settings(model_name: str) -> dict[str, Any]:
+    config = semantic_config()
+    models = config.get("models") or {}
+    settings = models.get(model_name) or {}
+    if not isinstance(settings, dict):
+        raise SystemExit(f"Semantic model settings for `{model_name}` must be an object.")
+    defaults = {
+        "query_prefix": "",
+        "document_prefix": "",
+        "query_prompt_name": None,
+        "document_prompt_name": None,
+        "max_seq_length": None,
+        "trust_remote_code": False,
+        "device": None,
+        "revision": None,
+    }
+    return {**defaults, **settings}
+
+
 def semantic_text(block: dict[str, Any], max_chars: int) -> str:
     title = block.get("document_title") or ""
     heading = " ".join(block.get("heading_path") or [])
@@ -41,32 +60,102 @@ def _load_model(model_name: str):
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
         raise SystemExit("Install semantic dependencies with `uv sync` before using semantic retrieval.") from exc
-    return SentenceTransformer(model_name)
+    settings = semantic_model_settings(model_name)
+    load_kwargs: dict[str, Any] = {"trust_remote_code": bool(settings["trust_remote_code"])}
+    if settings.get("device"):
+        load_kwargs["device"] = settings["device"]
+    if settings.get("revision"):
+        load_kwargs["revision"] = settings["revision"]
+    model = SentenceTransformer(model_name, **load_kwargs)
+    if settings.get("max_seq_length"):
+        model.max_seq_length = int(settings["max_seq_length"])
+    return model
 
 
-def _encode_documents(model: Any, texts: list[str], batch_size: int, normalize: bool) -> np.ndarray:
-    encode_document = getattr(model, "encode_document", None)
-    if encode_document is None:
-        encode_document = model.encode
+def _role_texts(model_name: str | None, texts: str | list[str], role: str) -> str | list[str]:
+    if not model_name:
+        return texts
+    prefix = str(semantic_model_settings(model_name).get(f"{role}_prefix") or "")
+    if not prefix:
+        return texts
+    if isinstance(texts, str):
+        return texts if texts.startswith(prefix) else f"{prefix}{texts}"
+    return [text if text.startswith(prefix) else f"{prefix}{text}" for text in texts]
+
+
+def _encode_role(
+    model_name: str | None,
+    model: Any,
+    texts: str | list[str],
+    role: str,
+    batch_size: int | None,
+    normalize: bool,
+    show_progress_bar: bool,
+) -> np.ndarray:
+    settings = semantic_model_settings(model_name) if model_name else {}
+    values = _role_texts(model_name, texts, role)
+    prefix = settings.get(f"{role}_prefix") or ""
+    prompt_name = settings.get(f"{role}_prompt_name")
+
+    # Explicit prefixes take precedence over model-level prompts so E5 is not
+    # accidentally prefixed twice when using encode_query/encode_document.
+    if prefix or prompt_name:
+        encode = model.encode
+        encode_kwargs: dict[str, Any] = {}
+        if prompt_name and not prefix:
+            encode_kwargs["prompt_name"] = prompt_name
+    else:
+        encode = getattr(model, "encode_query" if role == "query" else "encode_document", None)
+        if encode is None:
+            encode = model.encode
+        encode_kwargs = {}
+
+    if batch_size is not None:
+        encode_kwargs["batch_size"] = batch_size
     return np.asarray(
-        encode_document(
-            texts,
-            batch_size=batch_size,
-            show_progress_bar=True,
+        encode(
+            values,
+            show_progress_bar=show_progress_bar,
             convert_to_numpy=True,
             normalize_embeddings=normalize,
+            **encode_kwargs,
         ),
         dtype=np.float32,
     )
 
 
-def _encode_query(model: Any, query: str, normalize: bool) -> np.ndarray:
-    encode_query = getattr(model, "encode_query", None)
-    if encode_query is None:
-        encode_query = model.encode
-    return np.asarray(
-        encode_query(query, convert_to_numpy=True, normalize_embeddings=normalize),
-        dtype=np.float32,
+def _encode_documents(
+    model: Any,
+    texts: list[str],
+    batch_size: int,
+    normalize: bool,
+    model_name: str | None = None,
+) -> np.ndarray:
+    return _encode_role(
+        model_name,
+        model,
+        texts,
+        "document",
+        batch_size,
+        normalize,
+        show_progress_bar=True,
+    )
+
+
+def _encode_query(
+    model: Any,
+    query: str,
+    normalize: bool,
+    model_name: str | None = None,
+) -> np.ndarray:
+    return _encode_role(
+        model_name,
+        model,
+        query,
+        "query",
+        None,
+        normalize,
+        show_progress_bar=False,
     )
 
 
@@ -99,7 +188,7 @@ def build_semantic_index(
 
     model = _load_model(model_name)
     texts = [semantic_text(block, max_chars) for block in blocks]
-    embeddings = _encode_documents(model, texts, batch_size, normalize)
+    embeddings = _encode_documents(model, texts, batch_size, normalize, model_name=model_name)
     if embeddings.ndim != 2 or len(embeddings) != len(blocks):
         raise SystemExit(f"Unexpected embedding shape: {embeddings.shape}")
 
@@ -116,6 +205,7 @@ def build_semantic_index(
         "block_count": len(blocks),
         "batch_size": batch_size,
         "max_text_chars": max_chars,
+        "model_settings": semantic_model_settings(model_name),
         "corpus_signature": index_signature(),
         "source_corpus": str(SOURCE_CORPUS_PATH.relative_to(ROOT)) if SOURCE_CORPUS_PATH.exists() else None,
     }
@@ -139,7 +229,15 @@ def semantic_search(
     if metadata.get("corpus_signature") != index_signature():
         print("Warning: persisted semantic index may be stale; rebuild it before benchmarking.")
     model = _load_model(str(metadata["model_name"]))
-    query_embedding = _encode_query(model, query, bool(metadata.get("normalize_embeddings", True)))
+    model_name = str(metadata["model_name"])
+    if metadata.get("model_settings") != semantic_model_settings(model_name):
+        print("Warning: semantic model encoding settings changed; rebuild the index before searching.")
+    query_embedding = _encode_query(
+        model,
+        query,
+        bool(metadata.get("normalize_embeddings", True)),
+        model_name=model_name,
+    )
     embeddings = np.load(SEMANTIC_INDEX_EMBEDDINGS, mmap_mode="r")
     blocks = load_semantic_blocks()
     if len(embeddings) != len(blocks):

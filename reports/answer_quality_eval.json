@@ -556,12 +556,12 @@
       "status": "answerable",
       "confidence": {
         "label": "strong",
-        "score": 0.858,
+        "score": 1.0,
         "reasons": [
-          "primary_rate=0.60",
+          "primary_rate=1.00",
           "page_rate=1.00",
-          "article_rate=0.60",
-          "matched_phrase_count=9",
+          "article_rate=1.00",
+          "matched_phrase_count=8",
           "lexical_rate=0.95",
           "query_coverage=0.75"
         ],
@@ -569,7 +569,7 @@
       },
       "citation_count": 6,
       "source_line_count": 6,
-      "answer_chars": 3076,
+      "answer_chars": 3070,
       "required_terms": [
         "Layanan Digital",
         "Bank Umum"
@@ -594,7 +594,7 @@
       "issuer_hits": [
         "OJK"
       ],
-      "primary_rate": 0.833,
+      "primary_rate": 1.0,
       "noisy_hits": [],
       "truncated_bullets": [],
       "checks": {
@@ -643,13 +643,13 @@
       "status": "partial",
       "confidence": {
         "label": "partial",
-        "score": 0.733,
+        "score": 0.757,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
-          "article_rate=0.80",
+          "article_rate=1.00",
           "matched_phrase_count=0",
-          "lexical_rate=0.26",
+          "lexical_rate=0.21",
           "query_coverage=0.75"
         ],
         "must_say_not_found": false

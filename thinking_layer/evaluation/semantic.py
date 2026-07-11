@@ -28,12 +28,13 @@ def result_key(row: dict[str, Any]) -> tuple[Any, ...]:
 def dense_results(
     query: str,
     model: Any,
+    model_name: str,
     blocks: list[dict[str, Any]],
     embeddings: np.ndarray,
     limit: int,
     normalize: bool,
 ) -> list[dict[str, Any]]:
-    query_embedding = _encode_query(model, query, normalize)
+    query_embedding = _encode_query(model, query, normalize, model_name=model_name)
     scores = embeddings @ query_embedding
     result_count = min(limit, len(blocks))
     positions = np.argpartition(-scores, result_count - 1)[:result_count]
@@ -144,15 +145,16 @@ def benchmark_model(
     progress: bool,
 ) -> dict[str, Any]:
     model = _load_model(model_name)
-    texts = [semantic_text(block, 6000) for block in blocks]
-    embeddings = _encode_documents(model, texts, batch_size, normalize)
+    max_text_chars = int(semantic_config().get("max_text_chars", 6000))
+    texts = [semantic_text(block, max_text_chars) for block in blocks]
+    embeddings = _encode_documents(model, texts, batch_size, normalize, model_name=model_name)
     dense_by_query: dict[str, list[dict[str, Any]]] = {}
     methods: dict[str, list[dict[str, Any]]] = {"dense": [], "rrf": []}
     for index, spec in enumerate(specs, start=1):
         query = spec["query"]
         if progress:
             print(f"{model_name}: query {index}/{len(specs)}", flush=True)
-        dense = dense_results(query, model, blocks, embeddings, limit, normalize)
+        dense = dense_results(query, model, model_name, blocks, embeddings, limit, normalize)
         lexical = lexical_by_query[query]
         dense_by_query[query] = dense
         methods["dense"].append(metric_row(spec, dense, cutoffs))
@@ -160,6 +162,7 @@ def benchmark_model(
     return {
         "model": model_name,
         "block_count": len(blocks),
+        "model_settings": semantic_config().get("models", {}).get(model_name, {}),
         "embedding_dimension": int(embeddings.shape[1]),
         "methods": {
             "dense": {"summary": summarize(methods["dense"], cutoffs), "queries": methods["dense"]},
@@ -194,6 +197,20 @@ def write_report(report: dict[str, Any], path) -> None:
             [
                 f"### `{model['model']}`",
                 "",
+            ]
+        )
+        if model.get("status") == "error":
+            lines.extend(
+                [
+                    "- Status: `error`",
+                    f"- Error type: `{model.get('error_type', 'Exception')}`",
+                    f"- Error: `{model.get('error', 'unknown error')}`",
+                    "",
+                ]
+            )
+            continue
+        lines.extend(
+            [
                 f"- Dimensions: `{model['embedding_dimension']}`",
                 f"- Dense MRR: `{model['methods']['dense']['summary']['mrr']}`",
                 f"- Dense document recall: `{model['methods']['dense']['summary']['document_recall']}`",
@@ -243,19 +260,30 @@ def cmd_benchmark_retrieval(args: argparse.Namespace) -> None:
         "models": [],
     }
     for model_name in model_names:
-        report["models"].append(
-            benchmark_model(
-                model_name,
-                specs,
-                blocks,
-                lexical_by_query,
-                args.candidate_limit,
-                args.batch_size,
-                args.normalize_embeddings,
-                cutoffs,
-                args.progress,
+        try:
+            report["models"].append(
+                benchmark_model(
+                    model_name,
+                    specs,
+                    blocks,
+                    lexical_by_query,
+                    args.candidate_limit,
+                    args.batch_size,
+                    args.normalize_embeddings,
+                    cutoffs,
+                    args.progress,
+                )
             )
-        )
+        except Exception as exc:
+            failure = {
+                "model": model_name,
+                "status": "error",
+                "error_type": type(exc).__name__,
+                "error": str(exc),
+                "model_settings": semantic_config().get("models", {}).get(model_name, {}),
+            }
+            report["models"].append(failure)
+            print(f"{model_name}: benchmark error ({type(exc).__name__}): {exc}", flush=True)
     REPORTS_DIR.mkdir(exist_ok=True)
     prefix = args.report_prefix or "semantic_retrieval_benchmark"
     json_path = REPORTS_DIR / f"{prefix}.json"

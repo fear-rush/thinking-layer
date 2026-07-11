@@ -549,6 +549,7 @@ Current development reports:
 - `reports/blind_external_holdout_manifest.json`: reviewer-owned holdout; evidence `18/19`, answer `18/19`, answer quality `9/10`.
 - `reports/blind_external_holdout_triage.md`: classified holdout failures; the holdout is consumed and must not be used for tuning.
 - `reports/semantic_retrieval_benchmark.md`: bounded three-model BM25/dense/RRF comparison; dense and RRF do not yet beat BM25.
+- `reports/semantic_retrieval_benchmark_corrected.md`: corrected bounded benchmark with E5 query/passage prefixes; E5 and BGE-M3 still do not beat BM25, and GTE is recorded as locally incompatible.
 - `reports/extraction_spot_check.md`: extraction/citation spot check for high-value BI/OJK regulation areas.
 - `reports/parser_comparison_sample.md`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
 - `reports/visual_spot_check.md`: rendered page review for QRIS, SNAP, XLSX, and GMRA extraction quality.
@@ -749,9 +750,9 @@ These fixes must happen before semantic retrieval, embedding indexes, or LLM ans
 
 - [x] Regenerate and review `reports/lexicon_candidates.md` when resuming lexicon work.
 - [x] Approve a reviewed subset of high-confidence generated entities/topics/aliases. See `reports/lexicon_review.md`.
-- [x] Merge the reviewed lexicon into the separately tested `resources/query_lexicon.merged.json`; keep the active runtime lexicon unchanged until a broader evaluation gate.
-- [ ] Keep intents mostly manual because they represent user behavior, not document vocabulary.
-- [ ] Add failure-driven aliases only when supported by corpus evidence or real user queries.
+- [x] Merge the reviewed lexicon into the separately tested `resources/query_lexicon.merged.json`; promote only corpus-supported alias updates to the active runtime lexicon after the serial evaluation gate.
+- [x] Keep intents mostly manual because they represent user behavior, not document vocabulary.
+- [x] Add failure-driven aliases only when supported by corpus evidence or real user queries. The current gate approved `pelindungan konsumen` and `uji kemampuan dan kepatutan`; see `reports/lexicon_review.md`.
 
 ### 7. Benchmark Hybrid Retrieval Before Adoption
 
@@ -765,21 +766,21 @@ The first bounded report is a useful diagnostic, but not yet a final model-selec
 - [x] Build a persisted dense index with model ID, normalization, dimension, corpus signature, and chunking metadata for a bounded 5,000-block smoke index; full-corpus benchmarking remains pending.
 - [x] Compare BM25-only, dense-only, and BM25+dense Reciprocal Rank Fusion on bounded retrieval metrics. The initial result did not justify adoption, but E5 comparisons are provisional until the required prefixes and model-specific encoding contract are corrected. Evidence, answer, quality, and fresh-holdout comparisons remain pending.
 - [x] Measure bounded Recall@5/10/20, MRR, expected-document recall, and issuer coverage. Citation coverage, refusal precision, and evidence-noise rate remain pending until a candidate improves retrieval.
-- [ ] Add a model-specific semantic encoding contract before the next benchmark: E5 `query:`/`passage:` prefixes, model-specific query/document instructions, pooling, normalization, maximum input length, and `trust_remote_code` requirements.
-- [ ] Re-run the corrected bounded benchmark on the existing 5,000-block slice. At minimum compare `intfloat/multilingual-e5-base` as the safe control, `Alibaba-NLP/gte-multilingual-base` as the primary new candidate, and `BAAI/bge-m3` as the long-context dense/sparse/multi-vector baseline.
-- [ ] Keep the corrected benchmark evaluation-only and preserve the BM25 baseline. A candidate must improve MRR and Recall@10/20 without reducing issuer coverage or increasing boilerplate, secondary-document, or citation-noise evidence.
+- [x] Add a model-specific semantic encoding contract before the next benchmark: E5 `query:`/`passage:` prefixes, model-specific query/document instructions, pooling, normalization, maximum input length, and `trust_remote_code` requirements.
+- [x] Re-run the corrected bounded benchmark on the existing 5,000-block slice. At minimum compare `intfloat/multilingual-e5-base` as the safe control, `Alibaba-NLP/gte-multilingual-base` as the primary new candidate, and `BAAI/bge-m3` as the long-context dense/sparse/multi-vector baseline. See `reports/semantic_retrieval_benchmark_corrected.md`.
+- [x] Keep the corrected benchmark evaluation-only and preserve the BM25 baseline. No candidate improved MRR/Recall@10/20; GTE also failed with a local custom-code runtime error.
 - [ ] If a corrected candidate clears retrieval gates, run evidence, answer-quality, citation-coverage, refusal-boundary, and fresh-holdout evaluations before any adoption decision.
 - [ ] Add a top-50/100 reranking experiment using a cross-encoder or late-interaction model only after hybrid retrieval clears the evaluation gates.
 - [ ] For the eventual reranking experiment, rerank BM25/title top-50 first with `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`; use `BAAI/bge-reranker-v2-m3` as the heavier multilingual quality challenger. Keep both evaluation-only until all evidence and answer gates pass.
 - [ ] Keep role, issuer, direct-topic, and citation-confidence gates after semantic retrieval and reranking.
 - [ ] Only introduce query expansion, CRAG-style retrieval correction, or LLM answer composition after the hybrid baseline is measured and stable.
 
+Corrected bounded result: BM25 remains the production baseline. BM25 MRR is `0.869`; corrected dense MRR is `0.1611–0.1689`; RRF MRR is `0.85`; GTE is locally incompatible with the current runtime. No candidate cleared the retrieval gate.
+
 Next concrete steps before advancing the lexicon/query-understanding phase:
 
-1. Correct the model-specific semantic encoding contract, especially E5 query/passage prefixes.
-2. Re-run the bounded 5,000-block benchmark and compare the corrected candidates against BM25.
-3. If no candidate clears the gates, keep BM25 and proceed with manual intents and failure-driven aliases; do not run the full corpus or add reranking yet.
-4. Run the full-corpus benchmark only if a corrected candidate clears the bounded gates and a corpus-wide promotion or final model-selection claim is required. The full run is not required for the current BM25 production decision.
+1. Keep BM25/title retrieval in production and proceed with manual intents and failure-driven aliases.
+2. Leave full-corpus semantic benchmarking and reranking blocked; revisit them only if a new candidate or hardware/runtime change justifies another isolated gate.
 
 ### 8. Later Research Options
 

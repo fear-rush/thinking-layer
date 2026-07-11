@@ -618,6 +618,7 @@
       "name": "consumer_protection",
       "patterns": [
         "perlindungan konsumen",
+        "pelindungan konsumen",
         "pengaduan",
         "keluhan",
         "nasabah",
@@ -634,7 +635,8 @@
       ],
       "exact_phrases": [
         "data informasi pribadi konsumen",
-        "pengaduan konsumen"
+        "pengaduan konsumen",
+        "pelindungan konsumen"
       ],
       "issuer": "OJK"
     },
@@ -885,6 +887,7 @@
       "patterns": [
         "fit and proper",
         "kemampuan dan kepatutan",
+        "uji kemampuan dan kepatutan",
         "pihak utama",
         "direksi komisaris psp"
       ],
@@ -892,6 +895,9 @@
         "penilaian kemampuan dan kepatutan",
         "pihak utama lembaga jasa keuangan",
         "calon pemegang saham pengendali direksi dewan komisaris"
+      ],
+      "exact_phrases": [
+        "uji kemampuan dan kepatutan"
       ]
     },
     {

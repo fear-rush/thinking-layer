@@ -1,4 +1,26 @@
 {
+  "alias_updates": [
+    {
+      "section": "topics",
+      "name": "consumer_protection",
+      "add_patterns": ["pelindungan konsumen"],
+      "add_exact_phrases": ["pelindungan konsumen"],
+      "approved": true,
+      "review_notes": "Official corpus spelling; supported by 10,875 extracted blocks and the fresh BI/OJK comparison query variant.",
+      "confidence": "high",
+      "support_count": 10875
+    },
+    {
+      "section": "topics",
+      "name": "fit_and_proper",
+      "add_patterns": ["uji kemampuan dan kepatutan"],
+      "add_exact_phrases": ["uji kemampuan dan kepatutan"],
+      "approved": true,
+      "review_notes": "Official Indonesian synonym for fit-and-proper; supported by 16,972 extracted blocks and the curated fit-and-proper query family.",
+      "confidence": "high",
+      "support_count": 16972
+    }
+  ],
   "entities": [
     {
       "name": "transparansi_dan_publikasi_laporan_bank_umum_konvensional",

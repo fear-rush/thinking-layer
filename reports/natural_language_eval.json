@@ -76,20 +76,20 @@
     },
     "results": [
       {
-        "score": 26.07805128205128,
+        "score": 41.72488205128205,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan",
         "page": 2,
-        "pasal": "Pasal 2",
+        "pasal": "Pasal 1",
         "ayat": "(1)",
         "planned_query": "penyediaan informasi penyampaian informasi pemasaran produk layanan jasa keuangan",
         "plan_reason": "title:topic:advertising_marketing",
         "snippet": "...gkasan informasi produk dan/atau layanan dan iklan yang telah dibuat oleh pelaku usaha jasa keuangan sebelum berlakunya Peraturan Anggota Dewan Komisioner Otoritas Jasa Keuangan ini disesuaikan dengan format ringkasan informasi produk dan/atau layanan dan contoh iklan sebagaimana dimuat dalam Lampiran II dan Lampiran III yang merupakan bagian tidak terpisahkan dari Peraturan"
       },
       {
-        "score": 26.068583333333326,
+        "score": 41.709733333333325,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -102,7 +102,7 @@
         "snippet": "...KEUANGAN REPUBLIK INDONESIA NOMOR 31 /SEOJK.05/2022 TENTANG SALURAN PEMASARAN PRODUK ASURANSI MELALUI KERJA SAMA DENGAN BANK (BANCASSURANCE) Sehubungan dengan amanat ketentuan Pasal 45 ayat (3) Peraturan Otoritas Jasa Keuangan Nomor 23/POJK.05/2015 tentang Produk Asuransi dan Pemasaran Produk Asuransi (Lembaran Negara Republik Indonesia Tahun 2015 Nomor 287, Tambahan Lembaran Negara Republik Indonesia Nomor 5770) dan..."
       },
       {
-        "score": 22.173718750000003,
+        "score": 35.47795000000001,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -115,7 +115,7 @@
         "snippet": "(BANCASSURANCE) Sehubungan dengan amanat ketentuan Pasal 45 ayat (3) Peraturan Otoritas Jasa Keuangan Nomor 23/POJK.05/2015 tentang Produk Asuransi dan Pemasaran Produk Asuransi (Lembaran Negara Republik Indonesia Tahun 2015 Nomor 287, Tambahan Lembaran Negara Republik Indonesia Nomor 5770), perlu untuk mengatur lebih lanjut mengenai saluran pemasaran produk asuransi melalui kerja sama dengan bank (bancassurance) dal..."
       },
       {
-        "score": 22.113636363636367,
+        "score": 35.38181818181819,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -128,7 +128,7 @@
         "snippet": "4. Dalam penyelenggaraan Produk, BPRS juga harus memperhatikan penggunaan data calon nasabah dan nasabah, sebagai berikut: a. BPRS hanya dapat memberikan data pribadi calon nasabah atau nasabah kepada pihak ketiga sepanjang:"
       },
       {
-        "score": 21.813545634920636,
+        "score": 34.90167301587302,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -141,7 +141,7 @@
         "snippet": "Pasal 4 (1) PUJK wajib beritikad baik dalam melaksanakan"
       },
       {
-        "score": 21.716692307692306,
+        "score": 34.74670769230769,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -152,32 +152,6 @@
         "planned_query": "penyediaan informasi penyampaian informasi pemasaran produk layanan jasa keuangan",
         "plan_reason": "title:topic:advertising_marketing",
         "snippet": "bersifat kuantitatif maupun kualitatif. 4. Informasi Jujur adalah informasi yang sesuai dengan keadaan sebenarnya. 5. Informasi Jelas adalah informasi yang disampaikan secara lengkap. 6. Informasi Tidak Menyesatkan adalah informasi yang tidak menimbulkan perbedaan penafsiran antara Konsumen dan/atau masyarakat dengan PUJK terhadap ketentuan yang dimuat dalam perjanjian."
-      },
-      {
-        "score": 19.149350649350648,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
-        "page": 15,
-        "pasal": "Pasal 36",
-        "ayat": "(1)",
-        "planned_query": "transparansi informasi produk bank penggunaan data pribadi nasabah",
-        "plan_reason": "topic:advertising_marketing",
-        "snippet": "...iah wajib melaksanakan prinsip pelindungan data pribadi dalam melakukan pemrosesan data pribadi sesuai dengan ketentuan peraturan perundang-undangan. (2) Pemrosesan data pribadi sebagaimana dimaksud pada ayat (1) dilakukan dengan memperhatikan persetujuan nasabah dan/atau calon nasabah yang dilaksanakan sesuai dengan ketentuan peraturan perundangundangan."
-      },
-      {
-        "score": 18.697324829931972,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "POJK tentang Perlindungan Konsumen Sektor Jasa Keuangan",
-        "page": 4,
-        "pasal": "Pasal 6",
-        "ayat": "(1)",
-        "planned_query": "perlindungan konsumen sektor jasa keuangan iklan promosi",
-        "plan_reason": "title:topic:advertising_marketing",
-        "snippet": "Pasal 6 (1) Pelaku Usaha Jasa Keuangan wajib menyampaikan informasi"
       }
     ]
   },
@@ -258,7 +232,7 @@
     },
     "results": [
       {
-        "score": 30.09358333333333,
+        "score": 48.14973333333333,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -271,7 +245,7 @@
         "snippet": "...tempat SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 31 /SEOJK.05/2022 TENTANG SALURAN PEMASARAN PRODUK ASURANSI MELALUI KERJA SAMA DENGAN BANK (BANCASSURANCE) Sehubungan dengan amanat ketentuan Pasal 45 ayat (3) Peraturan Otoritas Jasa Keuangan Nomor 23/POJK.05/2015 tentang Produk Asuransi dan Pemasaran Produk Asuransi (Lembaran Negara Republik Indonesia Tahun 2015 Nomor 287, Tambahan Lembaran..."
       },
       {
-        "score": 25.5885625,
+        "score": 40.9417,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -284,7 +258,7 @@
         "snippet": "(BANCASSURANCE) Sehubungan dengan amanat ketentuan Pasal 45 ayat (3) Peraturan Otoritas Jasa Keuangan Nomor 23/POJK.05/2015 tentang Produk Asuransi dan Pemasaran Produk Asuransi (Lembaran Negara Republik Indonesia Tahun 2015 Nomor 287, Tambahan Lembaran Negara Republik Indonesia Nomor 5770), perlu untuk mengatur lebih lanjut mengenai saluran pemasaran produk asuransi melalui kerja sama dengan bank (bancassurance) dal..."
       },
       {
-        "score": 25.522727272727273,
+        "score": 40.83636363636364,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -297,7 +271,7 @@
         "snippet": "4. Dalam penyelenggaraan Produk, BPRS juga harus memperhatikan penggunaan data calon nasabah dan nasabah, sebagai berikut: a. BPRS hanya dapat memberikan data pribadi calon nasabah atau nasabah kepada pihak ketiga sepanjang:"
       },
       {
-        "score": 25.322493589743587,
+        "score": 40.51598974358974,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -310,56 +284,30 @@
         "snippet": "Pasal 4 (1) PUJK wajib beritikad baik dalam melaksanakan"
       },
       {
-        "score": 24.06687743055555,
+        "score": 38.50700388888888,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan",
         "page": 2,
-        "pasal": "Pasal 2",
+        "pasal": "Pasal 1",
         "ayat": "(1)",
         "planned_query": "iklan pemasaran produk layanan jasa keuangan",
         "plan_reason": "title:topic:advertising_marketing",
         "snippet": "(1) Ringkasan informasi produk dan/atau layanan dan iklan yang telah dibuat oleh pelaku usaha jasa keuangan sebelum berlakunya Peraturan Anggota Dewan Komisioner Otoritas Jasa Keuangan ini disesuaikan dengan format ringkasan informasi produk dan/atau layanan dan contoh iklan sebagaimana dimuat dalam Lampiran II dan Lampiran III yang merupakan bagian tidak terpisahkan dari Peraturan"
       },
       {
-        "score": 21.732638888888893,
+        "score": 34.77222222222223,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan",
         "page": 280,
-        "pasal": "Pasal 3",
+        "pasal": "Pasal 1",
         "ayat": null,
         "planned_query": "iklan pemasaran produk bank",
         "plan_reason": "topic:advertising_marketing",
         "snippet": "Iklan salah karena Bank Ilichil meniru seluruh variabel Iklan Bank Mewah. Iklan benar dan dalam konteks ini diasumsikan Bank Mewah adalah bank yang pertama mengeluarkan Iklan tersebut (tidak meniru variabel iklan bank lain)."
-      },
-      {
-        "score": 21.704994505494504,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "POJK tentang Perlindungan Konsumen Sektor Jasa Keuangan",
-        "page": 4,
-        "pasal": "Pasal 6",
-        "ayat": "(1)",
-        "planned_query": "perlindungan konsumen sektor jasa keuangan iklan promosi",
-        "plan_reason": "title:topic:advertising_marketing",
-        "snippet": "Pasal 6 (1) Pelaku Usaha Jasa Keuangan wajib menyampaikan informasi"
-      },
-      {
-        "score": 21.231,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penyediaan Informasi dan Penyampaian Informasi untuk Pemasaran Produk dan Layanan Jasa Keuangan",
-        "page": 18,
-        "pasal": "Pasal 3",
-        "ayat": null,
-        "planned_query": "aturan apa yang mengatur iklan produk bank dan promosi ke nasabah?",
-        "plan_reason": "raw_user_query",
-        "snippet": "dimaksud merupakan promosi berbayar. 5) Iklan memperhatikan ketentuan dan karakteristik produk dan/atau layanan yang berlaku, termasuk target calon Konsumen dan/atau Konsumen. Iklan menawarkan proses yang sesuai dengan prosedur dan pemeran Iklan yang sesuai dengan target calon Konsumen dan/atau Konsumen."
       }
     ]
   },
@@ -438,20 +386,7 @@
     },
     "results": [
       {
-        "score": 41.00279166666667,
-        "source": "ease-bi",
-        "issuer": "BI",
-        "file_role": "operational_requirement",
-        "document_title": ". Matriks Dokumen Tambahan untuk Pengembangan QRIS.",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "dokumen apa yang perlu disiapkan untuk pengembangan QRIS?",
-        "plan_reason": "title:raw_user_query",
-        "snippet": "Nama Pemohon Jenis Permohonan"
-      },
-      {
-        "score": 24.229333333333333,
+        "score": 38.766933333333334,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -464,7 +399,7 @@
         "snippet": "Pasal 2 (1) QR Code Pembayaran memiliki fungsi utama untuk"
       },
       {
-        "score": 21.13636363636364,
+        "score": 33.81818181818183,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -477,20 +412,33 @@
         "snippet": "5. Standar Nasional QR Code Pembayaran (Quick Response *Code Indonesian Standard) yang selanjutnya disebut QRIS* adalah Standar QR Code Pembayaran yang ditetapkan oleh Bank Indonesia untuk digunakan dalam memfasilitasi transaksi pembayaran di Indonesia. 6. Transaksi QRIS adalah transaksi pembayaran yang difasilitasi dengan QR Code Pembayaran berdasarkan QRIS."
       },
       {
-        "score": 18.63888888888889,
+        "score": 29.822222222222223,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
         "document_title": "PBI No.22/8/PBI/2020 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
         "page": 5,
-        "pasal": "Pasal 7",
-        "ayat": "(2)",
+        "pasal": "Pasal 8",
+        "ayat": null,
         "planned_query": "dokumen persyaratan pedoman",
         "plan_reason": "topic:requirements_documents",
         "snippet": "atas dokumen persyaratan yang disampaikan oleh Pemohon. (2) Bank Indonesia melakukan penelitian kelengkapan dan kebenaran administratif sebagaimana dimaksud pada ayat (1) huruf a dan huruf b terhadap permohonan perizinan dan dokumen persyaratan pada saat permohonan perizinan dan dokumen persyaratan diterima. (3) Dalam hal dokumen persyaratan sebagaimana dimaksud"
       },
       {
-        "score": 18.116883116883116,
+        "score": 29.522009999999998,
+        "source": "ease-bi",
+        "issuer": "BI",
+        "file_role": "operational_requirement",
+        "document_title": ". Matriks Dokumen Tambahan untuk Pengembangan QRIS.",
+        "page": 1,
+        "pasal": null,
+        "ayat": null,
+        "planned_query": "dokumen apa yang perlu disiapkan untuk pengembangan QRIS?",
+        "plan_reason": "title:raw_user_query",
+        "snippet": "Nama Pemohon Jenis Permohonan"
+      },
+      {
+        "score": 28.98701298701299,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -503,7 +451,7 @@
         "snippet": "Ayat (1) Persetujuan yang diajukan merupakan persetujuan untuk pengembangan produk dan aktivitas jasa sistem pembayaran sebagaimana dimaksud dalam ketentuan Bank Indonesia yang mengatur mengenai penyelenggaraan pemrosesan transaksi pembayaran. Ayat (2) Cukup jelas. Ayat (3) Surat pernyataan komitmen untuk menerapkan QRIS paling sedikit memuat pernyataan dan komitmen untuk menerapkan QRIS dan mematuhi ketentuan Bank I..."
       },
       {
-        "score": 17.060897435897434,
+        "score": 27.297435897435896,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -514,32 +462,6 @@
         "planned_query": "katalog pengembangan kerja sama",
         "plan_reason": "topic:requirements_documents",
         "snippet": "Ayat (1) Asesmen mandiri (self *assessment)* dilakukan dengan memerhatikan antara lain katalog model bisnis pengembangan aktivitas, produk, dan/atau kerja sama yang diterbitkan Bank Indonesia."
-      },
-      {
-        "score": 15.852272727272727,
-        "source": "ease-bi",
-        "issuer": "BI",
-        "file_role": "primary_regulation",
-        "document_title": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
-        "page": 5,
-        "pasal": "Pasal 4",
-        "ayat": "(2)",
-        "planned_query": "qris pengembangan aktivitas produk kerja sama",
-        "plan_reason": "topic:qris",
-        "snippet": "ditetapkan oleh Bank Indonesia sesuai dengan ketentuan Bank Indonesia yang mengatur mengenai GPN (NPG). (2) Pengelolaan QRIS dilakukan oleh Lembaga Standar yang telah ditetapkan oleh Bank Indonesia sebagai Lembaga Standar dalam GPN (NPG) untuk teknologi quick response *code.* (3) QRIS terdiri atas spesifikasi teknis dan operasional yang dituangkan dalam dokumen QRIS. (4) Spesifikasi teknis dan operasional sebagaimana..."
-      },
-      {
-        "score": 15.842261904761905,
-        "source": "ease-bi",
-        "issuer": "BI",
-        "file_role": "primary_regulation",
-        "document_title": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
-        "page": 25,
-        "pasal": "Pasal 35",
-        "ayat": "(3)",
-        "planned_query": "dokumen persyaratan pedoman",
-        "plan_reason": "topic:requirements_documents",
-        "snippet": "pihak yang akan ditetapkan menjadi PIP harus menyampaikan perbaikan dokumen persyaratan dimaksud dalam jangka waktu paling lama 40 (empat puluh) hari kerja; dan c. Bank Indonesia melakukan analisis substansi persyaratan penetapan terhadap perbaikan dokumen sebagaimana dimaksud dalam huruf b, dalam jangka waktu paling lama 20 (dua puluh) hari kerja setelah pihak yang akan ditetapkan menjadi PIP menyampaikan perbaikan ..."
       }
     ]
   },
@@ -622,7 +544,7 @@
     },
     "results": [
       {
-        "score": 38.10715151515151,
+        "score": 60.97144242424241,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -635,7 +557,7 @@
         "snippet": "...sangkutan dikenai sanksi administratif berupa denda per jenis Laporan sebagaimana dimaksud dalam Pasal 14 ayat (1) POJK Pelaporan dan TKK BPR dan BPR Syariah, sebesar:"
       },
       {
-        "score": 32.968727272727264,
+        "score": 52.749963636363624,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -648,7 +570,7 @@
         "snippet": "...ajib menyampaikan Laporan sebagaimana dimaksud pada ayat (1) kepada Otoritas Jasa Keuangan secara daring melalui Sistem Pelaporan Otoritas Jasa Keuangan. (3) Dalam hal terdapat kesalahan data dan/atau informasi dalam Laporan sebagaimana dimaksud pada ayat (2), BPR dan BPR Syariah wajib menyusun dan menyampaikan"
       },
       {
-        "score": 31.490666666666662,
+        "score": 50.38506666666666,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -661,7 +583,7 @@
         "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan/atau"
       },
       {
-        "score": 29.717333333333336,
+        "score": 47.54773333333334,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -674,7 +596,7 @@
         "snippet": "(1) bagi Debitur perseorangan (a) fotokopi identitas diri dengan menunjukkan identitas diri asli antara lain berupa Kartu Tanda Penduduk (KTP) untuk Warga Negara Indonesia (WNI) atau paspor untuk Warga Negara Asing (WNA); atau (b) surat kuasa asli, fotokopi identitas diri pemberi kuasa dan penerima kuasa dengan menunjukkan identitas diri asli dari pemberi kuasa dan penerima kuasa, dalam hal dikuasakan. (2) bagi Debit..."
       },
       {
-        "score": 29.369846153846147,
+        "score": 46.99175384615384,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -687,43 +609,17 @@
         "snippet": "Yth. 1. Direksi Lembaga Jasa Keuangan; dan 2. Pimpinan atau Pengurus Lembaga lain bukan Lembaga Jasa Keuangan, di tempat."
       },
       {
-        "score": 28.246272727272725,
+        "score": 45.194036363636364,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
         "page": 3,
-        "pasal": "Pasal 4",
+        "pasal": "Pasal 5",
         "ayat": "(1)",
         "planned_query": "pelaporan melalui sistem pelaporan otoritas jasa keuangan",
         "plan_reason": "title:topic:reporting",
-        "snippet": "dimaksud dalam Pasal 4 ayat (1) atau perubahannya"
-      },
-      {
-        "score": 26.992,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Transparansi dan Publikasi Laporan Bank",
-        "page": 3,
-        "pasal": "Pasal 2",
-        "ayat": "(1)",
-        "planned_query": "transparansi publikasi laporan bank",
-        "plan_reason": "title:topic:reporting",
-        "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan"
-      },
-      {
-        "score": 25.832,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Perubahan Kedua Atas Peraturan Otoritas Jasa Keuangan Nomor 18/POJK.03/2017 tentang Pelaporan dan Permintaan Informasi Debitur Melalui Sistem Layanan Informasi Keuangan (SLIK)",
-        "page": 4,
-        "pasal": "Pasal 2",
-        "ayat": "(1)",
-        "planned_query": "slik informasi debitur",
-        "plan_reason": "title:topic:slik",
-        "snippet": "(1) Pihak yang wajib menjadi Pelapor meliputi:"
+        "snippet": "Pasal 5 (1) Penunjukan penanggung jawab pelaporan sebagaimana"
       }
     ]
   },
@@ -811,7 +707,7 @@
     },
     "results": [
       {
-        "score": 38.511030303030296,
+        "score": 61.61764848484847,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -824,7 +720,7 @@
         "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan/atau"
       },
       {
-        "score": 33.00945454545454,
+        "score": 52.81512727272727,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -837,7 +733,7 @@
         "snippet": "Pasal 2 (1) Bank wajib menyusun, mengumumkan, dan"
       },
       {
-        "score": 29.30953846153845,
+        "score": 46.895261538461526,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -847,10 +743,10 @@
         "ayat": "(5)",
         "planned_query": "sanksi administratif",
         "plan_reason": "title:topic:sanctions",
-        "snippet": "PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 39 TAHUN 2025 TENTANG TATA CARA PENAGIHAN SANKSI ADMINISTRATIF BERUPA DENDA DI SEKTOR JASA KEUANGAN DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa untuk melaksanakan ketentuan Pasal 31 ayat (5) Peraturan Pemerintah Nomor 41 Tahun 2024 tentang Rencana Kerja dan Anggaran Otoritas Jasa Keuangan dan Pungutan di Sektor ..."
+        "snippet": "PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 39 TAHUN 2025 TENTANG TATA CARA PENAGIHAN SANKSI ADMINISTRATIF BERUPA DENDA DI SEKTOR JASA KEUANGAN DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang: bahwa untuk melaksanakan ketentuan Pasal 31 ayat (5) Peraturan Pemerintah Nomor 41 Tahun 2024 tentang Rencana Kerja dan Anggaran Otoritas Jasa Keuangan dan Pungutan di Sektor J..."
       },
       {
-        "score": 28.883272727272722,
+        "score": 46.213236363636355,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -863,7 +759,7 @@
         "snippet": "performance, as well as risk exposure and bank's regulatory capital also provide information regarding bank parent company, subsidiary company, sister company, related companies, and bank business group to provide comprehensive information; c. Whereas for the efficiency of the bank supervision process for bank also an issuer and/or public company, it is deemed to"
       },
       {
-        "score": 25.733414141414137,
+        "score": 41.17346262626262,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -876,7 +772,7 @@
         "snippet": "negeri, Laporan Publikasi terdiri atas:"
       },
       {
-        "score": 25.18707692307692,
+        "score": 40.29932307692307,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -887,32 +783,6 @@
         "planned_query": "sanksi administratif",
         "plan_reason": "title:topic:sanctions",
         "snippet": "Pasal 4 (1) Pelaksanaan pembayaran sebagaimana dimaksud dalam Pasal 3 huruf a"
-      },
-      {
-        "score": 24.896355555555548,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan bagi Bank Perekonomian Rakyat",
-        "page": 11,
-        "pasal": "Pasal 14",
-        "ayat": "(1)",
-        "planned_query": "pelaporan melalui sistem pelaporan otoritas jasa keuangan",
-        "plan_reason": "title:topic:reporting",
-        "snippet": "1) Sanksi Terlambat Menyampaikan Laporan BPR yang tidak menyampaikan Laporan Berkala bulanan sampai dengan tanggal 10 pada bulan berikutnya setelah bulan Laporan Berkala bulanan yang bersangkutan dikenai sanksi administratif berupa denda per jenis Laporan sebagaimana dimaksud dalam Pasal 14 ayat (1) POJK Pelaporan dan TKK BPR dan BPR Syariah, sebesar:"
-      },
-      {
-        "score": 23.160072727272727,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Transparansi dan Publikasi Laporan Bank Umum Konvensional",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "transparansi publikasi laporan bank",
-        "plan_reason": "title:topic:reporting",
-        "snippet": "Laporan Publikasi Bank Umum Konvensional sebagaimana tercantum dalam Lampiran Surat Edaran Otoritas Jasa Keuangan ini yang merupakan bagian tidak terpisahkan dari Surat Edaran Otoritas Jasa Keuangan."
       }
     ]
   },
@@ -992,7 +862,7 @@
     },
     "results": [
       {
-        "score": 39.449374999999996,
+        "score": 63.119,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1005,7 +875,7 @@
         "snippet": "(1) PJP menyelenggarakan aktivitas yang meliputi:"
       },
       {
-        "score": 27.006000000000004,
+        "score": 43.20960000000001,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1018,7 +888,7 @@
         "snippet": "Pasal 5 (1) Penyelenggara jasa Sistem Pembayaran terdiri atas:"
       },
       {
-        "score": 23.268,
+        "score": 37.2288,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1031,7 +901,7 @@
         "snippet": "Pasal 2 (1) Kebijakan Standar Nasional bertujuan untuk:"
       },
       {
-        "score": 22.860000000000003,
+        "score": 36.57600000000001,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1041,10 +911,10 @@
         "ayat": null,
         "planned_query": "peraturan BI tentang penyedia jasa pembayaran apa saja?",
         "plan_reason": "raw_user_query",
-        "snippet": "2. Peraturan Bank Indonesia Nomor 22/23/PBI/2020 tentang Sistem Pembayaran (Lembaran Negara Republik Indonesia Tahun 2020 Nomor 311, Tambahan Lembaran Negara Republik Indonesia Nomor 6610); MEMUTUSKAN: Menetapkan : PERATURAN BANK INDONESIA TENTANG PENYEDIA JASA PEMBAYARAN. BAB I KETENTUAN UMUM"
+        "snippet": "2. Peraturan Bank Indonesia Nomor 22/23/PBI/2020 tentang Sistem Pembayaran (Lembaran Negara Republik Indonesia Tahun 2020 Nomor 311, Tambahan Lembaran Negara Republik Indonesia Nomor 6610); MEMUTUSKAN: Menetapkan: PERATURAN BANK INDONESIA TENTANG PENYEDIA JASA PEMBAYARAN. BAB I KETENTUAN UMUM"
       },
       {
-        "score": 20.64005555555556,
+        "score": 33.0240888888889,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1054,10 +924,10 @@
         "ayat": null,
         "planned_query": "penyelenggaraan penyedia jasa pembayaran",
         "plan_reason": "entity:pjp",
-        "snippet": "| pengaturan | akses | ke | industri, | penyelenggaraan, | |---|---|---|---|---| | pengakhiran penyelenggaraan kegiatan, | | | | pengawasan, |"
+        "snippet": "pengaturan - akses - ke - industri, - penyelenggaraan,; pengakhiran penyelenggaraan kegiatan, - pengawasan,"
       },
       {
-        "score": 20.3595,
+        "score": 32.5752,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1068,32 +938,6 @@
         "planned_query": "sistem pembayaran",
         "plan_reason": "title:entity:pjp",
         "snippet": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
-      },
-      {
-        "score": 20.022222222222222,
-        "source": "ease-bi",
-        "issuer": "BI",
-        "file_role": "primary_regulation",
-        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
-        "page": 6,
-        "pasal": "Pasal 2",
-        "ayat": null,
-        "planned_query": "penyedia jasa pembayaran",
-        "plan_reason": "topic:payments",
-        "snippet": "| c. | mengakuisisi Penyedia Barang dan/atau Jasa; | |---|---| | d. | menalangi pembayaran kepada Penyedia Barang dan/atau Jasa; dan/atau |"
-      },
-      {
-        "score": 19.594285714285714,
-        "source": "ease-bi",
-        "issuer": "BI",
-        "file_role": "primary_regulation",
-        "document_title": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
-        "page": 2,
-        "pasal": "Pasal 1",
-        "ayat": null,
-        "planned_query": "peraturan BI tentang penyedia jasa pembayaran apa saja?",
-        "plan_reason": "raw_user_query",
-        "snippet": "Pasal 1 Dalam Peraturan Bank Indonesia ini yang dimaksud dengan:"
       }
     ]
   },
@@ -1167,7 +1011,7 @@
     },
     "results": [
       {
-        "score": 35.612111111111105,
+        "score": 56.97937777777777,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1180,7 +1024,7 @@
         "snippet": "Yth. Direksi atau Pengurus Pelaku Usaha Jasa Keuangan, di Tempat SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 14/SEOJK.07/2014 TENTANG KERAHASIAAN DAN KEAMANAN DATA DAN/ATAU INFORMASI PRIBADI KONSUMEN Sehubungan dengan berlakunya Peraturan Otoritas Jasa Keuangan Nomor 1/POJK.07/2013 tentang Perlindungan Konsumen Sektor Jasa Keuangan (Lembaran Negara Republik Indonesia Tahun 2013 Nomor 118, Tambahan Lembaran Nega..."
       },
       {
-        "score": 24.48013034188034,
+        "score": 39.16820854700855,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1193,20 +1037,20 @@
         "snippet": "...an usahanya secara konvensional maupun secara syariah, di Tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 2/SEOJK.07/2014 TENTANG PELAYANAN DAN PENYELESAIAN PENGADUAN KONSUMEN PADA PELAKU USAHA JASA KEUANGAN Sehubungan dengan Peraturan Otoritas Jasa Keuangan Nomor 01/POJK.07/2013 tentang Perlindungan Konsumen Sektor Jasa Keuangan, perlu untuk mengatur ketentuan mengenai pelayanan dan penyelesaian pengaduan ..."
       },
       {
-        "score": 23.92133333333333,
+        "score": 38.27413333333333,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
         "page": 5,
-        "pasal": "Pasal 4",
-        "ayat": "(2)",
+        "pasal": "Pasal 3",
+        "ayat": "(1)",
         "planned_query": "pelindungan konsumen dan masyarakat sektor jasa keuangan",
         "plan_reason": "title:topic:consumer_protection",
-        "snippet": "...idak diskriminatif sebagaimana dimaksud pada ayat (2). (4) PUJK dilarang melakukan tindakan yang melanggar ketentuan peraturan perundang-undangan atau norma yang berlaku di masyarakat yang dapat menimbulkan"
+        "snippet": "(1) PUJK dalam menyelenggarakan kegiatan usaha wajib menerapkan prinsip Pelindungan Konsumen."
       },
       {
-        "score": 22.71180555555556,
+        "score": 36.338888888888896,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1216,10 +1060,10 @@
         "ayat": null,
         "planned_query": "kerahasiaan keamanan data informasi pribadi konsumen",
         "plan_reason": "topic:consumer_protection",
-        "snippet": "dimaksud ..."
+        "snippet": "dimaksud..."
       },
       {
-        "score": 22.023000000000003,
+        "score": 35.23680000000001,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1232,43 +1076,17 @@
         "snippet": "II. PERLINDUNGAN DATA DAN/ATAU INFORMASI PRIBADI KONSUMEN"
       },
       {
-        "score": 21.65530303030303,
+        "score": 34.64848484848485,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Peraturan Bank Indonesia Nomor 7/6/PBI/2005",
         "page": 3,
         "pasal": "Pasal 2",
-        "ayat": "(2)",
+        "ayat": null,
         "planned_query": "transparansi informasi produk penggunaan data pribadi nasabah",
         "plan_reason": "topic:consumer_protection",
-        "snippet": "penggunaan Data Pribadi Nasabah. (2) Dalam menerapkan transparansi informasi mengenai Produk Bank dan penggunaan Data Pribadi Nasabah sebagaimana dimaksud pada ayat (1), Bank wajib menetapkan kebijakan dan memiliki prosedur tertulis yang meliputi: a. transparansi informasi mengenai Produk Bank; dan b. transparansi penggunaan Data Pribadi Nasabah;"
-      },
-      {
-        "score": 20.684,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penilaian Sendiri Terhadap Pemenuhan Ketentuan Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
-        "page": 1,
-        "pasal": "Pasal 87",
-        "ayat": "(4)",
-        "planned_query": "pelindungan konsumen dan masyarakat sektor jasa keuangan",
-        "plan_reason": "title:topic:consumer_protection",
-        "snippet": "Sehubungan dengan amanat Pasal 87 ayat (4) Peraturan Otoritas Jasa Keuangan Nomor 22 Tahun 2023 tentang Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan (Lembaran Negara Republik Indonesia Tahun 2023 Nomor 40/OJK, Tambahan Lembaran Negara Republik Indonesia Nomor 62/OJK) dan kebutuhan Pelaku Usaha Jasa Keuangan mengenai petunjuk pelaksanaan tentang penilaian sendiri terhadap pemenuhan ketentuan pelindungan..."
-      },
-      {
-        "score": 20.135580586080582,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Layanan Pengaduan Konsumen di Sektor Jasa Keuangan",
-        "page": 4,
-        "pasal": "Pasal 5",
-        "ayat": "(1)",
-        "planned_query": "layanan pengaduan konsumen pelaku usaha jasa keuangan",
-        "plan_reason": "title:topic:consumer_protection",
-        "snippet": "Pasal 5 (1) PUJK wajib memiliki prosedur secara tertulis"
+        "snippet": "penggunaan Data Pribadi Nasabah. (2) Dalam menerapkan transparansi informasi mengenai Produk Bank dan penggunaan Data Pribadi Nasabah sebagaimana dimaksud pada ayat (1), Bank wajib menetapkan kebijakan dan memiliki prosedur tertulis yang meliputi: a. transparansi informasi mengenai Produk Bank; dan b. transparansi penggunaan Data Pribadi Nasabah"
       }
     ]
   },
@@ -1353,7 +1171,7 @@
     },
     "results": [
       {
-        "score": 47.51515151515151,
+        "score": 76.02424242424242,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1366,7 +1184,7 @@
         "snippet": "INFORMASI 1. Dalam rangka menerapkan manajemen risiko penggunaan Teknologi Informasi untuk mendukung kelangsungan bisnis Bank terutama pelayanan kepada nasabah, Bank wajib memiliki kebijakan, standar, dan prosedur penggunaan Teknologi Informasi serta wajib menerapkan kebijakan, standar, dan prosedur penggunaan Teknologi Informasi secara konsisten dan berkesinambungan sebagaimana telah diatur dalam Pasal 8 ayat (1) PO..."
       },
       {
-        "score": 40.72727272727273,
+        "score": 65.16363636363637,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1379,7 +1197,7 @@
         "snippet": "Pasal 2 (1) Bank wajib menerapkan manajemen risiko secara"
       },
       {
-        "score": 39.79888888888888,
+        "score": 63.67822222222222,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1392,20 +1210,20 @@
         "snippet": "(1) BPR dan BPR Syariah wajib menerapkan tata kelola TI yang baik dalam penyelenggaraan TI. (2) Dalam menerapkan tata kelola TI yang baik sebagaimana dimaksud pada ayat (1), BPR dan BPR Syariah mempertimbangkan faktor paling sedikit:"
       },
       {
-        "score": 36.10420512820512,
+        "score": 57.7667282051282,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
         "page": 9,
         "pasal": "Pasal 2",
-        "ayat": "(2)",
+        "ayat": "(1)",
         "planned_query": "penyelenggaraan teknologi informasi oleh bank umum",
         "plan_reason": "title:topic:technology_risk",
-        "snippet": "Dalam menerapkan tata kelola TI yang baik, Bank mempertimbangkan paling sedikit 7 (tujuh) faktor sebagaimana dimaksud dalam Pasal 2 ayat (2) POJK PTI, yaitu: a. Strategi dan Tujuan Bisnis Bank Tata kelola TI disesuaikan dengan strategi dan tujuan bisnis dari Bank. Strategi dan tujuan bisnis Bank mencerminkan arah bisnis dan kebutuhan dari pemangku kepentingan (stakeholders). Dalam penentuan strategi dan tujuan bisnis..."
+        "snippet": "Pasal 2 ayat (1) POJK PTI. Penerapan tata kelola TI merupakan bagian integral dari penerapan tata kelola Bank secara umum. Tata kelola TI diterapkan pada seluruh kegiatan yang berkaitan dengan penyelenggaraan TI antara lain manajemen risiko, ketahanan dan keamanan TI termasuk siber, pengelolaan data, penggunaan Pihak Penyedia Jasa TI (PPJTI), penyediaan jasa TI oleh Bank, pengendalian intern, serta pengembangan dan p..."
       },
       {
-        "score": 35.63636363636363,
+        "score": 57.018181818181816,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1418,43 +1236,17 @@
         "snippet": "Pasal 21 (1) Bank wajib menempatkan Sistem Elektronik pada Pusat Data dan Pusat Pemulihan Bencana di wilayah Indonesia. (2) Bank hanya dapat menempatkan Sistem Elektronik pada Pusat Data dan/atau Pusat Pemulihan Bencana di luar wilayah Indonesia sepanjang memperoleh persetujuan dari Otoritas Jasa Keuangan. (3) Sistem Elektronik yang dapat ditempatkan pada Pusat Data dan/atau Pusat Pemulihan Bencana di luar wilayah In..."
       },
       {
-        "score": 34.11333333333333,
+        "score": 54.58133333333333,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penyelenggaraan Teknologi Informasi oleh Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
         "page": 7,
-        "pasal": "Pasal 58",
+        "pasal": "Pasal 7",
         "ayat": "(2)",
         "planned_query": "penyelenggaraan teknologi informasi oleh bank perekonomian rakyat bank perekonomian rakyat syariah",
         "plan_reason": "title:topic:technology_risk",
         "snippet": "8) penggunaan pihak penyedia jasa TI (PPJTI). e. BPR dan BPR Syariah melakukan kaji ulang dan menginikan kebijakan dan prosedur penyelenggaraan TI sebagaimana dimaksud pada huruf d secara berkala sesuai dengan kebutuhan, kondisi terkini, dan kepatuhan terhadap ketentuan peraturan perundang-undangan. f. Sesuai dengan Pasal 58 ayat (2) POJK Nomor 9 Tahun 2024"
-      },
-      {
-        "score": 33.49733333333334,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penerapan Manajemen Risiko Bagi Bank Umum",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "manajemen risiko bank umum",
-        "plan_reason": "title:topic:risk_management",
-        "snippet": "3. Penyempurnaan pedoman penerapan Manajemen Risiko sebagaimana dimaksud pada angka 2 dilakukan paling lambat 30 (tiga puluh) hari sejak Surat Edaran Otoritas Jasa Keuangan ini ditetapkan. 4. Bank ..."
-      },
-      {
-        "score": 30.946461538461534,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penyelenggaraan Teknologi Informasi Oleh Bank Umum",
-        "page": 4,
-        "pasal": "Pasal 2",
-        "ayat": "(1)",
-        "planned_query": "penyelenggaraan teknologi informasi oleh bank umum",
-        "plan_reason": "title:topic:technology_risk",
-        "snippet": "Pasal 2 (1) Bank wajib menerapkan tata kelola TI yang baik dalam"
       }
     ]
   },
@@ -1523,20 +1315,20 @@
     },
     "results": [
       {
-        "score": 50.11363636363637,
+        "score": 80.18181818181819,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Peraturan Bank Indonesia tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
         "page": 8,
-        "pasal": "Pasal 2",
+        "pasal": "Pasal 1",
         "ayat": "(2)",
         "planned_query": "peraturan yang mengatur anti pencucian uang dan pendanaan terorisme untuk bank",
         "plan_reason": "title:raw_user_query",
         "snippet": "**(1) (2)** **(1)** **(2)** **a.** **b.** **c.** **- 8 -**"
       },
       {
-        "score": 47.51515151515151,
+        "score": 76.02424242424242,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1549,7 +1341,7 @@
         "snippet": "4. Mengacu ke dalam Pasal 13 POJK APU dan PPT, Bank wajib memiliki kebijakan dan prosedur penerapan program APU dan PPT dalam rangka pengelolaan dan mitigasi risiko Pencucian Uang dan/atau Pendanaan Terorisme yang disesuaikan dengan tingkat risiko yang melekat pada masing-masing Bank. 5. Berdasarkan Pasal 67 ayat (1) POJK APU dan PPT, Bank yang telah"
       },
       {
-        "score": 43.47933333333333,
+        "score": 69.56693333333332,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1562,7 +1354,7 @@
         "snippet": "Pasal 2 (1) PJK sebagaimana dimaksud dalam Pasal 1 angka 1 terdiri"
       },
       {
-        "score": 42.95454545454545,
+        "score": 68.72727272727273,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1575,20 +1367,20 @@
         "snippet": "Pasal 2 (1) Bank wajib menerapkan program APU dan PPT. (2) Dalam penerapan program APU dan PPT, Bank wajib berpedoman pada"
       },
       {
-        "score": 40.72727272727273,
+        "score": 65.16363636363637,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Pasar Modal",
         "page": 12,
-        "pasal": "Pasal 2",
+        "pasal": "Pasal 68",
         "ayat": "(1)",
         "planned_query": "anti pencucian uang pencegahan pendanaan terorisme",
         "plan_reason": "title:topic:apu_ppt",
         "snippet": "... tersebut dapat mengacu pada klasifikasi risiko yang ditetapkan oleh PJK di Sektor Pasar Modal, sesuai dengan ketentuan peraturan perundang-undangan dan standar internasional yang berlaku. Beberapa kategori nasabah yang aktivitasnya dapat diindikasikan memiliki risiko tinggi antara lain: a) nasabah yang melakukan hubungan usaha atau transaksi yang tidak wajar atau tidak sesuai dengan profil nasabah, seperti: (1) jara..."
       },
       {
-        "score": 37.268,
+        "score": 59.628800000000005,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1599,32 +1391,6 @@
         "planned_query": "pencegahan pendanaan proliferasi senjata pemusnah massal",
         "plan_reason": "title:topic:apu_ppt",
         "snippet": "2) Proses verifikasi face to face dapat dikecualikan dengan proses verifikasi tanpa tatap muka (verifikasi non-face to *face) dengan ketentuan sebagai berikut:* a) verifikasi *non-face to face* dilakukan dengan menggunakan perangkat lunak milik Pedagang dengan perangkat keras milik Pedagang atau perangkat keras milik Nasabah atau calon Nasabah. Contoh: perangkat lunak milik Pedagang dan perangkat keras milik Nasabah ..."
-      },
-      {
-        "score": 34.50192307692308,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Surat Edaran Bank Indonesia perihal Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "peraturan yang mengatur anti pencucian uang dan pendanaan terorisme untuk bank",
-        "plan_reason": "title:raw_user_query",
-        "snippet": "**Perihal : Penerapan Program Anti Pencucian Uang dan Pencegahan** **Pendanaan Terorisme bagi Bank Umum.** **Sehubungan dengan Peraturan Bank Indonesia Nomor 14/27/PBI/2012 tentang Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme bagi Bank Umum (Lembaran Negara Republik Indonesia Tahun 2012 Nomor 290, Tambahan Lembaran Negara Republik Indonesia Nomor 5385) perlu diatur ketentuan pelaksanaan me..."
-      },
-      {
-        "score": 30.488888888888887,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "attachment",
-        "document_title": "Pedoman Penerapan Program Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme di Sektor Industri Keuangan Non-Bank",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "peraturan yang mengatur anti pencucian uang dan pendanaan terorisme untuk bank",
-        "plan_reason": "title:raw_user_query",
-        "snippet": "LAMPIRAN I SURAT EDARAN OTORITAS JASA KEUANGAN NOMOR 37 /SEOJK.05/2017 TENTANG PEDOMAN PENERAPAN PROGRAM ANTI PENCUCIAN UANG DAN PENCEGAHAN PENDANAAN TERORISME DI SEKTOR INDUSTRI KEUANGAN NON BANK"
       }
     ]
   },
@@ -1689,22 +1455,21 @@
       ]
     },
     "evaluation": {
-      "score": 1.0,
+      "score": 0.85,
       "accepted": true,
       "title_hits": [
         "Sistem Pembayaran"
       ],
       "title_group_hits": [],
       "issuer_hits": [
-        "BI",
-        "OJK"
+        "BI"
       ],
       "page_citation_rate": 1.0,
       "primary_rate": 1.0
     },
     "results": [
       {
-        "score": 35.54677777777778,
+        "score": 56.87484444444445,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1717,7 +1482,7 @@
         "snippet": "Pasal 2 (1) Dalam tahapan pemrosesan transaksi pembayaran, PIP"
       },
       {
-        "score": 30.272666666666673,
+        "score": 48.43626666666668,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1730,7 +1495,7 @@
         "snippet": "Pasal 5 (1) Penyelenggara jasa Sistem Pembayaran terdiri atas:"
       },
       {
-        "score": 26.068,
+        "score": 41.708800000000004,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1743,7 +1508,7 @@
         "snippet": "Pasal 2 (1) Kebijakan Standar Nasional bertujuan untuk:"
       },
       {
-        "score": 24.687347222222222,
+        "score": 39.49975555555556,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1756,7 +1521,7 @@
         "snippet": "Pasal 4 (1) Pengaturan aspek kelembagaan berupa kepemilikan dan"
       },
       {
-        "score": 22.670138888888893,
+        "score": 36.27222222222223,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1769,7 +1534,7 @@
         "snippet": "Pembayaran Bank Indonesia; dan b. pihak lain yang menyelenggarakan infrastruktur Sistem Pembayaran di industri."
       },
       {
-        "score": 21.933000000000003,
+        "score": 35.092800000000004,
         "source": "ease-bi",
         "issuer": "BI",
         "file_role": "primary_regulation",
@@ -1780,32 +1545,6 @@
         "planned_query": "apa perbedaan aturan BI dan OJK tentang sistem pembayaran?",
         "plan_reason": "raw_user_query",
         "snippet": "1. Sistem Pembayaran adalah suatu sistem yang mencakup seperangkat aturan, lembaga, mekanisme, infrastruktur, sumber dana untuk pembayaran, dan akses ke sumber dana untuk pembayaran, yang digunakan untuk melaksanakan pemindahan dana guna memenuhi suatu kewajiban yang timbul dari suatu kegiatan ekonomi. 2. Bank adalah bank umum dan bank perkreditan rakyat"
-      },
-      {
-        "score": 20.886363636363637,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Pendaftaran Penyelenggara Inovasi Teknologi Sektor Keuangan",
-        "page": 2,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "penyelenggara infrastruktur sistem pembayaran",
-        "plan_reason": "topic:payments",
-        "snippet": "... Sektor Keuangan yang selanjutnya disingkat PUSK adalah LJK, pelaku usaha infrastruktur pasar keuangan, pelaku usaha di sistem pembayaran, lembaga pendukung di sektor keuangan, dan pelaku usaha sektor keuangan lainnya baik yang melaksanakan kegiatan usaha secara konvensional maupun berdasarkan Prinsip Syariah sesuai dengan ketentuan peraturan perundang-undangan di sektor keuangan."
-      },
-      {
-        "score": 19.43154761904762,
-        "source": "ease-bi",
-        "issuer": "BI",
-        "file_role": "primary_regulation",
-        "document_title": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
-        "page": 29,
-        "pasal": "Pasal 47",
-        "ayat": null,
-        "planned_query": "penyelenggara infrastruktur sistem pembayaran",
-        "plan_reason": "topic:payments",
-        "snippet": "Pihak lain yang menyelenggarakan infrastruktur Sistem Pembayaran di industri sebagaimana dimaksud dalam Pasal 47 huruf b mencakup penyelenggara GPN dan PIP lain yang ditetapkan Bank Indonesia. Bagian Kesatu Penyelenggaraan Infrastruktur Sistem Pembayaran oleh Bank Indonesia"
       }
     ]
   },
@@ -1886,7 +1625,7 @@
     },
     "results": [
       {
-        "score": 43.845549999999996,
+        "score": 70.15288,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1899,7 +1638,7 @@
         "snippet": "Pasal 2 (1) Layanan Digital diselenggarakan oleh:"
       },
       {
-        "score": 38.10566666666666,
+        "score": 60.969066666666656,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1912,7 +1651,7 @@
         "snippet": "Pasal 2 (1) Bank dapat menyelenggarakan Layanan Perbankan"
       },
       {
-        "score": 27.286,
+        "score": 43.6576,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1925,7 +1664,7 @@
         "snippet": "...NFORMASI 1. Dalam rangka menerapkan manajemen risiko penggunaan Teknologi Informasi untuk mendukung kelangsungan bisnis Bank terutama pelayanan kepada nasabah, Bank wajib memiliki kebijakan, standar, dan prosedur penggunaan Teknologi Informasi serta wajib menerapkan kebijakan, standar, dan prosedur penggunaan Teknologi Informasi secara konsisten dan berkesinambungan sebagaimana telah diatur dalam Pasal 8 ayat (1) POJ..."
       },
       {
-        "score": 27.132575757575758,
+        "score": 43.412121212121214,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1938,7 +1677,7 @@
         "snippet": "Dalam Peraturan Otoritas Jasa Keuangan ini yang dimaksud dengan: 1. Bank Umum yang selanjutnya disebut Bank adalah bank yang melaksanakan kegiatan usaha secara konvensional atau melaksanakan kegiatan usaha berdasarkan prinsip syariah, yang dalam kegiatannya memberikan jasa dalam lalu lintas pembayaran, termasuk kantor cabang dari bank yang berkedudukan di luar negeri dan unit usaha syariah. 2. Lembaga Jasa Keuangan y..."
       },
       {
-        "score": 26.344022727272726,
+        "score": 42.150436363636366,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -1951,43 +1690,17 @@
         "snippet": "Pasal 2 (1) Setiap pihak yang melakukan kegiatan penghimpunan"
       },
       {
-        "score": 25.192533333333326,
+        "score": 40.308053333333326,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Penyelenggaraan Teknologi Informasi oleh Bank Umum",
         "page": 9,
         "pasal": "Pasal 2",
-        "ayat": "(2)",
+        "ayat": "(1)",
         "planned_query": "penyelenggaraan teknologi informasi oleh bank umum",
         "plan_reason": "title:topic:technology_risk",
-        "snippet": "Dalam menerapkan tata kelola TI yang baik, Bank mempertimbangkan paling sedikit 7 (tujuh) faktor sebagaimana dimaksud dalam Pasal 2 ayat (2) POJK PTI, yaitu: a. Strategi dan Tujuan Bisnis Bank Tata kelola TI disesuaikan dengan strategi dan tujuan bisnis dari Bank. Strategi dan tujuan bisnis Bank mencerminkan arah bisnis dan kebutuhan dari pemangku kepentingan (stakeholders). Dalam penentuan strategi dan tujuan bisnis..."
-      },
-      {
-        "score": 24.302083333333336,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penyelenggaraan Layanan Perbankan Digital oleh Bank Umum",
-        "page": 27,
-        "pasal": "Pasal 5",
-        "ayat": null,
-        "planned_query": "penyelenggaraan layanan perbankan digital",
-        "plan_reason": "topic:technology_risk",
-        "snippet": "| a. | penerapan manajemen risiko bagi Bank Umum; | |---|---| | b. | penerapan manajemen risiko bagi Bank Umum Syariah dan Unit Usaha Syariah; |"
-      },
-      {
-        "score": 23.448,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "POJK tentang Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi Oleh Bank Umum",
-        "page": 6,
-        "pasal": "Pasal 2",
-        "ayat": "(1)",
-        "planned_query": "penerapan manajemen risiko penggunaan teknologi informasi bank umum",
-        "plan_reason": "title:topic:technology_risk",
-        "snippet": "Pasal 2 (1) Bank wajib menerapkan manajemen risiko secara"
+        "snippet": "Pasal 2 ayat (1) POJK PTI. Penerapan tata kelola TI merupakan bagian integral dari penerapan tata kelola Bank secara umum. Tata kelola TI diterapkan pada seluruh kegiatan yang berkaitan dengan penyelenggaraan TI antara lain manajemen risiko, ketahanan dan keamanan TI termasuk siber, pengelolaan data, penggunaan Pihak Penyedia Jasa TI (PPJTI), penyediaan jasa TI oleh Bank, pengendalian intern, serta pengembangan dan p..."
       }
     ]
   },
@@ -2071,7 +1784,7 @@
     },
     "results": [
       {
-        "score": 45.99466666666666,
+        "score": 73.59146666666666,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2084,7 +1797,7 @@
         "snippet": "Pasal 3 (1) Untuk memastikan pemenuhan Prinsip Syariah"
       },
       {
-        "score": 45.73333333333334,
+        "score": 73.17333333333335,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2097,7 +1810,7 @@
         "snippet": "2) pemenuhan hak bagi seluruh sumber daya manusia BPR Syariah, sesuai dengan ketentuan peraturan perundang-undangan. 2. Sesuai dengan Pasal 2 ayat (3) POJK Penerapan Tata Kelola BPR dan BPR Syariah, BPR Syariah menerapkan Tata Kelola yang Baik dalam penyelenggaraan kegiatan usaha pada seluruh tingkatan atau jenjang organisasi yang diwujudkan dalam paling sedikit:"
       },
       {
-        "score": 39.50036363636363,
+        "score": 63.20058181818181,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2110,7 +1823,7 @@
         "snippet": "A. Pelaksanaan Penilaian Kemampuan dan Kepatutan bagi DPS Anggota DPS merupakan pihak utama Bank sesuai dengan Pasal 8 ayat (1) POJK Tata Kelola Syariah. Calon anggota DPS wajib memperoleh persetujuan dari Otoritas Jasa Keuangan melalui penilaian kemampuan dan kepatutan sebelum menjalankan tindakan, tugas, dan fungsinya sebagai pihak utama sebagaimana dimaksud dalam Pasal 8 ayat (2) POJK Tata Kelola Syariah. Pelaksan..."
       },
       {
-        "score": 35.579444444444434,
+        "score": 56.927111111111095,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2123,7 +1836,7 @@
         "snippet": "...na Bisnis dengan memperhatikan faktor eksternal dan internal, prinsip kehatihatian, penerapan manajemen risiko, asas perbankan yang sehat, serta prinsip syariah. Rencana Bisnis harus disusun secara matang, realistis, dan komprehensif sehingga mencerminkan kompleksitas bisnis BUS dan UUS serta adaptabilitas BUS dan UUS dengan"
       },
       {
-        "score": 34.56281818181818,
+        "score": 55.30050909090909,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2136,7 +1849,7 @@
         "snippet": "Pasal 4 (1) Untuk memastikan pemenuhan Prinsip Syariah"
       },
       {
-        "score": 32.812410256410246,
+        "score": 52.4998564102564,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2147,32 +1860,6 @@
         "planned_query": "bank perekonomian rakyat syariah",
         "plan_reason": "title:topic:sharia",
         "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 7 TAHUN 2024 TENTANG BANK PEREKONOMIAN RAKYAT DAN BANK PEREKONOMIAN RAKYAT SYARIAH DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang: bahwa untuk melaksanakan ketentuan Pasal 16 ayat (3), Pasal 18 ayat (3), Pasal 19A ayat (2), Pasal 23 ayat (3), Pasal 28 ayat (4), Pasal 28A ayat (3), dan Pasal 37 ayat (6) Undang-Undan..."
-      },
-      {
-        "score": 32.564,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penerapan Tata Kelola Bagi Bank Umum",
-        "page": 9,
-        "pasal": "Pasal 10",
-        "ayat": "(2)",
-        "planned_query": "penerapan tata kelola",
-        "plan_reason": "title:topic:governance",
-        "snippet": "... pengunduran diri anggota Direksi. Contoh: RUPS tanggal 31 Mei 2025 memutuskan pemberhentian Sdr. X sebagai Direksi PT. Bank Y yang berlaku efektif pada Juni 2025 yaitu sebelum masa jabatan Sdr. X berakhir (masa jabatan Sdr. X sebagai Direksi PT. Bank Y sampai dengan Juni 2026). Berdasarkan hal tersebut, Otoritas Jasa Keuangan berwenang melakukan evaluasi terhadap keputusan RUPS yang memberhentikan Sdr. X untuk menil..."
-      },
-      {
-        "score": 30.496666666666666,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "bank umum syariah unit usaha syariah",
-        "plan_reason": "title:topic:sharia",
-        "snippet": "2. Rencana Bisnis, Laporan Realisasi Rencana Bisnis, dan Laporan Pengawasan Rencana Bisnis untuk UUS disusun sebagai bagian tersendiri yang disajikan sebagai lampiran yang merupakan satu kesatuan dari Rencana Bisnis, Laporan Realisasi Rencana Bisnis, dan"
       }
     ]
   },
@@ -2253,7 +1940,7 @@
     },
     "results": [
       {
-        "score": 44.88333333333334,
+        "score": 71.81333333333335,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2266,7 +1953,7 @@
         "snippet": "Pasal 2 (1) Pihak-pihak yang termasuk sebagai pengendali Bank wajib tunduk pada"
       },
       {
-        "score": 38.49915151515151,
+        "score": 61.59864242424242,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2279,33 +1966,33 @@
         "snippet": "mempertimbangkan: (1) pemenuhan persyaratan bahwa mayoritas (lebih"
       },
       {
-        "score": 38.15324675324675,
+        "score": 61.0451948051948,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "PBI tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Perkreditan Rakyat",
         "page": 8,
-        "pasal": "Pasal 3",
+        "pasal": "Pasal 1",
         "ayat": "(1)",
         "planned_query": "apa syarat fit and proper test direksi bank?",
         "plan_reason": "title:raw_user_query",
         "snippet": "## Pasal 3 (1) Pihak-pihak yang melakukan Pengendalian terhadap BPR wajib tunduk pada ketentuan dalam Peraturan Bank Indonesia ini."
       },
       {
-        "score": 32.95576923076923,
+        "score": 52.72923076923077,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
         "document_title": "Peraturan Bank Indonesia tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
         "page": 6,
-        "pasal": "Pasal 2",
+        "pasal": "Pasal 1",
         "ayat": "(1)",
         "planned_query": "apa syarat fit and proper test direksi bank?",
         "plan_reason": "title:raw_user_query",
         "snippet": "# Pasal 2 (1) Pihak yang termasuk sebagai pengendali Bank Syariah dan UUS wajib tunduk pada ketentuan dalam Peraturan Bank Indonesia ini."
       },
       {
-        "score": 26.364615384615387,
+        "score": 42.183384615384625,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2318,7 +2005,7 @@
         "snippet": "Pasal 2 (1) Pihak-pihak yang termasuk sebagai pengendali Bank Syariah"
       },
       {
-        "score": 25.108854166666664,
+        "score": 40.174166666666665,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2329,32 +2016,6 @@
         "planned_query": "direksi dewan komisaris komite audit",
         "plan_reason": "title:topic:governance",
         "snippet": "(1) Bursa Efek wajib mempunyai paling sedikit 3 (tiga) orang anggota Direksi. (2) Satu di antara anggota Direksi Bursa Efek wajib ditetapkan sebagai direktur utama Bursa Efek dengan tugas utama paling sedikit: a. mengambil keputusan yang bersifat final jika rapat Direksi tidak dapat mengambil keputusan; dan b. melakukan koordinasi kegiatan di Bursa Efek, kegiatan hubungan masyarakat, kegiatan hukum dan peraturan, dan..."
-      },
-      {
-        "score": 24.553030303030305,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "SEOJK tentang Penilaian Kemampuan dan Kepatutan bagi Calon Pemegang Saham Pengendali, Calon Anggota Direksi, dan Calon Anggota Dewan Komisaris Bank",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "calon pemegang saham pengendali direksi dewan komisaris",
-        "plan_reason": "topic:fit_and_proper",
-        "snippet": "Yth. Direksi Bank di tempat."
-      },
-      {
-        "score": 24.000000000000004,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Peraturan Bank Indonesia tentang Uji Kemampuan dan Kepatutan (Fit and Proper Test) Bank Syariah dan Unit Usaha Syariah",
-        "page": 38,
-        "pasal": "Pasal 48",
-        "ayat": null,
-        "planned_query": "apa syarat fit and proper test direksi bank?",
-        "plan_reason": "raw_user_query",
-        "snippet": "November 2003 tentang Penilaian Kemampuan dan Kepatutan (Fit and Proper Test), dinyatakan tidak berlaku bagi Bank Umum Syariah. b. Peraturan Bank Indonesia Nomor 6/23/PBI/2004 tanggal 9 Agustus 2004 tentang Penilaian Kemampuan dan Kepatutan (Fit *and Proper Test) bagi Bank Perkreditan Rakyat, dinyatakan* tidak berlaku bagi Bank Pembiayaan Rakyat Syariah."
       }
     ]
   },
@@ -2421,7 +2082,7 @@
     },
     "results": [
       {
-        "score": 48.14413333333333,
+        "score": 77.03061333333333,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2434,7 +2095,7 @@
         "snippet": "1. Untuk mencapai tujuan usaha yang berpedoman kepada visi dan misi yang telah ditetapkan, bank umum yang melaksanakan kegiatan secara konvensional, selanjutnya disebut Bank Umum, perlu menyusun Rencana Bisnis dengan memperhatikan faktor eksternal dan internal, prinsip kehatihatian, penerapan manajemen risiko, dan asas perbankan yang sehat. Rencana Bisnis harus disusun secara matang, realistis, dan komprehensif sehin..."
       },
       {
-        "score": 38.30166666666666,
+        "score": 61.282666666666664,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2447,7 +2108,7 @@
         "snippet": "Pasal 3 LJKNB harus menyusun Rencana Bisnis secara realistis. Dalam menyusun Rencana Bisnis sebagaimana dimaksud pada ayat (1), LJKNB harus memperhatikan: a. rencana jangka menengah dan/atau panjang; b. faktor eksternal dan internal yang dapat"
       },
       {
-        "score": 36.54254545454545,
+        "score": 58.46807272727272,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2457,10 +2118,10 @@
         "ayat": null,
         "planned_query": "rencana bisnis bank umum",
         "plan_reason": "title:topic:business_plan",
-        "snippet": "2. Agar penyusunan Rencana Bisnis dapat dilakukan secara komprehensif, cakupan Rencana Bisnis Bank Umum yang memiliki Unit Usaha Syariah (UUS) harus secara konsolidasi mencakup pula Rencana Bisnis bagi UUS sebagai satu kesatuan. Rencana Bisnis untuk UUS disusun sebagai bagian tersendiri dari Rencana Bisnis Bank Umum. 3. Sejalan ..."
+        "snippet": "2. Agar penyusunan Rencana Bisnis dapat dilakukan secara komprehensif, cakupan Rencana Bisnis Bank Umum yang memiliki Unit Usaha Syariah (UUS) harus secara konsolidasi mencakup pula Rencana Bisnis bagi UUS sebagai satu kesatuan. Rencana Bisnis untuk UUS disusun sebagai bagian tersendiri dari Rencana Bisnis Bank Umum. 3. Sejalan..."
       },
       {
-        "score": 32.17518181818181,
+        "score": 51.480290909090904,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2473,20 +2134,7 @@
         "snippet": "Untuk mencapai tujuan usaha yang berpedoman kepada visi dan misi yang telah ditetapkan, BUS dan UUS perlu menyusun Rencana Bisnis dengan memperhatikan faktor eksternal dan internal, prinsip kehatihatian, penerapan manajemen risiko, asas perbankan yang sehat, serta prinsip syariah. Rencana Bisnis harus disusun secara matang, realistis, dan komprehensif sehingga mencerminkan kompleksitas bisnis BUS dan UUS serta adapta..."
       },
       {
-        "score": 31.537756249999997,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "POJK tentang Rencana Bisnis Bank",
-        "page": 5,
-        "pasal": "Pasal 3",
-        "ayat": "(1)",
-        "planned_query": "aturan rencana bisnis bank umum",
-        "plan_reason": "title:raw_user_query",
-        "snippet": "Pasal 3 (1) Direksi wajib melaksanakan Rencana Bisnis secara"
-      },
-      {
-        "score": 28.600161616161607,
+        "score": 45.76025858585857,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2499,30 +2147,17 @@
         "snippet": "2. Rencana Bisnis, Laporan Realisasi Rencana Bisnis, dan Laporan Pengawasan Rencana Bisnis untuk UUS disusun sebagai bagian tersendiri yang disajikan sebagai lampiran yang merupakan satu kesatuan dari Rencana Bisnis, Laporan Realisasi Rencana Bisnis, dan"
       },
       {
-        "score": 27.359848484848484,
+        "score": 44.85369777777777,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
-        "document_title": "Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah",
-        "page": 1,
-        "pasal": null,
-        "ayat": null,
-        "planned_query": "rencana bisnis bank umum",
-        "plan_reason": "topic:business_plan",
-        "snippet": "# Yth. 1. Direksi Bank Umum Syariah; dan 2. Direksi Bank Umum Konvensional yang Memiliki Unit Usaha Syariah, di tempat."
-      },
-      {
-        "score": 24.42708333333334,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Rencana Bisnis Lembaga Jasa Keuangan Non Bank",
-        "page": 2,
-        "pasal": "Pasal 8",
-        "ayat": null,
-        "planned_query": "rencana bisnis lembaga jasa keuangan",
-        "plan_reason": "topic:business_plan",
-        "snippet": "pengawas lembaga jasa keuangan nonbank dalam menyusun rencana pengawasan yang optimal dan efektif; e. bahwa dalam rangka harmonisasi dan integrasi pengaturan mengenai rencana bisnis yang berlaku bagi lembaga jasa keuangan nonbank, perlu dilakukan penyempurnaan pengaturan mengenai rencana bisnis; f. bahwa berdasarkan pertimbangan sebagaimana dimaksud dalam huruf a sampai dengan huruf e, perlu menetapkan Peraturan Otor..."
+        "document_title": "POJK tentang Rencana Bisnis Bank",
+        "page": 5,
+        "pasal": "Pasal 3",
+        "ayat": "(1)",
+        "planned_query": "aturan rencana bisnis bank umum",
+        "plan_reason": "title:raw_user_query",
+        "snippet": "Pasal 3 (1) Direksi wajib melaksanakan Rencana Bisnis secara"
       }
     ]
   },
@@ -2587,7 +2222,7 @@
     },
     "results": [
       {
-        "score": 38.707030303030294,
+        "score": 61.931248484848474,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2597,10 +2232,10 @@
         "ayat": "(1)",
         "planned_query": "aset kripto",
         "plan_reason": "title:entity:crypto",
-        "snippet": "PEMBERITAHUAN DIMULAINYA PERDAGANGAN ASET KRIPTO Dalam rangka melaksanakan amanat Pasal 12 ayat (1) POJK Nomor … tentang Penyelenggaraan Perdagangan Aset Keuangan Digital termasuk Aset Kripto terkait kewajiban Pedagang untuk memberitahukan dimulainya perdagangan Aset Kripto kepada Otoritas Jasa Keuangan, kami yang bertandatangan di bawah ini: Nama Pedagang : Kode Pedagang :"
+        "snippet": "PEMBERITAHUAN DIMULAINYA PERDAGANGAN ASET KRIPTO Dalam rangka melaksanakan amanat Pasal 12 ayat (1) POJK Nomor … tentang Penyelenggaraan Perdagangan Aset Keuangan Digital termasuk Aset Kripto terkait kewajiban Pedagang untuk memberitahukan dimulainya perdagangan Aset Kripto kepada Otoritas Jasa Keuangan, kami yang bertandatangan di bawah ini: Nama Pedagang: Kode Pedagang:"
       },
       {
-        "score": 33.17745454545454,
+        "score": 53.083927272727266,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2610,10 +2245,10 @@
         "ayat": "(1)",
         "planned_query": "aset kripto",
         "plan_reason": "title:entity:crypto",
-        "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 27 TAHUN 2024 TENTANG PENYELENGGARAAN PERDAGANGAN ASET KEUANGAN DIGITAL TERMASUK ASET KRIPTO DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : a. bahwa untuk mendukung perkembangan sektor jasa keuangan dan melaksanakan kewenangan pengaturan dan pengawasan sebagaimana dimaksud dalam Undang-Undang Nomor 4 Tahun 2023 t..."
+        "snippet": "SALINAN PERATURAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 27 TAHUN 2024 TENTANG PENYELENGGARAAN PERDAGANGAN ASET KEUANGAN DIGITAL TERMASUK ASET KRIPTO DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang: a. bahwa untuk mendukung perkembangan sektor jasa keuangan dan melaksanakan kewenangan pengaturan dan pengawasan sebagaimana dimaksud dalam Undang-Undang Nomor 4 Tahun 2023 te..."
       },
       {
-        "score": 29.564818181818175,
+        "score": 47.30370909090908,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2626,7 +2261,7 @@
         "snippet": "Yth. Pihak Utama Penyelenggara Inovasi Teknologi Sektor Keuangan, Aset Keuangan Digital dan Aset Kripto, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 21/SEOJK.07/2025 TENTANG PENILAIAN KEMAMPUAN DAN KEPATUTAN SERTA PENILAIAN KEMBALI BAGI PIHAK UTAMA DI SEKTOR INOVASI TEKNOLOGI KEUANGAN, SERTA ASET KEUANGAN DIGITAL DAN ASET KRIPTO"
       },
       {
-        "score": 28.399583333333332,
+        "score": 45.43933333333334,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2639,7 +2274,7 @@
         "snippet": "(1) Aset Keuangan Digital terdiri atas:"
       },
       {
-        "score": 26.279838383838374,
+        "score": 42.0477414141414,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2652,7 +2287,7 @@
         "snippet": "Pasal 2 (1) Pihak Utama meliputi:"
       },
       {
-        "score": 21.948230769230765,
+        "score": 35.11716923076923,
         "source": "peraturan-ojk",
         "issuer": "OJK",
         "file_role": "primary_regulation",
@@ -2663,32 +2298,6 @@
         "planned_query": "aset keuangan digital",
         "plan_reason": "title:entity:crypto",
         "snippet": "Yth. Direksi Penyelenggara Perdagangan Aset Keuangan Digital, di tempat. SALINAN SURAT EDARAN OTORITAS JASA KEUANGAN REPUBLIK INDONESIA NOMOR 34/SEOJK.07/2025 TENTANG RENCANA BISNIS PENYELENGGARA PERDAGANGAN ASET KEUANGAN DIGITAL Sehubungan dengan amanat Pasal 76 ayat (8) Peraturan Otoritas Jasa Keuangan Nomor 27 Tahun 2024 tentang Penyelenggara Perdagangan Aset Keuangan Digital Termasuk Aset Kripto (Lembaran Negara ..."
-      },
-      {
-        "score": 21.405000000000005,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
-        "page": 110,
-        "pasal": "Pasal 140",
-        "ayat": null,
-        "planned_query": "peraturan terbaru tentang aset kripto di OJK",
-        "plan_reason": "raw_user_query",
-        "snippet": "... dokumen yang dapat dipersamakan dengan itu; | |---|---| | c) | daftar riwayat hidup dengan dilengkapi pasfoto berwarna terbaru berukuran 4x6 cm tercantum dalam Lampiran Bagian E yang merupakan bagian tidak terpisahkan dari |"
-      },
-      {
-        "score": 20.340939393939394,
-        "source": "peraturan-ojk",
-        "issuer": "OJK",
-        "file_role": "primary_regulation",
-        "document_title": "Penyelenggaraan Perdagangan Aset Keuangan Digital Termasuk Aset Kripto",
-        "page": 8,
-        "pasal": "Pasal 9",
-        "ayat": "(1)",
-        "planned_query": "aset kripto",
-        "plan_reason": "entity:crypto",
-        "snippet": "dilarang melakukan perdagangan atas Aset Kripto selain Aset Kripto dalam Daftar Aset Kripto sebagaimana dimaksud pada ayat (1)."
       }
     ]
   }

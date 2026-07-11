@@ -32,7 +32,7 @@
         ],
         "must_say_not_found": false
       },
-      "citation_count": 6,
+      "citation_count": 5,
       "required_issuers": [
         "OJK"
       ],
@@ -198,7 +198,7 @@
         ],
         "must_say_not_found": false
       },
-      "citation_count": 6,
+      "citation_count": 5,
       "required_issuers": [
         "BI"
       ],
@@ -226,7 +226,7 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "PADG Nomor 12 Tahun 2024 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
+          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -238,7 +238,7 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
+          "document": "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP",
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -300,22 +300,16 @@
       ],
       "top_documents": [
         {
-          "document": ". Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Bank",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "operational_requirement"
-        },
-        {
-          "document": "· Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Lembaga Selain Bank",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "operational_requirement"
-        },
-        {
           "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
+        },
+        {
+          "document": ". Dokumen Persyaratan Izin Penyedia Jasa Pembayaran (PJP) - Bank",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
         },
         {
           "document": "PADG Nomor 12 Tahun 2024 - Perizinan Terpadu Bank Indonesia Melalui Front Office Perizinan",
@@ -325,6 +319,12 @@
         },
         {
           "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -356,13 +356,13 @@
       "status": "partial",
       "confidence": {
         "label": "partial",
-        "score": 0.733,
+        "score": 0.757,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
-          "article_rate=0.80",
+          "article_rate=1.00",
           "matched_phrase_count=0",
-          "lexical_rate=0.26",
+          "lexical_rate=0.21",
           "query_coverage=0.75"
         ],
         "must_say_not_found": false
@@ -383,12 +383,6 @@
       ],
       "top_documents": [
         {
-          "document": ". Matriks Dokumen Tambahan untuk Pengembangan QRIS.",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "operational_requirement"
-        },
-        {
           "document": "PADG No.21/18/PADG/2019 - Implementasi Standar Nasional Quick Response Code untuk Pembayaran.",
           "issuer": "BI",
           "source_priority": "primary",
@@ -399,6 +393,12 @@
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
+        },
+        {
+          "document": ". Matriks Dokumen Tambahan untuk Pengembangan QRIS.",
+          "issuer": "BI",
+          "source_priority": "primary",
+          "file_role": "operational_requirement"
         },
         {
           "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
@@ -450,7 +450,7 @@
         ],
         "must_say_not_found": false
       },
-      "citation_count": 6,
+      "citation_count": 3,
       "required_issuers": [
         "BI"
       ],
@@ -472,25 +472,7 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "PBI No.23/11/PBI/2021 - Standar Nasional Sistem Pembayaran",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "primary_regulation"
-        },
-        {
           "document": "PBI No.23/7/PBI/2021 - Penyelenggara Infrastruktur Sistem Pembayaran",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "primary_regulation"
-        },
-        {
-          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "primary_regulation"
-        },
-        {
-          "document": "PBI No.23/6/PBI/2021 - Penyedia Jasa Pembayaran",
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -523,13 +505,13 @@
       "status": "answerable",
       "confidence": {
         "label": "strong",
-        "score": 0.948,
+        "score": 0.951,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=1.00",
           "matched_phrase_count=3",
-          "lexical_rate=0.58",
+          "lexical_rate=0.61",
           "query_coverage=0.60"
         ],
         "must_say_not_found": false
@@ -564,13 +546,13 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+          "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
         },
         {
-          "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "document": "Pelaporan Melalui Sistem Pelaporan Otoritas Jasa Keuangan dan Transparansi Kondisi Keuangan Bagi Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -609,14 +591,14 @@
       "status": "answerable",
       "confidence": {
         "label": "strong",
-        "score": 0.979,
+        "score": 0.998,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=1.00",
-          "matched_phrase_count=6",
-          "lexical_rate=0.86",
-          "query_coverage=0.50"
+          "matched_phrase_count=5",
+          "lexical_rate=0.87",
+          "query_coverage=0.67"
         ],
         "must_say_not_found": false
       },
@@ -638,13 +620,13 @@
       ],
       "top_documents": [
         {
-          "document": "Pelaporan Bank Umum Syariah dan Unit Usaha Syariah melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
         },
         {
-          "document": "Pelaporan Bank Umum Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "document": "Pelaporan Bank Umum Syariah dan Unit Usaha Syariah melalui Sistem Pelaporan Otoritas Jasa Keuangan",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -784,13 +766,13 @@
       "status": "partial",
       "confidence": {
         "label": "partial",
-        "score": 0.763,
+        "score": 0.756,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=0.80",
           "matched_phrase_count=0",
-          "lexical_rate=0.51",
+          "lexical_rate=0.47",
           "query_coverage=0.67"
         ],
         "must_say_not_found": false
@@ -876,7 +858,7 @@
           "page_rate=1.00",
           "article_rate=0.80",
           "matched_phrase_count=3",
-          "lexical_rate=0.98",
+          "lexical_rate=0.96",
           "query_coverage=1.00"
         ],
         "must_say_not_found": false
@@ -1137,7 +1119,7 @@
           "page_rate=1.00",
           "article_rate=1.00",
           "matched_phrase_count=10",
-          "lexical_rate=0.70",
+          "lexical_rate=0.71",
           "query_coverage=1.00"
         ],
         "must_say_not_found": false
@@ -1171,19 +1153,19 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
-          "issuer": "OJK",
-          "source_priority": "primary",
-          "file_role": "primary_regulation"
-        },
-        {
           "document": "POJK tentang Standar Penyelenggaraan Teknologi Informasi bagi Bank Perkreditan Rakyat dan Bank Pembiayaan Rakyat Syariah",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
         },
         {
-          "document": "Kualitas Aset Bank Perekonomian Rakyat Syariah",
+          "document": "Penerapan Manajemen Risiko dalam Penggunaan Teknologi Informasi oleh Bank Umum",
+          "issuer": "OJK",
+          "source_priority": "primary",
+          "file_role": "primary_regulation"
+        },
+        {
+          "document": "Rencana Bisnis Bank Umum Syariah dan Unit Usaha Syariah",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -1558,13 +1540,13 @@
       "status": "answerable",
       "confidence": {
         "label": "strong",
-        "score": 0.941,
+        "score": 0.787,
         "reasons": [
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=0.40",
-          "matched_phrase_count=2",
-          "lexical_rate=0.87",
+          "matched_phrase_count=0",
+          "lexical_rate=0.85",
           "query_coverage=1.00"
         ],
         "must_say_not_found": false
@@ -1607,13 +1589,13 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "POJK tentang Transparansi dan Publikasi Laporan Bank",
+          "document": "Pelaporan Bank Umum Konvensional Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
         },
         {
-          "document": "Pelaporan Bank Umum Konvensional Melalui Sistem Pelaporan Otoritas Jasa Keuangan",
+          "document": "POJK tentang Transparansi dan Publikasi Laporan Bank",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -1779,13 +1761,13 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "Penyelenggaraan Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+          "document": "Tata Cara dan Mekanisme Penyampaian Data Transaksi Pendanaan dan Pelaporan Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi (LPBBTI)",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
         },
         {
-          "document": "Tata Cara dan Mekanisme Penyampaian Data Transaksi Pendanaan dan Pelaporan Penyelenggara Layanan Pendanaan Bersama Berbasis Teknologi Informasi (LPBBTI)",
+          "document": "Penyelenggaraan Layanan Pendanaan Bersama Berbasis Teknologi Informasi (LPBBTI)",
           "issuer": "OJK",
           "source_priority": "primary",
           "file_role": "primary_regulation"
@@ -1829,7 +1811,7 @@
         ],
         "must_say_not_found": false
       },
-      "citation_count": 1,
+      "citation_count": 2,
       "required_issuers": [
         "OJK"
       ],
@@ -2080,13 +2062,13 @@
           "primary_rate=1.00",
           "page_rate=1.00",
           "article_rate=1.00",
-          "matched_phrase_count=10",
-          "lexical_rate=1.00",
+          "matched_phrase_count=9",
+          "lexical_rate=0.95",
           "query_coverage=0.83"
         ],
         "must_say_not_found": false
       },
-      "citation_count": 6,
+      "citation_count": 4,
       "required_issuers": [
         "BI"
       ],
@@ -2108,28 +2090,16 @@
           "file_role": "primary_regulation"
         },
         {
-          "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "operational_requirement"
-        },
-        {
-          "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran(PIP)- Lembaga Selain Bank",
-          "issuer": "BI",
-          "source_priority": "primary",
-          "file_role": "operational_requirement"
-        },
-        {
           "document": "PADG No.24/7/PADG/2022 - Penyelenggaraan Sistem Pembayaran oleh PJP dan Penyelenggara PIP",
           "issuer": "BI",
           "source_priority": "primary",
           "file_role": "primary_regulation"
         },
         {
-          "document": "PBI No.22/23/PBI/2020 - Sistem Pembayaran",
+          "document": "· Dokumen Persyaratan Penetapan Penyelenggara Infrastruktur Sistem Pembayaran (PIP) - Bank",
           "issuer": "BI",
           "source_priority": "primary",
-          "file_role": "primary_regulation"
+          "file_role": "operational_requirement"
         }
       ],
       "failure_reasons": [],

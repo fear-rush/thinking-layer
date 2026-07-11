@@ -10,6 +10,23 @@ from ..config.paths import GENERATED_LEXICON_PATH, QUERY_LEXICON_PATH, REVIEWED_
 
 def merge_generated_lexicon(base: dict[str, Any], reviewed: dict[str, Any]) -> dict[str, Any]:
     merged = json.loads(json.dumps(base, ensure_ascii=False))
+
+    for update in reviewed.get("alias_updates", []):
+        if update.get("approved") is not True:
+            continue
+        section = update.get("section")
+        name = update.get("name")
+        items = merged.get(section) if section in {"entities", "topics"} else None
+        target = next((item for item in items or [] if item.get("name") == name), None)
+        if target is None:
+            raise ValueError(f"Alias update target `{section}.{name}` does not exist in the active lexicon.")
+        for field in ("patterns", "exact_phrases", "expansions"):
+            additions = update.get(f"add_{field}") or []
+            existing = target.setdefault(field, [])
+            for value in additions:
+                if value not in existing:
+                    existing.append(value)
+
     for section in ("entities", "topics"):
         existing_names = {item.get("name") for item in merged.get(section, [])}
         existing_patterns = {

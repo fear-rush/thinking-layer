@@ -3,8 +3,9 @@ from __future__ import annotations
 import importlib
 import unittest
 
-from thinking_layer.evaluation.semantic import rrf_results
-from thinking_layer.indexing.semantic import semantic_text
+from thinking_layer.evaluation.semantic import rrf_results, write_report
+from thinking_layer.lexicon.merge import merge_generated_lexicon
+from thinking_layer.indexing.semantic import _role_texts, semantic_model_settings, semantic_text
 
 
 class ImportCliTests(unittest.TestCase):
@@ -53,6 +54,59 @@ class ImportCliTests(unittest.TestCase):
         self.assertIn("PBI Penyedia Jasa Pembayaran", text)
         self.assertIn("Pasal 1", text)
         self.assertEqual(len(text), 80)
+
+    def test_semantic_model_settings_apply_e5_retrieval_prefixes(self) -> None:
+        settings = semantic_model_settings("intfloat/multilingual-e5-small")
+
+        self.assertEqual(settings["query_prefix"], "query: ")
+        self.assertEqual(settings["document_prefix"], "passage: ")
+        self.assertEqual(_role_texts("intfloat/multilingual-e5-small", "pertanyaan", "query"), "query: pertanyaan")
+        self.assertEqual(_role_texts("intfloat/multilingual-e5-small", ["teks"], "document"), ["passage: teks"])
+
+    def test_semantic_model_settings_keep_gte_custom_code_and_cpu_fallback_explicit(self) -> None:
+        settings = semantic_model_settings("Alibaba-NLP/gte-multilingual-base")
+
+        self.assertTrue(settings["trust_remote_code"])
+        self.assertEqual(settings["device"], "cpu")
+        self.assertEqual(settings["max_seq_length"], 8192)
+
+    def test_semantic_report_can_record_model_failure(self) -> None:
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+
+        report = {
+            "block_count": 5,
+            "question_count": 1,
+            "candidate_limit": 20,
+            "rrf_k": 60,
+            "bm25": {"summary": {"mrr": 1.0, "document_recall": {}, "issuer_coverage_at_10": 1.0}},
+            "models": [{"model": "example/model", "status": "error", "error_type": "RuntimeError", "error": "unsupported runtime"}],
+        }
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "report.md"
+            write_report(report, path)
+            text = path.read_text(encoding="utf-8")
+
+        self.assertIn("Status: `error`", text)
+        self.assertIn("unsupported runtime", text)
+
+    def test_lexicon_merge_applies_approved_alias_updates_to_existing_topics(self) -> None:
+        base = {"topics": [{"name": "consumer_protection", "patterns": ["perlindungan konsumen"]}]}
+        reviewed = {
+            "alias_updates": [
+                {
+                    "section": "topics",
+                    "name": "consumer_protection",
+                    "add_patterns": ["pelindungan konsumen"],
+                    "approved": True,
+                }
+            ],
+            "topics": [],
+        }
+
+        merged = merge_generated_lexicon(base, reviewed)
+
+        self.assertEqual(merged["topics"][0]["patterns"], ["perlindungan konsumen", "pelindungan konsumen"])
 
     def test_rrf_fuses_ranked_lists_without_duplicate_blocks(self) -> None:
         lexical = [{"file_id": "a", "page_start": 1, "text": "same"}, {"file_id": "b", "page_start": 1, "text": "other"}]
