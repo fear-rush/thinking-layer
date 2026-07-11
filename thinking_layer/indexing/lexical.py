@@ -4,7 +4,6 @@ import hashlib
 import json
 from collections import Counter, defaultdict
 from dataclasses import dataclass
-from functools import lru_cache
 from typing import Any
 
 from ..config.heuristics import heuristic_section
@@ -58,6 +57,37 @@ def load_search_blocks(
         blocks.append(row)
     return blocks
 
+
+def load_search_blocks_from_offset(
+    offset: int,
+    issuer: str | None,
+    role: str | None,
+    source: str | None,
+    include_secondary: bool,
+) -> list[dict[str, Any]]:
+    """Load only appended source-corpus rows after a known byte offset."""
+    if not SOURCE_CORPUS_PATH.exists():
+        return []
+    blocks: list[dict[str, Any]] = []
+    with SOURCE_CORPUS_PATH.open("rb") as handle:
+        handle.seek(offset)
+        for raw_line in handle:
+            if not raw_line.strip():
+                continue
+            row = json.loads(raw_line.decode("utf-8"))
+            if issuer and row.get("issuer", "").lower() != issuer.lower():
+                continue
+            if role and row.get("file_role") != role:
+                continue
+            if source and row.get("source") != source:
+                continue
+            if not include_secondary and row.get("file_role") in {"secondary_faq", "secondary_summary"}:
+                continue
+            if not row.get("text") or not row.get("page_start"):
+                continue
+            blocks.append(row)
+    return blocks
+
 def build_bm25(blocks: list[dict[str, Any]], stopwords: set[str]) -> tuple[list[Counter[str]], list[int], Counter[str], dict[str, list[int]], float]:
     doc_terms: list[Counter[str]] = []
     doc_lengths: list[int] = []
@@ -99,6 +129,28 @@ def build_search_index(blocks: list[dict[str, Any]]) -> SearchIndex:
     doc_terms, doc_lengths, doc_freq, postings, avg_len = build_bm25(blocks, stopwords)
     return SearchIndex(blocks=blocks, doc_terms=doc_terms, doc_lengths=doc_lengths, doc_freq=doc_freq, postings=postings, avg_len=avg_len, stopwords=stopwords)
 
+
+def append_search_index(index: SearchIndex, blocks: list[dict[str, Any]]) -> SearchIndex:
+    """Extend an index with new blocks without retokenizing existing blocks."""
+    if not blocks:
+        return index
+    added = build_search_index(blocks)
+    offset = len(index.blocks)
+    index.blocks.extend(added.blocks)
+    index.doc_terms.extend(added.doc_terms)
+    index.doc_lengths.extend(added.doc_lengths)
+    index.doc_freq.update(added.doc_freq)
+    for term, doc_ids in added.postings.items():
+        index.postings.setdefault(term, []).extend(offset + doc_id for doc_id in doc_ids)
+    old_count = offset
+    new_count = len(index.blocks)
+    index.avg_len = (
+        ((index.avg_len * old_count) + (added.avg_len * len(added.blocks))) / new_count
+        if new_count
+        else 0.0
+    )
+    return index
+
 def index_signature() -> dict[str, Any]:
     blocks_path = PROCESSED_DIR / "blocks.ndjson"
     extracted_path = PROCESSED_DIR / "extracted_documents.ndjson"
@@ -118,7 +170,37 @@ def index_signature() -> dict[str, Any]:
         "stopwords_sha1": hashlib.sha1(STOPWORDS_PATH.read_bytes()).hexdigest() if STOPWORDS_PATH.exists() else None,
     }
 
-def write_search_index(index: SearchIndex, filters: dict[str, Any]) -> None:
+
+def source_state() -> dict[str, Any]:
+    """Return append-detection metadata for the corpus selected by the index."""
+    corpus_path = SOURCE_CORPUS_PATH if SOURCE_CORPUS_PATH.exists() else PROCESSED_DIR / "blocks.ndjson"
+    if not corpus_path.exists():
+        return {"path": None, "size": None, "prefix_sha1": None}
+    size = corpus_path.stat().st_size
+    digest = hashlib.sha1()
+    with corpus_path.open("rb") as handle:
+        while chunk := handle.read(1024 * 1024):
+            digest.update(chunk)
+    return {
+        "path": str(corpus_path.relative_to(ROOT)),
+        "size": size,
+        "prefix_sha1": digest.hexdigest(),
+    }
+
+
+def sha1_prefix(path, length: int) -> str:
+    digest = hashlib.sha1()
+    remaining = length
+    with path.open("rb") as handle:
+        while remaining:
+            chunk = handle.read(min(1024 * 1024, remaining))
+            if not chunk:
+                break
+            digest.update(chunk)
+            remaining -= len(chunk)
+    return digest.hexdigest()
+
+def write_search_index(index: SearchIndex, filters: dict[str, Any], source_state_value: dict[str, Any] | None = None) -> None:
     SEARCH_INDEX_DIR.mkdir(parents=True, exist_ok=True)
     docs_path = SEARCH_INDEX_DIR / "docs.ndjson"
     terms_path = SEARCH_INDEX_DIR / "terms.ndjson"
@@ -142,6 +224,7 @@ def write_search_index(index: SearchIndex, filters: dict[str, Any]) -> None:
 
     metadata = {
         "signature": index_signature(),
+        "source_state": source_state_value or source_state(),
         "filters": filters,
         "doc_count": len(index.blocks),
         "term_count": len(index.doc_freq),
@@ -156,7 +239,6 @@ def persisted_index_exists() -> bool:
         for name in ("metadata.json", "docs.ndjson", "terms.ndjson", "postings.ndjson")
     )
 
-@lru_cache(maxsize=1)
 def load_persisted_search_index() -> SearchIndex:
     if not persisted_index_exists():
         raise SystemExit("Missing persisted search index. Run `uv run python -m thinking_layer.cli build-index` first.")
@@ -198,10 +280,17 @@ def get_search_index(
     include_secondary: bool = True,
     prefer_persisted: bool = True,
 ) -> SearchIndex:
-    if prefer_persisted and not issuer and not role and not source and include_secondary and persisted_index_exists():
+    if prefer_persisted and not issuer and not role and not source and include_secondary and persisted_index_exists() and persisted_index_is_current():
         return load_persisted_search_index()
     blocks = load_search_blocks(issuer, role, source, include_secondary)
     return build_search_index(blocks)
+
+
+def persisted_index_is_current() -> bool:
+    if not persisted_index_exists():
+        return False
+    metadata = read_json(SEARCH_INDEX_DIR / "metadata.json")
+    return metadata.get("signature") == index_signature()
 
 def filter_index(index: SearchIndex, issuer: str | None, role: str | None, source: str | None, include_secondary: bool) -> SearchIndex:
     if not issuer and not role and not source and include_secondary:

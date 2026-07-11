@@ -11,7 +11,7 @@ import numpy as np
 from ..config.paths import GOLD_QUESTIONS_PATH, REPORTS_DIR, ROOT
 from ..indexing.semantic import _encode_documents, _encode_query, _load_model, semantic_config, semantic_text
 from ..indexing.lexical import load_search_blocks
-from ..indexing.sqlite import sqlite_index_exists, sqlite_search
+from ..indexing.sqlite import sqlite_index_is_current, sqlite_search
 from .evidence import load_gold_questions, title_matches_expected
 
 
@@ -234,7 +234,7 @@ def write_report(report: dict[str, Any], path) -> None:
 
 
 def cmd_benchmark_retrieval(args: argparse.Namespace) -> None:
-    if not sqlite_index_exists():
+    if not sqlite_index_is_current():
         raise SystemExit("Missing SQLite lexical index. Run `build-index` before benchmarking.")
     config = semantic_config()
     model_names = [name.strip() for name in (args.models or ",".join(config.get("model_candidates") or [])).split(",") if name.strip()]

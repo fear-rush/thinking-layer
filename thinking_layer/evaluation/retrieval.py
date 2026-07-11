@@ -6,7 +6,7 @@ from typing import Any
 
 from ..config.heuristics import heuristic_section
 from ..indexing.lexical import format_search_results, get_search_index, snippet
-from ..indexing.sqlite import sqlite_doc_count, sqlite_index_exists
+from ..indexing.sqlite import sqlite_doc_count, sqlite_index_is_current
 from ..config.paths import REPORTS_DIR
 from ..retrieval.planning import build_query_plan
 from ..retrieval.search import execute_query_plan
@@ -107,8 +107,8 @@ def evaluate_results(spec: dict[str, Any], results: list[dict[str, Any]]) -> dic
 
 def cmd_smoke_test(args: argparse.Namespace) -> None:
     REPORTS_DIR.mkdir(exist_ok=True)
-    index = None if sqlite_index_exists() else get_search_index(prefer_persisted=True)
-    indexed_blocks = sqlite_doc_count() if sqlite_index_exists() else len(index.blocks)
+    index = None if sqlite_index_is_current() else get_search_index(prefer_persisted=True)
+    indexed_blocks = sqlite_doc_count() if sqlite_index_is_current() else len(index.blocks)
     lines = [
         "# Retrieval Smoke Test",
         "",

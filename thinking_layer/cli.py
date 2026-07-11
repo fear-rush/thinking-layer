@@ -72,6 +72,7 @@ def main() -> None:
 
     index_parser = subparsers.add_parser("build-index", help="Build persisted local BM25 search index.")
     index_parser.add_argument("--limit", type=int, default=None, help="Only index the first N blocks, for development.")
+    index_parser.add_argument("--incremental", action="store_true", help="Append newly added source-corpus rows when the existing corpus is unchanged up to the previous index offset; otherwise rebuild safely.")
     index_parser.set_defaults(func=cmd_build_index)
 
     semantic_index_parser = subparsers.add_parser("build-semantic-index", help="Build an isolated persisted semantic index.")

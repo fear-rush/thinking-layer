@@ -86,6 +86,8 @@ uv run python -m thinking_layer.cli extract --progress-every 25 --verbose
 uv run python -m thinking_layer.cli report
 uv run python -m thinking_layer.cli build-source-corpus --include-secondary
 uv run python -m thinking_layer.cli build-index
+# After the first indexed corpus, use append-only detection for new source rows.
+uv run python -m thinking_layer.cli build-index --incremental
 
 # Optional semantic-retrieval spike; this is separate from the BM25 baseline.
 uv run python -m thinking_layer.cli build-semantic-index --model intfloat/multilingual-e5-small --batch-size 32
@@ -453,6 +455,8 @@ Outputs:
 
 When `processed/source_corpus.ndjson` exists, indexing uses that file instead of raw blocks. The SQLite index stores block-level terms and document-title rows.
 
+`build-index --incremental` tokenizes only newly appended source-corpus rows when the previously indexed bytes are unchanged. If the corpus is edited in place, shrinks, changes source path, or has an incompatible legacy index, the command safely falls back to a full rebuild. Runtime search ignores stale persisted indexes and rebuilds an in-memory index instead of serving stale results.
+
 ### Search And Query Planning
 
 Lexical search:
@@ -793,7 +797,7 @@ Next concrete steps before advancing the lexicon/query-understanding phase:
 
 ### 9. Production Hardening Later
 
-- [ ] Add incremental ingestion and stale-index detection.
+- [x] Add incremental ingestion and stale-index detection for the BM25/source-corpus index. Use `build-index --incremental` for append-only updates.
 - [ ] Add source/version timeline handling for regulation updates.
 - [ ] Add permission model if the corpus becomes user-specific or restricted.
 - [x] Add local `trace-query` observability for query plans, retrieved evidence, refusal reasons, citation quality, and answer summaries.

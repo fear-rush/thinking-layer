@@ -9,11 +9,23 @@ from typing import Any
 from ..config.heuristics import heuristic_section
 from ..config.paths import ROOT, SEARCH_INDEX_DB, SEARCH_INDEX_DIR, SOURCE_CORPUS_PATH
 from ..retrieval.query_tools import load_stopwords
-from .lexical import SearchIndex, build_search_index, index_signature, load_search_blocks, write_search_index
+from .lexical import (
+    SearchIndex,
+    append_search_index,
+    build_search_index,
+    index_signature,
+    load_persisted_search_index,
+    load_search_blocks,
+    load_search_blocks_from_offset,
+    persisted_index_exists,
+    sha1_prefix,
+    source_state,
+    write_search_index,
+)
 from .scoring import apply_lexical_boosts, bm25_term_score, candidate_terms_for, query_terms_for, relevant_exact_phrases
 from .title import TITLE_SEARCH_MIN_SCORE, document_representative_rank, enrich_title_hit, title_match_score
 
-def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any]) -> None:
+def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any], source_state_value: dict[str, Any] | None = None) -> None:
     SEARCH_INDEX_DIR.mkdir(parents=True, exist_ok=True)
     if SEARCH_INDEX_DB.exists():
         SEARCH_INDEX_DB.unlink()
@@ -35,6 +47,7 @@ def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any]) -> No
 
         metadata = {
             "signature": index_signature(),
+            "source_state": source_state_value or source_state(),
             "filters": filters,
             "doc_count": len(index.blocks),
             "term_count": len(index.doc_freq),
@@ -119,6 +132,19 @@ def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any]) -> No
 
 def sqlite_index_exists() -> bool:
     return SEARCH_INDEX_DB.exists()
+
+
+def sqlite_index_is_current() -> bool:
+    if not sqlite_index_exists():
+        return False
+    conn = sqlite3.connect(SEARCH_INDEX_DB)
+    try:
+        metadata = sqlite_metadata(conn)
+    except sqlite3.DatabaseError:
+        return False
+    finally:
+        conn.close()
+    return metadata.get("signature") == index_signature()
 
 def sqlite_metadata(conn: sqlite3.Connection) -> dict[str, Any]:
     rows = conn.execute("SELECT key, value FROM metadata").fetchall()
@@ -312,6 +338,53 @@ def sqlite_search(
         if owns_conn:
             conn.close()
 
+def incremental_build_index(filters: dict[str, Any]) -> tuple[bool, str]:
+    if not sqlite_index_exists() or not persisted_index_exists() or not SOURCE_CORPUS_PATH.exists():
+        return False, "an existing SQLite/JSON index and source corpus are required"
+    conn = sqlite3.connect(SEARCH_INDEX_DB)
+    try:
+        metadata = sqlite_metadata(conn)
+    finally:
+        conn.close()
+    previous = metadata.get("source_state") or {}
+    current_signature = index_signature()
+    if not previous and metadata.get("signature") == current_signature:
+        source_state_value = source_state()
+        json_metadata_path = SEARCH_INDEX_DIR / "metadata.json"
+        json_metadata = json.loads(json_metadata_path.read_text(encoding="utf-8"))
+        json_metadata["source_state"] = source_state_value
+        json_metadata_path.write_text(json.dumps(json_metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        conn = sqlite3.connect(SEARCH_INDEX_DB)
+        try:
+            conn.execute(
+                "INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)",
+                ("source_state", json.dumps(source_state_value, ensure_ascii=False)),
+            )
+            conn.commit()
+        finally:
+            conn.close()
+        return True, "initialized append-only source state; index was already current"
+    current_path = str(SOURCE_CORPUS_PATH.relative_to(ROOT))
+    previous_path = previous.get("path")
+    previous_size = previous.get("size")
+    if previous_path != current_path or not isinstance(previous_size, int):
+        return False, "the index has no compatible append-only source state"
+    current_size = SOURCE_CORPUS_PATH.stat().st_size
+    if current_size < previous_size:
+        return False, "the source corpus shrank"
+    if previous.get("prefix_sha1") != sha1_prefix(SOURCE_CORPUS_PATH, previous_size):
+        return False, "existing source-corpus bytes changed; a full rebuild is required"
+    new_blocks = load_search_blocks_from_offset(previous_size, None, None, None, True)
+    source_state_value = source_state()
+    if not new_blocks and current_size == previous_size and metadata.get("signature") == current_signature:
+        return True, "index is already current"
+    index = load_persisted_search_index()
+    append_search_index(index, new_blocks)
+    write_search_index(index, filters, source_state_value=source_state_value)
+    write_sqlite_search_index(index, filters, source_state_value=source_state_value)
+    return True, f"appended {len(new_blocks)} new searchable blocks"
+
+
 def cmd_build_index(args: argparse.Namespace) -> None:
     filters = {
         "issuer": None,
@@ -321,13 +394,20 @@ def cmd_build_index(args: argparse.Namespace) -> None:
         "extracted_ok_only": True,
         "corpus": str(SOURCE_CORPUS_PATH.relative_to(ROOT)) if SOURCE_CORPUS_PATH.exists() else "processed/blocks.ndjson",
     }
+    if args.incremental:
+        updated, message = incremental_build_index(filters)
+        if updated:
+            print(f"Incremental index update: {message}", flush=True)
+            return
+        print(f"Incremental update unavailable: {message}; performing full rebuild.", flush=True)
     blocks = load_search_blocks(None, None, None, include_secondary=True)
     if args.limit:
         blocks = blocks[: args.limit]
     print(f"Building search index for {len(blocks)} blocks...", flush=True)
     index = build_search_index(blocks)
-    write_search_index(index, filters)
-    write_sqlite_search_index(index, filters)
+    source_state_value = source_state()
+    write_search_index(index, filters, source_state_value=source_state_value)
+    write_sqlite_search_index(index, filters, source_state_value=source_state_value)
     print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/metadata.json")
     print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/docs.ndjson")
     print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/terms.ndjson")

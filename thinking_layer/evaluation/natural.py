@@ -5,7 +5,7 @@ import json
 from typing import Any
 
 from ..indexing.lexical import SearchIndex, get_search_index, snippet
-from ..indexing.sqlite import sqlite_index_exists
+from ..indexing.sqlite import sqlite_index_is_current
 from ..config.paths import REPORTS_DIR
 from ..retrieval.planning import build_query_plan
 from ..retrieval.search import execute_query_plan
@@ -95,7 +95,7 @@ def cmd_eval_natural(args: argparse.Namespace) -> None:
     rows = []
     evaluations = []
     index_cache: dict[tuple[Any, Any, Any, bool], SearchIndex] = {}
-    base_index = None if sqlite_index_exists() else get_search_index(prefer_persisted=True)
+    base_index = None if sqlite_index_is_current() else get_search_index(prefer_persisted=True)
     for spec in NATURAL_LANGUAGE_EVALS:
         plan = build_query_plan(spec["query"], max_searches=args.max_searches)
         results = execute_query_plan(plan, args.limit, index_cache=index_cache, base_index=base_index)

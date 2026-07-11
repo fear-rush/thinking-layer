@@ -9,7 +9,7 @@ from ..config.heuristics import heuristic_section
 from ..corpus.citations import citation_quality_for_block, citation_text_for_block, section_type_for_block, source_priority_for_role
 from ..corpus.quality import extraction_issue_flags
 from ..indexing.lexical import get_search_index, snippet
-from ..indexing.sqlite import sqlite_index_exists
+from ..indexing.sqlite import sqlite_index_is_current
 from ..config.paths import REPORTS_DIR, ROOT
 from .planning import build_query_plan
 from .query_tools import load_stopwords, query_overlap_score, tokenize_with_stopwords
@@ -203,7 +203,7 @@ def evidence_confidence(items: list[dict[str, Any]], expected_issuers: list[str 
 
 def build_evidence_pack(query: str, max_searches: int, limit: int, per_document_limit: int) -> dict[str, Any]:
     plan = build_query_plan(query, max_searches=max_searches)
-    base_index = None if sqlite_index_exists() else get_search_index(prefer_persisted=True)
+    base_index = None if sqlite_index_is_current() else get_search_index(prefer_persisted=True)
     results = execute_query_plan(plan, limit, base_index=base_index)
     items = [evidence_item(query, row) for row in results]
     items.sort(key=lambda item: item["support_score"], reverse=True)

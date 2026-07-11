@@ -5,6 +5,7 @@ import unittest
 
 from thinking_layer.evaluation.semantic import rrf_results, write_report
 from thinking_layer.lexicon.merge import merge_generated_lexicon
+from thinking_layer.indexing.lexical import append_search_index, build_search_index
 from thinking_layer.indexing.semantic import _role_texts, semantic_model_settings, semantic_text
 from thinking_layer.observability import trace_from_answer
 
@@ -144,6 +145,27 @@ class ImportCliTests(unittest.TestCase):
         self.assertTrue(trace["decision"]["refused"])
         self.assertEqual(trace["retrieval"]["evidence_count"], 0)
         self.assertEqual(trace["query_plan"]["search_count"], 1)
+
+    def test_append_search_index_adds_only_new_documents_and_postings(self) -> None:
+        first = {
+            "document_title": "PBI Pembayaran",
+            "text": "Penyedia jasa pembayaran wajib memenuhi ketentuan.",
+            "page_start": 1,
+            "file_id": "first",
+        }
+        second = {
+            "document_title": "PBI Infrastruktur",
+            "text": "Infrastruktur pembayaran wajib tersedia.",
+            "page_start": 2,
+            "file_id": "second",
+        }
+
+        index = build_search_index([first])
+        append_search_index(index, [second])
+
+        self.assertEqual(len(index.blocks), 2)
+        self.assertEqual(index.postings["infrastruktur"], [1])
+        self.assertEqual(index.postings["pembayaran"], [0, 1])
 
     def test_rrf_fuses_ranked_lists_without_duplicate_blocks(self) -> None:
         lexical = [{"file_id": "a", "page_start": 1, "text": "same"}, {"file_id": "b", "page_start": 1, "text": "other"}]

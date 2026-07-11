@@ -6,14 +6,14 @@ from typing import Any
 
 from ..config.heuristics import heuristic_section
 from ..indexing.lexical import SearchIndex, bm25_search, dedupe_results, filter_index, format_search_results, get_search_index, needs_balanced_issuer_search, planned_search
-from ..indexing.sqlite import sqlite_index_exists, sqlite_metadata, sqlite_search, sqlite_title_search
+from ..indexing.sqlite import sqlite_index_is_current, sqlite_metadata, sqlite_search, sqlite_title_search
 from ..indexing.title import title_search
 from ..config.paths import SEARCH_INDEX_DB
 from .planning import build_query_plan, format_query_plan
 from .query_tools import query_overlap_score
 
 def cmd_search(args: argparse.Namespace) -> None:
-    if sqlite_index_exists():
+    if sqlite_index_is_current():
         results = sqlite_search(
             args.query,
             args.limit,
@@ -36,7 +36,7 @@ def execute_query_plan(
     base_index: SearchIndex | None = None,
 ) -> list[dict[str, Any]]:
     all_results: list[dict[str, Any]] = []
-    if sqlite_index_exists():
+    if sqlite_index_is_current():
         conn = sqlite3.connect(SEARCH_INDEX_DB)
         conn.row_factory = sqlite3.Row
         metadata = sqlite_metadata(conn)
@@ -179,7 +179,7 @@ def planned_result_score(raw_query: str, search: dict[str, Any], search_rank: in
 
 def cmd_planned_search(args: argparse.Namespace) -> None:
     plan = build_query_plan(args.query, max_searches=args.max_searches)
-    base_index = None if sqlite_index_exists() else get_search_index(prefer_persisted=True)
+    base_index = None if sqlite_index_is_current() else get_search_index(prefer_persisted=True)
     results = execute_query_plan(plan, args.limit, base_index=base_index)
     lines = [format_query_plan(plan), "", format_search_results(args.query, results)]
     print("\n".join(lines))
