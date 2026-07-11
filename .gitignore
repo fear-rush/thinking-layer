@@ -8,18 +8,39 @@ wheels/
 
 # Virtual environments
 .venv/
+.tox/
+.nox/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
 
 # Local OS/editor files
 .DS_Store
 *.swp
 *.swo
+.idea/
+.vscode/
+
+# Local agent/tool state
+.agents/
+.codex/
+.claude/
 
 # Local tool/cache files
+.cache/
+.hypothesis/
+.ipynb_checkpoints/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
 .coverage
 htmlcov/
+*.log
+*.tmp
+tmp/
+temp/
 
 # Large local corpus inputs and generated artifacts
 data/
