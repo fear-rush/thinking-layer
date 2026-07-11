@@ -78,6 +78,14 @@
       "secondary_faq": 0.58,
       "secondary_summary": 0.50
     },
+    "lifecycle_multiplier": {
+      "active": 1.05,
+      "amended": 1.00,
+      "repealed": 0.60,
+      "partially_repealed": 0.72,
+      "superseded": 0.60,
+      "unknown": 1.00
+    },
     "reason_boost": {
       "title": 1.40,
       "topic": 1.25,

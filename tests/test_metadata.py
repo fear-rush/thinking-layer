@@ -9,6 +9,7 @@ from thinking_layer.corpus.metadata import (
     classify_file_role,
     file_entries,
     normalized_metadata,
+    regulation_series_key,
     resolve_saved_path,
 )
 
@@ -21,7 +22,10 @@ class MetadataTests(unittest.TestCase):
             payload={
                 "record_id": "bi-1",
                 "title": "PBI Nomor 23/6/PBI/2021 tentang Penyedia Jasa Pembayaran",
+                "date": "15 Juni 2021",
                 "effective_date": "1 Juli 2021",
+                "status": "Berlaku",
+                "supersedes": ["PBI Nomor 20/6/PBI/2018"],
                 "group_path": ["Sistem Pembayaran"],
             },
         )
@@ -33,6 +37,12 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(meta["number"], "23/6/pbi/2021")
         self.assertEqual(meta["year"], "2021")
         self.assertEqual(meta["effective_date"], "2021-07-01")
+        self.assertEqual(meta["issued_date"], "2021-06-15")
+        self.assertEqual(meta["lifecycle_status"], "active")
+        self.assertTrue(meta["is_current"])
+        self.assertEqual(meta["supersedes"], ["PBI Nomor 20/6/PBI/2018"])
+        self.assertEqual(meta["regulation_version_key"], meta["canonical_id"])
+        self.assertEqual(regulation_series_key("BI", "PBI", "23/6/PBI/2021"), "bi-pbi-23-6-pbi")
         self.assertEqual(meta["source_id"], "bi-1")
 
     def test_file_entries_support_single_file_payload(self) -> None:

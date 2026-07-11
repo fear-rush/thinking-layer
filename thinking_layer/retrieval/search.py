@@ -149,6 +149,12 @@ def sector_alignment_factor(raw_query: str, title: str) -> float:
         return float(config.get("bpr_query_bank_umum_title_multiplier", 0.70))
     return 1.0
 
+
+def lifecycle_multiplier(row: dict[str, Any]) -> float:
+    config = heuristic_section("retrieval_ranking", "planned_result")
+    status = row.get("lifecycle_status") or "unknown"
+    return float((config.get("lifecycle_multiplier") or {}).get(status, 1.0))
+
 def planned_result_score(raw_query: str, search: dict[str, Any], search_rank: int, result_rank: int, row: dict[str, Any]) -> float:
     config = heuristic_section("retrieval_ranking", "planned_result")
     title = row.get("document_title") or ""
@@ -175,6 +181,7 @@ def planned_result_score(raw_query: str, search: dict[str, Any], search_rank: in
         * title_quality
         * sector_alignment_factor(raw_query, title)
         * role_multiplier
+        * lifecycle_multiplier(row)
     )
 
 def cmd_planned_search(args: argparse.Namespace) -> None:

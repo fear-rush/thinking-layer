@@ -43,6 +43,11 @@ class CitationTests(unittest.TestCase):
                 "regulation_type": "POJK",
                 "number": "1/2026",
                 "year": "2026",
+                "regulation_version_key": "ojk-pojk-1-2026",
+                "regulation_series_key": "ojk-pojk-1",
+                "effective_date": "2026-02-01",
+                "lifecycle_status": "active",
+                "is_current": True,
                 "page_start": 10,
                 "page_end": 10,
                 "block_type": "article",
@@ -59,6 +64,8 @@ class CitationTests(unittest.TestCase):
         self.assertEqual(row["huruf"], "huruf b")
         self.assertEqual(row["citation"]["huruf"], "huruf b")
         self.assertEqual(row["citation"]["text"], "POJK Contoh, hlm. 10, Pasal 4, ayat (2), huruf b")
+        self.assertEqual(row["regulation_version_key"], "ojk-pojk-1-2026")
+        self.assertEqual(row["lifecycle_status"], "active")
         self.assertTrue(row["citation_policy"]["must_say_not_found_when_unsure"])
 
     def test_normalize_source_corpus_block_cleans_table_text(self) -> None:

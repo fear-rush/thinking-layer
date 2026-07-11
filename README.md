@@ -49,6 +49,7 @@ Pipeline code lives under `thinking_layer/`:
 - `corpus/citations.py`: citation quality, section typing, source priority, and source-corpus block normalization.
 - `corpus/build.py`: canonical metadata/file-manifest build and audit CLI commands.
 - `corpus/source_corpus.py`: citation-ready source corpus build and Sikepo metadata coverage report.
+- Regulation records carry stable version/series keys and lifecycle metadata (`issued_date`, `effective_date`, `repeal_date`, `lifecycle_status`, `supersedes`, and `amends`). Explicitly superseded or repealed records are down-ranked; historical records remain available for time-specific work.
 - `indexing/lexical.py`: stopwords, tokenization, in-memory BM25 index, lexical scoring, result formatting.
 - `indexing/semantic.py`: isolated SentenceTransformers-compatible dense index and search path.
 - `indexing/sqlite.py`: persisted SQLite index build/read/search.
@@ -798,7 +799,7 @@ Next concrete steps before advancing the lexicon/query-understanding phase:
 ### 9. Production Hardening Later
 
 - [x] Add incremental ingestion and stale-index detection for the BM25/source-corpus index. Use `build-index --incremental` for append-only updates.
-- [ ] Add source/version timeline handling for regulation updates.
+- [x] Add source/version timeline metadata for regulation updates: stable version/series keys, lifecycle dates/status, supersession relationships, and safe down-ranking of explicitly outdated records.
 - [ ] Add permission model if the corpus becomes user-specific or restricted.
 - [x] Add local `trace-query` observability for query plans, retrieved evidence, refusal reasons, citation quality, and answer summaries.
 - [ ] Add API/service wrapper only after local CLI behavior is stable.

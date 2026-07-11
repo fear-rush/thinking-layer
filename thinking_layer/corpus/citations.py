@@ -63,12 +63,20 @@ def citation_text_for_block(block: dict[str, Any]) -> str:
     return ", ".join(parts)
 
 
-def normalize_source_corpus_block(block: dict[str, Any]) -> dict[str, Any]:
+def normalize_source_corpus_block(
+    block: dict[str, Any],
+    regulation_metadata: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    regulation_metadata = regulation_metadata or {}
+
+    def value(name: str, default: Any = None) -> Any:
+        return block.get(name, regulation_metadata.get(name, default))
+
     citation_quality = citation_quality_for_block(block)
     text = normalize_extracted_text(str(block.get("text") or ""), block.get("block_type"))
     return {
         "block_id": block.get("block_id"),
-        "canonical_id": block.get("canonical_id"),
+        "canonical_id": value("canonical_id"),
         "file_id": block.get("file_id"),
         "issuer": block.get("issuer"),
         "source": block.get("source"),
@@ -76,9 +84,18 @@ def normalize_source_corpus_block(block: dict[str, Any]) -> dict[str, Any]:
         "file_role": block.get("file_role"),
         "document_id": block.get("canonical_id"),
         "document_title": block.get("document_title"),
-        "regulation_type": block.get("regulation_type"),
-        "number": block.get("number"),
-        "year": block.get("year"),
+        "regulation_type": value("regulation_type"),
+        "number": value("number"),
+        "year": value("year"),
+        "regulation_version_key": value("regulation_version_key", value("canonical_id")),
+        "regulation_series_key": value("regulation_series_key"),
+        "issued_date": value("issued_date"),
+        "effective_date": value("effective_date"),
+        "repeal_date": value("repeal_date"),
+        "lifecycle_status": value("lifecycle_status"),
+        "is_current": value("is_current"),
+        "supersedes": value("supersedes", []),
+        "amends": value("amends", []),
         "page": block.get("page_start"),
         "page_start": block.get("page_start"),
         "page_end": block.get("page_end"),

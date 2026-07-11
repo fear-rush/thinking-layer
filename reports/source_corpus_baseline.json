@@ -32,6 +32,9 @@
     "abstrak": 3945,
     "attachment": 10104
   },
+  "lifecycle_status": {
+    "unknown": 537355
+  },
   "citation_quality": {
     "document_page": 73996,
     "document_page_pasal": 394602,

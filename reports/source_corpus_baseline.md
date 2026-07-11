@@ -12,6 +12,7 @@ This report validates the normalized, citation-ready corpus used before retrieva
 - Source priority: `{'primary': 521902, 'secondary': 15453}`
 - File roles: `{'primary_regulation': 509613, 'operational_requirement': 2185, 'secondary_faq': 11498, 'secondary_summary': 3955, 'attachment': 10104}`
 - Section types: `{'paragraph': 24917, 'table': 62382, 'pasal': 292827, 'ayat': 64572, 'heading': 56759, 'list_item': 10341, 'faq': 11508, 'abstrak': 3945, 'attachment': 10104}`
+- Lifecycle status: `{'unknown': 537355}`
 - Citation quality: `{'document_page': 73996, 'document_page_pasal': 394602, 'document_page_pasal_ayat': 40115, 'document_page_pasal_ayat_huruf': 28642}`
 
 ## Sikepo Metadata Coverage

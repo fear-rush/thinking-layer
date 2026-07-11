@@ -2379,6 +2379,48 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
 
+### `retrieval_ranking.planned_result.lifecycle_multiplier.active`
+
+- Value: `1.05`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.lifecycle_multiplier.amended`
+
+- Value: `1.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.lifecycle_multiplier.repealed`
+
+- Value: `0.6`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.lifecycle_multiplier.partially_repealed`
+
+- Value: `0.72`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.lifecycle_multiplier.superseded`
+
+- Value: `0.6`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `retrieval_ranking.planned_result.lifecycle_multiplier.unknown`
+
+- Value: `1.0`
+- Category: `manual_domain_policy`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
 ### `retrieval_ranking.planned_result.reason_boost.title`
 
 - Value: `1.4`
@@ -2603,7 +2645,7 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 
 ### `semantic_retrieval.model_candidates`
 
-- Value: `["intfloat/multilingual-e5-small", "intfloat/multilingual-e5-base", "BAAI/bge-m3"]`
+- Value: `["intfloat/multilingual-e5-small", "intfloat/multilingual-e5-base", "Alibaba-NLP/gte-multilingual-base", "BAAI/bge-m3"]`
 - Category: `standard_ir`
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`
@@ -2632,6 +2674,118 @@ The current pass is behavior-preserving: values were externalized, not tuned.
 ### `semantic_retrieval.max_text_chars`
 
 - Value: `6000`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-small.query_prefix`
+
+- Value: `query: `
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-small.document_prefix`
+
+- Value: `passage: `
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-small.max_seq_length`
+
+- Value: `512`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-small.trust_remote_code`
+
+- Value: `False`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-small.device`
+
+- Value: `None`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-base.query_prefix`
+
+- Value: `query: `
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-base.document_prefix`
+
+- Value: `passage: `
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-base.max_seq_length`
+
+- Value: `512`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-base.trust_remote_code`
+
+- Value: `False`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.intfloat/multilingual-e5-base.device`
+
+- Value: `None`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.Alibaba-NLP/gte-multilingual-base.max_seq_length`
+
+- Value: `8192`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.Alibaba-NLP/gte-multilingual-base.trust_remote_code`
+
+- Value: `True`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.Alibaba-NLP/gte-multilingual-base.device`
+
+- Value: `cpu`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.BAAI/bge-m3.max_seq_length`
+
+- Value: `8192`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.BAAI/bge-m3.trust_remote_code`
+
+- Value: `False`
+- Category: `standard_ir`
+- Affects runtime: `yes`
+- Calibration status: `not calibrated`
+
+### `semantic_retrieval.models.BAAI/bge-m3.device`
+
+- Value: `None`
 - Category: `standard_ir`
 - Affects runtime: `yes`
 - Calibration status: `not calibrated`

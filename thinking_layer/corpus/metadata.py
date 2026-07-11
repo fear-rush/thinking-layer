@@ -97,6 +97,55 @@ def normalize_date(value: str | None) -> str | None:
     return value
 
 
+def first_payload_value(payload: dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        value = payload.get(key)
+        if value not in (None, "", []):
+            return value
+    return None
+
+
+def normalize_relation_values(value: Any) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        values = value
+    else:
+        values = re.split(r"\s*(?:;|\||\n)\s*", str(value))
+    return [normalize_space(str(item)) for item in values if normalize_space(str(item))]
+
+
+def normalize_lifecycle_status(value: Any) -> str | None:
+    normalized = normalize_space(str(value or "")).lower()
+    if not normalized:
+        return None
+    aliases = {
+        "berlaku": "active",
+        "aktif": "active",
+        "active": "active",
+        "current": "active",
+        "dicabut": "repealed",
+        "dicabut sebagian": "partially_repealed",
+        "repealed": "repealed",
+        "diganti": "superseded",
+        "superseded": "superseded",
+        "diubah": "amended",
+        "amended": "amended",
+    }
+    return aliases.get(normalized, normalized)
+
+
+def lifecycle_current_value(payload: dict[str, Any], status: str | None) -> bool | None:
+    explicit = first_payload_value(payload, "is_current", "current")
+    if isinstance(explicit, bool):
+        return explicit
+    if status == "active":
+        return True
+    if status in {"repealed", "partially_repealed", "superseded"}:
+        return False
+    return None
+
+
 def normalize_regulation_type(value: str | None, title: str | None = None) -> str | None:
     joined = f"{value or ''} {title or ''}".upper()
     patterns = [
@@ -163,6 +212,12 @@ def canonical_id(issuer: str, regulation_type: str | None, number: str | None, y
     else:
         base = f"{issuer}:unknown:{title}"
     return slugify(base)
+
+
+def regulation_series_key(issuer: str, regulation_type: str | None, number: str | None) -> str:
+    normalized_number = normalize_number(number) or "unknown"
+    normalized_number = re.sub(r"(?:/|\s+tahun\s+)(?:19|20)\d{2}$", "", normalized_number, flags=re.IGNORECASE)
+    return slugify(f"{issuer}:{regulation_type or 'unknown'}:{normalized_number}")
 
 
 def file_entries(record: SourceRecord) -> list[dict[str, Any]]:
@@ -232,12 +287,41 @@ def normalized_metadata(record: SourceRecord) -> dict[str, Any]:
     title = normalize_space(payload.get("title"))
     reg_type = normalize_regulation_type(payload.get("regulation_type"), title)
     number = normalize_number(payload.get("number"), title)
-    year = payload.get("year") or parse_year(payload.get("effective_date"), payload.get("date"), number, title)
-    effective_date = normalize_date(payload.get("effective_date") or payload.get("date"))
+    issued_date = normalize_date(
+        first_payload_value(
+            payload,
+            "issued_date",
+            "issuance_date",
+            "publication_date",
+            "date_issued",
+            "tanggal_terbit",
+            "tanggal_penetapan",
+            "date",
+        )
+    )
+    effective_date = normalize_date(
+        first_payload_value(payload, "effective_date", "berlaku_mulai", "tanggal_berlaku", "date")
+    )
+    repeal_date = normalize_date(
+        first_payload_value(payload, "repeal_date", "revoked_date", "tanggal_pencabutan", "tanggal_dicabut")
+    )
+    lifecycle_status = normalize_lifecycle_status(
+        first_payload_value(payload, "lifecycle_status", "status", "document_status")
+    )
+    supersedes = normalize_relation_values(
+        first_payload_value(payload, "supersedes", "replaces", "superseded_regulations", "mencabut")
+    )
+    amends = normalize_relation_values(
+        first_payload_value(payload, "amends", "amended_regulations", "changes", "mengubah")
+    )
+    year = payload.get("year") or parse_year(issued_date, effective_date, number, title)
     issuer = issuer_for(record)
+    version_key = canonical_id(issuer, reg_type, number, year, title)
 
     return {
-        "canonical_id": canonical_id(issuer, reg_type, number, year, title),
+        "canonical_id": version_key,
+        "regulation_version_key": version_key,
+        "regulation_series_key": regulation_series_key(issuer, reg_type, number),
         "issuer": issuer,
         "source": record.source,
         "source_id": source_identity(record),
@@ -245,7 +329,13 @@ def normalized_metadata(record: SourceRecord) -> dict[str, Any]:
         "regulation_type": reg_type,
         "number": number,
         "year": year,
+        "issued_date": issued_date,
         "effective_date": effective_date,
+        "repeal_date": repeal_date,
+        "lifecycle_status": lifecycle_status,
+        "is_current": lifecycle_current_value(payload, lifecycle_status),
+        "supersedes": supersedes,
+        "amends": amends,
         "sector": payload.get("sector"),
         "sub_sector": payload.get("sub_sector"),
         "bank_slug": payload.get("bank_slug"),

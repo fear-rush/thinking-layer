@@ -93,6 +93,7 @@ def write_source_corpus_report(summary: dict[str, Any]) -> None:
         f"- Source priority: `{summary['source_priority']}`",
         f"- File roles: `{summary['file_roles']}`",
         f"- Section types: `{summary['section_types']}`",
+        f"- Lifecycle status: `{summary['lifecycle_status']}`",
         f"- Citation quality: `{summary['citation_quality']}`",
         "",
         "## Sikepo Metadata Coverage",
@@ -137,6 +138,16 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
         for row in read_ndjson_file(extracted_path)
         if row.get("extraction_status") == "extracted_ok" and row.get("file_id")
     }
+    canonical_path = PROCESSED_DIR / "canonical_regulations.ndjson"
+    canonical_metadata = (
+        {
+            row.get("canonical_id"): row
+            for row in iter_ndjson_file(canonical_path)
+            if row.get("canonical_id")
+        }
+        if canonical_path.exists()
+        else {}
+    )
 
     summary = {
         "rows": 0,
@@ -147,6 +158,7 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
         "source_priority": Counter(),
         "file_roles": Counter(),
         "section_types": Counter(),
+        "lifecycle_status": Counter(),
         "citation_quality": Counter(),
         "sikepo_metadata_coverage": sikepo_metadata_coverage(load_records()),
     }
@@ -160,7 +172,7 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
                 continue
             if not args.include_secondary and block.get("file_role") in {"secondary_faq", "secondary_summary"}:
                 continue
-            row = normalize_source_corpus_block(block)
+            row = normalize_source_corpus_block(block, canonical_metadata.get(block.get("canonical_id")))
             if not row.get("text") or not row.get("citation", {}).get("page"):
                 continue
             out.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -175,11 +187,12 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
             summary["source_priority"][str(row.get("source_priority"))] += 1
             summary["file_roles"][str(row.get("file_role"))] += 1
             summary["section_types"][str(row.get("section_type"))] += 1
+            summary["lifecycle_status"][str(row.get("lifecycle_status") or "unknown")] += 1
             summary["citation_quality"][str(row.get("citation_quality"))] += 1
 
     summary["documents"] = len(document_ids)
     summary["files"] = len(file_ids)
-    for key in ("sources", "issuers", "source_priority", "file_roles", "section_types", "citation_quality"):
+    for key in ("sources", "issuers", "source_priority", "file_roles", "section_types", "lifecycle_status", "citation_quality"):
         summary[key] = dict(summary[key])
 
     REPORTS_DIR.mkdir(exist_ok=True)
