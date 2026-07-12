@@ -70,6 +70,7 @@ Pipeline code lives under `thinking_layer/`:
 - `lexicon/candidates.py`: deterministic lexicon candidate extraction and generated draft lexicon.
 - `lexicon/merge.py`: reviewed/generated lexicon merge.
 - `cli.py`: command-line parser only.
+- `api/`: thin FastAPI boundary: typed HTTP contracts, route adapters, local feedback storage, and indexed citation lookups. It calls the existing deterministic answer/retrieval modules; it does not introduce a second ranking path or enable semantic retrieval.
 
 The old `scripts/regulatory_pipeline.py` entrypoint has been removed. Use:
 
@@ -175,6 +176,39 @@ uv run python -m thinking_layer.cli answer "aturan yang mengatur planet mars unt
 Commands with `--write-report` write Markdown and JSON files under `reports/` using the query slug in the filename.
 
 `trace-query` writes a compact JSON observability record containing the query plan, retrieval counts and top evidence metadata, citation quality, extraction flags, confidence/refusal decision, and answer summary. It does not enable semantic retrieval or change ranking behavior.
+
+## Local Web API
+
+The API exposes the stable citation-first answer path for a local web client. It is deliberately read-only for corpus and index data: indexing, extraction, evaluation, semantic experiments, and trace inspection remain development CLI operations.
+
+After building the source corpus/index, create the compact citation catalog used by document and block URLs:
+
+```bash
+uv run python -m thinking_layer.cli build-document-catalog
+uv run python -m thinking_layer.api
+```
+
+The API uses the current SQLite BM25 index when available and otherwise safely falls back to the persisted lexical index. `GET /healthz` identifies the active readiness state. Run the full `build-index` command when you want to rebuild or restore the SQLite acceleration index; citation URLs do not depend on that large index.
+
+The server listens only on `127.0.0.1:8000`. Interactive OpenAPI documentation is available at `http://127.0.0.1:8000/docs`.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /healthz` | Report source-corpus and BM25-index readiness. |
+| `POST /v1/queries` | Return deterministic answer status, answer text, confidence, and cited source-block IDs. |
+| `GET /v1/documents/{file_id}` | Return public metadata for a cited source document. |
+| `GET /v1/documents/{file_id}/blocks/{block_id}` | Return the exact cited source block and citation metadata. |
+| `POST /v1/feedback` | Store helpful/not-helpful feedback locally in `processed/api/feedback.sqlite`. |
+
+Example query:
+
+```bash
+curl -X POST http://127.0.0.1:8000/v1/queries \
+  -H 'content-type: application/json' \
+  -d '{"question":"Apa ketentuan BI tentang penyedia jasa pembayaran?"}'
+```
+
+The domain trace is created internally for every query, but is not a public endpoint. Only redacted request ID, status, evidence count, and duration are logged. Do not expose raw questions or evidence snippets to hosted observability services without an explicit privacy policy, redaction, or self-hosting decision.
 
 ## CLI Commands
 
@@ -806,4 +840,17 @@ Permission handling is conditional: implement it only if the corpus becomes user
 - [x] Add source/version timeline metadata for regulation updates: stable version/series keys, lifecycle dates/status, supersession relationships, and safe down-ranking of explicitly outdated records.
 - [ ] Add permission model if the corpus becomes user-specific or restricted.
 - [x] Add local `trace-query` observability for query plans, retrieved evidence, refusal reasons, citation quality, and answer summaries.
-- [ ] Add API/service wrapper only after local CLI behavior is stable.
+- [x] Add a local FastAPI service wrapper over the stable CLI/domain behavior: query, health, citation-document lookup, and local feedback endpoints. Keep trace data internal; citation URLs use a compact catalog and retrieval safely falls back to the persisted lexical index when SQLite acceleration is unavailable.
+
+### 10. Build The Local Web UI
+
+The next product slice is a same-origin local web UI over the current API. Keep it read-only with respect to corpus/index data and do not add authentication until the product needs private history or restricted documents.
+
+- [ ] Add a local browser page with one question field and a submit action to `POST /v1/queries`.
+- [ ] Render `answerable`, `partial`, and `not_found` states distinctly; preserve the API’s confidence and refusal wording rather than inventing a client-side answer state.
+- [ ] Render returned citations as links to `GET /v1/documents/{file_id}/blocks/{block_id}`, including document, issuer, page, and Pasal/Ayat where available.
+- [ ] Add helpful/not-helpful controls that call `POST /v1/feedback` with the query request ID; make free-text feedback optional.
+- [ ] Display a clear local-corpus limitation and citation-first answer policy in the UI.
+- [ ] Keep query traces and internal retrieval diagnostics out of the browser response and interface.
+- [ ] Add browser/API integration tests for answerable, partial, not-found, citation navigation, and feedback submission.
+- [ ] Manually verify the UI against a current SQLite index and against the persisted-lexical fallback reported by `GET /healthz`.

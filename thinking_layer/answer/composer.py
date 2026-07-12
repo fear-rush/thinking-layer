@@ -301,6 +301,7 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
             "answer": text,
             "documents_used": [],
             "citation_count": 0,
+            "citations": [],
             "policy": pack.get("answer_policy"),
         }
 
@@ -400,6 +401,7 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
 
     evidence_lines: list[str] = []
     source_lines: list[str] = []
+    citations: list[dict[str, Any]] = []
     seen_citations: set[str] = set()
     source_index = 1
     for _, issuer, doc, item in selected_rows:
@@ -417,6 +419,20 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
         source_lines.append(
             f"[{source_index}] {issuer}; {doc.get('source_priority')}; {doc.get('file_role')}; "
             f"{citation_key}."
+        )
+        citations.append(
+            {
+                "file_id": item.get("file_id"),
+                "block_id": item.get("block_id"),
+                "issuer": issuer,
+                "document": doc.get("document"),
+                "page": citation.get("page"),
+                "pasal": citation.get("pasal"),
+                "ayat": citation.get("ayat"),
+                "huruf": citation.get("huruf"),
+                "text": citation.get("text"),
+                "quality": quality,
+            }
         )
         citation_count += 1
         source_index += 1
@@ -459,6 +475,7 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
         "answer": "\n".join(lines).rstrip() + "\n",
         "documents_used": documents_used,
         "citation_count": citation_count,
+        "citations": citations,
         "policy": pack.get("answer_policy"),
     }
 

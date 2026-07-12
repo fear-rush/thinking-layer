@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sqlite3
+import zlib
 from collections import Counter, defaultdict
 from typing import Any
 
@@ -27,23 +29,28 @@ from .title import TITLE_SEARCH_MIN_SCORE, document_representative_rank, enrich_
 
 def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any], source_state_value: dict[str, Any] | None = None) -> None:
     SEARCH_INDEX_DIR.mkdir(parents=True, exist_ok=True)
-    if SEARCH_INDEX_DB.exists():
-        SEARCH_INDEX_DB.unlink()
-    conn = sqlite3.connect(SEARCH_INDEX_DB)
+    building_path = SEARCH_INDEX_DB.with_suffix(f"{SEARCH_INDEX_DB.suffix}.building")
+    if building_path.exists():
+        building_path.unlink()
+    conn = sqlite3.connect(building_path)
     try:
         conn.execute("PRAGMA journal_mode=OFF")
         conn.execute("PRAGMA synchronous=OFF")
-        conn.execute("PRAGMA temp_store=MEMORY")
+        # Index creation over the full corpus can exceed available RAM when SQLite
+        # keeps its temporary b-trees in memory. Disk-backed temp storage is slower
+        # but makes the full rebuild reliable on a 16GB workstation.
+        conn.execute("PRAGMA temp_store=FILE")
         conn.execute("CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
         conn.execute(
-            "CREATE TABLE docs (doc_id INTEGER PRIMARY KEY, issuer TEXT, source TEXT, file_role TEXT, title TEXT, page INTEGER, pasal TEXT, block_json TEXT NOT NULL, doc_len INTEGER NOT NULL)"
+            "CREATE TABLE docs (doc_id INTEGER PRIMARY KEY, file_id TEXT, block_id TEXT, issuer TEXT, source TEXT, file_role TEXT, title TEXT, page INTEGER, pasal TEXT, block_json BLOB NOT NULL, doc_len INTEGER NOT NULL)"
         )
         conn.execute(
             "CREATE TABLE document_titles (document_key TEXT PRIMARY KEY, issuer TEXT, source TEXT, file_role TEXT, title TEXT, block_json TEXT NOT NULL)"
         )
-        conn.execute("CREATE TABLE doc_terms (doc_id INTEGER NOT NULL, term TEXT NOT NULL, tf INTEGER NOT NULL, PRIMARY KEY (doc_id, term))")
         conn.execute("CREATE TABLE terms (term TEXT PRIMARY KEY, df INTEGER NOT NULL)")
-        conn.execute("CREATE TABLE postings (term TEXT NOT NULL, doc_id INTEGER NOT NULL, PRIMARY KEY (term, doc_id))")
+        conn.execute(
+            "CREATE TABLE postings (term TEXT NOT NULL, doc_id INTEGER NOT NULL, tf INTEGER NOT NULL, PRIMARY KEY (term, doc_id)) WITHOUT ROWID"
+        )
 
         metadata = {
             "signature": index_signature(),
@@ -58,17 +65,19 @@ def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any], sourc
             [(key, json.dumps(value, ensure_ascii=False)) for key, value in metadata.items()],
         )
         conn.executemany(
-            "INSERT INTO docs (doc_id, issuer, source, file_role, title, page, pasal, block_json, doc_len) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO docs (doc_id, file_id, block_id, issuer, source, file_role, title, page, pasal, block_json, doc_len) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 (
                     doc_id,
+                    block.get("file_id"),
+                    block.get("block_id"),
                     block.get("issuer"),
                     block.get("source"),
                     block.get("file_role"),
                     block.get("document_title"),
                     block.get("page_start"),
                     block.get("pasal"),
-                    json.dumps(block, ensure_ascii=False),
+                    sqlite3.Binary(zlib.compress(json.dumps(block, ensure_ascii=False).encode("utf-8"), level=1)),
                     index.doc_lengths[doc_id],
                 )
                 for doc_id, block in enumerate(index.blocks)
@@ -107,35 +116,57 @@ def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any], sourc
         term_rows = [(term, int(df)) for term, df in index.doc_freq.items()]
         conn.executemany("INSERT INTO terms (term, df) VALUES (?, ?)", term_rows)
 
-        doc_term_rows = []
         posting_rows = []
         for doc_id, terms in enumerate(index.doc_terms):
             for term, tf in terms.items():
-                doc_term_rows.append((doc_id, term, int(tf)))
-                posting_rows.append((term, doc_id))
-            if len(doc_term_rows) > 100000:
-                conn.executemany("INSERT INTO doc_terms (doc_id, term, tf) VALUES (?, ?, ?)", doc_term_rows)
-                conn.executemany("INSERT INTO postings (term, doc_id) VALUES (?, ?)", posting_rows)
-                doc_term_rows = []
+                posting_rows.append((term, doc_id, int(tf)))
+            if len(posting_rows) > 100000:
+                conn.executemany("INSERT INTO postings (term, doc_id, tf) VALUES (?, ?, ?)", posting_rows)
                 posting_rows = []
-        if doc_term_rows:
-            conn.executemany("INSERT INTO doc_terms (doc_id, term, tf) VALUES (?, ?, ?)", doc_term_rows)
-            conn.executemany("INSERT INTO postings (term, doc_id) VALUES (?, ?)", posting_rows)
+        if posting_rows:
+            conn.executemany("INSERT INTO postings (term, doc_id, tf) VALUES (?, ?, ?)", posting_rows)
 
         conn.execute("CREATE INDEX idx_docs_filters ON docs (issuer, file_role, source)")
+        conn.execute("CREATE INDEX idx_docs_file_id ON docs (file_id)")
+        conn.execute("CREATE UNIQUE INDEX idx_docs_file_block ON docs (file_id, block_id)")
         conn.execute("CREATE INDEX idx_document_titles_filters ON document_titles (issuer, file_role, source)")
-        conn.execute("CREATE INDEX idx_postings_term ON postings (term)")
-        conn.execute("CREATE INDEX idx_doc_terms_term_doc ON doc_terms (term, doc_id)")
         conn.commit()
     finally:
         conn.close()
+    os.replace(building_path, SEARCH_INDEX_DB)
 
 def sqlite_index_exists() -> bool:
     return SEARCH_INDEX_DB.exists()
 
 
+def decode_block_json(value: str | bytes | memoryview) -> dict[str, Any]:
+    """Decode current compressed payloads and pre-upgrade text payloads."""
+    if isinstance(value, str):
+        return json.loads(value)
+    raw = bytes(value)
+    try:
+        return json.loads(zlib.decompress(raw))
+    except zlib.error:
+        return json.loads(raw)
+
+
+def sqlite_file_has_consistent_page_count(path=SEARCH_INDEX_DB) -> bool:
+    """Reject interrupted SQLite writes before query code opens a partial index."""
+    try:
+        with path.open("rb") as handle:
+            header = handle.read(100)
+        if len(header) != 100 or header[:16] != b"SQLite format 3\x00":
+            return False
+        page_size = int.from_bytes(header[16:18], "big")
+        page_size = 65536 if page_size == 1 else page_size
+        page_count = int.from_bytes(header[28:32], "big")
+        return page_size > 0 and page_count > 0 and path.stat().st_size == page_size * page_count
+    except OSError:
+        return False
+
+
 def sqlite_index_is_current() -> bool:
-    if not sqlite_index_exists():
+    if not sqlite_index_exists() or not sqlite_file_has_consistent_page_count():
         return False
     conn = sqlite3.connect(SEARCH_INDEX_DB)
     try:
@@ -307,7 +338,7 @@ def sqlite_search(
             doc_ids = [row["doc_id"] for row in doc_rows]
             doc_id_set = set(doc_ids)
             tf_rows = conn.execute(
-                f"SELECT doc_id, term, tf FROM doc_terms WHERE doc_id IN ({','.join('?' for _ in doc_ids)}) AND term IN ({term_placeholders})",
+                f"SELECT doc_id, term, tf FROM postings WHERE doc_id IN ({','.join('?' for _ in doc_ids)}) AND term IN ({term_placeholders})",
                 [*doc_ids, *set(query_terms)],
             ).fetchall()
             term_map: dict[int, dict[str, int]] = defaultdict(dict)
@@ -325,7 +356,7 @@ def sqlite_search(
                 if score <= 0:
                     continue
 
-                block = json.loads(row["block_json"])
+                block = decode_block_json(row["block_json"])
                 score, matched_phrases = apply_lexical_boosts(score, query, query_terms, stopwords, block, exact_phrases)
                 if matched_phrases:
                     block["_matched_exact_phrases"] = matched_phrases

@@ -22,6 +22,7 @@ from .indexing.semantic import cmd_build_semantic_index, cmd_semantic_search
 from .lexicon.candidates import cmd_extract_lexicon_candidates
 from .lexicon.merge import cmd_merge_lexicon
 from .observability import cmd_trace_query
+from .api.services.document_catalog import build_document_catalog
 from .config.paths import ROOT
 from .retrieval.evidence import cmd_evidence
 from .retrieval.planning import cmd_plan_query
@@ -74,6 +75,9 @@ def main() -> None:
     index_parser.add_argument("--limit", type=int, default=None, help="Only index the first N blocks, for development.")
     index_parser.add_argument("--incremental", action="store_true", help="Append newly added source-corpus rows when the existing corpus is unchanged up to the previous index offset; otherwise rebuild safely.")
     index_parser.set_defaults(func=cmd_build_index)
+
+    document_catalog_parser = subparsers.add_parser("build-document-catalog", help="Build compact file/block lookup data for API citation URLs.")
+    document_catalog_parser.set_defaults(func=lambda args: print(f"Indexed {build_document_catalog()} citation blocks."))
 
     semantic_index_parser = subparsers.add_parser("build-semantic-index", help="Build an isolated persisted semantic index.")
     semantic_index_parser.add_argument("--model", default=None, help="SentenceTransformer model ID. Defaults to semantic retrieval config.")
