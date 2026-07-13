@@ -235,6 +235,31 @@ Outputs:
 
 ### Extract Documents
 
+#### Preserve Existing Generated Corpus
+
+The files under `processed/` are expensive, generated local artifacts and are intentionally ignored by Git. Do not run a plain `extract`, `all`, or `build` as routine troubleshooting, when working on the local API/web UI, or merely because an index is stale. A plain `extract` rewrites the extraction outputs and can replace prior targeted OCR results with non-OCR output.
+
+For an already-built corpus, use the narrowest action that matches the change:
+
+| Situation | Required command(s) | Do **not** run |
+| --- | --- | --- |
+| Start the local API or work on the frontend | `uv run python -m thinking_layer.api` | Extraction, corpus, index, or catalog rebuilds |
+| Change API response presentation, UI, query planning, ranking, or answer composition | Restart the API and run relevant tests | Extraction or index rebuilds |
+| Correct one document or add OCR to an existing document | `extract --file-id ... --replace-existing` after a one-page check | Plain full-corpus `extract` |
+| Add or alter corpus files/metadata | Process only the affected files where possible, then refresh downstream artifacts | Unrelated OCR or full extraction |
+| Change accepted extraction/parser behavior across the corpus | Back up generated artifacts, then explicitly run a full re-extraction | An unplanned overwrite of `processed/` |
+
+After an accepted extraction replacement, refresh only the dependent artifacts:
+
+```bash
+uv run python -m thinking_layer.cli report
+uv run python -m thinking_layer.cli build-source-corpus --include-secondary
+uv run python -m thinking_layer.cli build-index
+uv run python -m thinking_layer.cli build-document-catalog
+```
+
+Use `build-index --incremental` only for a compatible append-only source-corpus update. Check `GET /healthz` before rebuilding and rebuild only the component that is stale. Before an explicitly requested full re-extraction, make or verify a backup of the current `processed/` artifacts.
+
 ```bash
 uv run python -m thinking_layer.cli extract --progress-every 25 --verbose
 ```
@@ -438,6 +463,7 @@ After OCR or Office replacements, always refresh downstream artifacts:
 uv run python -m thinking_layer.cli report
 uv run python -m thinking_layer.cli build-source-corpus --include-secondary
 uv run python -m thinking_layer.cli build-index
+uv run python -m thinking_layer.cli build-document-catalog
 ```
 
 Outputs:

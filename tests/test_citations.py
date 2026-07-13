@@ -9,6 +9,7 @@ from thinking_layer.corpus.citations import (
     section_type_for_block,
     source_priority_for_role,
 )
+from thinking_layer.corpus.source_corpus import source_corpus_block_key
 
 
 class CitationTests(unittest.TestCase):
@@ -94,6 +95,10 @@ class CitationTests(unittest.TestCase):
         self.assertEqual(section_type_for_block({"file_role": "secondary_faq", "block_type": "paragraph"}), "faq")
         self.assertEqual(section_type_for_block({"file_role": "attachment", "block_type": "paragraph"}), "attachment")
         self.assertEqual(citation_text_for_block({"citation": {"document": "Dokumen A"}}), "Dokumen A")
+
+    def test_source_corpus_block_key_requires_both_citation_identifiers(self) -> None:
+        self.assertEqual(source_corpus_block_key({"file_id": "file-1", "block_id": "block-1"}), ("file-1", "block-1"))
+        self.assertIsNone(source_corpus_block_key({"file_id": "file-1"}))
 
 
 if __name__ == "__main__":

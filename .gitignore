@@ -36,11 +36,22 @@ wheels/
 .ruff_cache/
 .mypy_cache/
 .coverage
+coverage.xml
 htmlcov/
 *.log
+*-debug.log*
 *.tmp
 tmp/
 temp/
+
+# JavaScript/TypeScript dependencies, build output, and tool caches
+node_modules/
+.vite/
+.tanstack/
+.turbo/
+.oxlintcache
+*.tsbuildinfo
+coverage/
 
 # Large local corpus inputs and generated artifacts
 data/

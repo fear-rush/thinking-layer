@@ -4,16 +4,17 @@ This report validates the normalized, citation-ready corpus used before retrieva
 
 ## Summary
 
-- Source corpus rows: 537355
+- Source corpus rows: 537031
+- Duplicate source blocks skipped: 323
 - Documents: 1562
 - Files: 2471
-- Sources: `{'ease-bi': 31713, 'peraturan-ojk': 505642}`
-- Issuers: `{'BI': 31713, 'OJK': 505642}`
-- Source priority: `{'primary': 521902, 'secondary': 15453}`
-- File roles: `{'primary_regulation': 509613, 'operational_requirement': 2185, 'secondary_faq': 11498, 'secondary_summary': 3955, 'attachment': 10104}`
-- Section types: `{'paragraph': 24917, 'table': 62382, 'pasal': 292827, 'ayat': 64572, 'heading': 56759, 'list_item': 10341, 'faq': 11508, 'abstrak': 3945, 'attachment': 10104}`
-- Lifecycle status: `{'unknown': 537355}`
-- Citation quality: `{'document_page': 73996, 'document_page_pasal': 394602, 'document_page_pasal_ayat': 40115, 'document_page_pasal_ayat_huruf': 28642}`
+- Sources: `{'ease-bi': 31712, 'peraturan-ojk': 505319}`
+- Issuers: `{'BI': 31712, 'OJK': 505319}`
+- Source priority: `{'primary': 521592, 'secondary': 15439}`
+- File roles: `{'primary_regulation': 509355, 'operational_requirement': 2184, 'secondary_faq': 11484, 'secondary_summary': 3955, 'attachment': 10053}`
+- Section types: `{'paragraph': 24899, 'table': 62365, 'pasal': 292651, 'ayat': 64538, 'heading': 56750, 'list_item': 10336, 'faq': 11494, 'abstrak': 3945, 'attachment': 10053}`
+- Lifecycle status: `{'unknown': 537031}`
+- Citation quality: `{'document_page': 73954, 'document_page_pasal': 394357, 'document_page_pasal_ayat': 40087, 'document_page_pasal_ayat_huruf': 28633}`
 
 ## Sikepo Metadata Coverage
 

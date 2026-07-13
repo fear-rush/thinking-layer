@@ -1,46 +1,47 @@
 {
-  "rows": 537355,
+  "rows": 537031,
   "documents": 1562,
   "files": 2471,
   "sources": {
-    "ease-bi": 31713,
-    "peraturan-ojk": 505642
+    "ease-bi": 31712,
+    "peraturan-ojk": 505319
   },
   "issuers": {
-    "BI": 31713,
-    "OJK": 505642
+    "BI": 31712,
+    "OJK": 505319
   },
   "source_priority": {
-    "primary": 521902,
-    "secondary": 15453
+    "primary": 521592,
+    "secondary": 15439
   },
   "file_roles": {
-    "primary_regulation": 509613,
-    "operational_requirement": 2185,
-    "secondary_faq": 11498,
+    "primary_regulation": 509355,
+    "operational_requirement": 2184,
+    "secondary_faq": 11484,
     "secondary_summary": 3955,
-    "attachment": 10104
+    "attachment": 10053
   },
   "section_types": {
-    "paragraph": 24917,
-    "table": 62382,
-    "pasal": 292827,
-    "ayat": 64572,
-    "heading": 56759,
-    "list_item": 10341,
-    "faq": 11508,
+    "paragraph": 24899,
+    "table": 62365,
+    "pasal": 292651,
+    "ayat": 64538,
+    "heading": 56750,
+    "list_item": 10336,
+    "faq": 11494,
     "abstrak": 3945,
-    "attachment": 10104
+    "attachment": 10053
   },
   "lifecycle_status": {
-    "unknown": 537355
+    "unknown": 537031
   },
   "citation_quality": {
-    "document_page": 73996,
-    "document_page_pasal": 394602,
-    "document_page_pasal_ayat": 40115,
-    "document_page_pasal_ayat_huruf": 28642
+    "document_page": 73954,
+    "document_page_pasal": 394357,
+    "document_page_pasal_ayat": 40087,
+    "document_page_pasal_ayat_huruf": 28633
   },
+  "duplicate_block_rows_skipped": 323,
   "sikepo_metadata_coverage": {
     "primary_ojk_keys": 1513,
     "sikepo_keys": 422,

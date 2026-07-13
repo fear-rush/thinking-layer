@@ -10,6 +10,16 @@ from .metadata import SourceRecord, load_records, normalized_metadata, regulatio
 from ..common.io import iter_ndjson_file, read_ndjson_file
 from ..config.paths import PROCESSED_DIR, REPORTS_DIR, ROOT, SOURCE_CORPUS_PATH
 
+
+def source_corpus_block_key(row: dict[str, Any]) -> tuple[str, str] | None:
+    """Return the citation identity that must be unique in the search index."""
+    file_id = row.get("file_id")
+    block_id = row.get("block_id")
+    if not file_id or not block_id:
+        return None
+    return str(file_id), str(block_id)
+
+
 def sikepo_metadata_coverage(records: list[SourceRecord]) -> dict[str, Any]:
     primary_by_key: dict[str, list[dict[str, Any]]] = defaultdict(list)
     sikepo_by_key: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -86,6 +96,7 @@ def write_source_corpus_report(summary: dict[str, Any]) -> None:
         "## Summary",
         "",
         f"- Source corpus rows: {summary['rows']}",
+        f"- Duplicate source blocks skipped: {summary['duplicate_block_rows_skipped']}",
         f"- Documents: {summary['documents']}",
         f"- Files: {summary['files']}",
         f"- Sources: `{summary['sources']}`",
@@ -160,10 +171,12 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
         "section_types": Counter(),
         "lifecycle_status": Counter(),
         "citation_quality": Counter(),
+        "duplicate_block_rows_skipped": 0,
         "sikepo_metadata_coverage": sikepo_metadata_coverage(load_records()),
     }
     document_ids: set[str] = set()
     file_ids: set[str] = set()
+    seen_block_keys: set[tuple[str, str]] = set()
 
     PROCESSED_DIR.mkdir(exist_ok=True)
     with SOURCE_CORPUS_PATH.open("w", encoding="utf-8") as out:
@@ -175,6 +188,12 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
             row = normalize_source_corpus_block(block, canonical_metadata.get(block.get("canonical_id")))
             if not row.get("text") or not row.get("citation", {}).get("page"):
                 continue
+            block_key = source_corpus_block_key(row)
+            if block_key and block_key in seen_block_keys:
+                summary["duplicate_block_rows_skipped"] += 1
+                continue
+            if block_key:
+                seen_block_keys.add(block_key)
             out.write(json.dumps(row, ensure_ascii=False) + "\n")
 
             summary["rows"] += 1
