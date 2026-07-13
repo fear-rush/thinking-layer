@@ -26,6 +26,14 @@ The extracted corpus and indexes are expensive generated assets. `processed/` is
 - Before suggesting or executing a rebuild, inspect `GET /healthz`, identify exactly which input changed, and choose the narrowest command. Use `build-index --incremental` only for compatible append-only source-corpus changes.
 - Starting or restarting `uv run python -m thinking_layer.api` is sufficient for ordinary local use; it does not require extraction, corpus, index, or catalog rebuilds.
 
+## React Server State
+
+For the frontend, use TanStack Query for API-backed server state: queries, mutations, pending/error/success states, caching, and invalidation. Do not reintroduce manual request state through `useEffect` chains when a TanStack Query query or mutation is appropriate.
+
+- Follow React's “You Might Not Need an Effect” guidance: calculate derived display data during render and handle user-triggered API calls in event handlers or TanStack Query mutations.
+- Use `useEffect` only to synchronize with an external system that cannot be expressed through rendering, an event handler, or TanStack Query. Keep each required Effect narrowly scoped with complete dependencies and cleanup.
+- Keep API request functions typed and centralized in the frontend API client. Use stable query keys for reads, and invalidate/update affected query keys after successful mutations when cached data becomes stale.
+
 ## Hugging Face research
 
 Use the Hugging Face Hub CLI (`hf`) for current model, embedding, reranker, quantization, compatibility, and local-inference research. If `hf` is not on `PATH`, use `$HOME/.local/bin/hf`. Do not choose models from memory, download counts, or leaderboard rank alone.
