@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import unittest
+import pytest
 
 from thinking_layer.corpus.lifecycle import LifecycleGraph, extract_lifecycle_relations
 from thinking_layer.domain.legal import (
@@ -15,7 +15,7 @@ from thinking_layer.domain.legal import (
 )
 
 
-def source_document(instrument: InstrumentIdentity) -> SourceDocument:
+def _source_document(instrument: InstrumentIdentity) -> SourceDocument:
     return SourceDocument(
         file_id="bi-pbi-15-7-2013",
         instrument=instrument,
@@ -26,7 +26,7 @@ def source_document(instrument: InstrumentIdentity) -> SourceDocument:
     )
 
 
-def source_node(text: str) -> LegalNode:
+def _source_node(text: str) -> LegalNode:
     return LegalNode(
         node_id="bi-pbi-15-7-2013:page:1:char:0:preamble",
         document_id="bi-pbi-15-7-2013",
@@ -38,62 +38,59 @@ def source_node(text: str) -> LegalNode:
     )
 
 
-class LifecycleRelationsTest(unittest.TestCase):
-    def test_derives_source_backed_amendment_and_state(self) -> None:
-        amending = InstrumentIdentity("BI", "PBI", "15/7/PBI", 2013)
-        document = source_document(amending)
-        node = source_node(
-            "PERUBAHAN KEDUA ATAS PERATURAN BANK INDONESIA NOMOR 12/19/PBI/2010"
-        )
+def test_derives_source_backed_amendment_and_state() -> None:
+    amending = InstrumentIdentity("BI", "PBI", "15/7/PBI", 2013)
+    document = _source_document(amending)
+    node = _source_node(
+        "PERUBAHAN KEDUA ATAS PERATURAN BANK INDONESIA NOMOR 12/19/PBI/2010"
+    )
 
-        relations = extract_lifecycle_relations(document, (node,))
-        graph = LifecycleGraph(relations)
+    relations = extract_lifecycle_relations(document, (node,))
+    graph = LifecycleGraph(relations)
 
-        self.assertEqual(len(relations), 1)
-        relation = relations[0]
-        self.assertEqual(relation.kind, LifecycleKind.AMENDS)
-        self.assertEqual(relation.source_node_id, node.node_id)
-        self.assertEqual(
-            graph.state_for(InstrumentIdentity("BI", "PBI", "12/19/PBI", 2010)),
-            LifecycleState.AMENDED,
-        )
-        self.assertEqual(graph.state_for(amending), LifecycleState.UNKNOWN)
-
-    def test_partial_revocation_keeps_the_source_scope(self) -> None:
-        document = source_document(InstrumentIdentity("BI", "PBI", "3", 2023))
-        node = source_node(
-            "MENCABUT PBI NOMOR 2 TAHUN 2020 SEPANJANG MENGENAI PELAPORAN BULANAN."
-        )
-
-        relation = extract_lifecycle_relations(document, (node,))[0]
-
-        self.assertEqual(relation.kind, LifecycleKind.PARTIALLY_REVOKES)
-        self.assertEqual(relation.scope_text, node.text)
-
-    def test_rejects_cycles_and_keeps_absent_status_unknown(self) -> None:
-        first = InstrumentIdentity("BI", "PBI", "1", 2020)
-        second = InstrumentIdentity("BI", "PBI", "2", 2020)
-        relation = LifecycleRelation(
-            relation_id="one",
-            subject_instrument=first,
-            object_instrument=second,
-            kind=LifecycleKind.AMENDS,
-            source_document_id="one",
-            source_node_id="one:node",
-        )
-        reverse = LifecycleRelation(
-            relation_id="two",
-            subject_instrument=second,
-            object_instrument=first,
-            kind=LifecycleKind.AMENDS,
-            source_document_id="two",
-            source_node_id="two:node",
-        )
-
-        with self.assertRaisesRegex(ValueError, "cycle"):
-            LifecycleGraph((relation, reverse))
-        self.assertEqual(LifecycleGraph(()).state_for(first), LifecycleState.UNKNOWN)
+    assert len(relations) == 1
+    relation = relations[0]
+    assert relation.kind is LifecycleKind.AMENDS
+    assert relation.source_node_id == node.node_id
+    assert (
+        graph.state_for(InstrumentIdentity("BI", "PBI", "12/19/PBI", 2010))
+        is LifecycleState.AMENDED
+    )
+    assert graph.state_for(amending) is LifecycleState.UNKNOWN
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_partial_revocation_keeps_the_source_scope() -> None:
+    document = _source_document(InstrumentIdentity("BI", "PBI", "3", 2023))
+    node = _source_node(
+        "MENCABUT PBI NOMOR 2 TAHUN 2020 SEPANJANG MENGENAI PELAPORAN BULANAN."
+    )
+
+    relation = extract_lifecycle_relations(document, (node,))[0]
+
+    assert relation.kind is LifecycleKind.PARTIALLY_REVOKES
+    assert relation.scope_text == node.text
+
+
+def test_rejects_cycles_and_keeps_absent_status_unknown() -> None:
+    first = InstrumentIdentity("BI", "PBI", "1", 2020)
+    second = InstrumentIdentity("BI", "PBI", "2", 2020)
+    relation = LifecycleRelation(
+        relation_id="one",
+        subject_instrument=first,
+        object_instrument=second,
+        kind=LifecycleKind.AMENDS,
+        source_document_id="one",
+        source_node_id="one:node",
+    )
+    reverse = LifecycleRelation(
+        relation_id="two",
+        subject_instrument=second,
+        object_instrument=first,
+        kind=LifecycleKind.AMENDS,
+        source_document_id="two",
+        source_node_id="two:node",
+    )
+
+    with pytest.raises(ValueError, match="cycle"):
+        LifecycleGraph((relation, reverse))
+    assert LifecycleGraph(()).state_for(first) is LifecycleState.UNKNOWN

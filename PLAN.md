@@ -1,6 +1,6 @@
 # Backend Hard-Cutover Plan
 
-Status: Phase 1 complete; Phase 2 in progress. Full-corpus publication is blocked until LiteParse Markdown normalization and its acceptance gate pass.
+Status: Phase 1 complete; Phase 0 source inventory and fresh OCR-disabled extraction are in progress. Full-corpus publication is blocked until fresh raw extraction, LiteParse Markdown normalization, and their acceptance gates pass.
 
 Scope: backend, generated corpus, catalog, index, API contract, evaluation, tests, resources, and reports
 
@@ -76,9 +76,12 @@ The completed backend must:
 ## Target architecture
 
 ```text
-source documents and saved non-OCR raw pages
+downloaded source documents
+  -> source inventory with stable IDs and source hashes
   -> document eligibility filter
-       exclude reports/ocr_needed.json
+       exclude reports/ocr_needed.json before extraction
+  -> pinned, OCR-disabled LiteParse extraction
+       fresh JSON with Markdown, text, and layout items
   -> LiteParse normalization
        Markdown AST as semantic source; layout items validate page anchors
   -> legal structure parser
@@ -103,13 +106,30 @@ source documents and saved non-OCR raw pages
 
 No title text, query expansion, or issuer prior may satisfy provision-level claim relevance.
 
-## LiteParse input and normalization contract
+## Fresh LiteParse extraction and normalization contract
 
-Saved LiteParse extraction is accepted source data. Its Markdown is the canonical
-semantic representation for this migration: LiteParse emits Markdown specifically
-to reconstruct headings, paragraphs, lists, tables, links, and images from page
-layout. The migration must not demote that structure to a broad plain-text string
-or attempt to reconstruct the entire document from word boxes.
+Downloaded source documents are the only canonical input for this migration.
+All pre-cutover output under `processed/raw/liteparse/` is obsolete and must be
+deleted before a new run. It must never be accepted as corpus input, a fixture,
+or a source of extraction-quality claims.
+
+Before extraction, the builder creates a deterministic source inventory from the
+downloaded documents and their repository source records. Every inventory row has
+a stable file ID, repository-relative source path, source URL when available, and
+SHA-256 hash. `reports/ocr_needed.json` is joined against that inventory before
+LiteParse is started. Every listed row is skipped without opening, parsing, or OCR
+processing its source document, and the fresh extraction manifest reports its IDs,
+count, and reasons.
+
+Every eligible document is extracted afresh with a pinned LiteParse version and a
+recorded configuration: OCR disabled, Markdown output, links enabled, word boxes
+enabled, and image output disabled. The fresh raw JSON is reproducible generated
+input, not source truth; its manifest records the extractor version, configuration,
+source-inventory hash, input hashes, output hashes, skipped OCR rows, failures, and
+Git hash. LiteParse Markdown is the canonical semantic representation for the
+new normalization run: it reconstructs headings, paragraphs, lists, tables, links,
+and images from page layout. The migration must not demote that structure to a broad
+plain-text string or attempt to reconstruct the entire document from word boxes.
 
 Each eligible raw page has three distinct, complementary representations:
 
@@ -154,11 +174,14 @@ The normalized corpus must be auditable with these gates before publication:
 4. table/list children retain a readable governing context;
 5. Markdown-to-geometry mismatches, unsupported constructs, and quarantined source
    IDs are reported with counts and reasons in the manifest; and
-6. representative BI and OJK fixtures contain unmodified saved LiteParse records,
-   including regulations, explanations, attachments/tables, circulars, and FAQs.
+6. representative BI and OJK fixtures are literal minimized copies of fresh,
+   OCR-disabled LiteParse records, including regulations, explanations,
+   attachments/tables, circulars, and FAQs; and
+7. the raw-extraction manifest accounts for every source-inventory row as extracted,
+   skipped for OCR, or failed with a recorded reason.
 
 No full corpus, database, coverage claim, or API result is published until these
-normalization gates pass on the saved non-OCR raw inputs.
+extraction and normalization gates pass on fresh OCR-disabled raw inputs.
 
 ## File destruction manifest
 
@@ -259,7 +282,16 @@ The implementation must discover the exact paths through `thinking_layer/config/
 - cached evaluation output;
 - generated reports that encode the old schema.
 
-Saved non-OCR raw page extraction may be reused only as input. It does not define the new legal-unit or index contract.
+### Raw extraction to destroy and recreate
+
+- `processed/raw/liteparse/**`
+
+The old raw extraction is not a compatibility artifact and is not retained as an
+input baseline. It is deleted before the source-inventory and fresh-extraction run.
+
+Fresh OCR-disabled raw extraction is generated input only. Downloaded source documents
+remain authoritative and define neither a compatibility path nor the new legal-unit
+or index contract by themselves.
 
 ## New package layout
 
@@ -454,7 +486,7 @@ Unit fixtures must be minimal source-like legal text with independently written 
 
 Integration tests build or use a pinned miniature SQLite database from source fixtures. They do not patch search results or inject expected candidates.
 
-Corpus fixtures must be literal, minimized copies of saved LiteParse raw records,
+Corpus fixtures must be literal, minimized copies of fresh LiteParse raw records,
 not hand-authored clean Markdown. They must cover a regulation, explanatory
 memorandum, attachment/table, circular, and FAQ so the normalizer is tested
 against the output it will actually consume.
@@ -503,6 +535,25 @@ No aggregate accuracy number may hide a failed citation, lifecycle, refusal, or 
 
 ## Implementation phases
 
+### Phase 0: source inventory and fresh OCR-disabled extraction
+
+1. Delete the complete old `processed/raw/liteparse/` generation.
+2. Build a deterministic source inventory from downloaded PDFs and their source
+   records. Do not derive the inventory from old raw extraction files.
+3. Validate that every `reports/ocr_needed.json` file ID resolves to exactly one
+   inventory row; fail on missing or duplicate IDs.
+4. Skip all OCR-needed inventory rows before invoking LiteParse and report their
+   IDs, count, and reasons in both the raw-extraction manifest and corpus manifest.
+5. Pin LiteParse as a project dependency and run it only with OCR disabled,
+   Markdown output, links enabled, word boxes enabled, and images disabled.
+6. Generate fresh raw JSON atomically from eligible source documents, with source
+   and output hashes, extractor version, configuration, and per-document failures.
+7. Create literal minimized fixtures only from this fresh raw output.
+
+Exit gate: no old raw extraction remains; every downloaded source is inventoried,
+skipped for OCR, freshly extracted, or recorded as failed; and no OCR-needed source
+was opened by LiteParse.
+
 ### Phase 1: demolition
 
 1. Create a Git checkpoint only for forensic recovery, not runtime compatibility.
@@ -527,7 +578,7 @@ Exit gate: the old backend cannot run and no compatibility path exists.
    interpreting numeric markers. Support regulations, explanatory memoranda,
    attachments/forms, decisions, circulars, and FAQs without conflating their
    numbering systems.
-5. Rewrite legal structure parsing against representative unmodified saved LiteParse
+5. Rewrite legal structure parsing against representative unmodified fresh LiteParse
    records from multiple BI and OJK document families. Parse legal hierarchy only in
    supported legal zones; preserve other source-backed material as typed contextual
    blocks, not fictitious legal provisions.
@@ -538,7 +589,7 @@ Exit gate: the old backend cannot run and no compatibility path exists.
 9. Add structural and normalization audits for dangling fragments, missing lead-ins,
    duplicate identities, relation cycles, bad spans, unresolved sources, Markdown
    coverage, false legal anchors, geometry disagreement, and quarantine reporting.
-10. Write unit and clean-build integration tests using real LiteParse fixtures, then
+10. Write unit and clean-build integration tests using fresh LiteParse fixtures, then
     run the complete build only after those fixtures pass.
 
 Exit gate: accepted eligible documents produce reproducible, readable,
@@ -609,16 +660,19 @@ Exit gate: measured improvement over the clean baseline, never replacement by re
 
 The hard migration intentionally rebuilds generated artifacts. The accepted build is full and clean:
 
-1. load the OCR exclusion list;
-2. remove old generated outputs;
-3. normalize eligible saved non-OCR LiteParse Markdown and validate its page anchors;
-4. parse supported legal hierarchy and typed supporting material from normalized blocks;
-5. build the regulation catalog and lifecycle graph;
-6. build contextual and atomic legal units;
-7. create a new SQLite database from empty;
-8. run normalization, structural, and citation audits;
-9. run real-index evaluation;
-10. publish hashes, skipped-document coverage, and normalization/quarantine coverage.
+1. build and hash the source inventory from downloaded documents;
+2. load and validate the OCR exclusion list against that inventory;
+3. remove old generated outputs and old raw extraction;
+4. freshly extract eligible documents with pinned OCR-disabled LiteParse settings;
+5. publish the raw-extraction manifest, including skipped OCR IDs and reasons;
+6. normalize fresh LiteParse Markdown and validate its page anchors;
+7. parse supported legal hierarchy and typed supporting material from normalized blocks;
+8. build the regulation catalog and lifecycle graph;
+9. build contextual and atomic legal units;
+10. create a new SQLite database from empty;
+11. run normalization, structural, and citation audits;
+12. run real-index evaluation;
+13. publish hashes, skipped-document coverage, extraction failures, and normalization/quarantine coverage.
 
 There is no incremental build, old-schema reader, or fallback index during this migration.
 
@@ -626,7 +680,8 @@ There is no incremental build, old-schema reader, or fallback index during this 
 
 - No deleted module, heuristic resource, golden runner, old test, old report, fallback, or compatibility wrapper remains.
 - `rg` finds no exact-prompt branch for known questions.
-- One clean command reproduces the eligible corpus and database from saved non-OCR inputs.
+- One clean command reproduces fresh OCR-disabled raw extraction, the eligible corpus,
+  and database from downloaded source documents.
 - OCR is never invoked and all OCR-needed documents are explicitly excluded.
 - LiteParse Markdown is the semantic source of every accepted unit; `text_items`
   validate its page anchors and never replace it as a competing parser.

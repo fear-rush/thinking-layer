@@ -19,6 +19,7 @@ from .catalog import Catalog, catalog_raw_record
 from .context import assemble_contextual_units
 from .eligibility import OcrEligibility
 from .lifecycle import LifecycleGraph, extract_lifecycle_relations
+from .liteparse_normalizer import MarkdownNormalizationError
 from .parser import parse_raw_document
 
 
@@ -31,6 +32,7 @@ class CorpusBuildResult:
     lifecycle_relation_count: int
     audit: CorpusAudit
     skipped_ocr_file_ids: tuple[str, ...]
+    quarantined_sources: tuple[tuple[str, str], ...]
     manifest_path: Path
 
 
@@ -42,7 +44,10 @@ def _json_value(value: Any) -> Any:
     if isinstance(value, Path):
         return value.as_posix()
     if is_dataclass(value):
-        return {field.name: _json_value(getattr(value, field.name)) for field in fields(value)}
+        return {
+            field.name: _json_value(getattr(value, field.name))
+            for field in fields(value)
+        }
     if isinstance(value, dict):
         return {str(key): _json_value(item) for key, item in value.items()}
     if isinstance(value, (list, tuple)):
@@ -88,9 +93,9 @@ def _load_raw(path: Path) -> dict[str, Any]:
     try:
         raw = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as error:
-        raise ValueError(f"invalid saved raw JSON: {path}") from error
+        raise ValueError(f"invalid fresh raw JSON: {path}") from error
     if not isinstance(raw, dict):
-        raise ValueError(f"saved raw JSON must be an object: {path}")
+        raise ValueError(f"fresh raw JSON must be an object: {path}")
     return raw
 
 
@@ -106,11 +111,13 @@ def build_corpus(
     output_dir: Path = CORPUS_DIR,
     ocr_needed_path: Path = OCR_NEEDED_PATH,
 ) -> CorpusBuildResult:
-    """Build the only accepted corpus contract from eligible saved non-OCR raw pages."""
+    """Build the only accepted corpus contract from fresh OCR-disabled raw pages."""
     eligibility = OcrEligibility.load(ocr_needed_path)
     raw_paths = tuple(sorted(raw_dir.glob("*.json")))
     if not raw_paths:
-        raise ValueError(f"no saved raw JSON files found in {raw_dir}")
+        raise ValueError(
+            f"no fresh raw JSON files found in {raw_dir}; run the OCR-disabled source extraction first"
+        )
 
     source_documents: list[SourceDocument] = []
     relations: list[LifecycleRelation] = []
@@ -119,6 +126,7 @@ def build_corpus(
     context_count = 0
     observed_file_ids: set[str] = set()
     skipped_file_ids: set[str] = set()
+    quarantined_sources: dict[str, str] = {}
 
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     staging_dir = Path(mkdtemp(prefix=f".{output_dir.name}.", dir=output_dir.parent))
@@ -137,14 +145,18 @@ def build_corpus(
                 raw = _load_raw(path)
                 file_id = raw.get("file_id")
                 if not isinstance(file_id, str) or not file_id.strip():
-                    raise ValueError(f"saved raw document requires file_id: {path}")
+                    raise ValueError(f"fresh raw document requires file_id: {path}")
                 observed_file_ids.add(file_id)
                 if not eligibility.is_eligible(file_id):
                     skipped_file_ids.add(file_id)
                     continue
                 eligibility.validate_raw_record(raw)
                 document = catalog_raw_record(raw, path)
-                parsed = parse_raw_document(raw)
+                try:
+                    parsed = parse_raw_document(raw)
+                except MarkdownNormalizationError as error:
+                    quarantined_sources[file_id] = error.reason
+                    continue
                 document_contexts = assemble_contextual_units(parsed)
                 document_relations = extract_lifecycle_relations(document, parsed.nodes)
                 document_audit = audit_corpus(
@@ -187,11 +199,15 @@ def build_corpus(
                 f"{finding.code}: {finding.message} ({', '.join(finding.references)})"
                 for finding in audit.findings[:5]
             )
-            raise ValueError(f"corpus structural audit failed: {codes}. Examples: {examples}")
+            raise ValueError(
+                f"corpus structural audit failed: {codes}. Examples: {examples}"
+            )
 
         reported_ocr_file_ids = tuple(entry.file_id for entry in eligibility.exclusions)
         missing_reported_ids = tuple(
-            file_id for file_id in reported_ocr_file_ids if file_id not in observed_file_ids
+            file_id
+            for file_id in reported_ocr_file_ids
+            if file_id not in observed_file_ids
         )
         if set(reported_ocr_file_ids) != skipped_file_ids | set(missing_reported_ids):
             raise ValueError("OCR exclusion accounting is inconsistent")
@@ -206,6 +222,11 @@ def build_corpus(
             "skipped_ocr_count": len(reported_ocr_file_ids),
             "skipped_ocr_file_ids": list(reported_ocr_file_ids),
             "ocr_exclusions_not_present_in_raw": list(missing_reported_ids),
+            "quarantined_source_count": len(quarantined_sources),
+            "quarantined_sources": [
+                {"file_id": file_id, "reason": reason}
+                for file_id, reason in sorted(quarantined_sources.items())
+            ],
             "raw_input_sha256": _aggregate_input_hash(raw_paths),
             "ocr_exclusion_list_sha256": _sha256(ocr_needed_path),
             "git_hash": _git_hash(),
@@ -232,6 +253,7 @@ def build_corpus(
         lifecycle_relation_count=len(relations),
         audit=audit,
         skipped_ocr_file_ids=reported_ocr_file_ids,
+        quarantined_sources=tuple(sorted(quarantined_sources.items())),
         manifest_path=output_dir / "manifest.json",
     )
 
@@ -251,6 +273,7 @@ def cmd_build(args: argparse.Namespace) -> None:
                 "contexts": result.context_count,
                 "lifecycle_relations": result.lifecycle_relation_count,
                 "skipped_ocr_count": len(result.skipped_ocr_file_ids),
+                "quarantined_source_count": len(result.quarantined_sources),
                 "manifest": result.manifest_path.as_posix(),
             },
             ensure_ascii=False,

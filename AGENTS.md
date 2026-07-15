@@ -19,11 +19,9 @@ The `frontend/` directory contains the web application that consumes this projec
 
 The backend is undergoing a hard migration. Generated blocks, source-corpus rows, catalogs, reports, and indexes may be deleted and rebuilt whenever their schema or producing code changes. No compatibility path, incremental migration, backup, or preservation of obsolete generated artifacts is required.
 
-- Every searchable and citable row must be reproducible from repository source documents or saved non-OCR raw extraction and must carry an explicit legal path, node provenance, retrieval text, display text, anchors, and source block IDs.
 - OCR is disabled for this migration. Never enable or run OCR.
 - Every file listed in `reports/ocr_needed.json` must be excluded from parsing, cataloging, indexing, evaluation targets, and coverage claims until OCR work is explicitly authorized in a future request.
 - A rebuild must report the skipped OCR-needed file IDs and count so the API can expose the resulting corpus limitation honestly.
-- Do not introduce compatibility readers, dual schemas, fallback indexes, inferred citations, or legacy sentence-block paths. Producers and consumers must move to the new contract together.
 
 ## React Server State
 

@@ -13,7 +13,7 @@ def main() -> None:
     subparsers = parser.add_subparsers(dest="command", required=True)
     build_parser = subparsers.add_parser(
         "build",
-        help="Build the clean corpus from eligible saved non-OCR raw pages.",
+        help="Build the clean corpus from eligible fresh OCR-disabled raw pages.",
     )
     build_parser.add_argument("--raw-dir", default=str(RAW_LITEPARSE_DIR))
     build_parser.add_argument("--output-dir", default=str(CORPUS_DIR))
