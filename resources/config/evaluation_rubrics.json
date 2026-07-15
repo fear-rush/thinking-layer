@@ -74,19 +74,25 @@
       "Sehubungan dengan amanat"
     ],
     "weights": {
-      "status_matches_expected": 0.18,
-      "not_found_has_no_citations": 0.10,
-      "has_required_terms": 0.14,
-      "has_uncertainty_terms": 0.08,
-      "has_required_citation_terms": 0.10,
-      "has_min_citations": 0.10,
-      "source_lines_match_citation_count": 0.08,
-      "has_required_issuers": 0.08,
-      "primary_sources_first_enough": 0.06,
-      "not_too_long": 0.04,
+      "status_matches_expected": 0.14,
+      "not_found_has_no_citations": 0.08,
+      "has_required_terms": 0.12,
+      "has_uncertainty_terms": 0.06,
+      "has_required_citation_terms": 0.08,
+      "has_min_citations": 0.07,
+      "source_lines_match_citation_count": 0.05,
+      "has_required_issuers": 0.06,
+      "primary_sources_first_enough": 0.04,
+      "not_too_long": 0.03,
       "no_noisy_fragments": 0.03,
       "no_truncated_bullets": 0.02,
-      "partial_has_uncertainty": 0.01
+      "partial_has_uncertainty": 0.01,
+      "finding_limit_respected": 0.04,
+      "findings_are_complete_and_supported": 0.08,
+      "citation_ids_are_unique": 0.03,
+      "citation_targets_are_valid": 0.07,
+      "no_orphan_citations": 0.04,
+      "not_found_has_no_findings": 0.01
     },
     "hard_checks": [
       "status_matches_expected",
@@ -100,7 +106,13 @@
       "not_too_long",
       "no_noisy_fragments",
       "no_truncated_bullets",
-      "partial_has_uncertainty"
+      "partial_has_uncertainty",
+      "finding_limit_respected",
+      "findings_are_complete_and_supported",
+      "citation_ids_are_unique",
+      "citation_targets_are_valid",
+      "no_orphan_citations",
+      "not_found_has_no_findings"
     ]
   }
 }

@@ -13,19 +13,114 @@ from ..config.paths import ROOT, SEARCH_INDEX_DB, SEARCH_INDEX_DIR, SOURCE_CORPU
 from ..retrieval.query_tools import load_stopwords
 from .lexical import (
     SearchIndex,
-    append_search_index,
     build_search_index,
     index_signature,
-    load_persisted_search_index,
     load_search_blocks,
     load_search_blocks_from_offset,
-    persisted_index_exists,
     sha1_prefix,
     source_state,
-    write_search_index,
 )
 from .scoring import apply_lexical_boosts, bm25_term_score, candidate_terms_for, query_terms_for, relevant_exact_phrases
 from .title import TITLE_SEARCH_MIN_SCORE, document_representative_rank, enrich_title_hit, title_match_score
+
+
+def _encoded_block(block: dict[str, Any]) -> sqlite3.Binary:
+    payload = json.dumps(block, ensure_ascii=False).encode("utf-8")
+    return sqlite3.Binary(zlib.compress(payload, level=1))
+
+
+def _document_key(block: dict[str, Any]) -> str:
+    return "|".join(
+        [
+            str(block.get("canonical_id") or ""),
+            str(block.get("file_id") or ""),
+            str(block.get("file_role") or ""),
+            str(block.get("document_title") or ""),
+        ]
+    )
+
+
+def _document_representatives(blocks: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    representatives: dict[str, dict[str, Any]] = {}
+    for block in blocks:
+        if not block.get("document_title"):
+            continue
+        key = _document_key(block)
+        current = representatives.get(key)
+        if current is None or document_representative_rank(block) < document_representative_rank(current):
+            representatives[key] = block
+    return representatives
+
+
+def _insert_docs(conn: sqlite3.Connection, index: SearchIndex, doc_id_offset: int = 0) -> None:
+    conn.executemany(
+        "INSERT INTO docs (doc_id, file_id, block_id, issuer, source, file_role, title, page, pasal, block_json, doc_len) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            (
+                doc_id_offset + doc_id,
+                block.get("file_id"),
+                block.get("block_id"),
+                block.get("issuer"),
+                block.get("source"),
+                block.get("file_role"),
+                block.get("document_title"),
+                block.get("page_start"),
+                block.get("pasal"),
+                _encoded_block(block),
+                doc_len,
+            )
+            for doc_id, (block, doc_len) in enumerate(
+                zip(index.blocks, index.doc_lengths, strict=True)
+            )
+        ),
+    )
+
+
+def _insert_postings(conn: sqlite3.Connection, index: SearchIndex, doc_id_offset: int = 0) -> None:
+    posting_rows: list[tuple[str, int, int]] = []
+    for doc_id, terms in enumerate(index.doc_terms):
+        for term, tf in terms.items():
+            posting_rows.append((term, doc_id_offset + doc_id, int(tf)))
+        if len(posting_rows) > 100_000:
+            conn.executemany("INSERT INTO postings (term, doc_id, tf) VALUES (?, ?, ?)", posting_rows)
+            posting_rows = []
+    if posting_rows:
+        conn.executemany("INSERT INTO postings (term, doc_id, tf) VALUES (?, ?, ?)", posting_rows)
+
+
+def _upsert_document_representatives(
+    conn: sqlite3.Connection,
+    representatives: dict[str, dict[str, Any]],
+) -> None:
+    for key, block in representatives.items():
+        existing = conn.execute(
+            "SELECT block_json FROM document_titles WHERE document_key = ?",
+            (key,),
+        ).fetchone()
+        if existing is not None:
+            current = json.loads(existing[0])
+            if document_representative_rank(current) <= document_representative_rank(block):
+                continue
+        conn.execute(
+            "INSERT OR REPLACE INTO document_titles "
+            "(document_key, issuer, source, file_role, title, block_json) VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                key,
+                block.get("issuer"),
+                block.get("source"),
+                block.get("file_role"),
+                block.get("document_title"),
+                json.dumps(block, ensure_ascii=False),
+            ),
+        )
+
+
+def _write_metadata(conn: sqlite3.Connection, metadata: dict[str, Any]) -> None:
+    conn.executemany(
+        "INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)",
+        [(key, json.dumps(value, ensure_ascii=False)) for key, value in metadata.items()],
+    )
 
 def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any], source_state_value: dict[str, Any] | None = None) -> None:
     SEARCH_INDEX_DIR.mkdir(parents=True, exist_ok=True)
@@ -60,71 +155,12 @@ def write_sqlite_search_index(index: SearchIndex, filters: dict[str, Any], sourc
             "term_count": len(index.doc_freq),
             "avg_len": index.avg_len,
         }
-        conn.executemany(
-            "INSERT INTO metadata (key, value) VALUES (?, ?)",
-            [(key, json.dumps(value, ensure_ascii=False)) for key, value in metadata.items()],
-        )
-        conn.executemany(
-            "INSERT INTO docs (doc_id, file_id, block_id, issuer, source, file_role, title, page, pasal, block_json, doc_len) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [
-                (
-                    doc_id,
-                    block.get("file_id"),
-                    block.get("block_id"),
-                    block.get("issuer"),
-                    block.get("source"),
-                    block.get("file_role"),
-                    block.get("document_title"),
-                    block.get("page_start"),
-                    block.get("pasal"),
-                    sqlite3.Binary(zlib.compress(json.dumps(block, ensure_ascii=False).encode("utf-8"), level=1)),
-                    index.doc_lengths[doc_id],
-                )
-                for doc_id, block in enumerate(index.blocks)
-            ],
-        )
-        document_representatives: dict[str, dict[str, Any]] = {}
-        for block in index.blocks:
-            title = block.get("document_title") or ""
-            if not title:
-                continue
-            document_key = "|".join(
-                [
-                    str(block.get("canonical_id") or ""),
-                    str(block.get("file_id") or ""),
-                    str(block.get("file_role") or ""),
-                    title,
-                ]
-            )
-            current = document_representatives.get(document_key)
-            if current is None or document_representative_rank(block) < document_representative_rank(current):
-                document_representatives[document_key] = block
-        conn.executemany(
-            "INSERT INTO document_titles (document_key, issuer, source, file_role, title, block_json) VALUES (?, ?, ?, ?, ?, ?)",
-            [
-                (
-                    key,
-                    block.get("issuer"),
-                    block.get("source"),
-                    block.get("file_role"),
-                    block.get("document_title"),
-                    json.dumps(block, ensure_ascii=False),
-                )
-                for key, block in document_representatives.items()
-            ],
-        )
+        _write_metadata(conn, metadata)
+        _insert_docs(conn, index)
+        _upsert_document_representatives(conn, _document_representatives(index.blocks))
         term_rows = [(term, int(df)) for term, df in index.doc_freq.items()]
         conn.executemany("INSERT INTO terms (term, df) VALUES (?, ?)", term_rows)
-
-        posting_rows = []
-        for doc_id, terms in enumerate(index.doc_terms):
-            for term, tf in terms.items():
-                posting_rows.append((term, doc_id, int(tf)))
-            if len(posting_rows) > 100000:
-                conn.executemany("INSERT INTO postings (term, doc_id, tf) VALUES (?, ?, ?)", posting_rows)
-                posting_rows = []
-        if posting_rows:
-            conn.executemany("INSERT INTO postings (term, doc_id, tf) VALUES (?, ?, ?)", posting_rows)
+        _insert_postings(conn, index)
 
         conn.execute("CREATE INDEX idx_docs_filters ON docs (issuer, file_role, source)")
         conn.execute("CREATE INDEX idx_docs_file_id ON docs (file_id)")
@@ -168,6 +204,10 @@ def sqlite_file_has_consistent_page_count(path=SEARCH_INDEX_DB) -> bool:
 def sqlite_index_is_current() -> bool:
     if not sqlite_index_exists() or not sqlite_file_has_consistent_page_count():
         return False
+    try:
+        current_signature = index_signature()
+    except FileNotFoundError:
+        return False
     conn = sqlite3.connect(SEARCH_INDEX_DB)
     try:
         metadata = sqlite_metadata(conn)
@@ -175,7 +215,7 @@ def sqlite_index_is_current() -> bool:
         return False
     finally:
         conn.close()
-    return metadata.get("signature") == index_signature()
+    return metadata.get("signature") == current_signature
 
 def sqlite_metadata(conn: sqlite3.Connection) -> dict[str, Any]:
     rows = conn.execute("SELECT key, value FROM metadata").fetchall()
@@ -246,6 +286,45 @@ def sqlite_title_search(
         if owns_conn:
             conn.close()
 
+
+def sqlite_document_candidates(
+    issuer: str | None = None,
+    role: str | None = None,
+    source: str | None = None,
+    include_secondary: bool = True,
+    conn: sqlite3.Connection | None = None,
+) -> list[dict[str, Any]]:
+    """Return compact document representatives for metadata filtering only."""
+
+    if not sqlite_index_exists():
+        return []
+    owns_conn = conn is None
+    if conn is None:
+        conn = sqlite3.connect(SEARCH_INDEX_DB)
+        conn.row_factory = sqlite3.Row
+    try:
+        if not sqlite_has_table(conn, "document_titles"):
+            return []
+        filters = []
+        params: list[Any] = []
+        if issuer:
+            filters.append("issuer = ?")
+            params.append(issuer)
+        if role:
+            filters.append("file_role = ?")
+            params.append(role)
+        if source:
+            filters.append("source = ?")
+            params.append(source)
+        if not include_secondary:
+            filters.append("file_role NOT IN ('secondary_faq', 'secondary_summary')")
+        where = f"WHERE {' AND '.join(filters)}" if filters else ""
+        rows = conn.execute(f"SELECT block_json FROM document_titles {where}", params).fetchall()
+        return [json.loads(row["block_json"]) for row in rows]
+    finally:
+        if owns_conn:
+            conn.close()
+
 def sqlite_search(
     query: str,
     limit: int,
@@ -255,6 +334,8 @@ def sqlite_search(
     include_secondary: bool = True,
     conn: sqlite3.Connection | None = None,
     metadata: dict[str, Any] | None = None,
+    file_ids: set[str] | list[str] | tuple[str, ...] | None = None,
+    pasal: str | None = None,
 ) -> list[dict[str, Any]]:
     if not sqlite_index_exists():
         return []
@@ -293,17 +374,39 @@ def sqlite_search(
             if len(candidate_terms) >= int(candidate_config.get("sqlite_min_match_when_candidate_terms_at_least", 3))
             else int(candidate_config.get("sqlite_default_min_match", 1))
         )
+        candidate_filters = [f"p.term IN ({placeholders})"]
+        candidate_params: list[Any] = [*candidate_terms]
+        if issuer:
+            candidate_filters.append("d.issuer = ?")
+            candidate_params.append(issuer)
+        if role:
+            candidate_filters.append("d.file_role = ?")
+            candidate_params.append(role)
+        if source:
+            candidate_filters.append("d.source = ?")
+            candidate_params.append(source)
+        if not include_secondary:
+            candidate_filters.append("d.file_role NOT IN ('secondary_faq', 'secondary_summary')")
+        constrained_file_ids = sorted({str(value) for value in file_ids or [] if value})
+        if constrained_file_ids:
+            candidate_filters.append(f"d.file_id IN ({','.join('?' for _ in constrained_file_ids)})")
+            candidate_params.extend(constrained_file_ids)
+        if pasal:
+            candidate_filters.append("d.pasal = ?")
+            candidate_params.append(pasal)
+
         candidate_rows = conn.execute(
             f"""
-            SELECT doc_id, COUNT(DISTINCT term) AS matched_terms
-            FROM postings
-            WHERE term IN ({placeholders})
-            GROUP BY doc_id
+            SELECT p.doc_id, COUNT(DISTINCT p.term) AS matched_terms
+            FROM postings p
+            JOIN docs d ON d.doc_id = p.doc_id
+            WHERE {' AND '.join(candidate_filters)}
+            GROUP BY p.doc_id
             HAVING matched_terms >= ?
             ORDER BY matched_terms DESC
             LIMIT {int(candidate_config.get("sqlite_candidate_limit", 50000))}
             """,
-            [*candidate_terms, min_match],
+            [*candidate_params, min_match],
         ).fetchall()
         candidate_ids = [row["doc_id"] for row in candidate_rows]
         if not candidate_ids:
@@ -322,6 +425,12 @@ def sqlite_search(
             params.append(source)
         if not include_secondary:
             filters.append("file_role NOT IN ('secondary_faq', 'secondary_summary')")
+        if constrained_file_ids:
+            filters.append(f"file_id IN ({','.join('?' for _ in constrained_file_ids)})")
+            params.extend(constrained_file_ids)
+        if pasal:
+            filters.append("pasal = ?")
+            params.append(pasal)
 
         scored: list[tuple[float, dict[str, Any]]] = []
         batch_size = int(candidate_config.get("sqlite_batch_size", 900))
@@ -369,9 +478,80 @@ def sqlite_search(
         if owns_conn:
             conn.close()
 
+def append_sqlite_search_index(
+    index: SearchIndex,
+    filters: dict[str, Any],
+    source_state_value: dict[str, Any],
+) -> None:
+    """Atomically append source-corpus rows to the sole persisted SQLite index."""
+    building_path = SEARCH_INDEX_DB.with_suffix(f"{SEARCH_INDEX_DB.suffix}.building")
+    building_path.unlink(missing_ok=True)
+    source_conn = sqlite3.connect(SEARCH_INDEX_DB)
+    conn = sqlite3.connect(building_path)
+    try:
+        source_conn.backup(conn)
+        source_conn.close()
+        conn.execute("PRAGMA journal_mode=OFF")
+        conn.execute("PRAGMA synchronous=OFF")
+        metadata = sqlite_metadata(conn)
+        old_count = int(metadata.get("doc_count") or 0)
+        added_count = len(index.blocks)
+        new_count = old_count + added_count
+
+        _insert_docs(conn, index, doc_id_offset=old_count)
+        _upsert_document_representatives(conn, _document_representatives(index.blocks))
+        conn.executemany(
+            "INSERT INTO terms (term, df) VALUES (?, ?) "
+            "ON CONFLICT(term) DO UPDATE SET df = df + excluded.df",
+            [(term, int(df)) for term, df in index.doc_freq.items()],
+        )
+        _insert_postings(conn, index, doc_id_offset=old_count)
+
+        avg_len = (
+            ((float(metadata.get("avg_len") or 0.0) * old_count) + (index.avg_len * added_count))
+            / new_count
+            if new_count
+            else 0.0
+        )
+        updated_metadata = {
+            "signature": index_signature(),
+            "source_state": source_state_value,
+            "filters": filters,
+            "doc_count": new_count,
+            "term_count": int(conn.execute("SELECT COUNT(*) FROM terms").fetchone()[0]),
+            "avg_len": avg_len,
+        }
+        _write_metadata(conn, updated_metadata)
+        conn.commit()
+    except BaseException:
+        source_conn.close()
+        conn.close()
+        building_path.unlink(missing_ok=True)
+        raise
+    else:
+        conn.close()
+        os.replace(building_path, SEARCH_INDEX_DB)
+
+
+def _refresh_sqlite_metadata(filters: dict[str, Any], source_state_value: dict[str, Any]) -> None:
+    conn = sqlite3.connect(SEARCH_INDEX_DB)
+    try:
+        _write_metadata(
+            conn,
+            {
+                "signature": index_signature(),
+                "source_state": source_state_value,
+                "filters": filters,
+            },
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
 def incremental_build_index(filters: dict[str, Any]) -> tuple[bool, str]:
-    if not sqlite_index_exists() or not persisted_index_exists() or not SOURCE_CORPUS_PATH.exists():
-        return False, "an existing SQLite/JSON index and source corpus are required"
+    if not sqlite_index_exists() or not SOURCE_CORPUS_PATH.exists():
+        return False, "an existing SQLite index and source corpus are required"
     conn = sqlite3.connect(SEARCH_INDEX_DB)
     try:
         metadata = sqlite_metadata(conn)
@@ -381,19 +561,7 @@ def incremental_build_index(filters: dict[str, Any]) -> tuple[bool, str]:
     current_signature = index_signature()
     if not previous and metadata.get("signature") == current_signature:
         source_state_value = source_state()
-        json_metadata_path = SEARCH_INDEX_DIR / "metadata.json"
-        json_metadata = json.loads(json_metadata_path.read_text(encoding="utf-8"))
-        json_metadata["source_state"] = source_state_value
-        json_metadata_path.write_text(json.dumps(json_metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        conn = sqlite3.connect(SEARCH_INDEX_DB)
-        try:
-            conn.execute(
-                "INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)",
-                ("source_state", json.dumps(source_state_value, ensure_ascii=False)),
-            )
-            conn.commit()
-        finally:
-            conn.close()
+        _refresh_sqlite_metadata(filters, source_state_value)
         return True, "initialized append-only source state; index was already current"
     current_path = str(SOURCE_CORPUS_PATH.relative_to(ROOT))
     previous_path = previous.get("path")
@@ -409,10 +577,11 @@ def incremental_build_index(filters: dict[str, Any]) -> tuple[bool, str]:
     source_state_value = source_state()
     if not new_blocks and current_size == previous_size and metadata.get("signature") == current_signature:
         return True, "index is already current"
-    index = load_persisted_search_index()
-    append_search_index(index, new_blocks)
-    write_search_index(index, filters, source_state_value=source_state_value)
-    write_sqlite_search_index(index, filters, source_state_value=source_state_value)
+    if not new_blocks:
+        _refresh_sqlite_metadata(filters, source_state_value)
+        return True, "source corpus is unchanged; refreshed SQLite metadata"
+    index = build_search_index(new_blocks)
+    append_sqlite_search_index(index, filters, source_state_value)
     return True, f"appended {len(new_blocks)} new searchable blocks"
 
 
@@ -423,7 +592,7 @@ def cmd_build_index(args: argparse.Namespace) -> None:
         "source": None,
         "include_secondary": True,
         "extracted_ok_only": True,
-        "corpus": str(SOURCE_CORPUS_PATH.relative_to(ROOT)) if SOURCE_CORPUS_PATH.exists() else "processed/blocks.ndjson",
+        "corpus": str(SOURCE_CORPUS_PATH.relative_to(ROOT)),
     }
     if args.incremental:
         updated, message = incremental_build_index(filters)
@@ -437,10 +606,5 @@ def cmd_build_index(args: argparse.Namespace) -> None:
     print(f"Building search index for {len(blocks)} blocks...", flush=True)
     index = build_search_index(blocks)
     source_state_value = source_state()
-    write_search_index(index, filters, source_state_value=source_state_value)
     write_sqlite_search_index(index, filters, source_state_value=source_state_value)
-    print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/metadata.json")
-    print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/docs.ndjson")
-    print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/terms.ndjson")
-    print(f"Wrote {SEARCH_INDEX_DIR.relative_to(ROOT)}/postings.ndjson")
     print(f"Wrote {SEARCH_INDEX_DB.relative_to(ROOT)}")

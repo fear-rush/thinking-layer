@@ -49,7 +49,9 @@ def semantic_text(block: dict[str, Any], max_chars: int) -> str:
     number = block.get("number") or ""
     pasal = block.get("pasal") or ""
     ayat = block.get("ayat") or ""
-    text = block.get("text") or ""
+    # The v2 contract keeps a legal node's human-facing excerpt separate from
+    # the context used to produce a retrieval representation.
+    text = block["retrieval_text"]
     value = " ".join(part for part in (title, heading, number, pasal, ayat, text) if part)
     return value[:max_chars]
 
@@ -157,10 +159,6 @@ def _encode_query(
         normalize,
         show_progress_bar=False,
     )
-
-
-def semantic_index_exists() -> bool:
-    return all(path.exists() for path in (SEMANTIC_INDEX_METADATA, SEMANTIC_INDEX_EMBEDDINGS, SEMANTIC_INDEX_DOCS))
 
 
 def semantic_index_metadata() -> dict[str, Any]:
@@ -285,9 +283,10 @@ def cmd_build_semantic_index(args: argparse.Namespace) -> None:
 
 
 def cmd_semantic_search(args: argparse.Namespace) -> None:
+    limit = int(args.limit if args.limit is not None else semantic_config().get("default_limit", 10))
     results = semantic_search(
         args.query,
-        args.limit,
+        limit,
         issuer=args.issuer,
         role=args.role,
         source=args.source,

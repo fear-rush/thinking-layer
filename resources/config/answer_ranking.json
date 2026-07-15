@@ -5,19 +5,8 @@
   },
   "claim_text": {
     "max_chars": 420,
+    "enumeration_aggregate_max_chars": 1600,
     "min_boundary_chars": 180,
-    "context_expansion_max_chars": 260,
-    "context_expansion_max_blocks": 4,
-    "context_expansion_suffixes": [
-      "meliputi:",
-      "yaitu:",
-      "adalah:"
-    ],
-    "context_expansion_block_types": [
-      "list_item",
-      "table_or_row",
-      "paragraph"
-    ],
     "fallback_claim": "Ketentuan relevan ditemukan pada sumber yang dikutip.",
     "strip_regexes": [
       "^\\.\\.\\.",
@@ -35,7 +24,10 @@
       "peraturan bank indonesia",
       "dengan rahmat",
       "menimbang",
-      "penjelasan atas"
+      "penjelasan atas",
+      "aktivitas dan perizinan",
+      "bagian kesatu",
+      "paragraf"
     ],
     "reject_fragments": [
       "lembaran negara",
@@ -45,7 +37,6 @@
     "reject_regexes": [
       "^\\(?\\d+[a-z]?\\)?\\s+bagi\\b",
       "^\\(?\\d+[a-z]?\\)?\\s+untuk\\b",
-      "^\\(?\\d+[a-z]?\\)?\\s+dalam hal\\b",
       "^\\(?\\d+[a-z]?\\)?\\s+atau\\b",
       "^\\(?\\d+[a-z]?\\)?\\s+dan\\b",
       "^dimaksud dalam\\b",
@@ -151,6 +142,14 @@
         "yang selanjutnya disingkat"
       ],
       "definition_match_bonus": 10.0,
+      "focus_morphology_matches": {
+        "perpanjangan": [
+          "memperpanjang",
+          "perpanjangan"
+        ]
+      },
+      "focus_morphology_bonus": 24.0,
+      "focus_morphology_missing_penalty": -40.0,
       "continuation_fragment_patterns": [
         "^\\(?\\d+[a-z]?\\)?\\s+bagi\\b",
         "^\\(?\\d+[a-z]?\\)?\\s+untuk\\b",
@@ -178,6 +177,23 @@
       "pelanggaran"
     ],
     "sanction_match_bonus": 10.0,
+    "permission_answer_terms": [
+      "persetujuan",
+      "tidak berlaku jika",
+      "diperbolehkan",
+      "dapat memberikan"
+    ],
+    "permission_answer_bonus": 24.0,
+    "governing_regulation_bonus": 18.0,
+    "subordinate_instrument_penalty": -12.0,
+    "unrequested_explanation_penalty": -35.0,
+    "operative_verbs": [
+      "menempatkan",
+      "menyampaikan",
+      "memberikan",
+      "melaporkan"
+    ],
+    "operative_verb_bonus": 35.0,
     "section_type_bonus": {
       "ayat": 4.0,
       "pasal": 4.0

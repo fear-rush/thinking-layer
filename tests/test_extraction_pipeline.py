@@ -2,8 +2,16 @@ from __future__ import annotations
 
 import argparse
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
-from thinking_layer.corpus.extraction_pipeline import effective_liteparse_options, filter_manifests_for_args
+from thinking_layer.corpus.extraction_pipeline import (
+    current_ocr_needed_file_ids,
+    effective_liteparse_options,
+    filter_manifests_for_args,
+    refresh_extracted_metadata,
+)
 
 
 class ExtractionPipelineTests(unittest.TestCase):
@@ -115,6 +123,43 @@ class ExtractionPipelineTests(unittest.TestCase):
 
         self.assertEqual([row["file_id"] for row in by_id], ["b"])
         self.assertEqual([row["file_id"] for row in by_path], ["b"])
+
+    def test_rebuild_exclusion_set_uses_current_ocr_needed_file_ids_only(self) -> None:
+        with TemporaryDirectory() as directory:
+            reports = Path(directory)
+            (reports / "ocr_needed.json").write_text(
+                '[{"file_id":"needs-ocr"},{"file_id":"parse-failed"},{"reason":"no_file_id"}]',
+                encoding="utf-8",
+            )
+            with patch("thinking_layer.corpus.extraction_pipeline.REPORTS_DIR", reports):
+                excluded = current_ocr_needed_file_ids()
+
+        self.assertEqual(excluded, {"needs-ocr", "parse-failed"})
+
+    def test_rebuild_refreshes_catalog_metadata_without_losing_raw_extraction(self) -> None:
+        saved = {
+            "file_id": "hosted-pbi",
+            "resolved_path": "downloads/hosted-pbi.pdf",
+            "issuer": "OJK",
+            "raw_liteparse_path": "processed/raw/liteparse/hosted-pbi.json",
+            "extraction_status": "extracted_ok",
+        }
+        current = {
+            "file_id": "hosted-pbi",
+            "resolved_path": "downloads/hosted-pbi.pdf",
+            "issuer": "BI",
+            "hosting_source_issuer": "OJK",
+            "regulation_type": "PBI",
+        }
+
+        refreshed = refresh_extracted_metadata(
+            saved,
+            {("hosted-pbi", "downloads/hosted-pbi.pdf"): current},
+        )
+
+        self.assertEqual(refreshed["issuer"], "BI")
+        self.assertEqual(refreshed["hosting_source_issuer"], "OJK")
+        self.assertEqual(refreshed["raw_liteparse_path"], saved["raw_liteparse_path"])
 
 
 if __name__ == "__main__":

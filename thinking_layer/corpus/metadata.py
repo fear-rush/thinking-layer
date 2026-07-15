@@ -276,10 +276,27 @@ def source_identity(record: SourceRecord) -> str:
     )
 
 
-def issuer_for(record: SourceRecord) -> str:
+def issuer_for(record: SourceRecord, regulation_type: str | None = None) -> str:
+    """Resolve the legal issuer before falling back to the hosting source.
+
+    OJK's JDIH mirrors many historical Bank Indonesia instruments.  Treating
+    the host as the issuer leaks those PBI/PADG documents into OJK-only
+    retrieval.  Conversely, a POJK/SEOJK mirrored elsewhere remains an OJK
+    instrument.  Unknown document types retain the source fallback.
+    """
+    normalized_type = normalize_regulation_type(regulation_type)
+    if normalized_type in {"PBI", "PADG"}:
+        return "BI"
+    if normalized_type in {"POJK", "SEOJK"}:
+        return "OJK"
     if record.source == "ease-bi":
         return "BI"
     return "OJK"
+
+
+def hosting_source_issuer(record: SourceRecord) -> str:
+    """Return the regulator associated with the source host, not legal identity."""
+    return "BI" if record.source == "ease-bi" else "OJK"
 
 
 def normalized_metadata(record: SourceRecord) -> dict[str, Any]:
@@ -315,7 +332,11 @@ def normalized_metadata(record: SourceRecord) -> dict[str, Any]:
         first_payload_value(payload, "amends", "amended_regulations", "changes", "mengubah")
     )
     year = payload.get("year") or parse_year(issued_date, effective_date, number, title)
-    issuer = issuer_for(record)
+    issuer = issuer_for(record, reg_type)
+    host_issuer = hosting_source_issuer(record)
+    issuer_resolution_basis = (
+        "regulation_type" if reg_type in {"PBI", "PADG", "POJK", "SEOJK"} else "hosting_source"
+    )
     version_key = canonical_id(issuer, reg_type, number, year, title)
 
     return {
@@ -323,6 +344,9 @@ def normalized_metadata(record: SourceRecord) -> dict[str, Any]:
         "regulation_version_key": version_key,
         "regulation_series_key": regulation_series_key(issuer, reg_type, number),
         "issuer": issuer,
+        "hosting_source_issuer": host_issuer,
+        "issuer_resolution_basis": issuer_resolution_basis,
+        "issuer_differs_from_host": issuer != host_issuer,
         "source": record.source,
         "source_id": source_identity(record),
         "title": title,

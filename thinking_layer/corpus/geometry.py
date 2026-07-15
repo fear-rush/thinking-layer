@@ -125,7 +125,7 @@ def geometry_text_for_block(block_text: str, page: dict[str, Any]) -> str | None
         return None
     entries = reconstruct_indented_entries(page)
     matched: list[str] = []
-    for start_index in range(0, max(0, len(entries) - len(labels) + 1)):
+    for start_index in range(max(0, len(entries) - len(labels) + 1)):
         window = entries[start_index : start_index + len(labels)]
         if [entry.label for entry in window] == labels:
             matched = [entry.text for entry in window]

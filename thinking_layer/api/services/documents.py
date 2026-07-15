@@ -1,15 +1,13 @@
 from __future__ import annotations
 
-import json
 import sqlite3
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
-from ...config.paths import API_DOCUMENT_CATALOG_DB, SEARCH_INDEX_DB
+from ...config.paths import SEARCH_INDEX_DB
 from ...indexing.sqlite import decode_block_json, sqlite_index_is_current
 from ..schemas.documents import DocumentBlockResponse, DocumentResponse
-from .document_catalog import SEARCH_INDEX_DOCS, catalog_is_current
 
 
 class DocumentStoreUnavailableError(RuntimeError):
@@ -27,13 +25,9 @@ class DocumentService:
         self,
         database_path: Path = SEARCH_INDEX_DB,
         index_is_current: Callable[[], bool] = sqlite_index_is_current,
-        catalog_path: Path = API_DOCUMENT_CATALOG_DB,
-        docs_path: Path = SEARCH_INDEX_DOCS,
     ) -> None:
         self.database_path = database_path
         self.index_is_current = index_is_current
-        self.catalog_path = catalog_path
-        self.docs_path = docs_path
 
     def lookup_ready(self) -> bool:
         if not self.database_path.exists() or not self.index_is_current():
@@ -49,21 +43,16 @@ class DocumentService:
                 conn.close()
         return {"file_id", "block_id"}.issubset(columns)
 
-    def catalog_ready(self) -> bool:
-        return catalog_is_current(self.catalog_path, self.docs_path)
-
     def _connection(self) -> sqlite3.Connection:
         if not self.lookup_ready():
             raise DocumentStoreUnavailableError(
-                "Document lookup requires a current BM25 index or document catalog. Run `build-document-catalog`."
+                "Document lookup requires a current SQLite BM25 index. Run `build-index`."
             )
         conn = sqlite3.connect(self.database_path)
         conn.row_factory = sqlite3.Row
         return conn
 
     def _block(self, file_id: str, block_id: str | None = None) -> dict[str, Any]:
-        if self.catalog_ready() and not self.lookup_ready():
-            return self._catalog_block(file_id, block_id)
         conn = self._connection()
         try:
             if block_id is None:
@@ -82,26 +71,6 @@ class DocumentService:
             target = f"block `{block_id}` in " if block_id else ""
             raise DocumentNotFoundError(f"No {target}document found for file_id `{file_id}`.")
         return decode_block_json(row["block_json"])
-
-    def _catalog_block(self, file_id: str, block_id: str | None = None) -> dict[str, Any]:
-        conn = sqlite3.connect(self.catalog_path)
-        try:
-            if block_id is None:
-                row = conn.execute(
-                    "SELECT offset FROM blocks WHERE file_id = ? ORDER BY offset LIMIT 1", (file_id,)
-                ).fetchone()
-            else:
-                row = conn.execute(
-                    "SELECT offset FROM blocks WHERE file_id = ? AND block_id = ? LIMIT 1", (file_id, block_id)
-                ).fetchone()
-        finally:
-            conn.close()
-        if row is None:
-            target = f"block `{block_id}` in " if block_id else ""
-            raise DocumentNotFoundError(f"No {target}document found for file_id `{file_id}`.")
-        with self.docs_path.open("rb") as handle:
-            handle.seek(int(row[0]))
-            return json.loads(handle.readline())
 
     def get_document(self, file_id: str) -> DocumentResponse:
         block = self._block(file_id)
@@ -123,5 +92,19 @@ class DocumentService:
             section_type=block.get("section_type"),
             citation_quality=block.get("citation_quality"),
             citation_text=citation.get("text"),
-            text=str(block.get("text") or ""),
+            chunk_schema_version=block.get("chunk_schema_version"),
+            node_id=block.get("node_id"),
+            parent_id=block.get("parent_id"),
+            previous_id=block.get("previous_id"),
+            anchors=block.get("anchors"),
+            source_spans=block.get("source_spans"),
+            source_block_ids=block.get("source_block_ids"),
+            unit_path=block.get("unit_path"),
+            legal_unit=block.get("legal_unit"),
+            legal_path=block.get("legal_path"),
+            continuation=block.get("continuation"),
+            display_text=block.get("display_text"),
+            retrieval_text=block.get("retrieval_text"),
+            assembled_text=block.get("assembled_text"),
+            text=str(block["display_text"]),
         )

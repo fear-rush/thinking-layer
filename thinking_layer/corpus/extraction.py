@@ -1,107 +1,66 @@
+"""Raw LiteParse helpers and the v2-only legal-unit corpus adapter."""
+
 from __future__ import annotations
 
-import re
 from pathlib import Path
+import re
 from typing import Any
 
-from ..config.heuristics import heuristic_section
-from .metadata import short_hash
-from ..config.paths import RAW_LITEPARSE_DIR
 from ..common.text import normalize_space, slugify
-from .geometry import geometry_text_for_block
-from .normalization import markdown_table_rows, normalize_extracted_text, normalize_table_row
+from ..config.heuristics import heuristic_section
+from ..config.paths import RAW_LITEPARSE_DIR
+from .legal_units import CHUNK_SCHEMA_VERSION, parse_legal_units
+from .metadata import short_hash
+from .normalization import markdown_table_rows
+
+
+_MOJIBAKE_RE = re.compile(r"(?:\ufffd|â[^\s]{0,3}|Ã[^\s]{0,3}|Â[^\s]{0,3})")
+_OUTLINE_ATOMIC_TYPES = {"point", "subpoint", "item"}
+_MAX_OUTLINE_ATOMIC_CHARS = 1_800
+
+
+def is_seojk_outline_document(manifest: dict[str, Any]) -> bool:
+    regulation_type = str(manifest.get("regulation_type") or "").casefold()
+    return "seojk" in regulation_type or "surat edaran ojk" in regulation_type
+
+
+def table_readability(text: str) -> dict[str, Any]:
+    """Return deterministic evidence-readability metadata for a table unit.
+
+    Tables remain in extraction output for auditability.  Only tables with a
+    minimally coherent row/cell structure and enough natural-language labels
+    are citation eligible; formula fragments and encoding corruption are
+    quarantined.
+    """
+    rows = markdown_table_rows(text)
+    nonempty_cells = [cell for row in rows for cell in row if normalize_space(cell)]
+    plain_text = normalize_space(" ".join(nonempty_cells))
+    natural_words = re.findall(r"(?i)(?<!\w)[a-zÀ-ÿ]{3,}(?!\w)", plain_text)
+    formula_symbols = re.findall(r"[=∑√×÷±^]", plain_text)
+    reasons: list[str] = []
+    if _MOJIBAKE_RE.search(plain_text):
+        reasons.append("mojibake")
+    if len(rows) < 3 or len(nonempty_cells) < 4:
+        reasons.append("insufficient_table_structure")
+    if len(re.findall(r"(?m)^[HD]\|[A-Z0-9]", text)) >= 2:
+        reasons.append("record_code_fragment")
+    if len(natural_words) < 4:
+        reasons.append("insufficient_natural_language")
+    if len(formula_symbols) >= 2 and len(natural_words) < 10:
+        reasons.append("formula_dominant")
+    return {
+        "status": "readable" if not reasons else "quarantined",
+        "is_readable": not reasons,
+        "reasons": reasons,
+        "row_count": len(rows),
+        "nonempty_cell_count": len(nonempty_cells),
+        "natural_word_count": len(natural_words),
+        "formula_symbol_count": len(formula_symbols),
+    }
 
 
 def safe_text(value: str | None) -> str:
     return normalize_space(value).replace("\x00", "")
-
-
-def is_table_separator(line: str, config: dict[str, Any] | None = None) -> bool:
-    config = config or heuristic_section("extraction_heuristics", "sentence_blocks")
-    return bool(re.match(str(config.get("table_separator_regex")), line))
-
-
-def is_markdown_table_row(line: str, config: dict[str, Any] | None = None) -> bool:
-    config = config or heuristic_section("extraction_heuristics", "sentence_blocks")
-    pipe_count = line.count("|")
-    if pipe_count < int(config.get("table_row_min_pipes", 2)):
-        return False
-    return is_table_separator(line, config) or bool(re.search(r"\|\s*[^|]+\s*\|", line))
-
-
-def starts_list_item(line: str) -> bool:
-    config = heuristic_section("extraction_heuristics", "block_type")
-    return bool(re.match(str(config.get("list_item_regex", r"^(\(?\d+[a-z]?\)|[a-z]\.|[ivxlcdm]+\.)\s+")), line, flags=re.IGNORECASE))
-
-
-def sentence_like_blocks(text: str) -> list[str]:
-    config = heuristic_section("extraction_heuristics", "sentence_blocks")
-    lines = [normalize_space(line) for line in text.splitlines()]
-    blocks: list[str] = []
-    current: list[str] = []
-    table_current: list[str] = []
-
-    def flush() -> None:
-        nonlocal current
-        if current:
-            blocks.append(normalize_space(" ".join(current)))
-            current = []
-
-    def flush_table() -> None:
-        nonlocal table_current
-        if table_current:
-            blocks.append("\n".join(table_current))
-            table_current = []
-
-    for line in lines:
-        if re.fullmatch(str(config.get("page_number_regex", r"-?\s*\d+\s*-?")), line):
-            continue
-        if not line:
-            flush_table()
-            if len(" ".join(current)) >= int(config.get("flush_on_blank_min_chars", 350)):
-                flush()
-            continue
-
-        heading_config = heuristic_section("extraction_heuristics", "headings")
-        if is_heading(line) or re.match(str(heading_config.get("pasal_heading_regex", r"^Pasal\s+\d+[A-Z]?\b")), line, flags=re.IGNORECASE):
-            flush_table()
-            flush()
-            blocks.append(line)
-            continue
-
-        if bool(config.get("preserve_table_rows", True)) and is_markdown_table_row(line, config):
-            flush()
-            table_current.append(line)
-            continue
-
-        if bool(config.get("list_item_starts_new_block", True)) and starts_list_item(line):
-            flush_table()
-            flush()
-            current.append(line)
-            continue
-
-        flush_table()
-        current.append(line)
-        current_text = " ".join(current)
-        if len(current_text) >= int(config.get("hard_flush_min_chars", 1200)):
-            flush()
-        elif len(current_text) >= int(config.get("soft_flush_min_chars", 550)) and re.search(str(config.get("sentence_end_regex", r"[.;:]$")), line):
-            flush()
-
-    flush_table()
-    flush()
-
-    heading_config = heuristic_section("extraction_heuristics", "headings")
-    pasal_heading_regex = str(heading_config.get("pasal_heading_regex", r"^Pasal\s+\d+[A-Z]?\b"))
-    return [
-        block
-        for block in blocks
-        if (
-            len(block) > int(config.get("min_block_chars", 8))
-            or is_heading(block)
-            or re.match(pasal_heading_regex, block, flags=re.IGNORECASE)
-        )
-    ]
 
 
 def word_box_to_json(word: Any) -> dict[str, Any]:
@@ -129,142 +88,13 @@ def text_item_to_json(item: Any) -> dict[str, Any]:
     }
 
 
-def is_heading(line: str) -> bool:
-    config = heuristic_section("extraction_heuristics", "headings")
-    compact = normalize_space(line)
-    if not compact:
-        return False
-    for pattern in config.get("heading_regexes") or []:
-        pattern_text = str(pattern)
-        flags = 0 if pattern_text.startswith("^[A-Z]") else re.IGNORECASE
-        if re.match(pattern_text, compact, flags=flags):
-            return True
-    return False
-
-
-def detect_pasal(text: str, current_pasal: str | None = None) -> str | None:
-    config = heuristic_section("extraction_heuristics", "citations")
-    match = re.search(str(config.get("pasal_regex", r"\bPasal\s+(\d+[A-Z]?)\b")), text, flags=re.IGNORECASE)
-    if match:
-        if current_pasal and match.start() > 0:
-            return current_pasal
-        return f"Pasal {match.group(1)}"
-    return current_pasal
-
-
-def detect_ayat(text: str, current_ayat: str | None = None) -> str | None:
-    config = heuristic_section("extraction_heuristics", "citations")
-    match = re.match(str(config.get("ayat_start_regex", r"^\s*(?:Ayat\s*)?\((\d+[a-z]?)\)")), text, flags=re.IGNORECASE)
-    if match:
-        return f"({match.group(1)})"
-    match = re.match(str(config.get("ayat_word_start_regex", r"^\s*Ayat\s+(\d+[a-z]?)\b")), text, flags=re.IGNORECASE)
-    if match:
-        return f"({match.group(1)})"
-    if current_ayat:
-        return None
-    match = re.search(str(config.get("ayat_regex", r"(^|\s)\((\d+[a-z]?)\)")), text, flags=re.IGNORECASE)
-    if match:
-        return f"({match.group(2)})"
-    match = re.search(str(config.get("ayat_word_regex", r"\bayat\s+(\d+[a-z]?)\b")), text, flags=re.IGNORECASE)
-    if match:
-        return f"({match.group(1)})"
-    return None
-
-
-def detect_huruf(text: str, allow_context_reference: bool = True) -> str | None:
-    config = heuristic_section("extraction_heuristics", "citations")
-    match = re.match(str(config.get("huruf_label_regex", r"^\s*Huruf\s+([a-z])\b")), text, flags=re.IGNORECASE)
-    if match:
-        return f"huruf {match.group(1).lower()}"
-    match = re.match(str(config.get("huruf_list_regex", r"^\(?([a-z])\)?[.)]\s+")), text)
-    if match:
-        return f"huruf {match.group(1).lower()}"
-    if allow_context_reference:
-        match = re.search(
-            str(config.get("huruf_context_regex", r"\bayat\s+\(?\d+[a-z]?\)?\s+huruf\s+([a-z])\b")),
-            text,
-            flags=re.IGNORECASE,
-        )
-        if match:
-            return f"huruf {match.group(1).lower()}"
-    return None
-
-
-def detect_block_type(text: str, file_role: str) -> str:
-    config = heuristic_section("extraction_heuristics", "block_type")
-    if "|" in text and text.count("|") >= int(config.get("table_pipe_min_count", 4)):
-        return "table_or_row"
-    if re.search(str(config.get("article_regex", r"\bpasal\s+\d+[a-z]?\b")), text, flags=re.IGNORECASE):
-        return "article"
-    if "?" in text[: int(config.get("faq_question_scan_chars", 180))] and file_role.startswith("secondary"):
-        return "qa_or_faq"
-    if is_heading(text):
-        return "heading"
-    if re.match(str(config.get("list_item_regex", r"^(\(?\d+[a-z]?\)|[a-z]\.|[ivxlcdm]+\.)\s+")), text, flags=re.IGNORECASE):
-        return "list_item"
-    return "paragraph"
-
-
-def markdown_table_header(block_text: str) -> list[str]:
-    rows = markdown_table_rows(block_text)
-    if len(rows) < 2:
-        return []
-    header = rows[0]
-    if len(header) < 2:
-        return []
-    normalized_cells = [normalize_space(cell).lower() for cell in header]
-    joined = " ".join(normalized_cells)
-    first_cell = normalized_cells[0]
-    header_terms = ("dokumen", "persyaratan", "penjelasan", "service", "scenario", "expected", "request")
-    term_hits = sum(1 for term in header_terms if term in joined)
-    if first_cell in {"no", "no.", "nomor"} and term_hits >= 1:
-        return header
-    if term_hits >= 3:
-        return header
-    return []
-
-
-def table_has_separator_after_header(block_text: str) -> bool:
-    lines = [line for line in block_text.splitlines() if "|" in line]
-    return len(lines) >= 2 and is_table_separator(lines[1])
-
-
-def should_apply_table_context(manifest: dict[str, Any]) -> bool:
-    suffix = Path(str(manifest.get("resolved_path") or "")).suffix.lower()
-    return suffix in {".xlsx", ".docx", ".ods", ".odt"} or manifest.get("file_role") in {"attachment", "operational_requirement"}
-
-
-def table_context_prefix(header: list[str]) -> str:
-    columns = " | ".join(normalize_table_row([cell]) for cell in header if cell)
-    return f"Kolom tabel: {columns}."
-
-
-def enrich_table_block_text(
-    block_text: str,
-    markdown_text: str,
-    manifest: dict[str, Any],
-    last_table_header: list[str],
-) -> tuple[str, dict[str, Any] | None]:
-    if not last_table_header or not should_apply_table_context(manifest):
-        return markdown_text, None
-    if markdown_table_header(block_text):
-        return markdown_text, None
-    if not markdown_table_rows(block_text):
-        return markdown_text, None
-    prefix = table_context_prefix(last_table_header)
-    return normalize_space(f"{prefix} {markdown_text}"), {
-        "type": "continued_table",
-        "columns": last_table_header,
-        "source": "previous_table_header",
-    }
-
-
 def raw_output_path(file_id: str) -> Path:
     config = heuristic_section("extraction_heuristics", "raw_output")
     return RAW_LITEPARSE_DIR / f"{slugify(file_id)[: int(config.get('slug_max_chars', 160))]}-{short_hash(file_id)}.json"
 
 
 def page_to_json(page: Any) -> dict[str, Any]:
+    """Preserve LiteParse page text and geometry unchanged for future parses."""
     text_items = getattr(page, "text_items", []) or []
     return {
         "page_num": getattr(page, "page_num", None),
@@ -281,7 +111,12 @@ def classify_extraction_status(pages: list[dict[str, Any]], total_text_len: int)
     config = heuristic_section("extraction_heuristics", "ocr_status")
     if not pages:
         return "parse_failed", "no_pages_returned"
-    empty_pages = sum(1 for page in pages if len(safe_text(page.get("text") or page.get("markdown"))) < int(config.get("empty_page_text_chars", 20)))
+    empty_pages = sum(
+        1
+        for page in pages
+        if len(safe_text(page.get("text") or page.get("markdown")))
+        < int(config.get("empty_page_text_chars", 20))
+    )
     empty_ratio = empty_pages / len(pages)
     if total_text_len < int(config.get("total_text_min_chars", 100)):
         return "likely_needs_ocr", "document_text_under_100_chars"
@@ -291,100 +126,144 @@ def classify_extraction_status(pages: list[dict[str, Any]], total_text_len: int)
 
 
 def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    heading_config = heuristic_section("extraction_heuristics", "headings")
-    block_id_config = heuristic_section("extraction_heuristics", "block_id")
+    """Emit the sole v2 corpus block contract from ordered raw page text.
+
+    The parser owns legal structure, source anchors, and deterministic IDs.
+    This adapter owns manifest provenance and the explicit evidence-admission
+    policy: atomic legal leaves plus bounded enumeration aggregates.  It never
+    invokes sentence splitting or attempts to infer citations from prose.
+    """
     blocks: list[dict[str, Any]] = []
-    current_pasal: str | None = None
-    current_ayat: str | None = None
-    heading_path: list[str] = []
-    last_table_header: list[str] = []
-
-    for page in pages:
-        page_num = page.get("page_num")
-        page_text = page.get("markdown") or page.get("text") or ""
-        for index, block_text in enumerate(sentence_like_blocks(page_text)):
-            previous_pasal = current_pasal
-            current_pasal = detect_pasal(block_text, current_pasal)
-            if current_pasal != previous_pasal:
-                current_ayat = None
-            detected_ayat = detect_ayat(block_text, current_ayat)
-            detected_huruf = detect_huruf(block_text, allow_context_reference=not current_ayat or bool(detected_ayat))
-
-            if is_heading(block_text):
-                heading_text = block_text[: int(heading_config.get("heading_text_max_chars", 120))]
-                if re.match(str(heading_config.get("bab_heading_regex", r"^BAB\b")), block_text, flags=re.IGNORECASE):
-                    heading_path = [heading_text]
-                elif len(heading_path) < int(heading_config.get("max_heading_path_items", 4)):
-                    heading_path = [*heading_path, heading_text]
-
-            block_type = detect_block_type(block_text, manifest["file_role"])
-            if detected_ayat:
-                current_ayat = detected_ayat
-            if block_type == "table_or_row":
-                ayat = detected_ayat
-            else:
-                ayat = detected_ayat or (current_ayat if detected_huruf else None)
-            huruf = detected_huruf
-            markdown_text = normalize_extracted_text(block_text, block_type)
-            geometry_text = geometry_text_for_block(block_text, page) if block_type == "table_or_row" else None
-            table_context = None
-            if block_type == "table_or_row":
-                header = markdown_table_header(block_text)
-                if header and table_has_separator_after_header(block_text):
-                    last_table_header = header
-                elif header and not last_table_header:
-                    last_table_header = header
-                markdown_text, table_context = enrich_table_block_text(block_text, markdown_text, manifest, last_table_header)
-            normalized_block_text = geometry_text or markdown_text
-            block_id_seed = f"{manifest['file_id']}:{page_num}:{index}:{current_pasal or ''}:{ayat or ''}:{huruf or ''}"
-            block_id = slugify(block_id_seed)[: int(block_id_config.get("slug_max_chars", 180))]
-            blocks.append(
-                {
-                    "block_id": f"{block_id}-{short_hash(block_id_seed)}",
-                    "canonical_id": manifest["canonical_id"],
-                    "file_id": manifest["file_id"],
-                    "source": manifest["source"],
-                    "issuer": manifest["issuer"],
-                    "file_role": manifest["file_role"],
-                    "document_title": manifest["title"],
-                    "regulation_type": manifest["regulation_type"],
-                    "number": manifest["number"],
-                    "year": manifest["year"],
-                    "regulation_version_key": manifest.get("regulation_version_key"),
-                    "regulation_series_key": manifest.get("regulation_series_key"),
-                    "issued_date": manifest.get("issued_date"),
-                    "effective_date": manifest.get("effective_date"),
-                    "repeal_date": manifest.get("repeal_date"),
-                    "lifecycle_status": manifest.get("lifecycle_status"),
-                    "is_current": manifest.get("is_current"),
-                    "supersedes": manifest.get("supersedes") or [],
-                    "amends": manifest.get("amends") or [],
-                    "page_start": page_num,
-                    "page_end": page_num,
-                    "block_type": block_type,
-                    "extraction_method": "geometry_list" if geometry_text else "markdown",
-                    "heading_path": heading_path,
-                    "pasal": current_pasal,
-                    "ayat": ayat,
-                    "huruf": huruf,
-                    "text": normalized_block_text,
-                    "text_markdown": markdown_text,
-                    "text_geometry": geometry_text,
-                    "table_context": table_context,
-                    "citation": {
-                        "document": manifest["title"],
-                        "page": page_num,
-                        "pasal": current_pasal,
-                        "ayat": ayat,
-                        "huruf": huruf,
-                    },
-                    "confidence": {
-                        "page": "high" if page_num else "missing",
-                        "pasal": "medium" if current_pasal else "missing",
-                        "ayat": "medium" if ayat else "missing",
-                        "huruf": "medium" if huruf else "missing",
-                    },
-                }
+    nodes = parse_legal_units(
+        pages,
+        document_id=str(manifest["file_id"]),
+        enable_outline=is_seojk_outline_document(manifest),
+    )
+    parent_ids = {node.get("parent_id") for node in nodes if node.get("parent_id")}
+    for node in nodes:
+        legal_path = node.get("legal_path") or {}
+        legal_unit = node.get("legal_unit") or {}
+        unit_type = str(node.get("unit_type") or legal_unit.get("type") or "")
+        legal_unit_role = str(node.get("legal_unit_role") or legal_unit.get("role") or "")
+        document_part = str(node.get("document_part") or legal_unit.get("document_part") or "")
+        is_enumeration_aggregate = (
+            unit_type == "enumeration_aggregate" and legal_unit_role == "enumeration_aggregate"
+        )
+        is_outline_leaf = (
+            unit_type in _OUTLINE_ATOMIC_TYPES
+            and node.get("node_id") not in parent_ids
+            and bool(legal_path.get("section"))
+            and (
+                document_part == "normative"
+                or (document_part == "attachment" and legal_path.get("bab") == "BAB I")
             )
+            and node.get("page_start") == node.get("page_end")
+            and 40 <= len(str(node.get("display_text") or "")) <= _MAX_OUTLINE_ATOMIC_CHARS
+        )
+        is_atomic_leaf = (
+            unit_type in {"pasal", "ayat", "huruf", "angka", "table"}
+            and node.get("node_id") not in parent_ids
+        ) or is_outline_leaf
+        if not (is_atomic_leaf or is_enumeration_aggregate):
+            continue
 
+        heading_path = [
+            str(legal_path[level])
+            for level in ("bab", "section", "point", "subpoint", "bagian", "paragraf")
+            if legal_path.get(level)
+        ]
+        display_text = str(node.get("display_text") or "")
+        readability = table_readability(display_text) if unit_type == "table" else None
+        is_quarantined_table = bool(readability and not readability["is_readable"])
+        has_dangling_reference = bool(
+            re.search(
+                r"\b(?:(?:pada|dalam|di)\s+)?(?:ayat|Pasal|huruf)\s*$",
+                display_text,
+                re.IGNORECASE,
+            )
+        )
+        quarantine_reason = (
+            "unreadable_table"
+            if is_quarantined_table
+            else "non_evidence_document_part"
+            if document_part == "promulgation"
+            else "dangling_legal_reference"
+            if has_dangling_reference
+            else None
+        )
+        citation_admission = (
+            f"quarantined_{quarantine_reason}"
+            if quarantine_reason
+            else "enumeration_aggregate"
+            if is_enumeration_aggregate
+            else "atomic_leaf"
+        )
+        blocks.append(
+            {
+                **node,
+                "chunk_schema_version": CHUNK_SCHEMA_VERSION,
+                "canonical_id": manifest["canonical_id"],
+                "file_id": manifest["file_id"],
+                "source": manifest["source"],
+                "issuer": manifest["issuer"],
+                "hosting_source_issuer": manifest.get("hosting_source_issuer"),
+                "issuer_resolution_basis": manifest.get("issuer_resolution_basis"),
+                "issuer_differs_from_host": manifest.get("issuer_differs_from_host", False),
+                "file_role": manifest["file_role"],
+                "document_title": manifest["title"],
+                "regulation_type": manifest.get("regulation_type"),
+                "number": manifest.get("number"),
+                "year": manifest.get("year"),
+                "regulation_version_key": manifest.get("regulation_version_key"),
+                "regulation_series_key": manifest.get("regulation_series_key"),
+                "issued_date": manifest.get("issued_date"),
+                "effective_date": manifest.get("effective_date"),
+                "repeal_date": manifest.get("repeal_date"),
+                "lifecycle_status": manifest.get("lifecycle_status"),
+                "is_current": manifest.get("is_current"),
+                "supersedes": manifest.get("supersedes") or [],
+                "amends": manifest.get("amends") or [],
+                "searchable_primary": manifest.get("searchable_primary", True),
+                "primary_duplicate_status": manifest.get("primary_duplicate_status"),
+                "primary_duplicate_group_id": manifest.get("primary_duplicate_group_id"),
+                "primary_duplicate_of_file_id": manifest.get("primary_duplicate_of_file_id"),
+                "primary_duplicate_group_size": manifest.get("primary_duplicate_group_size"),
+                "primary_duplicate_reason": manifest.get("primary_duplicate_reason"),
+                "block_type": "table_or_row" if unit_type == "table" else "legal_unit",
+                "extraction_method": "legal_units_v2",
+                "citation_admission": citation_admission,
+                "citation_quarantine": (
+                    {
+                        "reason": quarantine_reason,
+                        "details": readability if is_quarantined_table else None,
+                    }
+                    if quarantine_reason
+                    else None
+                ),
+                "table_readability": readability,
+                "heading_path": heading_path,
+                "pasal": legal_path.get("pasal"),
+                "ayat": legal_path.get("ayat"),
+                "huruf": legal_path.get("huruf"),
+                "angka": legal_path.get("angka"),
+                "text": display_text,
+                "text_markdown": display_text,
+                "text_geometry": None,
+                "citation": {
+                    "document": manifest["title"],
+                    "page": node.get("page_start"),
+                    "pasal": legal_path.get("pasal"),
+                    "ayat": legal_path.get("ayat"),
+                    "huruf": legal_path.get("huruf"),
+                    "angka": legal_path.get("angka"),
+                },
+                "confidence": {
+                    "page": "high" if node.get("page_start") is not None else "missing",
+                    "pasal": "high" if legal_path.get("pasal") else "missing",
+                    "ayat": "high" if legal_path.get("ayat") else "missing",
+                    "huruf": "high" if legal_path.get("huruf") else "missing",
+                    "angka": "high" if legal_path.get("angka") else "missing",
+                },
+            }
+        )
     return blocks

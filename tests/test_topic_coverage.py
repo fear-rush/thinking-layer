@@ -26,6 +26,14 @@ class TopicCoverageTests(unittest.TestCase):
                     "file_role": "primary_regulation",
                     "citations": [
                         {
+                            "chunk_schema_version": 2,
+                            "file_id": "bi-pjp",
+                            "block_id": "bi-pjp-1",
+                            "source_block_ids": ["bi-pjp-1"],
+                            "unit_path": ["Pasal 1"],
+                            "legal_path": {"pasal": "Pasal 1"},
+                            "anchors": [],
+                            "source_spans": [],
                             "support_score": 30.0,
                             "score": 30.0,
                             "citation_quality": "document_page_pasal",
@@ -47,6 +55,14 @@ class TopicCoverageTests(unittest.TestCase):
                     "file_role": "primary_regulation",
                     "citations": [
                         {
+                            "chunk_schema_version": 2,
+                            "file_id": "ojk-akd-85-1",
+                            "block_id": "ojk-akd-85-1",
+                            "source_block_ids": ["ojk-akd-85-1"],
+                            "unit_path": ["Pasal 85", "(1)"],
+                            "legal_path": {"pasal": "Pasal 85", "ayat": "(1)"},
+                            "anchors": [],
+                            "source_spans": [],
                             "support_score": 25.0,
                             "score": 25.0,
                             "citation_quality": "document_page_pasal_ayat",

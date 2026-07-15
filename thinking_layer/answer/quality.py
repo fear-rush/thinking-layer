@@ -1,16 +1,10 @@
 from __future__ import annotations
 
-import argparse
-import json
 import re
-from collections import Counter
-from pathlib import Path
 from typing import Any
 
 from ..config.heuristics import heuristic_section
-from ..config.paths import ANSWER_QUALITY_QUESTIONS_PATH, REPORTS_DIR, ROOT
-from .composer import build_answer
-from ..evaluation.evidence import load_gold_questions
+from .composer import claim_is_complete
 
 def contains_all_terms(text: str, terms: list[str]) -> list[str]:
     lower = text.lower()
@@ -18,6 +12,58 @@ def contains_all_terms(text: str, terms: list[str]) -> list[str]:
 
 def source_lines_from_answer(answer_text: str) -> list[str]:
     return [line for line in answer_text.splitlines() if re.match(r"^\[\d+\]\s+", line.strip())]
+
+
+def _source_block_ids(citation: dict[str, Any]) -> list[str]:
+    source_block_ids = citation["source_block_ids"]
+    return [str(block_id) for block_id in source_block_ids if block_id]
+
+
+def _page_number(value: Any) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
+
+
+def _structured_contract_checks(
+    findings: list[dict[str, Any]], citations: list[dict[str, Any]], status: str | None
+) -> dict[str, bool]:
+    """Validate claim-to-citation provenance without requiring an LLM judge."""
+
+    citation_ids = [str(citation.get("id") or "") for citation in citations]
+    known_citation_ids = set(citation_ids) - {""}
+    referenced_citation_ids = {
+        str(citation_id)
+        for finding in findings
+        for citation_id in (finding.get("citation_ids") or [])
+        if citation_id
+    }
+    valid_targets = all(
+        bool(citation.get("file_id"))
+        and bool(_source_block_ids(citation))
+        and _page_number(citation.get("page_start") or citation.get("page")) > 0
+        and _page_number(citation.get("page_end") or citation.get("page_start") or citation.get("page"))
+        >= _page_number(citation.get("page_start") or citation.get("page"))
+        for citation in citations
+    )
+    valid_finding_content = all(
+        bool(str(finding.get("text") or "").strip())
+        and claim_is_complete(str(finding.get("text") or ""))
+        and finding.get("status") == "supported"
+        and bool(finding.get("citation_ids"))
+        and {str(value) for value in finding.get("citation_ids") or []}.issubset(known_citation_ids)
+        for finding in findings
+    )
+    valid_findings = valid_finding_content and (bool(findings) if status != "not_found" else not findings)
+    return {
+        "finding_limit_respected": len(findings) <= 3,
+        "findings_are_complete_and_supported": valid_findings,
+        "citation_ids_are_unique": len(citation_ids) == len(set(citation_ids)) and all(citation_ids),
+        "citation_targets_are_valid": valid_targets,
+        "no_orphan_citations": set(citation_ids) == referenced_citation_ids,
+        "not_found_has_no_findings": status != "not_found" or not findings,
+    }
 
 def evaluate_answer_quality(spec: dict[str, Any], answer: dict[str, Any]) -> dict[str, Any]:
     config = heuristic_section("evaluation_rubrics", "answer_quality")
@@ -27,6 +73,9 @@ def evaluate_answer_quality(spec: dict[str, Any], answer: dict[str, Any]) -> dic
     confidence = answer.get("confidence") or {}
     citation_count = int(answer.get("citation_count") or 0)
     documents_used = answer.get("documents_used") or []
+    findings = list(answer.get("findings") or [])
+    citations = list(answer.get("citations") or [])
+    structured = "findings" in answer or any(citation.get("id") for citation in citations)
     source_lines = source_lines_from_answer(answer_text)
 
     required_terms = spec.get("required_terms") or []
@@ -41,18 +90,41 @@ def evaluate_answer_quality(spec: dict[str, Any], answer: dict[str, Any]) -> dic
     )
     max_answer_chars = int(spec.get("max_answer_chars", int(config.get("default_max_answer_chars", 5000))))
 
-    term_hits = contains_all_terms(answer_text, required_terms)
+    display_text = "\n".join(
+        [answer_text, str(answer.get("summary") or "")]
+        + [str(finding.get("text") or "") for finding in findings]
+    )
+    citation_display_text = "\n".join(
+        list(source_lines)
+        + [str(citation.get("text") or "") for citation in citations]
+    )
+    term_hits = contains_all_terms(display_text, required_terms)
     uncertainty_hits = contains_all_terms(answer_text, required_uncertainty_terms)
-    citation_term_hits = contains_all_terms("\n".join(source_lines), required_citation_terms)
-    issuer_hits = sorted({doc.get("issuer") for doc in documents_used if doc.get("issuer") in required_issuers})
+    citation_term_hits = contains_all_terms(citation_display_text, required_citation_terms)
+    issuer_hits = sorted(
+        {
+            value
+            for value in [
+                *(doc.get("issuer") for doc in documents_used),
+                *(citation.get("issuer") for citation in citations),
+            ]
+            if value in required_issuers
+        }
+    )
     noisy_hits = [pattern for pattern in config.get("noisy_answer_patterns", []) if re.search(pattern, answer_text, flags=re.IGNORECASE)]
     truncated_bullets = [
         line.strip()
         for line in answer_text.splitlines()
         if line.strip().startswith("- ") and re.match(r"^-\s+[a-z]", line.strip())
     ]
-    source_line_count = len(source_lines)
-    primary_source_count = sum(1 for line in source_lines if "; primary;" in line)
+    source_line_count = len(citations) if structured else len(source_lines)
+    primary_source_count = sum(
+        1
+        for document in documents_used
+        if document.get("source_priority") == "primary" or document.get("file_role") == "primary_regulation"
+    )
+    if not primary_source_count and not structured:
+        primary_source_count = sum(1 for line in source_lines if "; primary;" in line)
     primary_rate = primary_source_count / max(1, source_line_count)
 
     checks: dict[str, bool] = {}
@@ -71,6 +143,20 @@ def evaluate_answer_quality(spec: dict[str, Any], answer: dict[str, Any]) -> dic
     checks["no_noisy_fragments"] = not noisy_hits
     checks["no_truncated_bullets"] = not truncated_bullets
     checks["partial_has_uncertainty"] = expected_behavior != "partial" or "parsial" in answer_text.lower()
+    if structured:
+        checks.update(_structured_contract_checks(findings, citations, status))
+    else:
+        # Reports created before the structured response contract remain valid.
+        checks.update(
+            {
+                "finding_limit_respected": True,
+                "findings_are_complete_and_supported": True,
+                "citation_ids_are_unique": True,
+                "citation_targets_are_valid": True,
+                "no_orphan_citations": True,
+                "not_found_has_no_findings": True,
+            }
+        )
 
     weights = config.get("weights") or {}
     score = min(1.0, sum(weight for key, weight in weights.items() if checks[key]))
@@ -88,6 +174,8 @@ def evaluate_answer_quality(spec: dict[str, Any], answer: dict[str, Any]) -> dic
         "status": status,
         "confidence": confidence,
         "citation_count": citation_count,
+        "finding_count": len(findings),
+        "structured": structured,
         "source_line_count": source_line_count,
         "answer_chars": len(answer_text),
         "required_terms": required_terms,
@@ -105,96 +193,3 @@ def evaluate_answer_quality(spec: dict[str, Any], answer: dict[str, Any]) -> dic
         "failure_reasons": failure_reasons,
         "warnings": warnings,
     }
-
-def write_answer_quality_report(rows: list[dict[str, Any]], path: Path) -> None:
-    accepted = sum(1 for row in rows if row["evaluation"]["accepted"])
-    avg = sum(row["evaluation"]["score"] for row in rows) / max(1, len(rows))
-    by_behavior = Counter(row["evaluation"]["expected_behavior"] for row in rows)
-    lines = [
-        "# Answer Quality Evaluation",
-        "",
-        f"- Questions: {len(rows)}",
-        f"- Accepted: {accepted}/{len(rows)}",
-        f"- Average score: {avg:.3f}",
-        f"- By behavior: `{dict(sorted(by_behavior.items()))}`",
-        "",
-        "## Failures",
-        "",
-    ]
-    failures = [row for row in rows if not row["evaluation"]["accepted"]]
-    if not failures:
-        lines.append("No failures.")
-    for row in failures:
-        ev = row["evaluation"]
-        lines.extend(
-            [
-                f"### {ev['id']}",
-                "",
-                f"- Query: `{ev['query']}`",
-                f"- Expected: `{ev['expected_behavior']}`",
-                f"- Score: `{ev['score']}`",
-                f"- Status: `{ev['status']}`",
-                f"- Confidence: `{ev['confidence'].get('label')}`",
-                f"- Failure reasons: `{ev['failure_reasons']}`",
-                f"- Warnings: `{ev['warnings']}`",
-                f"- Term hits: `{ev['term_hits']}`",
-                f"- Citation term hits: `{ev['citation_term_hits']}`",
-                f"- Issuer hits: `{ev['issuer_hits']}`",
-                f"- Citation count: `{ev['citation_count']}`",
-                f"- Answer chars: `{ev['answer_chars']}`",
-                "",
-            ]
-        )
-
-    lines.extend(["", "## All Questions", ""])
-    for row in rows:
-        ev = row["evaluation"]
-        lines.extend(
-            [
-                f"### {ev['id']}",
-                "",
-                f"- Accepted: `{ev['accepted']}`",
-                f"- Score: `{ev['score']}`",
-                f"- Status: `{ev['status']}`",
-                f"- Citation count: `{ev['citation_count']}`",
-                f"- Failure reasons: `{ev['failure_reasons']}`",
-                f"- Warnings: `{ev['warnings']}`",
-                "",
-            ]
-        )
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-def cmd_eval_answer_quality(args: argparse.Namespace) -> None:
-    quality_path = Path(args.quality_file) if args.quality_file else ANSWER_QUALITY_QUESTIONS_PATH
-    specs = load_gold_questions(quality_path)
-    if args.limit:
-        specs = specs[: args.limit]
-    rows = []
-    for index, spec in enumerate(specs, start=1):
-        if args.progress:
-            print(f"Evaluating answer quality {index}/{len(specs)}: {spec.get('id')}", flush=True)
-        answer = build_answer(
-            spec["query"],
-            max_searches=args.max_searches,
-            limit=args.result_limit,
-            per_document_limit=args.per_document_limit,
-            max_documents=args.max_documents,
-            max_citations_per_document=args.max_citations_per_document,
-        )
-        evaluation = evaluate_answer_quality(spec, answer)
-        row = {"spec": spec, "evaluation": evaluation}
-        if args.include_answers:
-            row["answer"] = answer
-        rows.append(row)
-
-    REPORTS_DIR.mkdir(exist_ok=True)
-    prefix = args.report_prefix or "answer_quality_eval"
-    md_path = REPORTS_DIR / f"{prefix}.md"
-    json_path = REPORTS_DIR / f"{prefix}.json"
-    write_answer_quality_report(rows, md_path)
-    json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    accepted = sum(1 for row in rows if row["evaluation"]["accepted"])
-    avg = sum(row["evaluation"]["score"] for row in rows) / max(1, len(rows))
-    print(f"Wrote {md_path.relative_to(ROOT)}")
-    print(f"Wrote {json_path.relative_to(ROOT)}")
-    print(f"Accepted {accepted}/{len(rows)}; average score {avg:.3f}")

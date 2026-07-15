@@ -54,5 +54,6 @@ def cmd_merge_lexicon(args: argparse.Namespace) -> None:
     reviewed = read_json(REVIEWED_LEXICON_PATH)
     merged = merge_generated_lexicon(base, reviewed)
     output_path = Path(args.output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {output_path.relative_to(ROOT) if output_path.is_relative_to(ROOT) else output_path}")

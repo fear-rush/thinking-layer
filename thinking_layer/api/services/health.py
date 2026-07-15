@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from ...config.paths import SOURCE_CORPUS_PATH
-from ...indexing.lexical import persisted_index_exists
 from ...indexing.sqlite import sqlite_doc_count, sqlite_index_is_current
 from ..schemas.health import HealthResponse
 from .documents import DocumentService
@@ -21,9 +20,7 @@ class HealthService:
                 sqlite_current = False
         source_corpus_present = SOURCE_CORPUS_PATH.exists()
         document_lookup_ready = self.document_service.lookup_ready()
-        if not document_lookup_ready:
-            document_lookup_ready = self.document_service.catalog_ready()
-        lexical_index_ready = sqlite_current or persisted_index_exists()
+        lexical_index_ready = sqlite_current
         ready = source_corpus_present and lexical_index_ready and document_lookup_ready
         return HealthResponse(
             status="ok" if ready else "degraded",

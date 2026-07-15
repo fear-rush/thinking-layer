@@ -10,12 +10,35 @@ from .lexical import SearchIndex, relevant_exact_phrases
 
 TITLE_SEARCH_MIN_SCORE = float(heuristic_section("retrieval_ranking", "title_search").get("min_score", 65.0))
 
-def document_representative_rank(block: dict[str, Any]) -> tuple[int, int, int, int]:
+
+def longest_shared_token_run(left: list[str], right: list[str]) -> int:
+    """Return the longest contiguous token phrase shared by two sequences."""
+
+    if not left or not right:
+        return 0
+    previous = [0] * (len(right) + 1)
+    longest = 0
+    for left_token in left:
+        current = [0] * (len(right) + 1)
+        for index, right_token in enumerate(right, start=1):
+            if left_token == right_token:
+                current[index] = previous[index - 1] + 1
+                longest = max(longest, current[index])
+        previous = current
+    return longest
+
+def document_representative_rank(block: dict[str, Any]) -> tuple[int, int, int, int, int]:
     citation_quality_rank = {
-        "document_page_pasal_ayat": 0,
-        "document_page_pasal": 1,
-        "document_page": 2,
-        "document_only": 3,
+        # For normal entries, keep the most precise legal anchor available.
+        # Bounded enumeration aggregates are ranked ahead separately below:
+        # they are the only parent-level units admitted by v2 and preserve a
+        # governing lead-in plus its immediate list items as one readable
+        # answer claim.
+        "document_page_pasal_ayat_huruf": 0,
+        "document_page_pasal_ayat": 1,
+        "document_page_pasal": 2,
+        "document_page": 3,
+        "document_only": 4,
     }
     block_type_rank = {
         "article": 0,
@@ -28,6 +51,7 @@ def document_representative_rank(block: dict[str, Any]) -> tuple[int, int, int, 
     page = int(block.get("page_start") or block.get("page") or 999999)
     text_len = len(block.get("text") or "")
     return (
+        0 if block.get("citation_admission") == "enumeration_aggregate" else 1,
         citation_quality_rank.get(block.get("citation_quality") or citation_quality_for_block(block), 9),
         page,
         block_type_rank.get(block.get("block_type"), 9),
@@ -71,6 +95,17 @@ def title_match_score(query: str, title: str, stopwords: set[str]) -> float:
     ordered_title = " ".join(title_tokens)
     if ordered_query and ordered_query in ordered_title:
         score += float(config.get("ordered_query_bonus", 35.0))
+
+    # Natural questions contain verbs and answer-shape words that should not
+    # erase a precise document noun phrase.  A contiguous shared phrase such
+    # as "pembawaan uang kertas asing" is stronger title evidence than the
+    # same tokens scattered across a long title.
+    shared_run = longest_shared_token_run(query_tokens, title_tokens)
+    if shared_run >= int(config.get("shared_phrase_min_tokens", 3)):
+        score += min(
+            float(config.get("shared_phrase_max_bonus", 48.0)),
+            shared_run * float(config.get("shared_phrase_bonus_per_token", 12.0)),
+        )
 
     if (
         len(title_set) <= int(config.get("short_title_max_tokens", 2))

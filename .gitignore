@@ -18,6 +18,7 @@ wheels/
 
 # Local OS/editor files
 .DS_Store
+Thumbs.db
 *.swp
 *.swo
 .idea/
@@ -36,27 +37,47 @@ wheels/
 .ruff_cache/
 .mypy_cache/
 .coverage
+.coverage.*
 coverage.xml
 htmlcov/
 *.log
 *-debug.log*
 *.tmp
+*.bak
 tmp/
 temp/
 
 # JavaScript/TypeScript dependencies, build output, and tool caches
 node_modules/
+.bun/
 .vite/
 .tanstack/
 .turbo/
 .oxlintcache
 *.tsbuildinfo
 coverage/
+/.playwright-cli/
+/frontend/.playwright-cli/
+/frontend/playwright-report/
+/frontend/blob-report/
+/frontend/test-results/
 
 # Large local corpus inputs and generated artifacts
 data/
 downloads/
 processed/
+backups/
+
+# Disposable evaluation runs; retained terminal reports remain trackable
+reports/*_current.json
+reports/*_current.md
+reports/*_candidate.json
+reports/*_candidate.md
+
+# SQLite runtime sidecars and interrupted transactions
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
 
 # Vendored/local parser checkout
 liteparse/

@@ -324,15 +324,16 @@
     },
     {
       "name": "technology_risk",
-      "patterns": ["teknologi informasi", "ti", "it", "siber", "cyber", "digital", "layanan digital", "perbankan digital", "outsourcing ti"],
+      "patterns": ["teknologi informasi", "ti", "it", "siber", "cyber", "digital", "layanan digital", "perbankan digital", "outsourcing ti", "pusat data", "pusat pemulihan bencana", "insiden ti", "insiden teknologi informasi"],
       "expansions": [
-        "penerapan manajemen risiko penggunaan teknologi informasi bank umum",
+        "notifikasi awal laporan insiden teknologi informasi",
         "penyelenggaraan teknologi informasi oleh bank umum",
+        "penerapan manajemen risiko penggunaan teknologi informasi bank umum",
         "penyelenggaraan teknologi informasi oleh bank perekonomian rakyat bank perekonomian rakyat syariah",
         "layanan digital oleh bank umum",
         "penyelenggaraan layanan perbankan digital"
       ],
-      "exact_phrases": ["teknologi informasi", "keamanan siber", "siber", "layanan digital", "layanan perbankan digital"],
+      "exact_phrases": ["notifikasi awal laporan insiden teknologi informasi", "teknologi informasi", "keamanan siber", "siber", "layanan digital", "layanan perbankan digital"],
       "issuer": "OJK"
     },
     {

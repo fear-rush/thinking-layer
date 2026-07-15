@@ -5,11 +5,12 @@ import { Label } from "#/components/ui/label";
 import { Textarea } from "#/components/ui/textarea";
 
 interface QuestionFormProps {
+  isReady?: boolean;
   isSubmitting: boolean;
   onSubmit: (question: string) => Promise<void>;
 }
 
-export function QuestionForm({ isSubmitting, onSubmit }: QuestionFormProps) {
+export function QuestionForm({ isReady = true, isSubmitting, onSubmit }: QuestionFormProps) {
   const [question, setQuestion] = useState("");
   const [validationError, setValidationError] = useState<string | null>(null);
 
@@ -38,7 +39,7 @@ export function QuestionForm({ isSubmitting, onSubmit }: QuestionFormProps) {
           placeholder="Contoh: Apa ketentuan BI tentang penyedia jasa pembayaran?"
           aria-describedby={validationError ? "question-error" : undefined}
           aria-invalid={Boolean(validationError)}
-          disabled={isSubmitting}
+          disabled={!isReady || isSubmitting}
           rows={5}
         />
         {validationError ? (
@@ -47,7 +48,7 @@ export function QuestionForm({ isSubmitting, onSubmit }: QuestionFormProps) {
           </p>
         ) : null}
       </div>
-      <Button type="submit" disabled={isSubmitting}>
+      <Button type="submit" disabled={!isReady || isSubmitting}>
         {isSubmitting ? (
           <LoaderCircle className="animate-spin" aria-hidden="true" />
         ) : (

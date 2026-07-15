@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any, Literal
+
 from pydantic import BaseModel
 
 
@@ -31,4 +33,18 @@ class DocumentBlockResponse(BaseModel):
     section_type: str | None = None
     citation_quality: str | None = None
     citation_text: str | None = None
+    chunk_schema_version: Literal[2]
+    node_id: str
+    parent_id: str | None = None
+    previous_id: str | None = None
+    anchors: dict[str, Any] | list[dict[str, Any]]
+    source_spans: list[dict[str, Any]]
+    source_block_ids: list[str]
+    unit_path: list[str]
+    legal_unit: dict[str, Any]
+    legal_path: dict[str, Any]
+    continuation: dict[str, Any] | None = None
+    display_text: str
+    retrieval_text: str
+    assembled_text: str
     text: str

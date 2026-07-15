@@ -254,7 +254,7 @@ def write_parser_comparison_report(report: dict[str, Any], md_path: Path, json_p
     json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def cmd_parser_comparison(args: argparse.Namespace) -> None:
+def cmd_parser_comparison(_args: argparse.Namespace) -> None:
     REPORTS_DIR.mkdir(exist_ok=True)
     report = build_parser_comparison_report()
     md_path = REPORTS_DIR / "parser_comparison_sample.md"

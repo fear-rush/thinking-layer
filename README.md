@@ -1,206 +1,109 @@
 # thinking-layer
 
-Local-first baseline pipeline for answering Indonesian financial regulation questions with citation-aware retrieval.
+Local-first retrieval and citation pipeline for Indonesian financial regulations.
 
-This project is intentionally not LLM-first yet. The current baseline focuses on the hard production parts before answer generation: corpus audit, file manifest normalization, document extraction, citation-aware blocks, deterministic query planning, lexical retrieval, evidence packing, and deterministic answer composition.
+The system audits local BI and OJK sources, extracts citation-aware legal text, builds a BM25 index, retrieves evidence, and serves deterministic answers through a CLI, FastAPI service, and local web UI. It must refuse unsupported conclusions and must never invent a document, page, Pasal, Ayat, or Huruf.
 
-## What This Project Does
+## Current State
 
-The current baseline is designed for questions such as:
+The working baseline includes:
 
-- `apa saja peraturan periklanan yang harus dipatuhi oleh bank?`
-- `berikan aku aturan terkait penyedia jasa pembayaran dari BI dan OJK`
-- `komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran`
-- `sanksi apa kalau bank terlambat menyampaikan laporan ke OJK?`
+- canonical BI and OJK metadata;
+- v2-only hierarchical legal units with deterministic IDs, page spans, legal paths, retrieval text, and citation display text;
+- persisted lexical retrieval with a sole SQLite BM25 index;
+- query planning, evidence confidence, and citation-quality gates;
+- deterministic answer composition with `answerable`, `partial`, and `not_found` outcomes;
+- a local FastAPI service and browser UI;
+- unit, evaluation, and browser/API test suites.
 
-The system must cite best-effort `document`, `page`, `Pasal`, and `Ayat` when those fields are available. If evidence is weak or missing, the answer layer must say the information was not found instead of guessing.
+Canonical searchable regulations come from `data/peraturan-ojk` and `data/ease-bi`. `data/sikepo-ojk` is used for audit and enrichment research, but is not merged into the canonical searchable OJK documents.
 
-## Corpus Baseline
+## Pipeline
 
-Canonical searchable regulations currently come from:
+```text
+local BI/OJK files
+  -> raw page extraction
+  -> legal-unit blocks with provenance
+  -> citation-ready source corpus
+  -> BM25 retrieval and query planning
+  -> evidence selection and confidence gates
+  -> structured findings
+  -> CLI / FastAPI / web UI
+```
 
-- `data/peraturan-ojk`: primary OJK regulation metadata and files.
-- `data/ease-bi`: primary BI regulation metadata and files.
-- `data/sikepo-ojk`: loaded for audit, file manifest, duplicate analysis, and future enrichment, but not merged into canonical OJK search documents yet.
+SQLite is the sole persisted production BM25 index and exact citation lookup store. Search and cited-document routes remain degraded until that index is current.
 
-This is deliberate. `peraturan-ojk` has broader regulation coverage, while `sikepo-ojk` has richer metadata. The baseline keeps primary text coverage stable first, then measures where Sikepo metadata can enrich later.
+## Repository Layout
 
-OCR remains opt-in per file rather than enabled for the normal full-corpus pass. Scanned or text-poor PDFs are listed in `reports/ocr_needed.*` and should be re-extracted with `--replace-existing --enable-ocr` after a one-page quality check. Office documents require LibreOffice; otherwise they are reported as `libreoffice_not_found`.
+- `thinking_layer/corpus/`: metadata, extraction, legal blocks, citations, and source-corpus construction.
+- `thinking_layer/indexing/`: lexical, SQLite, title, and isolated semantic indexes.
+- `thinking_layer/retrieval/`: query planning, search, evidence packing, and topic coverage.
+- `thinking_layer/answer/`: deterministic answer selection, composition, and quality checks.
+- `thinking_layer/api/`: FastAPI schemas, routes, services, and local feedback storage.
+- `thinking_layer/evaluation/`: the v2 exact-target golden evaluation runner and workflow.
+- `frontend/`: Bun, Vite, React, TanStack Router/Query, shadcn/ui, Vitest, and Playwright.
+- `resources/config/`: explicit extraction, ranking, confidence, and answer heuristics.
+- `resources/`: the active query lexicon, reviewed lexicon provenance, stopwords, configuration, and the v2 golden suite.
+- `reports/`: current corpus reports and retained terminal v2 evaluation evidence.
+- `processed/`: expensive generated corpus and indexes; intentionally ignored by Git.
 
-Current local extraction status after selective OCR and Office replacement:
-
-- Extracted rows: `2,475`
-- Extracted blocks: `537,355`
-- Remaining skipped / OCR-needed / failed rows: `0`
-
-The BI Office operational documents, including QRIS/SNAP matrices, are now extracted and included in the source corpus and search index.
-
-## Project Structure
-
-Pipeline code lives under `thinking_layer/`:
-
-- `config/paths.py`: repository paths and shared file constants.
-- `common/io.py`: JSON and NDJSON helpers.
-- `common/text.py`: text normalization and slug helpers.
-- `corpus/metadata.py`: source records, canonical IDs, file manifest helpers, and file-role classification.
-- `corpus/audit.py`: corpus audit checks and audit report rendering.
-- `corpus/extraction.py`: LiteParse page normalization, OCR-status classification, and page-aware block extraction helpers.
-- `corpus/extraction_pipeline.py`: extraction CLI orchestration and extraction/OCR reports.
-- `corpus/citations.py`: citation quality, section typing, source priority, and source-corpus block normalization.
-- `corpus/build.py`: canonical metadata/file-manifest build and audit CLI commands.
-- `corpus/source_corpus.py`: citation-ready source corpus build and Sikepo metadata coverage report.
-- Regulation records carry stable version/series keys and lifecycle metadata (`issued_date`, `effective_date`, `repeal_date`, `lifecycle_status`, `supersedes`, and `amends`). Explicitly superseded or repealed records are down-ranked; historical records remain available for time-specific work.
-- `indexing/lexical.py`: stopwords, tokenization, in-memory BM25 index, lexical scoring, result formatting.
-- `indexing/semantic.py`: isolated SentenceTransformers-compatible dense index and search path.
-- `indexing/sqlite.py`: persisted SQLite index build/read/search.
-- `indexing/title.py`: document-title representatives and title retrieval.
-- `retrieval/query_tools.py`: query lexicon loading, pattern matching, and query overlap helpers.
-- `retrieval/planning.py`: natural-language query planning.
-- `retrieval/search.py`: planned search orchestration, result scoring, deduplication, and search CLI commands.
-- `retrieval/__init__.py`: package marker for retrieval modules.
-- `evaluation/retrieval.py`: retrieval smoke and natural-language evaluation.
-- `retrieval/evidence.py`: citation-first evidence packs and evidence CLI command.
-- `answer/composer.py`: deterministic answer composer and answer CLI command.
-- `answer/quality.py`: deterministic answer-quality checks.
-- `evaluation/evidence.py`: evidence evaluation.
-- `evaluation/answer.py`: answer evaluation.
-- `evaluation/holdout.py`: external holdout workflow.
-- `evaluation/natural.py`: broad natural-language retrieval evaluation.
-- `evaluation/semantic.py`: bounded BM25, dense-model, and RRF retrieval benchmark.
-- `lexicon/candidates.py`: deterministic lexicon candidate extraction and generated draft lexicon.
-- `lexicon/merge.py`: reviewed/generated lexicon merge.
-- `cli.py`: command-line parser only.
-- `api/`: thin FastAPI boundary: typed HTTP contracts, route adapters, local feedback storage, and indexed citation lookups. It calls the existing deterministic answer/retrieval modules; it does not introduce a second ranking path or enable semantic retrieval.
-
-The old `scripts/regulatory_pipeline.py` entrypoint has been removed. Use:
+Use the current CLI as the command reference:
 
 ```bash
 uv run python -m thinking_layer.cli --help
+uv run python -m thinking_layer.cli COMMAND --help
 ```
 
-## Quick Start
+## Run Locally
 
-Run the full local baseline in this order:
+The ordinary local workflow does not require extraction or an index rebuild.
 
-```bash
-uv run python -m thinking_layer.cli all
-uv run python -m thinking_layer.cli extract --progress-every 25 --verbose
-uv run python -m thinking_layer.cli report
-uv run python -m thinking_layer.cli build-source-corpus --include-secondary
-uv run python -m thinking_layer.cli build-index
-# After the first indexed corpus, use append-only detection for new source rows.
-uv run python -m thinking_layer.cli build-index --incremental
-
-# Optional semantic-retrieval spike; this is separate from the BM25 baseline.
-uv run python -m thinking_layer.cli build-semantic-index --model intfloat/multilingual-e5-small --batch-size 32
-```
-
-Use `--resume` only when continuing an interrupted full extraction run. For targeted OCR or Office retries, use `--file-id ... --replace-existing` so the existing corpus rows are preserved.
-
-Then test retrieval and answers:
+Start the API from the repository root:
 
 ```bash
-uv run python -m thinking_layer.cli search "penyedia jasa pembayaran" --include-secondary --limit 10
-uv run python -m thinking_layer.cli semantic-search "peraturan BI tentang penyedia jasa pembayaran" --issuer BI --include-secondary --limit 10
-uv run python -m thinking_layer.cli evidence "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-uv run python -m thinking_layer.cli answer "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-uv run python -m thinking_layer.cli trace-query "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-## Try System Output
-
-Use these commands to inspect how the system plans, retrieves evidence, and composes answers.
-
-### 1. Inspect Query Planning
-
-```bash
-uv run python -m thinking_layer.cli plan-query "apa saja peraturan periklanan yang harus dipatuhi oleh bank?" --max-searches 6
-```
-
-```bash
-uv run python -m thinking_layer.cli plan-query "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran" --max-searches 8
-```
-
-### 2. Inspect Raw Retrieval Results
-
-```bash
-uv run python -m thinking_layer.cli search "penyedia jasa pembayaran" --include-secondary --limit 10
-```
-
-```bash
-uv run python -m thinking_layer.cli planned-search "apa kewajiban bank terkait pelaporan SLIK?" --max-searches 6 --limit 8
-```
-
-```bash
-uv run python -m thinking_layer.cli planned-search "aturan apa yang mengatur iklan produk bank dan promosi ke nasabah?" --max-searches 6 --limit 8
-```
-
-### 3. Inspect Citation Evidence Pack
-
-```bash
-uv run python -m thinking_layer.cli evidence "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-```bash
-uv run python -m thinking_layer.cli evidence "apa saja peraturan periklanan yang harus dipatuhi oleh bank?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-```bash
-uv run python -m thinking_layer.cli evidence "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran" --max-searches 8 --limit 10 --per-document-limit 2 --write-report
-```
-
-### 4. Inspect Final Deterministic Answer
-
-```bash
-uv run python -m thinking_layer.cli answer "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-```bash
-uv run python -m thinking_layer.cli answer "apa saja peraturan periklanan yang harus dipatuhi oleh bank?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-```bash
-uv run python -m thinking_layer.cli answer "komparasi peraturan OJK dan BI terkait penyedia jasa pembayaran" --max-searches 8 --limit 10 --per-document-limit 2 --write-report
-```
-
-### 5. Inspect Not-Found Behavior
-
-```bash
-uv run python -m thinking_layer.cli evidence "aturan yang mengatur planet mars untuk bank" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-```bash
-uv run python -m thinking_layer.cli answer "aturan yang mengatur planet mars untuk bank" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-Commands with `--write-report` write Markdown and JSON files under `reports/` using the query slug in the filename.
-
-`trace-query` writes a compact JSON observability record containing the query plan, retrieval counts and top evidence metadata, citation quality, extraction flags, confidence/refusal decision, and answer summary. It does not enable semantic retrieval or change ranking behavior.
-
-## Local Web API
-
-The API exposes the stable citation-first answer path for a local web client. It is deliberately read-only for corpus and index data: indexing, extraction, evaluation, semantic experiments, and trace inspection remain development CLI operations.
-
-After building the source corpus/index, create the compact citation catalog used by document and block URLs:
-
-```bash
-uv run python -m thinking_layer.cli build-document-catalog
 uv run python -m thinking_layer.api
 ```
 
-The API uses the current SQLite BM25 index when available and otherwise safely falls back to the persisted lexical index. `GET /healthz` identifies the active readiness state. Run the full `build-index` command when you want to rebuild or restore the SQLite acceleration index; citation URLs do not depend on that large index.
+Confirm the active source-corpus, index, and citation-lookup state:
 
-The server listens only on `127.0.0.1:8000`. Interactive OpenAPI documentation is available at `http://127.0.0.1:8000/docs`.
+```bash
+curl http://127.0.0.1:8000/healthz
+```
+
+Start the frontend in another terminal:
+
+```bash
+cd frontend
+bun install
+bun run dev
+```
+
+Open `http://localhost:3000`. Vite proxies `/v1/*` and `/healthz` to the API at `http://127.0.0.1:8000`.
+
+Inspect the same answer path from the CLI:
+
+```bash
+uv run python -m thinking_layer.cli plan-query "Apa ketentuan BI tentang penyedia jasa pembayaran?"
+uv run python -m thinking_layer.cli evidence "Apa ketentuan BI tentang penyedia jasa pembayaran?" --write-report
+uv run python -m thinking_layer.cli answer "Apa ketentuan BI tentang penyedia jasa pembayaran?" --write-report
+uv run python -m thinking_layer.cli trace-query "Apa ketentuan BI tentang penyedia jasa pembayaran?" --write-report
+```
+
+Reports requested with `--write-report` are written under `reports/`.
+
+## Local API
+
+The API listens on `127.0.0.1:8000`. Interactive OpenAPI documentation is available at `http://127.0.0.1:8000/docs`.
 
 | Endpoint | Purpose |
 | --- | --- |
-| `GET /healthz` | Report source-corpus and BM25-index readiness. |
-| `POST /v1/queries` | Return deterministic answer status, answer text, confidence, and cited source-block IDs. |
-| `GET /v1/documents/{file_id}` | Return public metadata for a cited source document. |
-| `GET /v1/documents/{file_id}/blocks/{block_id}` | Return the exact cited source block and citation metadata. |
-| `POST /v1/feedback` | Store helpful/not-helpful feedback locally in `processed/api/feedback.sqlite`. |
+| `GET /healthz` | Report source-corpus, SQLite, lexical-index, and citation-lookup readiness. |
+| `POST /v1/queries` | Run the deterministic query, evidence, and answer path. |
+| `GET /v1/documents/{file_id}` | Return metadata for a cited document. |
+| `GET /v1/documents/{file_id}/blocks/{block_id}` | Return an exact cited block and its legal metadata. |
+| `POST /v1/feedback` | Store local helpful/not-helpful feedback. |
 
-Example query:
+Example:
 
 ```bash
 curl -X POST http://127.0.0.1:8000/v1/queries \
@@ -208,675 +111,134 @@ curl -X POST http://127.0.0.1:8000/v1/queries \
   -d '{"question":"Apa ketentuan BI tentang penyedia jasa pembayaran?"}'
 ```
 
-The domain trace is created internally for every query, but is not a public endpoint. Only redacted request ID, status, evidence count, and duration are logged. Do not expose raw questions or evidence snippets to hosted observability services without an explicit privacy policy, redaction, or self-hosting decision.
+The API is read-only for corpus and index data. Query traces remain internal, and raw questions or evidence snippets must not be sent to hosted observability services without an explicit privacy and redaction decision.
 
-## CLI Commands
+## Generated Corpus Safety
 
-### Audit And Build Metadata
+Files under `processed/` are expensive local artifacts. The searchable corpus is v2-only: each row carries an explicit legal-unit path, deterministic node provenance, page anchors, source spans, retrieval text, and display text. Atomic legal leaves are indexed alongside bounded enumeration aggregates that keep a governing list readable.
 
-```bash
-uv run python -m thinking_layer.cli audit
-uv run python -m thinking_layer.cli build
-uv run python -m thinking_layer.cli all
-```
+Do not run `extract`, `all`, `build`, or `rebuild-blocks` as routine troubleshooting, for frontend/API work, or because an index appears stale. Check `GET /healthz`, identify the changed input, and use the narrowest operation.
 
-Use `--hash` when you want SHA-256 hashes in the file manifest:
+| Change | Safe action |
+| --- | --- |
+| API, frontend, query planning, ranking, or answer presentation | Restart the API and run focused tests. Do not rebuild corpus artifacts. |
+| Legal-unit parser or citation-contract change | Use unit fixtures and saved raw-page samples first. Do not rewrite `processed/blocks.ndjson` until the new boundaries are accepted. |
+| One incorrect document | Test one page, then use `extract --file-id ... --replace-existing`. |
+| Accepted extraction replacement | Refresh the report and source corpus, then rebuild the SQLite index. |
+| Accepted corpus-wide chunking change | Back up `processed/`, rebuild blocks from saved raw extraction, inspect the diff/report, then rebuild downstream artifacts. |
+| Append-only source-corpus update | Use `build-index --incremental` only when the existing index is compatible. |
 
-```bash
-uv run python -m thinking_layer.cli all --hash
-```
+### Targeted Document Repair
 
-Outputs:
-
-- `reports/corpus_audit.json`
-- `reports/corpus_audit.md`
-- `processed/canonical_regulations.ndjson`
-- `processed/file_manifest.ndjson`
-
-### Extract Documents
-
-#### Preserve Existing Generated Corpus
-
-The files under `processed/` are expensive, generated local artifacts and are intentionally ignored by Git. Do not run a plain `extract`, `all`, or `build` as routine troubleshooting, when working on the local API/web UI, or merely because an index is stale. A plain `extract` rewrites the extraction outputs and can replace prior targeted OCR results with non-OCR output.
-
-For an already-built corpus, use the narrowest action that matches the change:
-
-| Situation | Required command(s) | Do **not** run |
-| --- | --- | --- |
-| Start the local API or work on the frontend | `uv run python -m thinking_layer.api` | Extraction, corpus, index, or catalog rebuilds |
-| Change API response presentation, UI, query planning, ranking, or answer composition | Restart the API and run relevant tests | Extraction or index rebuilds |
-| Correct one document or add OCR to an existing document | `extract --file-id ... --replace-existing` after a one-page check | Plain full-corpus `extract` |
-| Add or alter corpus files/metadata | Process only the affected files where possible, then refresh downstream artifacts | Unrelated OCR or full extraction |
-| Change accepted extraction/parser behavior across the corpus | Back up generated artifacts, then explicitly run a full re-extraction | An unplanned overwrite of `processed/` |
-
-After an accepted extraction replacement, refresh only the dependent artifacts:
-
-```bash
-uv run python -m thinking_layer.cli report
-uv run python -m thinking_layer.cli build-source-corpus --include-secondary
-uv run python -m thinking_layer.cli build-index
-uv run python -m thinking_layer.cli build-document-catalog
-```
-
-Use `build-index --incremental` only for a compatible append-only source-corpus update. Check `GET /healthz` before rebuilding and rebuild only the component that is stale. Before an explicitly requested full re-extraction, make or verify a backup of the current `processed/` artifacts.
-
-```bash
-uv run python -m thinking_layer.cli extract --progress-every 25 --verbose
-```
-
-Useful development run:
-
-```bash
-uv run python -m thinking_layer.cli extract --limit 10 --progress-every 5 --verbose
-```
-
-Options:
-
-- `--resume`: append outputs and skip file IDs already present in `processed/extracted_documents.ndjson`.
-- `--limit N`: extract only first `N` manifest rows.
-- `--max-pages N`: cap pages per file.
-- `--target-pages RANGE`: pass a LiteParse page range such as `1-5,10` for focused extraction checks.
-- `--enable-ocr`: enable LiteParse OCR for this run.
-- `--ocr-server-url URL`: OCR HTTP endpoint, for example PaddleOCR at `http://localhost:8829/ocr`.
-- `--ocr-language LANG`: OCR language code. Use `en` for the current Indonesian regulation corpus because the documents use Latin script and this avoids PaddleOCR model reloads.
-- `--ocr-dpi N`: OCR DPI. Start with `150`; lower to `100` for very slow scans, and raise only after a one-page quality check.
-- `--ocr-num-workers N`: OCR worker count. Start with `1` on a 16GB Mac.
-- `--replace-existing`: for explicit `--file-id` runs, replace existing extracted rows and blocks for those file IDs instead of rewriting the full output files. Failed replacements preserve existing extracted rows and blocks.
-- `--verbose`: print LiteParse timing logs, selected options, per-document status, and output counts.
-- `--include-sikepo`: also extract Sikepo files. Off by default to avoid duplicate searchable documents.
-
-LiteParse parser behavior is configured in `resources/config/extraction_heuristics.json`. OCR remains disabled by default for the normal corpus pass. The current baseline profile uses Markdown output, image mode `off`, link extraction, word-box emission, geometry-backed table/list reconstruction, and a table/list-aware block splitter. Files with little or no extractable text, parse failures, and Office files skipped because LibreOffice is missing are reported in `reports/ocr_needed.*`.
-
-Selective OCR replacement flow:
-
-1. Run or restore the normal no-OCR extraction first:
-
-```bash
-uv run python -m thinking_layer.cli extract --progress-every 25 --verbose
-```
-
-2. Start the optimized PaddleOCR service in another terminal:
-
-The LiteParse PaddleOCR service is vendored under `./liteparse/ocr/paddleocr`. On Apple Silicon, prefer the local `uv` service first. The Docker path can start correctly but still crash inside PaddlePaddle native runtime with a segmentation fault after image decode/model initialization.
-
-```bash
-cd ./liteparse/ocr/paddleocr
-uv python install 3.12
-uv python pin 3.12
-uv sync
-
-PADDLE_PDX_DISABLE_MODEL_SOURCE_CHECK=True \
-PADDLEOCR_TEXT_DETECTION_MODEL=PP-OCRv5_mobile_det \
-PADDLEOCR_TEXT_DET_LIMIT_SIDE_LEN=960 \
-PADDLEOCR_CPU_THREADS=4 \
-PADDLEOCR_TEXT_RECOGNITION_BATCH_SIZE=8 \
-uv run python server.py
-```
-
-This folder is already a uv project because LiteParse ships a `pyproject.toml` there. Use `uv python pin 3.12` to select Python `3.12` for the existing project. Do not run `uv init` inside this folder unless the `pyproject.toml` is missing.
-
-After `uv python install 3.12`, `which python` may still return `python not found`. That is acceptable. uv installs a versioned executable such as `python3.12` and uses it through `uv run`. Verify with:
-
-```bash
-uv python find 3.12
-uv run python --version
-```
-
-Only add uv's executable directory to your shell path if you want to call `python3.12` directly:
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-which python3.12
-```
-
-If `uv sync` fails with `Python downloads are set to 'never'` or `Python preference is set to 'only system'`, your uv config still disallows managed Python. Change uv back to managed Python or install Python `3.12` with your system package manager first, then rerun `uv sync`.
-
-3. Benchmark one page before replacing a whole file:
+Test one page before replacing a complete file:
 
 ```bash
 uv run python -m thinking_layer.cli extract \
-  --file-id FILE_ID_FROM_REPORTS_OCR_NEEDED_JSON \
+  --file-id FILE_ID \
   --target-pages 1 \
   --max-pages 1 \
   --replace-existing \
-  --enable-ocr \
-  --ocr-server-url http://localhost:8829/ocr \
-  --ocr-language en \
-  --ocr-dpi 150 \
-  --ocr-num-workers 1 \
   --progress-every 1 \
   --verbose
 ```
 
-4. Replace the full file only after the one-page run is stable:
+For an OCR-needed file, add `--enable-ocr` and the configured OCR server options only after the one-page output has been reviewed. OCR remains off for normal extraction.
 
-```bash
-uv run python -m thinking_layer.cli extract \
-  --file-id FILE_ID_FROM_REPORTS_OCR_NEEDED_JSON \
-  --replace-existing \
-  --enable-ocr \
-  --ocr-server-url http://localhost:8829/ocr \
-  --ocr-language en \
-  --ocr-dpi 150 \
-  --ocr-num-workers 1 \
-  --progress-every 1 \
-  --verbose
-```
-
-Use `reports/ocr_needed.json` to choose `FILE_ID_FROM_REPORTS_OCR_NEEDED_JSON`. Do not run full-corpus OCR first. On an M1 Pro 16GB Mac, the validated profile was roughly 7-9 seconds per scanned page at `150 DPI` with `--ocr-num-workers 1`. `--ocr-num-workers 2` did not improve throughput in local tests because the single PaddleOCR server instance contends inside Paddle/PaddleOCR.
-
-To process all remaining OCR-needed primary regulations:
-
-```bash
-jq -r '.[] | select((.reason // .extraction_reason) != "libreoffice_not_found") | select(.file_role == "primary_regulation") | .file_id' reports/ocr_needed.json |
-while read -r file_id; do
-  uv run python -m thinking_layer.cli extract \
-    --file-id "$file_id" \
-    --replace-existing \
-    --enable-ocr \
-    --ocr-server-url http://localhost:8829/ocr \
-    --ocr-language en \
-    --ocr-dpi 150 \
-    --ocr-num-workers 1 \
-    --progress-every 1 \
-    --verbose
-done
-```
-
-For a bad PDF that fails only at the trailing page boundary, use a bounded `--target-pages` replacement after confirming a single page parses. Example:
-
-```bash
-uv run python -m thinking_layer.cli extract \
-  --file-id FILE_ID_FROM_REPORTS_OCR_NEEDED_JSON \
-  --replace-existing \
-  --target-pages 1-50 \
-  --max-pages 50 \
-  --progress-every 1 \
-  --verbose
-```
-
-PaddleOCR troubleshooting on Mac/OrbStack:
-
-- If the server log ends with `FatalError: Segmentation fault`, treat it as a PaddlePaddle runtime failure, not a retrieval or answer-quality signal.
-- Use `--ocr-language en` for this corpus. If you pass `id`, PaddleOCR may reload a Latin model and slow the run without improving Indonesian legal text extraction.
-- If Docker segfaults, retry the local `uv` server above before changing extraction code.
-- If local PaddleOCR also segfaults, switch the OCR trial to LiteParse's EasyOCR service instead of adding ranking hacks:
-
-```bash
-cd ./liteparse/ocr/easyocr
-uv python install 3.12
-uv python pin 3.12
-uv sync
-uv run python server.py
-```
-
-Then point extraction at EasyOCR:
-
-```bash
-uv run python -m thinking_layer.cli extract \
-  --enable-ocr \
-  --ocr-server-url http://localhost:8828/ocr \
-  --ocr-language en \
-  --ocr-dpi 150 \
-  --ocr-num-workers 1 \
-  --file-id FILE_ID_FROM_REPORTS_OCR_NEEDED_JSON \
-  --replace-existing \
-  --target-pages 1 \
-  --progress-every 1 \
-  --verbose
-```
-
-Office documents and LibreOffice:
-
-LiteParse needs LibreOffice for `.docx`, `.xlsx`, `.pptx`, `.odt`, `.ods`, and `.odp` files. If `soffice` or `libreoffice` is not on `PATH`, these rows are skipped with `libreoffice_not_found` and listed in `reports/ocr_needed.*`. This is important for operational BI documents such as QRIS/SNAP matrices; queries like `apa saja kelengkapan atau matriks yang diperlukan dalam pengembangan qris?` may be incomplete until these files are extracted.
-
-PDF visual spot checks use the project dependencies `pypdfium2` and `pillow`. Poppler is also required for the CLI fallback renderer (`pdftoppm`). On macOS, install it with:
-
-```bash
-brew install poppler
-```
-
-On macOS:
-
-```bash
-brew install --cask libreoffice
-export PATH="/Applications/LibreOffice.app/Contents/MacOS:$PATH"
-which soffice
-```
-
-Then replace the skipped Office rows:
-
-```bash
-jq -r '.[] | select((.reason // .extraction_reason) == "libreoffice_not_found") | .file_id' reports/ocr_needed.json |
-while read -r file_id; do
-  uv run python -m thinking_layer.cli extract \
-    --file-id "$file_id" \
-    --replace-existing \
-    --progress-every 1 \
-    --verbose
-done
-```
-
-After OCR or Office replacements, always refresh downstream artifacts:
+After an accepted file replacement:
 
 ```bash
 uv run python -m thinking_layer.cli report
 uv run python -m thinking_layer.cli build-source-corpus --include-secondary
 uv run python -m thinking_layer.cli build-index
-uv run python -m thinking_layer.cli build-document-catalog
 ```
 
-Outputs:
+### Accepted Corpus-Wide Legal-Unit Migration
 
-- `processed/extracted_documents.ndjson`
-- `processed/blocks.ndjson`
-- `processed/raw/liteparse/*.json` with page text, Markdown, text-item geometry, and word boxes
-- `reports/ocr_needed.json`
-- `reports/ocr_needed.md`
-
-Refresh extraction reports from existing outputs:
+`rebuild-blocks` rewrites the v2 legal-unit corpus from saved raw LiteParse JSON. Run it only after fixture-level and representative-document review, explicit approval, and a verified backup of `processed/` and generated reports. It automatically skips every file listed in `reports/ocr_needed.json`; do not enable OCR as part of this migration.
 
 ```bash
+uv run python -m thinking_layer.cli rebuild-blocks
 uv run python -m thinking_layer.cli report
-```
-
-Spot-check extraction and citation quality for high-value regulation areas:
-
-```bash
-uv run python -m thinking_layer.cli extraction-spot-check
-```
-
-### Build Citation-Ready Corpus
-
-```bash
 uv run python -m thinking_layer.cli build-source-corpus --include-secondary
-```
-
-Outputs:
-
-- `processed/source_corpus.ndjson`
-- `reports/source_corpus_baseline.json`
-- `reports/source_corpus_baseline.md`
-
-This corpus is the retrieval contract. Each row contains issuer, source, source priority, file role, document identity, page, section type, best-effort `Pasal`/`Ayat`, citation text, and citation quality.
-
-### Build Search Index
-
-```bash
 uv run python -m thinking_layer.cli build-index
 ```
 
-Outputs:
+## Verification
 
-- `processed/search_index/metadata.json`
-- `processed/search_index/docs.ndjson`
-- `processed/search_index/terms.ndjson`
-- `processed/search_index/postings.ndjson`
-- `processed/search_index/search.sqlite`
-
-When `processed/source_corpus.ndjson` exists, indexing uses that file instead of raw blocks. The SQLite index stores block-level terms and document-title rows.
-
-`build-index --incremental` tokenizes only newly appended source-corpus rows when the previously indexed bytes are unchanged. If the corpus is edited in place, shrinks, changes source path, or has an incompatible legacy index, the command safely falls back to a full rebuild. Runtime search ignores stale persisted indexes and rebuilds an in-memory index instead of serving stale results.
-
-### Search And Query Planning
-
-Lexical search:
-
-```bash
-uv run python -m thinking_layer.cli search "SLIK pelaporan debitur" --issuer OJK --role primary_regulation
-uv run python -m thinking_layer.cli search "SNAP Open API Pembayaran" --issuer BI --include-secondary
-```
-
-Natural-language query planning:
-
-```bash
-uv run python -m thinking_layer.cli plan-query "apa saja peraturan periklanan yang harus dipatuhi oleh bank?"
-uv run python -m thinking_layer.cli planned-search "apa saja peraturan periklanan yang harus dipatuhi oleh bank?" --max-searches 6 --limit 8
-```
-
-The planner uses:
-
-- `resources/query_lexicon.json`
-- `resources/indonesian-stopwords-complete.txt`
-
-Indonesian stopwords are loaded at runtime from `resources/indonesian-stopwords-complete.txt`; they are not hardcoded in Python.
-
-Phrase-level boosts are configured in `resources/query_lexicon.json` under `exact_phrases`; domain phrase lists should not be hidden in Python code.
-
-### Lexicon Candidate Extraction
-
-Generate deterministic entity/topic/alias candidates from the corpus:
-
-```bash
-uv run python -m thinking_layer.cli extract-lexicon-candidates --generated-min-score 16 --report-limit 80
-```
-
-Outputs:
-
-- `processed/lexicon/candidates.json`
-- `reports/lexicon_candidates.md`
-- `resources/query_lexicon.generated.json`
-- `resources/query_lexicon.reviewed.json`
-- `resources/query_lexicon.merged.json`
-
-Generated lexicon files are intentionally not kept in the clean baseline. Regenerate them only when doing lexicon review. If you create a reviewed file, merge it explicitly:
-
-```bash
-uv run python -m thinking_layer.cli merge-lexicon --output resources/query_lexicon.merged.json
-```
-
-### Evidence And Answer Composition
-
-Build evidence:
-
-```bash
-uv run python -m thinking_layer.cli evidence "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-Compose answer:
-
-```bash
-uv run python -m thinking_layer.cli answer "peraturan BI tentang penyedia jasa pembayaran apa saja?" --max-searches 6 --limit 8 --per-document-limit 2 --write-report
-```
-
-The current answer composer is deterministic and template-based. It is not an LLM answer writer. It lists related documents, emits citation-backed evidence bullets, avoids known noisy extraction fragments, preserves citation quality, and says `Tidak ditemukan dalam dokumen yang tersedia` when the evidence pack requires refusal.
-
-### Evaluations
-
-Run fast unit tests for core pipeline contracts:
+Backend tests:
 
 ```bash
 uv run python -m unittest discover -s tests -v
 ```
 
-These tests cover metadata normalization, file-role classification, citation quality, source-corpus citation contracts, query planning, evidence confidence, answer status, and import/CLI wiring. They are intended to catch refactor regressions quickly; they do not replace retrieval quality evaluation.
-
-Run development-set evaluations:
+Frontend checks:
 
 ```bash
-uv run python -m thinking_layer.cli smoke-test --max-searches 6 --limit 8
-uv run python -m thinking_layer.cli eval-natural --max-searches 6 --limit 6
-uv run python -m thinking_layer.cli eval-evidence --max-searches 6 --result-limit 10 --per-document-limit 2
-uv run python -m thinking_layer.cli eval-answer --max-searches 6 --result-limit 10 --per-document-limit 2
-uv run python -m thinking_layer.cli eval-answer-quality --max-searches 6 --result-limit 10 --per-document-limit 2
+cd frontend
+bun run test
+bun run typecheck
+bun run lint
+bun run format:check
+bun run build
+bun run test:e2e
 ```
 
-Development evaluation files:
-
-- `resources/gold_questions.json`
-- `resources/answer_quality_questions.json`
-
-Current development reports:
-
-- `reports/REPORT_INDEX.md`: concise map of every current report.
-- `reports/retrieval_smoke_test.md`: 10/10 accepted, average score `0.998` after primary-first ranking correction.
-- `reports/natural_language_eval.md`: 15/15 accepted, average score `0.989` after the serial post-lexicon rerun; see `reports/regression_audit.md` for comparison with the frozen baseline.
-- `reports/evidence_eval.md`: 30/30 accepted, average score `0.990`.
-- `reports/answer_eval.md`: 30/30 accepted, average score `0.988`.
-- `reports/answer_quality_eval.md`: 12/12 accepted, average score `1.000`.
-- `reports/blind_external_holdout_manifest.json`: reviewer-owned holdout; evidence `18/19`, answer `18/19`, answer quality `9/10`.
-- `reports/blind_external_holdout_triage.md`: classified holdout failures; the holdout is consumed and must not be used for tuning.
-- `reports/semantic_retrieval_benchmark.md`: bounded three-model BM25/dense/RRF comparison; dense and RRF do not yet beat BM25.
-- `reports/semantic_retrieval_benchmark_corrected.md`: corrected bounded benchmark with E5 query/passage prefixes; E5 and BGE-M3 still do not beat BM25, and GTE is recorded as locally incompatible.
-- `reports/extraction_spot_check.md`: extraction/citation spot check for high-value BI/OJK regulation areas.
-- `reports/parser_comparison_sample.md`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
-- `reports/visual_spot_check.md`: rendered page review for QRIS, SNAP, XLSX, and GMRA extraction quality.
-- `reports/cross_regulator_coverage_audit.md`: direct-vs-adjacent topic coverage audit for BI/OJK comparison queries.
-- `reports/answer_noise_audit.md`: legal boilerplate/noise audit for final answer composition.
-
-Current extraction report:
-
-- `reports/extraction_summary.md`: `2,475` extracted rows, `537,355` blocks, and `0` remaining skipped/OCR-needed/failed files.
-- `reports/ocr_needed.md`: currently reports `0` skipped/OCR-needed files.
-
-These are useful regression checks, not proof of real-world accuracy. The development set was created while tuning the pipeline.
-
-### External Holdout
-
-For honest validation, use the reviewer-owned external holdout files:
-
-- `resources/holdout_questions.external.json`
-- `resources/answer_quality_questions.external.json`
-
-The current checked-in files are reviewer-owned and were written before the validation run. They are now a consumed blind holdout: do not tune code or labels against them without recording that the run is no longer blind. Create a fresh holdout set for any post-failure tuning.
-
-The consumed blind run was executed with:
+Install the Playwright Chromium runtime once if needed:
 
 ```bash
-uv run python -m thinking_layer.cli validate-holdout \
-  --gold-file resources/holdout_questions.external.json \
-  --quality-file resources/answer_quality_questions.external.json \
-  --report-prefix blind_external_holdout \
-  --max-searches 6 \
-  --result-limit 10 \
-  --per-document-limit 2
+cd frontend
+bunx playwright install chromium
 ```
 
-Outputs:
+The browser suite uses an isolated API fixture and does not read or rebuild generated corpus artifacts.
 
-- `reports/<prefix>_evidence.md`
-- `reports/<prefix>_answer.md`
-- `reports/<prefix>_answer_quality.md`
-- `reports/<prefix>_manifest.json`
-- `reports/<prefix>_review_checklist.md`
+Validate the exact citation targets before evaluating answers:
 
-Do not use dry-run template reports as validation evidence.
+```bash
+uv run python -m thinking_layer.evaluation.golden \
+  --tier smoke \
+  --preflight-only
+```
 
-The blind run produced `18/19` evidence, `18/19` answer, and `9/10` answer-quality acceptance. See `reports/blind_external_holdout_triage.md` for failure classification.
+Run the 12-case smoke tier during routine backend work, then the complete 44-case suite only when the index under test is ready:
 
-## Retrieval And Answer Requirements
+```bash
+uv run python -m thinking_layer.evaluation.golden \
+  --tier smoke \
+  --jobs 1 \
+  --output reports/golden_v2_smoke_current.json
 
-The retrieval and answer layers should keep these constraints:
+uv run python -m thinking_layer.evaluation.golden \
+  --tier full \
+  --jobs 1 \
+  --output reports/golden_v2_full_current.json
+```
 
-- Rank primary regulation files before FAQ, abstract, summary, and operational guidance files.
-- Support cross-regulator questions across OJK and BI.
-- For cross-regulator questions, do not treat adjacent evidence as direct evidence. Each requested issuer must have title, definition, or snippet evidence containing the requested topic or approved alias before the answer can be `strong`/`answerable`.
-- Cite document and page whenever available.
-- Cite `Pasal` and `Ayat` only when extracted from the evidence block.
-- Never invent missing `Pasal`, `Ayat`, dates, or document titles.
-- Say not found when evidence is weak, conflicting, or missing.
-- Keep legal boilerplate out of final findings unless the user explicitly asks about preamble, considerations, legal basis metadata, promulgation, or enactment text.
-- Keep Sikepo as measured enrichment until merge quality is validated.
-- Keep OCR selective and measured: add OCR text to the index only after a focused replacement run improves extraction quality for the affected file.
+The runner checks exact legal-unit retrieval, v2 citation provenance, answer boundaries, issuer coverage, and refusal behavior. See `thinking_layer/evaluation/README.md` for filtering and baseline-comparison commands. Evaluation scores are regression signals, not proof of legal accuracy.
 
-## Concrete Next-Step Checklist
+## Retrieval and Answer Invariants
 
-### 1. Finish Modular Refactor
+- Prefer primary regulations over summaries, FAQs, and operational guidance.
+- Preserve issuer and direct-topic coverage for BI/OJK comparison questions.
+- Treat adjacent evidence as context, not direct evidence for the requested topic.
+- Preserve exact file, page, Pasal, Ayat, and Huruf provenance when available.
+- Never infer missing citation fields.
+- Refuse when evidence is weak, conflicting, or absent.
+- Exclude legal boilerplate unless the question explicitly asks for it.
+- Keep semantic retrieval and reranking isolated until they beat BM25 without harming citations, refusal boundaries, coverage, or latency.
 
-- [x] Remove old `scripts/regulatory_pipeline.py` entrypoint.
-- [x] Split foundation modules: paths, IO, text, metadata.
-- [x] Split audit, extraction, and citation helpers.
-- [x] Move foundation modules into `config/`, `common/`, and `corpus/`.
-- [x] Split and remove `core.py`.
-- [x] Split flat `lexicon.py` into `lexicon/candidates.py` and `lexicon/merge.py`.
-- [x] Split `retrieval.py` into:
-  - `indexing/lexical.py`
-  - `indexing/sqlite.py`
-  - `indexing/title.py`
-  - `retrieval/query_tools.py`
-  - `retrieval/planning.py`
-  - `retrieval/search.py`
-  - `evaluation/retrieval.py`
-- [x] Split `answers.py` into:
-  - `retrieval/evidence.py`
-  - `answer/composer.py`
-  - `answer/quality.py`
-  - `evaluation/evidence.py`
-  - `evaluation/answer.py`
-  - `evaluation/holdout.py`
-  - `evaluation/natural.py`
-- [x] Replace transitional `from ... import *` imports with explicit imports.
-- [x] Remove obsolete `answers.py` compatibility shim.
-- [x] Add focused tests around metadata normalization, citation extraction, query planning, evidence packing, answer status, and import wiring.
+## Deferred Work
 
-### 2. Make Heuristics Explicit Before Tuning
+Semantic/hybrid retrieval, reranking, query expansion, graph retrieval, and LLM answer generation remain experiments. Revisit them only after coherent legal units and structured answers are stable and a candidate demonstrates a measured improvement over the BM25 baseline. Authentication and permissions remain unnecessary while the corpus and history are local and non-restricted.
 
-This phase is behavior-preserving. Do not tune accuracy here. The goal is to make every manual weight, threshold, domain phrase, and noisy-pattern filter visible and auditable before adding embeddings or LLM answer composition.
+## Reports
 
-- [x] Delete confirmed dead/stale code:
-  - duplicate `NATURAL_LANGUAGE_EVALS` in `thinking_layer/evaluation/holdout.py`
-  - unused `NOISY_ANSWER_PATTERNS` in `thinking_layer/evaluation/answer.py`
-  - stale `SMOKE_QUERIES` in `thinking_layer/indexing/lexical.py`
-  - unused `sqlite_planned_search()` if no CLI/runtime path needs it
-- [x] Add `thinking_layer/config/heuristics.py` as the typed loader/validator for heuristic config.
-- [x] Add split subsystem config files under `resources/config/`:
-  - `retrieval_ranking.json`
-  - `evidence_confidence.json`
-  - `answer_ranking.json`
-  - `evaluation_rubrics.json`
-  - `extraction_heuristics.json`
-  - `lexicon_extraction.json`
-- [x] Move current runtime weights and thresholds into those config files without changing values.
-- [x] Move domain terms embedded in Python code into lexicon/config where appropriate, including sector-alignment terms and intent broadening terms.
-- [x] Move noisy legal boilerplate patterns into config and label them as corpus-noise filters.
-- [x] Deduplicate in-memory BM25 and SQLite BM25 ranking helpers so both paths share the same scoring constants.
-- [x] Add `reports/heuristics_audit.md` listing each heuristic, value, category, runtime impact, rationale, and calibration status.
-- [x] Run unit tests and all development evaluations after the refactor.
-- [x] If metrics change, investigate and report the reason instead of adding query-specific shortcuts. See `reports/regression_audit.md`.
+Use `reports/REPORT_INDEX.md` as the map of the deliberately small retained report set. The current acceptance evidence is:
 
-Heuristic categories should be explicit:
+- `reports/v2_corpus_audit.json`
+- `reports/golden_v2_preflight_terminal.json`
+- `reports/golden_v2_smoke_terminal.json`
+- `reports/golden_v2_full_terminal.json`
+- `reports/golden_v2_post_rebuild_analysis.md`
 
-- `standard_ir`: accepted retrieval constants such as BM25 `k1` and `b`.
-- `manual_domain_policy`: project policy such as primary regulation ranking above FAQ/summary.
-- `manual_domain_seed`: manually seeded regulatory terms or sector aliases.
-- `corpus_noise_filter`: boilerplate/noise patterns observed in extracted legal documents.
-- `parser_heuristic`: extraction thresholds or regexes used to form blocks/citations.
-- `evaluation_rubric`: development scoring weights and pass thresholds.
-
-### 3. Validate Baseline Honestly
-
-- [x] Freeze current development reports as regression baseline.
-- [x] Initialize external holdout files from templates.
-- [x] Add external holdout reviewer guide.
-- [x] Create blind external holdout questions before looking at outputs.
-- [x] Run `validate-holdout` with report prefix `blind_external_holdout`.
-- [x] Classify failures as retrieval/refusal-boundary and gold-label/evaluation-rubric issues. See `reports/blind_external_holdout_triage.md`.
-- [x] Do not tune code against the blind holdout; the consumed holdout is preserved without post-run tuning.
-
-### 4. Urgent Answer Correctness Fixes
-
-These fixes must happen before semantic retrieval, embedding indexes, or LLM answer composition. The current failures are answer-layer correctness issues, not model-selection issues.
-
-- [x] Add corpus-backed answer-noise audit for legal boilerplate patterns:
-  - `DENGAN RAHMAT TUHAN YANG MAHA ESA`
-  - `Menimbang`
-  - `Mengingat`
-  - `MEMUTUSKAN`
-  - `Menetapkan`
-  - `Lembaran Negara` / `Tambahan Lembaran Negara`
-  - first-page title/preamble blocks
-  - OJK/BI circular letter intros such as `Sehubungan dengan amanat`
-- [x] Add `resources/config/answer_noise.json` with auditable categories:
-  - `legal_preamble`
-  - `consideration`
-  - `legal_basis_reference`
-  - `enactment`
-  - `promulgation`
-  - `letter_intro`
-  - `substantive`
-- [x] Add `thinking_layer/answer/noise.py` to classify evidence items before final answer selection.
-- [x] Update answer composer ranking so substantive `Pasal`/`Ayat`/definition/obligation evidence wins over boilerplate when both exist.
-- [x] Reject boilerplate from final `Temuan` bullets by default; allow it only for explicit user queries about preamble, legal considerations, enactment, promulgation, or legal-basis metadata.
-- [x] Add `reports/answer_noise_audit.md` showing corpus frequency, examples, section types, and post-fix answer impact.
-- [x] Add direct-topic coverage checks for cross-regulator queries.
-- [x] Add `resources/config/cross_regulator_confidence.json` defining strict direct evidence:
-  - topic or approved alias appears in document title, definition block, or cited snippet
-  - generic adjacent terms do not count as direct evidence
-  - each requested issuer must satisfy direct evidence before `strong`/`answerable`
-- [x] Add `thinking_layer/retrieval/topic_coverage.py` as the topic-coverage module.
-- [x] Return `partial` for cross-regulator questions when one requested issuer lacks direct topic-bearing evidence.
-- [x] In partial cross-regulator answers, explicitly state which issuer lacks direct evidence for the requested topic; adjacent evidence must not be presented as direct findings.
-- [x] Add `reports/cross_regulator_coverage_audit.md` with the PJP case and other BI/OJK comparison cases.
-- [x] Re-run and preserve results for:
-  - unit tests
-  - smoke retrieval eval
-  - natural-language eval
-  - evidence eval
-  - answer eval
-  - answer-quality eval
-  - reviewer-owned blind external holdout
-- [x] Do not weaken answer-quality noise checks or relabel the PJP case as answerable without manual legal review.
-
-### 5. Improve Extraction Quality
-
-- [x] Review `reports/ocr_needed.md`.
-- [x] Write prioritized extraction-quality review.
-- [x] Add extraction/citation spot-check report for high-value documents.
-- [x] Preserve LiteParse text-item geometry/word boxes in raw extraction output.
-- [x] Add table/list-aware Markdown block splitting before retrieval indexing.
-- [x] Decide OCR path for scanned PDFs: selective LiteParse + optimized PaddleOCR fallback, `en` language for Latin-script Indonesian documents, OCR off by default for the normal corpus pass.
-- [x] Run PaddleOCR samples from `reports/ocr_needed.md`, compare output against the no-OCR baseline, and use `--replace-existing` for accepted file-level OCR replacements.
-- [x] OCR-replace all primary-regulation OCR-needed files and selected secondary/operational OCR-needed PDFs, then rebuild source corpus and search index.
-- [x] Recover `seojk 11-2015.pdf` with bounded `--target-pages 1-50` after full-file parsing hit a trailing page boundary error.
-- [x] Install LibreOffice and extract the remaining `12` Office operational documents, especially QRIS/SNAP matrices.
-- [x] Compare LiteParse extraction against a small MinerU/layout-parser sample before switching parsers.
-- [x] Add document/page visual spot checks for high-value failed cases.
-- [x] Improve Pasal/Ayat/Huruf extraction for non-standard formats.
-- [x] Add table-specific handling for XLSX and regulation attachments.
-
-### 6. Improve Lexicon And Query Understanding
-
-- [x] Regenerate and review `reports/lexicon_candidates.md` when resuming lexicon work.
-- [x] Approve a reviewed subset of high-confidence generated entities/topics/aliases. See `reports/lexicon_review.md`.
-- [x] Merge the reviewed lexicon into the separately tested `resources/query_lexicon.merged.json`; promote only corpus-supported alias updates to the active runtime lexicon after the serial evaluation gate.
-- [x] Keep intents mostly manual because they represent user behavior, not document vocabulary.
-- [x] Add failure-driven aliases only when supported by corpus evidence or real user queries. The current gate approved `pelindungan konsumen` and `uji kemampuan dan kepatutan`; see `reports/lexicon_review.md`.
-
-### 7. Benchmark Hybrid Retrieval Before Adoption
-
-Current decision: keep BM25/title retrieval as the production baseline. Semantic retrieval is isolated from the normal search, evidence, and answer paths.
-
-The first bounded report is a useful diagnostic, but not yet a final model-selection report. The E5 model cards require `query:` and `passage:` prefixes, while the initial semantic path encoded raw text. Correct the model-specific encoding contract before interpreting the E5 comparison as conclusive. Do not run the full `537,355`-block benchmark until the corrected bounded gate passes.
-
-- [x] Keep BM25/title retrieval as the production baseline and freeze its current reports.
-- [x] Add a SentenceTransformers-compatible semantic retriever behind a separate CLI/runtime path.
-- [x] Run the initial bounded multilingual model matrix selected by Indonesian coverage, retrieval task results, license, model size, and local latency; do not select solely by aggregate MTEB rank. See `reports/semantic_retrieval_benchmark.md`; treat the E5 results as pre-correction diagnostics.
-- [x] Build a persisted dense index with model ID, normalization, dimension, corpus signature, and chunking metadata for a bounded 5,000-block smoke index; full-corpus benchmarking remains pending.
-- [x] Compare BM25-only, dense-only, and BM25+dense Reciprocal Rank Fusion on bounded retrieval metrics. The initial result did not justify adoption, but E5 comparisons are provisional until the required prefixes and model-specific encoding contract are corrected. Evidence, answer, quality, and fresh-holdout comparisons remain pending.
-- [x] Measure bounded Recall@5/10/20, MRR, expected-document recall, and issuer coverage. Citation coverage, refusal precision, and evidence-noise rate remain pending until a candidate improves retrieval.
-- [x] Add a model-specific semantic encoding contract before the next benchmark: E5 `query:`/`passage:` prefixes, model-specific query/document instructions, pooling, normalization, maximum input length, and `trust_remote_code` requirements.
-- [x] Re-run the corrected bounded benchmark on the existing 5,000-block slice. At minimum compare `intfloat/multilingual-e5-base` as the safe control, `Alibaba-NLP/gte-multilingual-base` as the primary new candidate, and `BAAI/bge-m3` as the long-context dense/sparse/multi-vector baseline. See `reports/semantic_retrieval_benchmark_corrected.md`.
-- [x] Keep the corrected benchmark evaluation-only and preserve the BM25 baseline. No candidate improved MRR/Recall@10/20; GTE also failed with a local custom-code runtime error.
-- [ ] If a corrected candidate clears retrieval gates, run evidence, answer-quality, citation-coverage, refusal-boundary, and fresh-holdout evaluations before any adoption decision.
-- [ ] Add a top-50/100 reranking experiment using a cross-encoder or late-interaction model only after hybrid retrieval clears the evaluation gates.
-- [ ] For the eventual reranking experiment, rerank BM25/title top-50 first with `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`; use `BAAI/bge-reranker-v2-m3` as the heavier multilingual quality challenger. Keep both evaluation-only until all evidence and answer gates pass.
-- [ ] Keep role, issuer, direct-topic, and citation-confidence gates after semantic retrieval and reranking.
-- [ ] Only introduce query expansion, CRAG-style retrieval correction, or LLM answer composition after the hybrid baseline is measured and stable.
-
-Corrected bounded result: BM25 remains the production baseline. BM25 MRR is `0.869`; corrected dense MRR is `0.1611–0.1689`; RRF MRR is `0.85`; GTE is locally incompatible with the current runtime. No candidate cleared the retrieval gate.
-
-Semantic retrieval and reranking are deferred intentionally, not abandoned. They should resume only when a new model/runtime/hardware setup or a product requirement justifies another isolated bounded experiment. The trigger is a candidate that beats BM25 on MRR and Recall@10/20 without reducing issuer coverage or increasing citation/evidence noise. Until then, the unchecked semantic items below are future acceptance gates, not current release blockers.
-
-Current retrieval decision:
-
-1. Keep BM25/title retrieval in production and proceed with manual intents and failure-driven aliases.
-2. Leave full-corpus semantic benchmarking and reranking blocked; revisit them only if a new candidate or hardware/runtime change justifies another isolated gate.
-
-### 8. Later Research Options
-
-- [ ] Evaluate grounded multi-query expansion with RRF only if vocabulary-mismatch failures remain after hybrid retrieval.
-- [ ] Evaluate hierarchical or graph retrieval for regulation references, supersession, and source timelines.
-- [ ] Evaluate late-interaction retrieval if single-vector embeddings miss article-level legal distinctions.
-
-### 9. Production Hardening Later
-
-Permission handling is conditional: implement it only if the corpus becomes user-specific or access-restricted. For the current local/public corpus, the next applicable hardening step is an API/service wrapper after the CLI behavior remains stable.
-
-- [x] Add incremental ingestion and stale-index detection for the BM25/source-corpus index. Use `build-index --incremental` for append-only updates.
-- [x] Add source/version timeline metadata for regulation updates: stable version/series keys, lifecycle dates/status, supersession relationships, and safe down-ranking of explicitly outdated records.
-- [ ] Add permission model if the corpus becomes user-specific or restricted.
-- [x] Add local `trace-query` observability for query plans, retrieved evidence, refusal reasons, citation quality, and answer summaries.
-- [x] Add a local FastAPI service wrapper over the stable CLI/domain behavior: query, health, citation-document lookup, and local feedback endpoints. Keep trace data internal; citation URLs use a compact catalog and retrieval safely falls back to the persisted lexical index when SQLite acceleration is unavailable.
-
-### 10. Build The Local Web UI
-
-The next product slice is a same-origin local web UI over the current API. Keep it read-only with respect to corpus/index data and do not add authentication until the product needs private history or restricted documents.
-
-- [ ] Add a local browser page with one question field and a submit action to `POST /v1/queries`.
-- [ ] Render `answerable`, `partial`, and `not_found` states distinctly; preserve the API’s confidence and refusal wording rather than inventing a client-side answer state.
-- [ ] Render returned citations as links to `GET /v1/documents/{file_id}/blocks/{block_id}`, including document, issuer, page, and Pasal/Ayat where available.
-- [ ] Add helpful/not-helpful controls that call `POST /v1/feedback` with the query request ID; make free-text feedback optional.
-- [ ] Display a clear local-corpus limitation and citation-first answer policy in the UI.
-- [ ] Keep query traces and internal retrieval diagnostics out of the browser response and interface.
-- [ ] Add browser/API integration tests for answerable, partial, not-found, citation navigation, and feedback submission.
-- [ ] Manually verify the UI against a current SQLite index and against the persisted-lexical fallback reported by `GET /healthz`.
+Regenerate reports into explicit `*_current` or task-specific paths while iterating. Promote a result to a terminal baseline only after the v2 preflight passes and the selected case IDs match the comparison baseline.

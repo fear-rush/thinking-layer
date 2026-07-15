@@ -56,6 +56,13 @@
     "query_title_substring_bonus": 45.0,
     "all_query_tokens_bonus": 35.0,
     "ordered_query_bonus": 35.0,
+    "shared_phrase_min_tokens": 3,
+    "shared_phrase_bonus_per_token": 12.0,
+    "shared_phrase_max_bonus": 48.0,
+    "discovery_acronym_min_tokens": 3,
+    "discovery_acronym_max_tokens": 4,
+    "max_discovery_acronyms": 4,
+    "scope_min_score_ratio": 0.75,
     "short_title_max_tokens": 2,
     "long_query_min_tokens": 4,
     "short_title_min_coverage": 0.75,
@@ -71,6 +78,20 @@
     "title_quality_base": 0.70,
     "title_quality_max_bonus": 0.70,
     "title_quality_score_divisor": 160.0,
+    "regulated_subject_terms": [
+      "pedagang",
+      "bursa",
+      "bank",
+      "penyelenggara",
+      "pialang",
+      "konsumen",
+      "pujk"
+    ],
+    "regulated_subject_leading_chars": 180,
+    "regulated_subject_leading_multiplier": 2.25,
+    "regulated_subject_late_multiplier": 0.65,
+    "compound_aggregate_multiplier": 2.0,
+    "direct_enumeration_governing_ayat_multiplier": 5.0,
     "role_multiplier": {
       "primary_regulation": 1.60,
       "attachment": 1.05,
@@ -90,6 +111,8 @@
       "title": 1.40,
       "topic": 1.25,
       "intent": 1.08,
+      "predicate": 1.80,
+      "legal_alias": 1.65,
       "entity": 1.03,
       "default": 0.90
     }
@@ -139,6 +162,13 @@
     ],
     "default_intent": "find_regulations",
     "bank_default_issuer": "OJK",
+    "predicate_replacements": {
+      "larangan": "dilarang",
+      "bolehkah": "dilarang",
+      "boleh": "dapat",
+      "berapa lama": "paling lama",
+      "kapan": "paling lama"
+    },
     "issuer_patterns": {
       "OJK": [
         "ojk"
@@ -147,6 +177,30 @@
         "bi",
         "bank indonesia"
       ]
+    },
+    "direct_enumeration": {
+      "question_patterns": [
+        "apa",
+        "apa saja",
+        "sebutkan",
+        "daftar",
+        "rincian"
+      ],
+      "legal_nouns": [
+        "aktivitas",
+        "kegiatan",
+        "jenis",
+        "persyaratan",
+        "dokumen",
+        "tugas",
+        "wewenang",
+        "kewajiban"
+      ],
+      "enumeration_markers": [
+        "meliputi"
+      ],
+      "max_subject_terms": 2,
+      "max_searches": 2
     },
     "intent_expansions": {
       "sanctions": {

@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 import unittest
-from unittest.mock import patch
 
-from thinking_layer.answer.composer import answer_item_rank, answer_status_for_pack, compose_template_answer, evidence_claim_text, is_usable_answer_claim, join_context_fragments
+from thinking_layer.answer.composer import answer_item_rank, answer_status_for_pack, compose_template_answer, evidence_claim_text, is_usable_answer_claim
 from thinking_layer.retrieval.evidence import evidence_confidence, evidence_item
 
 
@@ -30,6 +29,53 @@ class EvidenceAnswerTests(unittest.TestCase):
             ["OJK"],
             {"entities": ["bank"], "topics": ["reporting"]},
             "apa kewajiban bank terkait pelaporan OJK",
+        )
+
+        self.assertEqual(confidence["label"], "strong")
+        self.assertFalse(confidence["must_say_not_found"])
+
+    def test_requested_pasal_requires_an_exact_anchor_match(self) -> None:
+        item = {
+            "issuer": "OJK",
+            "is_primary": True,
+            "has_page": True,
+            "has_article": True,
+            "matched_exact_phrases": [],
+            "lexical_support": 1.0,
+            "citation": {"document": "Sekretaris Perusahaan", "page": 2, "pasal": "Pasal 4"},
+            "legal_path": {"pasal": "Pasal 4"},
+            "pasal": "Pasal 4",
+            "snippet": "Ketentuan Sekretaris Perusahaan.",
+        }
+        confidence = evidence_confidence(
+            [item],
+            ["OJK"],
+            {"entities": [], "topics": [], "legal_constraints": {"pasal": "Pasal 5"}},
+            "Apa tugas Sekretaris Perusahaan berdasarkan Pasal 5?",
+        )
+
+        self.assertEqual(confidence["label"], "weak")
+        self.assertTrue(confidence["must_say_not_found"])
+        self.assertIn("requested_legal_constraint_not_satisfied", confidence["reasons"])
+
+    def test_exact_requested_pasal_is_not_rejected_as_a_generic_query(self) -> None:
+        item = {
+            "issuer": "OJK",
+            "is_primary": True,
+            "has_page": True,
+            "has_article": True,
+            "matched_exact_phrases": [],
+            "lexical_support": 1.0,
+            "citation": {"document": "Sekretaris Perusahaan", "page": 3, "pasal": "Pasal 5"},
+            "legal_path": {"pasal": "Pasal 5"},
+            "pasal": "Pasal 5",
+            "snippet": "Fungsi sekretaris perusahaan melaksanakan tugas paling kurang.",
+        }
+        confidence = evidence_confidence(
+            [item],
+            ["OJK"],
+            {"entities": [], "topics": [], "legal_constraints": {"pasal": "Pasal 5"}},
+            "Apa tugas Sekretaris Perusahaan berdasarkan Pasal 5?",
         )
 
         self.assertEqual(confidence["label"], "strong")
@@ -72,6 +118,12 @@ class EvidenceAnswerTests(unittest.TestCase):
                     "file_role": "primary_regulation",
                     "citations": [
                         {
+                            "chunk_schema_version": 2,
+                            "source_block_ids": ["modal-ventura-preamble"],
+                            "unit_path": ["Pasal 1"],
+                            "legal_path": {"pasal": "Pasal 1"},
+                            "anchors": [],
+                            "source_spans": [],
                             "score": 99.0,
                             "support_score": 99.0,
                             "citation_quality": "document_page",
@@ -84,6 +136,12 @@ class EvidenceAnswerTests(unittest.TestCase):
                             "snippet": "PERATURAN OTORITAS JASA KEUANGAN NOMOR 25 TAHUN 2023 DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa ...",
                         },
                         {
+                            "chunk_schema_version": 2,
+                            "source_block_ids": ["modal-ventura-2-1"],
+                            "unit_path": ["Pasal 2", "(1)"],
+                            "legal_path": {"pasal": "Pasal 2", "ayat": "(1)"},
+                            "anchors": [],
+                            "source_spans": [],
                             "score": 20.0,
                             "support_score": 20.0,
                             "citation_quality": "document_page_pasal_ayat",
@@ -112,6 +170,9 @@ class EvidenceAnswerTests(unittest.TestCase):
     def test_evidence_item_demotes_noisy_table_artifacts_unless_table_is_requested(self) -> None:
         base_row = {
             "_score": 100.0,
+            "chunk_schema_version": 2,
+            "block_id": "slik-2-1",
+            "node_id": "slik-2-1",
             "issuer": "OJK",
             "source": "peraturan-ojk",
             "source_priority": "primary",
@@ -119,6 +180,12 @@ class EvidenceAnswerTests(unittest.TestCase):
             "document_title": "Sistem Layanan Informasi Keuangan",
             "page_start": 4,
             "pasal": "Pasal 2",
+            "legal_path": {"pasal": "Pasal 2", "ayat": "(1)"},
+            "unit_path": ["Pasal 2", "(1)"],
+            "source_block_ids": ["slik-2-1"],
+            "anchors": [],
+            "source_spans": [],
+            "legal_unit": {"type": "ayat", "legal_path": {"pasal": "Pasal 2", "ayat": "(1)"}, "source_spans": []},
             "citation_quality": "document_page_pasal",
         }
         clean = evidence_item(
@@ -182,55 +249,46 @@ class EvidenceAnswerTests(unittest.TestCase):
         self.assertFalse(is_usable_answer_claim(continuation["text"], continuation, query=query))
         self.assertTrue(is_usable_answer_claim(obligation["text"], obligation, query=query))
 
-    def test_answer_claim_expands_incomplete_enumerator_from_neighbor_blocks(self) -> None:
-        context_index = {
-            "positions": {"block-1": [(("file-1", 4, "Pasal 2"), 0)]},
-            "by_key": {
-                ("file-1", 4, "Pasal 2"): [
-                    {
-                        "block_id": "block-1",
-                        "block_type": "list_item",
-                        "section_type": "ayat",
-                        "text": "(1) Pihak yang wajib menjadi Pelapor meliputi:",
-                    },
-                    {
-                        "block_id": "block-2",
-                        "block_type": "table_or_row",
-                        "section_type": "table",
-                        "text": "| a. | Bank Umum; | |---|---| | b. | BPR; | | c. | BPRS; |",
-                    },
-                ]
-            },
-        }
+    def test_answer_claim_uses_v2_assembled_text_with_source_graph(self) -> None:
         item = {
             "file_id": "file-1",
-            "block_id": "block-1",
+            "block_id": "aggregate-1",
             "page_start": 4,
             "pasal": "Pasal 2",
             "text": "(1) Pihak yang wajib menjadi Pelapor meliputi:",
+            "assembled_text": "(1) Pihak yang wajib menjadi Pelapor meliputi: 1) Bank Umum; 2) BPR; dan 3) BPRS.",
+            "source_block_ids": ["ayat-1", "angka-1", "angka-2", "angka-3"],
         }
 
-        with patch("thinking_layer.answer.composer.source_context_index", return_value=context_index):
-            claim = evidence_claim_text(item)
+        claim = evidence_claim_text(item)
 
         self.assertIn("Pihak yang wajib menjadi Pelapor meliputi", claim)
         self.assertIn("Bank Umum", claim)
         self.assertIn("BPR", claim)
         self.assertIn("BPRS", claim)
 
-    def test_context_join_respects_list_conjunctions(self) -> None:
-        text = join_context_fragments(
-            "Pihak yang wajib menjadi Pelapor adalah:",
-            [
-                "1) Bank Umum konvensional",
-                "2) Bank Umum Syariah; dan",
-                "3) Unit Usaha Syariah",
-            ],
+    def test_atomic_claim_does_not_synthesize_positional_neighbor_text(self) -> None:
+        claim = evidence_claim_text(
+            {
+                "file_id": "file-1",
+                "block_id": "ayat-1",
+                "page_start": 4,
+                "pasal": "Pasal 2",
+                "text": "(1) Pihak yang wajib menjadi Pelapor meliputi:",
+                "source_block_ids": ["ayat-1"],
+            }
         )
 
-        self.assertIn("2) Bank Umum Syariah; dan 3) Unit Usaha Syariah", text)
-        self.assertNotIn("; dan; 3)", text)
+        self.assertEqual(claim, "(1) Pihak yang wajib menjadi Pelapor meliputi:")
 
+    def test_answer_rejects_section_heading_as_a_finding(self) -> None:
+        item = {
+            "section_type": "paragraph",
+            "extraction_flags": [],
+            "text": "AKTIVITAS DAN PERIZINAN PENYEDIA JASA PEMBAYARAN Bagian Kesatu Ruang Lingkup Aktivitas",
+        }
+
+        self.assertFalse(is_usable_answer_claim(item["text"], item, query="ketentuan PJP"))
 
 if __name__ == "__main__":
     unittest.main()

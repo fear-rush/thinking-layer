@@ -1,13 +1,47 @@
 from __future__ import annotations
 
 import importlib
+import json
+import sqlite3
 import unittest
+from argparse import Namespace
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
-from thinking_layer.evaluation.semantic import rrf_results, write_report
 from thinking_layer.lexicon.merge import merge_generated_lexicon
-from thinking_layer.indexing.lexical import append_search_index, build_search_index
-from thinking_layer.indexing.semantic import _role_texts, semantic_model_settings, semantic_text
+from thinking_layer.indexing.lexical import append_search_index, build_search_index, index_signature, load_search_blocks
+from thinking_layer.indexing.sqlite import incremental_build_index, sqlite_search, write_sqlite_search_index
+from thinking_layer.indexing.semantic import _role_texts, cmd_semantic_search, semantic_model_settings, semantic_text
 from thinking_layer.observability import trace_from_answer
+
+
+def v2_index_block(*, block_id: str, file_id: str, page: int, title: str, text: str) -> dict[str, object]:
+    legal_path = {"pasal": "Pasal 1", "ayat": "(1)"}
+    return {
+        "chunk_schema_version": 2,
+        "block_id": block_id,
+        "node_id": block_id,
+        "file_id": file_id,
+        "canonical_id": file_id,
+        "issuer": "BI",
+        "source": "ease-bi",
+        "file_role": "primary_regulation",
+        "document_title": title,
+        "page_start": page,
+        "page_end": page,
+        "pasal": "Pasal 1",
+        "ayat": "(1)",
+        "legal_path": legal_path,
+        "unit_path": ["Pasal 1", "(1)"],
+        "display_text": text,
+        "retrieval_text": text,
+        "text": text,
+        "source_block_ids": [block_id],
+        "anchors": [{"page_start": page, "line_start": 1, "page_end": page, "line_end": 1}],
+        "legal_unit": {"type": "ayat", "legal_path": legal_path, "source_spans": []},
+        "citation_admission": "atomic_leaf",
+    }
 
 
 class ImportCliTests(unittest.TestCase):
@@ -29,11 +63,7 @@ class ImportCliTests(unittest.TestCase):
             "thinking_layer.api.app",
             "thinking_layer.api.services.query_service",
             "thinking_layer.api.services.documents",
-            "thinking_layer.evaluation.evidence",
-            "thinking_layer.evaluation.answer",
-            "thinking_layer.evaluation.holdout",
-            "thinking_layer.evaluation.natural",
-            "thinking_layer.evaluation.semantic",
+            "thinking_layer.evaluation.golden",
         ]
 
         for module_name in modules:
@@ -47,12 +77,15 @@ class ImportCliTests(unittest.TestCase):
 
     def test_semantic_text_preserves_retrieval_context_and_limit(self) -> None:
         block = {
-            "document_title": "PBI Penyedia Jasa Pembayaran",
+            **v2_index_block(
+                block_id="pjp-1",
+                file_id="pjp",
+                page=1,
+                title="PBI Penyedia Jasa Pembayaran",
+                text="Penyedia Jasa Pembayaran wajib memenuhi ketentuan.",
+            ),
             "heading_path": ["BAB I", "Ketentuan Umum"],
             "number": "Pasal 1",
-            "pasal": "1",
-            "ayat": "(1)",
-            "text": "Penyedia Jasa Pembayaran wajib memenuhi ketentuan.",
         }
 
         text = semantic_text(block, 80)
@@ -76,25 +109,30 @@ class ImportCliTests(unittest.TestCase):
         self.assertEqual(settings["device"], "cpu")
         self.assertEqual(settings["max_seq_length"], 8192)
 
-    def test_semantic_report_can_record_model_failure(self) -> None:
-        from pathlib import Path
-        from tempfile import TemporaryDirectory
+    def test_semantic_cli_uses_configured_default_limit(self) -> None:
+        args = Namespace(
+            query="ketentuan pembayaran",
+            limit=None,
+            issuer=None,
+            role=None,
+            source=None,
+            include_secondary=False,
+        )
+        with (
+            patch("thinking_layer.indexing.semantic.semantic_config", return_value={"default_limit": 17}),
+            patch("thinking_layer.indexing.semantic.semantic_search", return_value=[]) as search,
+            patch("thinking_layer.indexing.lexical.format_search_results", return_value=""),
+        ):
+            cmd_semantic_search(args)
 
-        report = {
-            "block_count": 5,
-            "question_count": 1,
-            "candidate_limit": 20,
-            "rrf_k": 60,
-            "bm25": {"summary": {"mrr": 1.0, "document_recall": {}, "issuer_coverage_at_10": 1.0}},
-            "models": [{"model": "example/model", "status": "error", "error_type": "RuntimeError", "error": "unsupported runtime"}],
-        }
-        with TemporaryDirectory() as directory:
-            path = Path(directory) / "report.md"
-            write_report(report, path)
-            text = path.read_text(encoding="utf-8")
-
-        self.assertIn("Status: `error`", text)
-        self.assertIn("unsupported runtime", text)
+        search.assert_called_once_with(
+            "ketentuan pembayaran",
+            17,
+            issuer=None,
+            role=None,
+            source=None,
+            include_secondary=False,
+        )
 
     def test_lexicon_merge_applies_approved_alias_updates_to_existing_topics(self) -> None:
         base = {"topics": [{"name": "consumer_protection", "patterns": ["perlindungan konsumen"]}]}
@@ -150,18 +188,20 @@ class ImportCliTests(unittest.TestCase):
         self.assertEqual(trace["query_plan"]["search_count"], 1)
 
     def test_append_search_index_adds_only_new_documents_and_postings(self) -> None:
-        first = {
-            "document_title": "PBI Pembayaran",
-            "text": "Penyedia jasa pembayaran wajib memenuhi ketentuan.",
-            "page_start": 1,
-            "file_id": "first",
-        }
-        second = {
-            "document_title": "PBI Infrastruktur",
-            "text": "Infrastruktur pembayaran wajib tersedia.",
-            "page_start": 2,
-            "file_id": "second",
-        }
+        first = v2_index_block(
+            block_id="first-1",
+            file_id="first",
+            page=1,
+            title="PBI Pembayaran",
+            text="Penyedia jasa pembayaran wajib memenuhi ketentuan.",
+        )
+        second = v2_index_block(
+            block_id="second-1",
+            file_id="second",
+            page=2,
+            title="PBI Infrastruktur",
+            text="Infrastruktur pembayaran wajib tersedia.",
+        )
 
         index = build_search_index([first])
         append_search_index(index, [second])
@@ -170,16 +210,73 @@ class ImportCliTests(unittest.TestCase):
         self.assertEqual(index.postings["infrastruktur"], [1])
         self.assertEqual(index.postings["pembayaran"], [0, 1])
 
-    def test_rrf_fuses_ranked_lists_without_duplicate_blocks(self) -> None:
-        lexical = [{"file_id": "a", "page_start": 1, "text": "same"}, {"file_id": "b", "page_start": 1, "text": "other"}]
-        dense = [{"file_id": "a", "page_start": 1, "text": "same"}, {"file_id": "c", "page_start": 1, "text": "dense"}]
+    def test_lexical_build_and_signature_require_source_corpus_even_when_blocks_exist(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "blocks.ndjson").write_text("{}\n", encoding="utf-8")
+            with (
+                patch("thinking_layer.indexing.lexical.PROCESSED_DIR", root),
+                patch("thinking_layer.indexing.lexical.SOURCE_CORPUS_PATH", root / "missing-source.ndjson"),
+            ):
+                with self.assertRaisesRegex(SystemExit, "build-source-corpus"):
+                    load_search_blocks(None, None, None, include_secondary=True)
+                with self.assertRaisesRegex(FileNotFoundError, "build-source-corpus"):
+                    index_signature()
 
-        results = rrf_results([lexical, dense], limit=3)
+    def test_incremental_sqlite_build_appends_without_json_companions(self) -> None:
+        first = v2_index_block(
+            block_id="first-1",
+            file_id="first",
+            page=1,
+            title="PBI Pembayaran",
+            text="Penyedia jasa pembayaran wajib memenuhi ketentuan.",
+        )
+        second = v2_index_block(
+            block_id="second-1",
+            file_id="second",
+            page=2,
+            title="PBI Infrastruktur",
+            text="Infrastruktur pembayaran wajib tersedia.",
+        )
 
-        self.assertEqual(len(results), 3)
-        self.assertEqual(results[0]["file_id"], "a")
-        self.assertEqual(results[0]["_retriever"], "rrf")
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            source_path = root / "source_corpus.ndjson"
+            blocks_path = root / "blocks.ndjson"
+            extracted_path = root / "extracted_documents.ndjson"
+            search_dir = root / "search_index"
+            database_path = search_dir / "search.sqlite"
+            source_path.write_text(json.dumps(first) + "\n", encoding="utf-8")
+            blocks_path.write_text(json.dumps(first) + "\n", encoding="utf-8")
+            extracted_path.write_text("", encoding="utf-8")
 
+            with (
+                patch("thinking_layer.indexing.lexical.ROOT", root),
+                patch("thinking_layer.indexing.lexical.PROCESSED_DIR", root),
+                patch("thinking_layer.indexing.lexical.SOURCE_CORPUS_PATH", source_path),
+                patch("thinking_layer.indexing.sqlite.ROOT", root),
+                patch("thinking_layer.indexing.sqlite.SOURCE_CORPUS_PATH", source_path),
+                patch("thinking_layer.indexing.sqlite.SEARCH_INDEX_DIR", search_dir),
+                patch("thinking_layer.indexing.sqlite.SEARCH_INDEX_DB", database_path),
+            ):
+                write_sqlite_search_index(build_search_index([first]), filters={})
+                with source_path.open("a", encoding="utf-8") as handle:
+                    handle.write(json.dumps(second) + "\n")
+
+                updated, message = incremental_build_index({})
+                hits = sqlite_search("infrastruktur", limit=1)
+
+            conn = sqlite3.connect(database_path)
+            try:
+                document_count = conn.execute("SELECT COUNT(*) FROM docs").fetchone()[0]
+            finally:
+                conn.close()
+
+            self.assertTrue(updated)
+            self.assertIn("appended 1", message)
+            self.assertEqual(document_count, 2)
+            self.assertEqual(hits[0]["block_id"], "second-1")
+            self.assertEqual(list(search_dir.iterdir()), [database_path])
 
 if __name__ == "__main__":
     unittest.main()

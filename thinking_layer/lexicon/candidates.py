@@ -14,9 +14,7 @@ from ..config.paths import (
     LEXICON_DIR,
     LEXICON_CANDIDATES_PATH,
     PROCESSED_DIR,
-    QUERY_LEXICON_PATH,
     REPORTS_DIR,
-    REVIEWED_LEXICON_PATH,
     ROOT,
 )
 from ..retrieval.query_tools import tokenize, unique_keep_order
@@ -41,8 +39,7 @@ def lexicon_normalize_phrase(value: str) -> str:
     value = re.sub(r"^(?:POJK|SEOJK|PBI|PADG|PADK|SEBI|UU|PP|PMK)\s+(?:tentang|perihal)\s+", "", value, flags=re.IGNORECASE)
     value = re.sub(r"^(?:tentang|perihal)\s+", "", value, flags=re.IGNORECASE)
     value = re.sub(r"\s*\([^)]{1,80}\)\s*$", "", value)
-    value = normalize_space(value.strip(" .,:;-/–—"))
-    return value
+    return normalize_space(value.strip(" .,:;-/–—"))
 
 def lexicon_key(value: str) -> str:
     return normalize_space(value.lower())

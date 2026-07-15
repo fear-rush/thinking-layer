@@ -112,7 +112,7 @@ def write_heuristics_audit(path: Path) -> None:
     path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
-def cmd_heuristics_audit(args: argparse.Namespace) -> None:
+def cmd_heuristics_audit(_args: argparse.Namespace) -> None:
     REPORTS_DIR.mkdir(exist_ok=True)
     path = REPORTS_DIR / "heuristics_audit.md"
     write_heuristics_audit(path)

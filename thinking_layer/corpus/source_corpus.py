@@ -11,6 +11,30 @@ from ..common.io import iter_ndjson_file, read_ndjson_file
 from ..config.paths import PROCESSED_DIR, REPORTS_DIR, ROOT, SOURCE_CORPUS_PATH
 
 
+def is_source_corpus_eligible(block: dict[str, Any]) -> bool:
+    """Admit v2 only through extraction's explicit citation contract.
+
+    Version 2 deliberately indexes atomic legal leaves and the narrowly
+    bounded enumeration aggregates that make a legal list readable.  This
+    guard prevents a future raw-parent node from reaching retrieval merely
+    because it has a page and display text.
+    """
+    return source_corpus_exclusion_reason(block) is None
+
+
+def source_corpus_exclusion_reason(block: dict[str, Any]) -> str | None:
+    """Explain deterministic v2 admission exclusions for audit reporting."""
+    if block.get("chunk_schema_version") != 2:
+        return "non_v2"
+    if block.get("file_role") == "primary_regulation" and block.get("searchable_primary") is False:
+        return "duplicate_primary_file"
+    if block.get("citation_admission") == "quarantined_unreadable_table":
+        return "unreadable_table"
+    if block.get("citation_admission") not in {"atomic_leaf", "enumeration_aggregate"}:
+        return "not_citation_admitted"
+    return None
+
+
 def source_corpus_block_key(row: dict[str, Any]) -> tuple[str, str] | None:
     """Return the citation identity that must be unique in the search index."""
     file_id = row.get("file_id")
@@ -97,6 +121,10 @@ def write_source_corpus_report(summary: dict[str, Any]) -> None:
         "",
         f"- Source corpus rows: {summary['rows']}",
         f"- Duplicate source blocks skipped: {summary['duplicate_block_rows_skipped']}",
+        f"- Exact duplicate primary rows excluded: {summary['duplicate_primary_rows_excluded']}",
+        f"- Exact duplicate primary files excluded: {summary['duplicate_primary_files_excluded']}",
+        f"- Unreadable table rows quarantined: {summary['unreadable_table_rows_quarantined']}",
+        f"- Rows whose legal issuer differs from the hosting source: {summary['issuer_identity_corrected_rows']}",
         f"- Documents: {summary['documents']}",
         f"- Files: {summary['files']}",
         f"- Sources: `{summary['sources']}`",
@@ -142,7 +170,9 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
     extracted_path = PROCESSED_DIR / "extracted_documents.ndjson"
     blocks_path = PROCESSED_DIR / "blocks.ndjson"
     if not extracted_path.exists() or not blocks_path.exists():
-        raise SystemExit("Missing extraction outputs. Run `uv run python -m thinking_layer.cli extract` first.")
+        raise SystemExit(
+            "Missing required extraction artifacts: processed/extracted_documents.ndjson and processed/blocks.ndjson."
+        )
 
     extracted_ok = {
         row["file_id"]
@@ -172,11 +202,16 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
         "lifecycle_status": Counter(),
         "citation_quality": Counter(),
         "duplicate_block_rows_skipped": 0,
+        "duplicate_primary_rows_excluded": 0,
+        "duplicate_primary_files_excluded": 0,
+        "unreadable_table_rows_quarantined": 0,
+        "issuer_identity_corrected_rows": 0,
         "sikepo_metadata_coverage": sikepo_metadata_coverage(load_records()),
     }
     document_ids: set[str] = set()
     file_ids: set[str] = set()
     seen_block_keys: set[tuple[str, str]] = set()
+    duplicate_primary_file_ids: set[str] = set()
 
     PROCESSED_DIR.mkdir(exist_ok=True)
     with SOURCE_CORPUS_PATH.open("w", encoding="utf-8") as out:
@@ -184,6 +219,17 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
             if block.get("file_id") not in extracted_ok:
                 continue
             if not args.include_secondary and block.get("file_role") in {"secondary_faq", "secondary_summary"}:
+                continue
+            exclusion_reason = source_corpus_exclusion_reason(block)
+            if exclusion_reason == "duplicate_primary_file":
+                summary["duplicate_primary_rows_excluded"] += 1
+                if block.get("file_id"):
+                    duplicate_primary_file_ids.add(str(block["file_id"]))
+                continue
+            if exclusion_reason == "unreadable_table":
+                summary["unreadable_table_rows_quarantined"] += 1
+                continue
+            if exclusion_reason:
                 continue
             row = normalize_source_corpus_block(block, canonical_metadata.get(block.get("canonical_id")))
             if not row.get("text") or not row.get("citation", {}).get("page"):
@@ -208,9 +254,12 @@ def cmd_build_source_corpus(args: argparse.Namespace) -> None:
             summary["section_types"][str(row.get("section_type"))] += 1
             summary["lifecycle_status"][str(row.get("lifecycle_status") or "unknown")] += 1
             summary["citation_quality"][str(row.get("citation_quality"))] += 1
+            if row.get("issuer_differs_from_host"):
+                summary["issuer_identity_corrected_rows"] += 1
 
     summary["documents"] = len(document_ids)
     summary["files"] = len(file_ids)
+    summary["duplicate_primary_files_excluded"] = len(duplicate_primary_file_ids)
     for key in ("sources", "issuers", "source_priority", "file_roles", "section_types", "lifecycle_status", "citation_quality"):
         summary[key] = dict(summary[key])
 

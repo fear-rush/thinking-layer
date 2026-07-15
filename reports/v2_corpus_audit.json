@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": {
+    "blocks_scanned": 417673,
+    "source_rows_scanned": 398930,
+    "unique_units_scanned": 417391,
+    "failed_checks": 0,
+    "blocking_violations": 0
+  },
+  "checks": {
+    "non_v2_or_missing_provenance": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "dangling_legal_reference": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "oversized_normative_pasal": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "url_contamination": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "empty_legal_path": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "issuer_instrument_mismatch": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "suppressed_duplicate_leakage": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "unreadable_table_citation_admission": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    },
+    "document_part_contamination": {
+      "count": 0,
+      "blocking": true,
+      "examples": []
+    }
+  }
+}

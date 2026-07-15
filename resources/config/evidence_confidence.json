@@ -42,6 +42,7 @@
       "expected_issuer_rate": 0.05
     },
     "matched_phrase_normalizer": 2,
+    "exact_document_article_bonus": 0.08,
     "strong_threshold": 0.78,
     "partial_threshold": 0.55,
     "generic_entities": [

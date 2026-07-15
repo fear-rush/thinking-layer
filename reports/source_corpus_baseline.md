@@ -4,17 +4,21 @@ This report validates the normalized, citation-ready corpus used before retrieva
 
 ## Summary
 
-- Source corpus rows: 537031
-- Duplicate source blocks skipped: 323
-- Documents: 1562
-- Files: 2471
-- Sources: `{'ease-bi': 31712, 'peraturan-ojk': 505319}`
-- Issuers: `{'BI': 31712, 'OJK': 505319}`
-- Source priority: `{'primary': 521592, 'secondary': 15439}`
-- File roles: `{'primary_regulation': 509355, 'operational_requirement': 2184, 'secondary_faq': 11484, 'secondary_summary': 3955, 'attachment': 10053}`
-- Section types: `{'paragraph': 24899, 'table': 62365, 'pasal': 292651, 'ayat': 64538, 'heading': 56750, 'list_item': 10336, 'faq': 11494, 'abstrak': 3945, 'attachment': 10053}`
-- Lifecycle status: `{'unknown': 537031}`
-- Citation quality: `{'document_page': 73954, 'document_page_pasal': 394357, 'document_page_pasal_ayat': 40087, 'document_page_pasal_ayat_huruf': 28633}`
+- Source corpus rows: 398930
+- Duplicate source blocks skipped: 1
+- Exact duplicate primary rows excluded: 15897
+- Exact duplicate primary files excluded: 41
+- Unreadable table rows quarantined: 52
+- Rows whose legal issuer differs from the hosting source: 35629
+- Documents: 1346
+- Files: 1506
+- Sources: `{'ease-bi': 28460, 'peraturan-ojk': 370470}`
+- Issuers: `{'BI': 64089, 'OJK': 334841}`
+- Source priority: `{'primary': 396777, 'secondary': 2153}`
+- File roles: `{'primary_regulation': 394444, 'operational_requirement': 1501, 'secondary_summary': 748, 'secondary_faq': 1405, 'attachment': 832}`
+- Section types: `{'angka': 80333, 'huruf': 150974, 'ayat': 96141, 'pasal': 31024, 'enumeration_aggregate': 37297, 'abstrak': 748, 'faq': 1405, 'point': 38, 'subpoint': 60, 'item': 78, 'attachment': 832}`
+- Lifecycle status: `{'unknown': 398930}`
+- Citation quality: `{'document_page_pasal': 98096, 'document_page_pasal_ayat_huruf': 105361, 'document_page_pasal_ayat': 105271, 'document_page': 90026, 'document_page_section': 176}`
 
 ## Sikepo Metadata Coverage
 
@@ -38,18 +42,18 @@ Sikepo is treated as enrichment metadata, not as the primary OJK text source.
 
 ## Primary OJK Without Sikepo Examples
 
-- `OJK|KLASIFIKASI BAPEPAM|kep- 02 /pm/2004|2004` | III. D.1. Penyelenggara Perdagangan Surat Utang Negara Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal
-- `OJK|KLASIFIKASI BAPEPAM|kep- 09/bl/2006|2006` | V.B.2. Perizinan Wakil Agen Penjual Efek Reksa Dana Berdasarkan Keputusan Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 10/bl/2006|2016` | V.B.3. Pendaftaran Agen Penjual Efek Reksa Dana Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 108 /bl/2008|2008` | III. C8. Komisaris Lembaga Penyimpanan dan Penyelesaian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 13/bl/2009|2009` | III. B3. Direktur Lembaga Kliring dan Penjaminan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 14/bl/2009|2009` | III. C.3. Direktur Lembaga Penyimpanan dan Penyelesaian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal
-- `OJK|KLASIFIKASI BAPEPAM|kep- 178/bl/2008|2008` | V.G.5. Perubahan Peraturan tentang Fungsi Manajer Investasi Berkaitan dengan Efek Beragun Aset (Asset Backed Securities) Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 181/bl/2007|2016` | II.J.1. Pengenaan Biaya Tahunan Atas Bursa Efek, Lembaga Kliring dan Penjaminan, serta Lembaga Penyimpanan Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 27/pm/2000|2000` | V.D.8. Kegiatan Perusahaan Efek di Berbagai Lokasi Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal
-- `OJK|KLASIFIKASI BAPEPAM|kep- 29/pm/1998|1998` | III. C6. Prosedur Operasi dan Pengendalian Intern Lembaga Penyimpana dan Penyelesaian Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal
-- `OJK|KLASIFIKASI BAPEPAM|kep- 309/bl/2008|2008` | VI. C3. Hubungan Kredit dan Penjaminan Antara Wali Amanat dengan Emiten Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 327/bl/2012|2012` | VI. B2. Pembuatan Nomor tunggal Identitas Pemodal pada Lembaga Penyimpanan dan Penyelesaian Oleh Biro Administrasi Efek atau Emiten dan Perusahaan Publik yang Menyelenggarakan Administrasi Efek Sendiri
-- `OJK|KLASIFIKASI BAPEPAM|kep- 334 /bl/2007|2007` | V.A.1. Perizinan Perusahaan Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal dan Lembaga Keuangan
-- `OJK|KLASIFIKASI BAPEPAM|kep- 39/pm/2003|2003` | III. E.1. Kontrak Berjangka dan Opsi Atas Efek atau Indeks Efek Berdasarkan Keputusan Ketua Badan Pengawas Pasar Modal
-- `OJK|KLASIFIKASI BAPEPAM|kep- 401/bl/2008|2008` | XI. B2. Pembelian Kembali saham yang Dikeluarkan Oleh Emiten atau Perusahaan Publikdalam Kondisi Pasar yang Berpotensi Krisis
+- `BI|PBI|10/ 1 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Perubahan atas Peraturan Bank Indonesia Nomor 8/5/PBI/2006 tentang Mediasi Perbankan
+- `BI|PBI|10/ 15 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Kewajiban Penyediaan Modal Minimum Bank Umum
+- `BI|PBI|10/ 19 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Giro Wajib Minimum Bank Umum pada Bank Indonesia dalam Rupiah dan Valuta Asing
+- `BI|PBI|10/ 23 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Perubahan atas Peraturan Bank Indonesia Nomor 6/21/PBI/2004 tentang Giro Wajib Minimum dalam Rupiah dan Valuta Asing bagi Bank Umum yang Melaksanakan Kegiatan Usaha berdasarkan Prinsip Syariah
+- `BI|PBI|10/ 24 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Perubahan Kedua atas Peraturan Bank Indonesia Nomor 8/21/PBI/2006 tentang Penilaian Kualitas Aktiva Bank Umum yang Melaksanakan Kegiatan Usaha berdasarkan Prinsip Syariah
+- `BI|PBI|10/ 25 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Perubahan atas Peraturan Bank Indonesia Nomor 10/19/PBI/2008 tentang Giro Wajib Minimum Bank Umum pada Bank Indonesia dalam Rupiah dan Valuta Asing
+- `BI|PBI|10/ 27 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Perubahan atas Peraturan Bank Indonesia Nomor 6/9/PBI/2004 tentang Tindak Lanjut Pengawasan dan Penetapan Status Bank
+- `BI|PBI|10/ 39 /pbi/2008|2008` | Peraturan Bank Indonesia tentang Peraturan Pelaksanaan Penanganan Khusus Permasalahan Perbankan Pascabencana Nasional di Provinsi Nanggroe Aceh Darussalam dan Kepulauan Nias Provinsi Sumatera Utara
+- `BI|PBI|10/17/pbi/2008|2016` | Peraturan Bank Indonesia tentang Produk Bank Syariah dan Unit Usaha Syariah
+- `BI|PBI|10/3/pbi/2008|2008` | Peraturan Bank Indonesia tentang Laporan Kantor Pusat Bank Umum
+- `BI|PBI|10/32/pbi/2008|2008` | Peraturan Bank Indonesia tentang Komite Perbankan Syariah
+- `BI|PBI|10/5/pbi/2008|2008` | Peraturan Bank Indonesia tentang Perubahan atas Peraturan Bank Indonesia Nommor 5/6/PBI/2003 tentang Surat Kredit Berdokumen dalam Negeri
+- `BI|PBI|11/ 1 /pbi/2009|2009` | Peraturan Bank Indonesia tentang Bank Umum
+- `BI|PBI|11/ 15 /pbi/2009|2009` | Peraturan Bank Indonesia tentang Perubahan Kegiatan Usaha Bank Konvensional menjadi Bank Syariah
+- `BI|PBI|11/ 19 /pbi/2009|2009` | Peraturan Bank Indonesia tentang Sertifikasi Manajemen Risiko bagi Pengurus dan Pejabat Bank Umum

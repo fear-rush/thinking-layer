@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useHydrated } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { BookOpenText, Search } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "#/components/ui/alert";
@@ -10,6 +10,7 @@ import { createQuery } from "#/lib/api";
 export const Route = createFileRoute("/")({ component: HomePage });
 
 function HomePage() {
+  const hydrated = useHydrated();
   const queryMutation = useMutation({ mutationFn: createQuery });
 
   async function submitQuestion(question: string) {
@@ -43,7 +44,11 @@ function HomePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <QuestionForm isSubmitting={queryMutation.isPending} onSubmit={submitQuestion} />
+          <QuestionForm
+            isReady={hydrated}
+            isSubmitting={queryMutation.isPending}
+            onSubmit={submitQuestion}
+          />
         </CardContent>
       </Card>
 

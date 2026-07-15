@@ -1,0 +1,2956 @@
+{
+  "exact_primary_duplicate_groups": 274,
+  "exact_primary_duplicate_files": 757,
+  "suppressed_searchable_primary_files": 483,
+  "groups": [
+    {
+      "group_id": "primary-duplicate-fc10b9401da8",
+      "canonical_id": "bi-padg-13-tahun-2023",
+      "group_size": 2,
+      "preferred_file_id": "ease-bi-ketentuan-1250-0-padg-nomor-13-tahun-2023-tentang-penguatan-kualitas-pelaku-dan-penyelenggaraan-self-regulatory-organization-di-pasar-uang-dan-pasar-valuta-asing",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "ease-bi-ketentuan-1270-0-padg-nomor-13-tahun-2023-tentang-penguatan-kualitas-pelaku-dan-penyelenggara-sro-di-pasar-uang-dan-pasar-valuta-asing"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b641a7ab5ed5",
+      "canonical_id": "bi-pbi-6-tahun-2024",
+      "group_size": 5,
+      "preferred_file_id": "ease-bi-ketentuan-1245-0-pbi-nomor-6-tahun-2024-tentang-pasar-uang-dan-pasar-valuta-asing",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "ease-bi-ketentuan-1269-0-pbi-nomor-6-tahun-2024-tentang-pasar-uang-dan-pasar-valuta-asing",
+        "ease-bi-ketentuan-1276-0-pbi-nomor-6-tahun-2024-tentang-pasar-uang-dan-pasar-valuta-asing",
+        "ease-bi-ketentuan-1282-0-pbi-nomor-6-tahun-2024-tentang-pasar-uang-dan-pasar-valuta-asing",
+        "ease-bi-ketentuan-1287-0-pbi-nomor-6-tahun-2024-tentang-pasar-uang-dan-pasar-valuta-asing"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-208c782f0dbc",
+      "canonical_id": "bi-pbi-10-tahun-2024",
+      "group_size": 3,
+      "preferred_file_id": "ease-bi-ketentuan-1271-0-pbi-no-10-tahun-2024-penerapan-anti-pencucian-uang-pencegahan-pendanaan-terorisme-dan-pencegahan-pendanaan-proliferasi-senjata-pemusnah-masal-bagi-pihak-yang-diatur-dan-diawasi-oleh-bank-indonesia",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "ease-bi-ketentuan-1294-0-pbi-no-10-tahun-2024-penerapan-anti-pencucian-uang-pencegahan-pendanaan-terorisme-dan-pencegahan-pendanaan-proliferasi-senjata-pemusnah-massal-bagi-pihak-yang-diatur-dan-diawasi-oleh-bank-indonesia",
+        "ease-bi-ketentuan-1297-0-pbi-no-10-tahun-2024-penerapan-anti-pencucian-uang-pencegahan-pendanaan-terorisme-dan-pencegahan-pendanaan-proliferasi-senjata-pemusnahan-massal-bagi-pihak-yang-diatur-dan-diawasi-oleh-bank-indonesia"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-da9ef1d1d8e2",
+      "canonical_id": "ojk-pojk-20-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pojk-20-tahun-2024-perubahan-atas-pojk-50pojk032017-tentang-kewajiban-pemenuhan-nsfr-bagi-bank-umum-0-pojk-20-tahun-2024-perubahan-atas-pojk-50pojk032017-tentang-kewajiban-pemenuhan-net-stable-funding-ratio-bagi-bank-umum-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-a22ed00e-1da5-4338-8be8-98880cf2ce5d-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0d8eda0b17f2",
+      "canonical_id": "ojk-pojk-19-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pojk-19-tahun-2024-perubahan-pojk-nomor-42pojk032015-tentang-kewajiban-pemenuhan-rasio-kecukupan-likuiditas-bagi-bank-umum-0-pojk-19-tahun-2024-perubahan-atas-peraturan-otoritas-jasa-keuangan-nomor-42pojk032015-tentang-kewajiban-pemenuhan-rasio-kecukupan-likuiditas-liquidity-coverage-ratio-bagi-bank-umum-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-09103d53-0093-43e4-b1b5-c32c559858f9-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-cf7a0ac74586",
+      "canonical_id": "ojk-pojk-11-tahun-2024",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-perubahan-kedua-pojk-nomor-18-2017-tentang-pelaporan-dan-permintaan-informasi-debitur-melalui-slik-0-pojk-11-tahun-2024-pelaporan-dan-permintaan-informasi-debitur-melalui-slik-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-ae505148-3f52-4248-9e77-68c2743e26e7-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-1f9fd4f0-c4bc-48f6-aa65-4c09b8bef179-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6665f2b8d7df",
+      "canonical_id": "ojk-pojk-27-tahun-2022",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-kedua-atas-peraturan-otoritas-jasa-keuangan-nomor-11pojk-032016-tentang-kewajiban-penyediaan-modal-minimum-bank-0-pojk-27-tahun-2022-tentang-kewajiban-penyediaan-modal-minimum-bank-umum-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-1332fab0-3016-45ce-b312-0c4e73b326eb-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1129ccc1fba8",
+      "canonical_id": "ojk-seojk-9-seojk-03-2022",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-surat-edaran-otoritas-jasa-keuangan-nomor-13-seojk-03-2019-tentang-penerapan-tata-kelola-bagi-bank-pembiayaa-0-seojk-9-03-2022-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-717a444c-9159-4aae-bf04-a9126dc25ce6-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4a042b812fbe",
+      "canonical_id": "ojk-seojk-32-seojk-03-2021",
+      "group_size": 5,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-surat-edaran-otoritas-jasa-keuangan-nomor-9-seojk-03-2019-tentang-penilaian-kembali-bagi-pihak-utama-bank-0-seojk-32-03-2021-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-2f7f906e-74b9-4db2-926d-584b8523e0c5-0-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-184d912b-c7b9-402e-b93f-d43f43035a05-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-d3783318-2783-4711-9c72-78f4f9118c5b-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-e5d39f99-3ebb-45a1-b498-389d29f2620b-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1a3285cd17f3",
+      "canonical_id": "ojk-pojk-18-pojk-03-2021",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-peraturan-ojk-tentang-perubahan-kedua-atas-peraturan-ojk-nomor-34-pojk-03-2020-0-pojk-18-03-2021-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-64b98eea-6b58-48ee-abf1-c51fa013b906-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-89fe1596-ad0f-464f-8048-58a1b3e23eeb-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7b359f5691ab",
+      "canonical_id": "ojk-pojk-17-pojk-03-2021",
+      "group_size": 6,
+      "preferred_file_id": "peraturan-ojk-peraturan-ojk-tentang-perubahan-kedua-atas-pojk-nomor-11-pojk-03-2020-0-pojk-17-03-2021-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-8843ca6c-104a-4589-9ab4-32b03af6548f-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-6b6c86e1-25cd-4aa6-9b55-ce47f4d7c82d-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-d0916317-d2a1-4412-a045-9c2d63b5bb94-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-a70ae278-eced-45a8-b674-aa2102c5ee0a-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-46377cb9-90a1-4d8b-9ed0-1127b3e18b1c-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-eb39075e04bb",
+      "canonical_id": "ojk-pojk-14-pojk-03-2021",
+      "group_size": 5,
+      "preferred_file_id": "peraturan-ojk-penilaian-kembali-bagi-pihak-utama-lembaga-jasa-keuangan-0-pojk-14-03-2021-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-2f0c9edb-9687-4986-a1ba-7fe99105c683-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-a7d957f3-ec97-4fac-af19-7479e047aedf-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-49063ac7-2b70-4d53-a138-b6eb0800bbdc-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-126dd1fd-627e-41ca-bd04-0d8187086114-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-acad240aab01",
+      "canonical_id": "ojk-seojk-18-seojk-03-2021",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-laporan-bulanan-bank-perkreditan-rakyat-0-seojk-18-03-2021-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-3ec3d51e-8962-4065-9fef-1e1fb9e85083-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-af53ab055504",
+      "canonical_id": "ojk-pojk-2-pojk-03-2021",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-peraturan-otoritas-jasa-keuangan-nomor-34-tentang-kebijakan-bagi-bpr-bprs-sebagai-dampak-covid-19-0-pojk-02-03-2021-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-c977d444-9f77-452d-ba31-6e7a721ab5bd-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-6b6c2d96-3bd8-42bb-aa2d-ce2f1f247851-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-092922acdeca",
+      "canonical_id": "ojk-seojk-3-seojk-03-2021",
+      "group_size": 6,
+      "preferred_file_id": "peraturan-ojk-pelaporan-dan-permintaan-informasi-debitur-melalui-sistem-layanan-informasi-keuangan-0-seojk-03-03-2021-pelaporan-dan-permintaan-informasi-debitur-melalui-sistem-layanan-informasi-keuangan-seojk-slik-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-43f669ed-01f6-4b01-8c62-e15f35e9bb43-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-1e45625e-c7bc-4e87-8d6e-b160a07fabb8-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-071c15da-0cf9-447f-806c-0cacb562bb0c-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-1ed73ccf-1fc9-4e16-bb61-da43ec97d8b3-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-d7dd58f5-078b-4417-ada0-07836e219770-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-9567dbb1cdab",
+      "canonical_id": "ojk-pojk-64-pojk-03-2020",
+      "group_size": 6,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-peraturan-otoritas-jasa-keuangan-nomor-18-tentang-pelaporan-dan-permintaan-informasi-debitur-0-pojk-64-03-2020-pelaporan-dan-permintaan-informasi-debitur-melalui-sistem-layanan-informasi-keuangan-pojk-slik-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-b277f886-cad3-4bd4-9cff-0c1964025e26-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-18a5aae3-79db-4b67-a532-3190f8b68319-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-72d251bb-3df6-4ab3-a9f3-8f02ec07d11f-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-f84d016b-0612-4f06-84dc-e1c1434a972c-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9ef56a60-05c7-4d87-8b34-c1b0ab3b93e3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-aa06fc3cc225",
+      "canonical_id": "ojk-seojk-24-seojk-03-2020",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-surat-edaran-otoritas-jasa-keuangan-nomor-5-tentang-penerapan-tata-kelola-0-seojk-24-03-2020-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-b7c47383-414f-4a59-bcca-1d7678cfbb67-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e59446214b2e",
+      "canonical_id": "ojk-pojk-48-pojk-03-2020",
+      "group_size": 6,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-peraturan-otoritas-jasa-keuangan-nomor-11-tentang-stimulus-perekonomian-nasional-0-pojk-48-03-2020-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-3f0106fd-c07d-4d58-90cd-15d6c79859ac-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-1996c499-7c20-4593-a4fd-e2f1b835e4e8-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-7474fa74-7ea6-43a4-8b7a-11dc610b43e1-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-e08d64e9-c6d3-4fa0-b393-bf092c7b5dde-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-59fc093e-76b9-49c1-872a-12128c78b117-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-afb887af6366",
+      "canonical_id": "ojk-seojk-5-seojk-03-2020",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-perubahan-seojk-tentang-penetapan-status-dan-tindak-lanjut-pengawasan-bpr-dan-bprs-0-seojk-5-2020-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-5b153dac-ee2a-4af7-b022-78e378b8f57d-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-c8c8db52-3f5c-4de6-975e-e7a6c930b927-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ac64d3007933",
+      "canonical_id": "ojk-pojk-13-pojk-03-2020",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-tentang-penerapan-manajemen-risiko-dalam-penggunaan-teknologi-informasi-oleh-bank-umum-0-pojk-13-2020-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-af693a7c-c3d7-4bef-adac-e07559774b27-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-056ace2c-659f-4438-9f38-b9d7d968b824-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-aefaa972-e1ea-4195-b666-451cf402d838-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a2997922bcbc",
+      "canonical_id": "ojk-pojk-38-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-batas-maksimum-pemberian-kredit-dan-penyediaan-dana-besar-bagi-bank-umum-0-pojk-38-2019-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-83252e63-30c3-4ceb-84b4-3b5d50d41e6f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1ca574b79622",
+      "canonical_id": "ojk-pojk-32-pojk-03-2019",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-perubahan-penetapan-status-dan-tindak-lanjut-pengawasan-bank-perkreditan-rakyat-dan-bank-pembiayaan-rakyat-syariah-0-pojk-32-2019-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-df702092-3b18-4c53-9091-1ffa4bb86b10-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-0fcd658b-e854-4f7e-8f1e-8eaa25fa46fa-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-76635bb338f5",
+      "canonical_id": "ojk-seojk-24-seojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-kewajiban-penyediaan-modal-minimum-dan-pemenuhan-modal-inti-minimum-bank-perkreditan-rakyat-0-seojk-24-2019-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-9df9de37-516f-4339-a8ed-e71a29d5578e-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b0b7139f9923",
+      "canonical_id": "ojk-pojk-23-pojk-01-2019",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-penerapan-program-anti-pencucian-uang-dan-pencegahan-pendanaan-terorisme-di-sektor-jasa-keuangan-0-pojk-23-2019-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-423da354-7481-485a-b108-72d0117e1e76-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-60163589-6e02-49de-9952-39a372853659-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a734b957b6d7",
+      "canonical_id": "ojk-seojk-13-seojk-03-2018",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-seojk-perhitungan-aset-tertimbang-menurut-risiko-utk-risiko-kredit-dg-pendekatan-standar-bagi-bank-umum-syariah-0-seojk-13-2018-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-61c78940-b69d-47df-aca8-ddd7dbfd7fc6-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c92b3b5c101c",
+      "canonical_id": "ojk-pojk-19-pojk-03-2018",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-perubahan-pojk-tentang-penilaian-kualitas-aset-bank-umum-syariah-dan-unit-usaha-syariah-0-pojk-19-2018-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-41e76516-bb3c-4011-a8fd-8bd09e497a24-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-083b4d69-0d52-438f-be25-fd81580d391d-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-84f802946805",
+      "canonical_id": "ojk-pojk-16-pojk-03-2018",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-perubahan-pojk-pembatasan-pemberian-kredit-pembiayaan-oleh-bank-umum-untuk-pengadaan-tanah-dan-atau-pengolahan-tanah-0-pojk-16-2018-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-a086f947-ec7c-4b3f-8243-9412873390bc-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-c5a08e48-d25d-4266-bfd0-2b9e6ff15c17-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9932b49e-8c4c-451c-b5e6-73ce3c58d9f2-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-011cae87782c",
+      "canonical_id": "ojk-pojk-17-pojk-03-2018",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-perubahan-pojk-nomor-6-pojk-03-2016-tentang-kegiatan-usaha-dan-jaringan-kantor-berdasarkan-modal-inti-bank-0-pojk-17-2018-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-13d0a272-72e7-4ff6-be71-b762cabc36e9-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-43795995-20fb-4b55-ae92-4283500cf908-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9acadc50-55d0-4b6f-b2da-e37b5b1eeef6-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-64d2a5be423a",
+      "canonical_id": "ojk-seojk-11-seojk-03-2018",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-seojk-tentang-pedoman-perhitungan-aset-tertimbang-menurut-risiko-untuk-risiko-kredit-dengan-pendekatan-standar-0-seojk-11-2018-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-12fd429c-99cb-4738-9099-1e8ceae9db29-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-77f75bcd24a9",
+      "canonical_id": "ojk-pojk-6-pojk-03-2018",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-pojk-7-pojk-03-2016-tentang-prinsip-kehati-hatian-dalam-melaksanakan-kegiatan-structured-product-bagi-bank-umum-0-pojk-6-2018-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-c46a9256-a7b1-465d-a1ca-78f685c19780-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e2fdcfe911fb",
+      "canonical_id": "ojk-peraturan-ojk-59-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-penerapan-tata-kelola-dalam-pemberian-remunerasi-bagi-bank-umum-syariah-dan-unit-usaha-syariah-0-sal-pojk-59-renum-bus-uus-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-penerapan-tata-kelola-dalam-pemberian-remunerasi-bagi-bank-umum-syariah-dan-unit-usaha-syariah-0-sal-pojk-59-renum-bus-uus-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-01eb311bfa95",
+      "canonical_id": "ojk-peraturan-ojk-59-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-penerapan-tata-kelola-dalam-pemberian-remunerasi-bagi-bank-umum-syariah-dan-unit-usaha-syariah-2-ringsek-tata-kelola-remunerasi-bus-dan-uus-r1-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-penerapan-tata-kelola-dalam-pemberian-remunerasi-bagi-bank-umum-syariah-dan-unit-usaha-syariah-2-ringsek-tata-kelola-remunerasi-bus-dan-uus-r1-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4ee341254d0a",
+      "canonical_id": "ojk-pojk-56-pojk-05-2017",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-kedua-pojk-nomor-1-pojk-05-2016-tentang-investasi-surat-berharga-negara-bagi-berharga-negara-bagi-ljk-non-bank-0-sal-pojk-56-perubahan-kedua-sbn-ljk-non-bank-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-perubahan-kedua-pojk-tentang-investasi-surat-berharga-negara-bagi-lembaga-jasa-keuangan-non-bank-0-sal-pojk-56-perubahan-kedua-sbn-ljk-non-bank-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8644d41beaa3",
+      "canonical_id": "ojk-pojk-56-pojk-05-2017",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-kedua-pojk-nomor-1-pojk-05-2016-tentang-investasi-surat-berharga-negara-bagi-berharga-negara-bagi-ljk-non-bank-1-sal-penjelasan-pojk-56-perubahan-kedua-sbn-ljk-non-bank-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-perubahan-kedua-pojk-tentang-investasi-surat-berharga-negara-bagi-lembaga-jasa-keuangan-non-bank-1-sal-penjelasan-pojk-56-perubahan-kedua-sbn-ljk-non-bank-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-54e34d52579e",
+      "canonical_id": "ojk-pojk-76-pojk-07-2016",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-peningkatan-literasi-dan-inklusi-keuangan-di-sektor-jasa-keuangan-bagi-konsumen-dan-atau-masyarakat-0-pojk-76-2016-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pojk-tentang-peningkatan-literasi-dan-inklusi-keuangan-di-sektor-jasa-keuangan-bagi-konsumen-danatau-masyarakat-0-pojk-76-2016-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b59a8c9c6825",
+      "canonical_id": "ojk-pojk-56-pojk-03-2016",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-kepemilikan-bank-umum-0-sal-pojk-kepemilikan-saham-bank-umum-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pojk-tentang-kepemilikan-saham-bank-umum-0-sal-pojk-kepemilikan-saham-bank-umum-pdf",
+        "sikepo-ojk-bank-umum-konvensional-53cf3b32-ff48-4ce7-a166-e5f81242320e-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-72e77af8-fee1-4baa-bb4b-e81306984f4b-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6abda28958bb",
+      "canonical_id": "ojk-pojk-38-pojk-03-2016",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-penerapan-manajemen-risiko-dalam-penggunaan-teknologi-informasi-oleh-bank-umum-0-pojk-mrti-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-59312801-d8a8-478f-8a70-14314a3dded5-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-50cde294-fa0f-42b4-a6c5-4a2d995b3732-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-88e32db9-7954-4366-8f63-55111a506098-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d7e1f2afc6cf",
+      "canonical_id": "ojk-seojk-28-seojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-seojk-tentang-pembukaan-jaringan-kantor-bank-umum-syariah-dan-unit-usaha-syariah-berdasarkan-modal-inti-0-sal-seojk-jarkan-bus-uus-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-1766afd3-ac7b-4d35-ad98-7083c421d5b9-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-358241b0-39ed-49dd-8ea5-f3a59106418f-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-637f14d7b4db",
+      "canonical_id": "ojk-undang-undang-1-tahun-2016",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-penjaminan-0-uu-nomor-1-tahun-2016-tentang-penjaminan-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-uu-republik-indonesia-tentang-penjaminan-0-uu-nomor-1-tahun-2016-tentang-penjaminan-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6c748e5c3b88",
+      "canonical_id": "ojk-pojk-25-pojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-penyampaian-informasi-nasabah-asing-terkait-perpajakan-kepada-negara-mitra-atau-yurisdiksi-mitra-0-salinan-rancangan-pojk-penyampaian-informasi-nasabah-asing-terkait-perpajakan-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c9688a81-b7d3-4199-a1bf-efe11c64b401-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-cce1bab191bb",
+      "canonical_id": "ojk-pojk-24-pojk-03-2015",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-produk-dan-aktivitas-bank-syariah-dan-unit-usaha-syariah-0-salinan-pojk-24-produk-aktiivitas-bank-syariah-dan-unit-usaha-syariah-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c5e09fe6-6be1-4d9c-a49c-589df17d7a54-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-953cc9d4-2932-48cc-b7cf-ab6004cd1779-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-6b8b184c-dc75-40df-a9a8-0515527617f7-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e003fd2d882b",
+      "canonical_id": "ojk-pojk-10-pojk-03-2015",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-penerbitan-sertifikat-deposito-oleh-bank-0-pojk-10-penerbitan-sertifikat-deposito-oleh-bank-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-e7c67822-2a99-4bd3-ac9d-b8be3814fe3d-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-2b37d0cd-cf2c-4d4c-8b1e-c1914dde2e5a-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-ddaaf07b-61d0-4663-a90e-0ec1c3474b89-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e04cdd1bb9a1",
+      "canonical_id": "ojk-pojk-6-pojk-03-2015",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-transparansi-dan-publikasi-laporan-bank-0-pojk-6-transparansi-dan-publikasi-laporan-bank-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-158750ac-8c66-4c90-aa84-c344407a7efe-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-3d0d85b5-5afa-4bc5-a8ee-a8503d891dbb-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-5eb55bc8ccc9",
+      "canonical_id": "ojk-seojk-7-seojk-07-2015",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-seojk-tentang-pedoman-penilaian-lembaga-alternatif-penyelesaian-sengketa-di-sektor-jasa-keuangan-0-seojk-7-2015-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-2116b204-cf40-423b-a470-d88f6989b0db-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-0c2dad28-3aa0-4a6b-99d1-f68e4bf38051-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0385e50964c5",
+      "canonical_id": "ojk-seojk-14-seojk-07-2014",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-seojk-tentang-kerahasiaan-dan-keamanan-data-dan-atau-informasi-pribadi-konsumen-0-se-ojk-14-kerahasiaan-data-dan-informasi-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-cd58bc43-ba7b-4765-9e0d-ed28852a0256-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-911b0618-ec99-46ef-84da-5c33ce0b75a1-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d4ec0e11840e",
+      "canonical_id": "ojk-seojk-12-seojk-07-2014",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-seojk-tentang-penyampaian-informasi-dalam-rangka-pemasaran-produk-dan-atau-layanan-jasa-keuangan-0-seojk-12-penyampaian-informasi-dalam-rangka-pemasaran-produk-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-06b88ddd-0377-4483-8b29-ce550b8e231e-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-b15d167f-0062-48a3-98d5-51cb5ffa6c1a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-337ba6e586ce",
+      "canonical_id": "ojk-pojk-1-pojk-07-2014",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-lembaga-alternatif-penyelesaian-sengketa-di-sektor-jasa-keuangan-0-pojk-1-lembaga-alternatif-penyelesaian-sengketa-di-sektor-jasa-keuangan-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-0550b4f4-30d0-4e7d-8422-470a88382644-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-4983a9e0-1789-4998-ae72-a50d6df2d6d0-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-67ea00886acf",
+      "canonical_id": "ojk-sebi-15-51-dpbs-2013",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-perubahan-atas-surat-edaran-bank-indonesia-nomor-11-perihal-unit-usaha-syariah-0-sebi-155113-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-syariah-tentang-perubahan-atas-sebi-nomor-1128dpbs-tanggal-5-oktober-2009-perihal-unit-usaha-0-se-155113-1390363894-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4f691da87295",
+      "canonical_id": "ojk-sebi-15-50-dpbs-2013",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-perubahan-atas-surat-edaran-bank-indonesia-nomor-11-perihal-bank-umum-syariah-0-sebi-155013-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-perubahan-atas-sebi-nomor-119dpbs-tanggal-7-april-2009-perihal-bank-umum-syariah-0-se-155013-1390364679-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-add189922d97",
+      "canonical_id": "bi-pbi-15-13-pbi-2013",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-113pbi2009-tentang-bank-umum-syariah-0-pbi-151313-1389697790-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-113pbi2009-tentang-bank-umum-syariah-2013-0-pbi-151313-1390306746-pdf",
+        "sikepo-ojk-bank-umum-syariah-6f79250a-676c-4eb1-b0f5-c61e7f067e3b-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7a93288dc043",
+      "canonical_id": "ojk-sebi-15-49-dpkl-2013",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-lembaga-pengelola-informasi-perkreditan-0-sebi-154913-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-9a6d154a-9648-4982-84a2-2ce7bcc0d168-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-a8e2072f-e292-4714-b161-79d20ac5bc67-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e715241bb721",
+      "canonical_id": "ojk-sebi-15-44-dpbs-2013",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-fasilitas-pendanaan-jangka-pendek-syariah-bagi-bank-umum-syariah-0-sebi-154413-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-syariah-tentang-fasilitas-pendanaan-jangka-pendek-syariah-bagi-bank-umum-syariah-0-428-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-428db8b71c4a",
+      "canonical_id": "bi-pbi-15-14-pbi-2013",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-peraturan-bi-nomor-1110pbi2009-tentang-unit-usaha-syariah-0-pbi-151413-1389697365-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-ef3c8e6a-d1b9-494d-ba47-2f7811d8e821-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7e9c9d01a263",
+      "canonical_id": "ojk-pojk-1-pojk-07-2013",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pojk-tentang-perlindungan-konsumen-sektor-jasa-keuangan-0-pojk-1-2013-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-52154340-cf4d-4186-ae42-22fd442dbc12-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-67dbb1ac-eb8e-4ddd-8a56-2a753d1dfe50-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ebe4a6d3a572",
+      "canonical_id": "ojk-sebi-15-26-dpbs-2013",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-pelaksanaan-pedoman-akuntansi-perbankan-syariah-indonesia-0-sebi-26-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-pelaksanaan-pedoman-akuntansi-perbankan-syariah-indonesia-0-429-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8f169730eeb8",
+      "canonical_id": "ojk-sebi-15-22-dpbs-2013",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-pedoman-pelaksanaan-tugas-dan-tanggung-jawab-dewan-pengawas-syariah-bank-pembiayaan-rakyat-syariah-0-sebi-22-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-pedoman-pelaksanaan-tugas-dan-tanggung-jawab-dewan-pengawas-syariah-bank-pembiayaan-rakyat-syariah-0-430-pdf",
+        "sikepo-ojk-bpr-syariah-eb1d1fb3-9ea9-4a06-93de-d7bf9c12f4e5-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-be5d9a033f32",
+      "canonical_id": "ojk-sebi-15-8-dpbs-2013",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-pembukaan-jaringan-kantor-bank-umum-syariah-dan-unit-usaha-syariah-berdasarkan-modal-inti-0-sebi-15-8-dpbs-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-pembukaan-jaringan-kantor-bank-umum-syariah-dan-unit-usaha-syariah-berdasarkan-modal-inti-0-431-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-316d3b250efb",
+      "canonical_id": "bi-pbi-14-20-pbi-2012",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-1124pbi2009-tentang-fasilitas-pendanaan-jangka-pendek-syariah-bagi-bank-umum-syariah-0-432-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-perubahan-atas-peraturan-bi-nomor-11-24-pbi-2009-tentang-fasilitas-pendanaan-jangka-pendek-syariah-0-39-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fbf3364fb528",
+      "canonical_id": "ojk-peraturan-bapepam-per-06-bl-2012",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perubahan-atas-peraturan-ketua-badan-pengawas-pasar-modal-dan-lembaga-keuangan-nomor-per-03bl2007-tentang-kegiatan-perusa-0-499-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-perubahan-atas-peraturan-ketua-bapepam-dan-lembaga-keuangan-tentang-kegiatan-perusahaan-pembiayaan-berdasarkan-prinsip-0-488-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-11b1bed98e41",
+      "canonical_id": "bi-pbi-14-6-pbi-2012",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-uji-kemampuan-dan-kepatutan-fit-and-proper-test-bank-syariah-dan-unit-usaha-syariah-0-56-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-75a77579-c260-41b2-ad5b-68feee977709-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-7f59782b-1788-437b-b593-ac049870badc-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-08e9e40c-79cc-4f7b-9d49-4a92515415d2-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a0dc785c57c7",
+      "canonical_id": "ojk-sebi-14-16-dpbs-2012",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-produk-kepemilikan-emas-bagi-bank-syariah-dan-unit-usaha-syariah-0-344-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-produk-pembiayaan-kepemilikan-emas-bagi-bank-syariah-dan-unit-usaha-syariah-0-344-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-746c99d39dbd",
+      "canonical_id": "ojk-sebi-14-7-dpbs-2012",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-produk-qardh-beragun-emas-bagi-bank-syariah-dan-unit-usaha-syariah-0-345-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-produk-qardh-beragun-emas-bagi-bank-syariah-dan-unit-usaha-syariah-0-345-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c3aa44aaebe5",
+      "canonical_id": "bi-pbi-13-5-pbi-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-batas-maksimum-penyaluran-dana-bank-pembiayaan-rakyat-syariah-0-93-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-7e226d99-a92f-4aa4-9043-e0bef4418898-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-432d8e3a7942",
+      "canonical_id": "ojk-peraturan-bapepam-per-08-bl-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-bentuk-dan-tata-cara-penyampaian-laporan-hasil-pengawasan-dewan-pengawas-syariah-pada-perusahaan-asuransi-atau-perusahaan-0-bapas9-1389267044-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bapepam-tentang-bentuk-dan-tata-cara-penyampaian-laporan-hasil-pengawasan-dewan-pengawas-syariah-0-bapepam-per-08bl2011-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-bb634f2a2cbc",
+      "canonical_id": "ojk-sebi-13-16-dpbs-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-perubahan-sebi-tentang-rekonstrukturisasi-pembiayaan-bagi-rakyat-syariah-0-sebi-1316dpbs-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-perubahan-atas-sebi-nomor-1035dpbs-tanggal-22-oktober-2008-tentang-restrukturisasi-pembiayaan-0-349-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-38e7f8eb0a3a",
+      "canonical_id": "ojk-sebi-13-17-dpbs-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-batas-maksimum-penyaluran-dana-bank-pembiayaan-rakyat-syariah-0-sebi1317dpbs-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-batas-maksimum-penyaluran-dana-bank-pembiayaan-rakyat-0-348-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7c59f3d22ef5",
+      "canonical_id": "ojk-sebi-13-15-dpbs-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-laporan-bulanan-pembiayaan-rakyat-syariah-0-sebi1315dpbs-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-laporan-bulanan-bank-pembiayaan-rakyat-syariah-0-350-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d112c268433d",
+      "canonical_id": "ojk-sebi-13-18-dpbs-2011",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-perubahan-atas-sebi-tentang-rekonstruksi-pembiayaan-bagi-bus-dan-uus-0-sebi-1318dpbs-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-perubahan-atas-surat-edaran-bank-indonesia-nomor-1034dpbs-tanggal-22-oktober-2008-tentang-restrukturisasi-pe-0-347-pdf",
+        "sikepo-ojk-bank-umum-syariah-29d5ac16-9165-478b-971e-7e951aae3ff0-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-0a821041-43df-45f9-a2c1-c30832aa721b-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-74664875feb6",
+      "canonical_id": "ojk-sebi-13-14-dkbu-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-sebi-perihal-penerapan-program-anti-pencucian-uang-dan-pencegahan-pendanaan-terorisme-bagi-bpr-dan-bprs-0-1314-dkbu-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-sebi-tentang-penerapan-program-anti-pencucian-uang-dan-pencegahan-pendanaan-terorisme-bagi-bank-perkreditan-rakyat-dan-bank-0-351-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-23ed3f222cc2",
+      "canonical_id": "bi-pbi-13-14-pbi-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-penilaian-kualitas-aktiva-bagi-bank-pembiayaan-rakyat-syariah-0-84-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-e9834efa-ee59-43db-b0b8-8b8c9f859507-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fac217d318a6",
+      "canonical_id": "ojk-peraturan-bapepam-per-07-bl-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pedoman-perhitungan-jumlah-dana-yang-diperlukan-untuk-mengantisipasi-risiko-kerugian-pengelolaan-dana-tabarru-dan-perhitun-0-bapas10-1389267691-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bapepam-tentang-pedoman-perhitungan-jumlah-dana-yang-diperlukan-untuk-mengantisipasi-risiko-kerugian-0-bapepam-per-07bl2011-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ecaaac862d98",
+      "canonical_id": "bi-pbi-13-9-pbi-2011",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-1018pbi2009-tentang-restrukturisasi-pembiayaan-bagi-bank-syariah-0-89-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-023dec3c-1fe2-4a06-b5f7-40f9b2b95725-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-13f4f118-7330-45d2-8dd2-a40709ce3109-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-0a1d19ac-5d04-46f8-b6b9-0d54f75464aa-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d600a6da5496",
+      "canonical_id": "bi-pbi-13-6-pbi-2011",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-tindak-lanjut-penanganan-terhadap-bank-pembiayaan-rakyat-syariah-dalam-status-pengawasan-khusus-0-92-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-tindak-lanjut-penanganan-terhadap-bank-pembiayaan-rakyat-syariah-dalam-status-pengawasan-khusus-2011-0-92-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ff240f0f9d16",
+      "canonical_id": "bi-pbi-11-29-pbi-2009",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-fasilitas-pendanaan-jangka-pendek-syariah-bagi-bank-pembiayaan-rakyat-syariah-0-134-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-fasilitas-pendanaan-jangka-pendek-syariahh-bagi-bank-pembiayaan-rakyat-syariah-0-134-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-11df16129c0e",
+      "canonical_id": "bi-pbi-11-27-pbi-2009",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-pbi-nomor-810pbi2006-tentang-perlakuan-khusus-terhadap-kredit-bank-pasca-bencana-alam-0-137-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-009b2f6c-0f56-4c44-a01a-8d3fea76bd29-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fc8c4728b79f",
+      "canonical_id": "bi-pbi-11-10-pbi-2009",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-unit-usaha-syariah-0-147-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a75f8a3d-1b2a-44b1-90d8-1677831eef44-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9453dad0-3b58-45f4-859e-b4afacd8d746-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4d947e36580b",
+      "canonical_id": "bi-pbi-11-3-pbi-2009",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-bank-umum-syariah-0-148-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b6d0eb5d-797b-4cc0-bb71-6cc731cac357-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0b4d34ce316d",
+      "canonical_id": "ojk-undang-undang-6-tahun-2009",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-penetapan-peraturan-pemerintah-pengganti-undang-undang-nomor-2-tahun-2008-tentang-bank-indonesia-menjadi-undang-undang-0-325-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-uu-republik-indonesia-tentang-penetapan-peraturan-pemerintah-pengganti-undang-undang-nomor-2-tahun-2008-0-uu-nomor-6-tahun-2009-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1e833a0c5461",
+      "canonical_id": "ojk-undang-undang-2-tahun-2009",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-lembaga-pembiayaan-ekspor-indonesia-0-uu-no-2-th-2009-ttg-lpei-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-uu-republik-indonesia-tentang-lembaga-pembiayaan-ekspor-impor-0-uu-no-2-th-2009-ttg-lpei-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4058ce5ba10f",
+      "canonical_id": "bi-pbi-10-39-pbi-2008",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-peraturan-pelaksanaan-penanganan-khusu-permasalahan-perbankan-pascabencana-nasional-0-155-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-474fa8e2-cfdf-4681-8b8a-671e74088d55-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-81872e0a-dd89-45eb-8141-7dbd3c4c5b8a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-3455b9bb009a",
+      "canonical_id": "bi-pbi-10-16-pbi-2008",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-919pbi2007-tentang-pelaksanaan-prinsip-syariah-dalam-kegiatan-penghimpunan-dana-0-170-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-919pbi2007-tentang-pelaksanaan-prinsip-syariah-dalam-kegiatan-penghimpunan-dana-dan-0-170-pdf",
+        "sikepo-ojk-bank-umum-syariah-0e54b871-9454-4e07-ac27-0e49c7c87ac7-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-f93430da-0dfe-4755-a990-08bc2b2beb4a-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-84b762ec2451",
+      "canonical_id": "bi-pbi-10-18-pbi-2008",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-restruktrisasi-pembiayaan-bagi-bank-syariah-dan-unit-usaha-syariah-0-168-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-f921d61a-c8dd-455a-b8dc-4c145ec3886d-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-efce4c9849b0",
+      "canonical_id": "ojk-undang-undang-21-tahun-2008",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-perbankan-syariah-0-uu-21-tahun-2008-perbankan-syariah-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-uu-republik-indonesia-nomor-21-tahun-2008-tentang-perbankan-syariah-0-uu-nomor-21-tahun-2008-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-216f492f0fcb",
+      "canonical_id": "bi-pbi-9-19-pbi-2007",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-pelaksanaan-prinsip-syariah-dalam-kegiatan-penghimpunan-dana-dan-penyaluran-dana-serta-pelayanan-jasa-0-pbi-091907-1390266904-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-2dd87b3c-d95f-4c60-8ac6-c16d5281864b-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-696140f3-843f-4451-81e9-1cc07b00e640-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6c580ffd648b",
+      "canonical_id": "bi-pbi-9-17-pbi-2007",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-sistem-penilaian-tingkat-kesehatan-bank-perkreditan-rakyat-berdasarkan-prinsip-syariah-0-190-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-b80dfb33-1a29-4d77-8653-5a1ff3bd061e-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-aba03bc811cc",
+      "canonical_id": "bi-pbi-8-22-pbi-2006",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-kewajiban-penyediaan-modal-minimum-bank-perkreditan-rakyat-berdasarkan-prinsip-syariah-0-226-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-bb67873e-997e-4b07-846f-2cab1cf667c6-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-bffdd45f8458",
+      "canonical_id": "bi-pbi-8-14-pbi-2006",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-84pbi2006-tentang-pelaksanaan-good-coporate-governance-bagi-bank-umum-0-234-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-84pbi2006-tentang-pelaksanaan-good-corporate-governance-bagi-bank-umum-0-234-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-29a9f17fb99a",
+      "canonical_id": "bi-pbi-8-15-pbi-2006",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perlakuan-khusus-terhadap-kredit-bank-bagi-daerah-daerah-tertentu-di-indonesia-yang-terkena-bencana-alam-0-233-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-perlakuan-khusus-terhadap-kredit-bank-bagi-derah-daerah-tertentu-di-indonesia-yang-terkena-bencana-alam-0-233-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-849706ae2817",
+      "canonical_id": "bi-pbi-8-5-pbi-2006",
+      "group_size": 5,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-mediasi-perbankan-0-252-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-9d595fe2-92e1-4a61-83a9-6b9eea3ed7c8-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-6b8b8c03-71c4-4f57-b46d-332573ef1ca4-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-6b04bb71-4acc-4160-a257-9aa4d048ecdc-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-efb84398-2eb5-4f50-98a2-54b20d04602f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-292e855e747f",
+      "canonical_id": "bi-pbi-8-7-pbi-2006",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-713pbi2005-tentang-kewajiban-penyediaan-modal-minimum-bank-umum-0-248-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-8ff8a20b-7ff6-4c90-a9e5-168087626f4c-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-3b77e9a5cf3c",
+      "canonical_id": "bi-pbi-7-51-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-laporan-bulanan-bank-perkreditan-rakyat-0-262-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-751pbi2005-0-262-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6c2680387889",
+      "canonical_id": "bi-pbi-7-50-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor233pbi2001-tentang-transparansi-kondisi-keuangan-bank-0-267-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-750pbi2005-0-267-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fd95cd5ca251",
+      "canonical_id": "bi-pbi-7-46-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-akad-penghimpuanan-dan-penyaluran-dana-bagi-bank-yang-melaksanakan-kegiatan-usaha-berdasarkan-prinsip-syariah-0-271-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-746pbi2005-0-271-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-994e3ff1c235",
+      "canonical_id": "bi-pbi-7-47-pbi-2005",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-transparansi-kondisi-keuangan-bank-perkreditan-rakyat-syariah-0-270-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-pbi-tentang-transparansi-kondisi-keuangan-bpr-syariah-0-270-pdf",
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-747pbi2005-0-270-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-acdb5ccb4dcb",
+      "canonical_id": "bi-pbi-7-39-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-pemberian-bantuan-teknis-dalam-rangka-pengembangan-usaha-mikro-kecil-dan-menengah-0-275-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-739pbi2005-0-275-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4270f55a9251",
+      "canonical_id": "bi-pbi-7-35-pbi-2005",
+      "group_size": 3,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-624pbi2004-tentang-bank-umum-yang-melaksanakan-kegiatan-usaha-0-278-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-735pbi2005-0-278-pdf",
+        "sikepo-ojk-bank-umum-syariah-5ca37177-c665-4abd-89df-fce1bb6a8032-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-f1197d4f4274",
+      "canonical_id": "bi-pbi-7-33-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-pencabutan-atas-pbi-nomor-517pbi2003-tentang-persyaratan-dan-tata-cara-pelaksanaan-jaminan-pemerintahan-0-280-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-733pbi2005-0-280-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-bc52e27d660c",
+      "canonical_id": "bi-pbi-7-34-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-tindak-lanjut-penanganan-terhadap-bpr-dalam-status-pengawasan-khusus-0-279-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-734pbi2005-0-279-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-73e07989ba6c",
+      "canonical_id": "bi-pbi-7-29-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-615pbi2004-tentang-giro-wajib-minimum-bank-umum-0-283-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-729pbi2005-0-283-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e6624b1f6285",
+      "canonical_id": "bi-pbi-7-28-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "peraturan-ojk-pbi-tentang-perubahan-atas-pbi-nomor-611pbi2004-tentang-suku-bunga-penjaminan-simpanan-pihak-ketiga-dan-pasar-uang-0-284-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "peraturan-ojk-peraturan-bank-indonesia-nomor-728pbi2005-0-284-pdf"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-376473ee5e9f",
+      "canonical_id": "bi-pbi-7-7-pbi-2005",
+      "group_size": 4,
+      "preferred_file_id": "peraturan-ojk-peraturan-bank-indonesia-nomor-77pbi2005-0-307-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b9d1347a-4990-4df9-8d3a-6846dc02dd0f-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-7643fd6c-1d42-4b28-afa1-4344670e7045-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-2bf576bc-90e1-4943-9d63-73c62ee74b87-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-336f9c95988f",
+      "canonical_id": "bi-pbi-7-6-pbi-2005",
+      "group_size": 5,
+      "preferred_file_id": "peraturan-ojk-peraturan-bank-indonesia-nomor-76pbi2005-0-308-pdf",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-konvensional-1d2e6803-8090-47c5-af1f-22f01fcba3a6-1-ketentuan-utuh",
+        "sikepo-ojk-bank-umum-syariah-374c5116-9d82-4dcb-852d-e565564b1ca4-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-b842c55e-cd91-4ef9-8837-5ba844a1a74b-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-1c37fccc-2439-4875-b1c7-1fb7481b0ecd-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ea3ca7e21423",
+      "canonical_id": "ojk-padk-42-padk-03-2025",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-066573c3-f0fd-41c0-a5c4-785e94a63cb1-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-6e1a5ce4-4cd8-426b-b00d-a137aff6b73f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0ecff6e1b8bb",
+      "canonical_id": "ojk-seojk-27-seojk-03-2025",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-9646f7fc-6ed1-4d08-bce6-53c65b270786-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-04192c0c-ae32-4f9c-9c91-1a0a150dd837-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-cd095d46121a",
+      "canonical_id": "ojk-pojk-19-tahun-2025",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-adbe780d-aa76-4f2b-b0ca-6bc40261af35-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-eadde7dc-c4a6-48f8-8c10-7598b377726a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-61487f8dcbd7",
+      "canonical_id": "ojk-pojk-44-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-0a34450a-dea8-4c4e-8cdc-3aa1d45115b7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-0b7e1dc1-6138-40a6-a264-5eadaa1c9e98-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2aaf8b6ad952",
+      "canonical_id": "ojk-pojk-31-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-10d02c03-28d8-4382-9a9b-f1305b57c656-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-eceb54b7-b313-4bd9-a23d-b41990fd1b8b-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7b366b94aae1",
+      "canonical_id": "ojk-pojk-15-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-9f019723-a436-4f18-9e1e-67793744f418-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-58139161-b38c-4563-b8be-37ecfcdc5bad-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-efabc3fe8227",
+      "canonical_id": "ojk-pojk-12-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a79f2384-d45a-4612-aaaa-fa92b986904e-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-c3666a1d-9de2-439b-ab75-700724299f25-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e43d2adc8d1e",
+      "canonical_id": "ojk-pojk-26-tahun-2024",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-497eecaa-121c-424a-9f62-8441e8bf8674-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b7ef7dee-d8f7-456a-9e42-4d725017795c-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-b49e00b2-a25a-46f0-91db-e18a6a65f2a0-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-2c8c9a7b-7443-48a1-a467-c1b34ccce99f-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-79f38ed5-923a-4dc7-82b1-0e1ae3925687-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-db8a4b09ef8e",
+      "canonical_id": "ojk-seojk-27-seojk-03-2022",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-552349a1-df7f-4d50-9e52-8e5c911353a1-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-6f0e41c7-07d1-42ea-be7f-91fab18b8c7d-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c38b9be73cb8",
+      "canonical_id": "ojk-pojk-8-tahun-2023",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-091b303a-6969-420b-8538-ec97ea95a601-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-8c05a680-8884-481d-9b34-04763ab4fb13-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b451520a1b97",
+      "canonical_id": "ojk-pojk-19-tahun-2022",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-cd9add10-59ae-40a2-86aa-d0b0365a25e2-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-ca6c15da-8390-4dfb-bf0b-347bab7d17fb-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-7193ef53-8538-4b0f-b7e3-550fdba2a171-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-5b8c33cf-0a9d-4471-a36e-f87dbbca221b-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9b7a5eb2-625c-44cb-84a2-1b09b4f44173-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e0fa9ed733b3",
+      "canonical_id": "ojk-pojk-18-tahun-2022",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-6289bb53-2e21-44b7-a4d0-b34617a0ae89-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c754c120-f2ed-4a59-92d9-3fab28033bea-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-1255274c-b704-493d-92e4-e374c1d52cb3-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-934fa022-ac4a-4e68-970e-027c4ec8209e-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-485c5c8d-cdba-44cb-9bbf-72b6564aa586-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-18113cea9289",
+      "canonical_id": "ojk-pojk-22-tahun-2022",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-fe4a0dcc-4ace-427d-896b-fda4e187ac35-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-dbb2fc1a-777e-4086-bc3a-9f038b435633-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-8775de52-8477-402d-8c53-53ad42ea83da-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-9fed7e9622ba",
+      "canonical_id": "ojk-pojk-11-pojk-03-2022",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-4f266b04-98cf-4488-bdb2-fd5656d60e08-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7ae986c2-7305-43b1-9058-355a678c8bed-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-4e75225c-383e-452a-a4ab-d40c432b749c-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-bede8101f5c3",
+      "canonical_id": "ojk-pojk-1-pojk-03-2022",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-32e7bb0b-2bf1-440d-8609-de64d31780be-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-40e1f028-2d12-4e61-be5f-d2bdaf6061ee-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-61e64150-a369-4ae3-a73a-94550ccfa047-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-e16d9bca-0c71-4d44-8311-fcb48191986c-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-04978c74-85a6-4d7c-9ed3-6d069852275d-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e44808011ec8",
+      "canonical_id": "ojk-pojk-5-pojk-03-2022",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-068f3562-0a35-4f7e-80ff-6f6f00e8432d-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-47c9d0d2-ef00-41f2-9f86-f9a3b11f4327-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-67cdaefc-01fc-4e82-b63d-628fd4d0103e-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-aab17473-85c6-4f6e-8ed0-e2bbc2e1badf-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-50697c0c-9953-4005-8489-0d1bb44bc333-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fa1b54096a8a",
+      "canonical_id": "ojk-pojk-13-pojk-03-2021",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-2eaacb02-936e-499f-a024-df906ad5f418-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-e71c7b2e-0fdd-4db9-9161-7d0fd8ff6873-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-10b346a0-f599-4030-9670-2f32a97b0c90-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a646e404e425",
+      "canonical_id": "ojk-pojk-63-pojk-03-2020",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-b643c027-f463-4246-ba0a-cdce1981b108-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-ae27c17d-b973-43bb-a413-d861918a4700-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-065d27c1-8390-4b11-b536-febdea499d75-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d211f934fdaa",
+      "canonical_id": "ojk-pojk-45-pojk-03-2020",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-4562e4df-cdfd-408a-914e-2a540c1a32f9-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-d40eb2ec-ef92-457e-af5c-5a529a020954-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-f937832a-fef2-4684-b558-07ecb2d03a68-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-c31ce9f0-09c0-4331-949a-a5f695db5f66-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-24035bfe489e",
+      "canonical_id": "ojk-pojk-18-pojk-03-2020",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-51273085-c45e-49c5-bce0-4d087ee55324-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7e7d583f-1566-4076-97e9-0d4bde217cb4-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-2e36a682-96b9-44eb-96d2-ed375bb1135e-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-9a673c28-b721-4fa2-943a-5930ed6d2f41-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-623e862601fc",
+      "canonical_id": "ojk-pojk-11-pojk-03-2020",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a698bb26-1808-4310-8db5-6644e5627aef-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b09f3a06-6e9e-4552-b16e-30b641dc0563-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-662c723a-05f1-4fee-b75b-d25bf9b34436-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-a8aca37b-e9e9-41f9-9710-9707713447bc-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-f48e8266-efcb-40cd-8acd-bc171da95e7b-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7cadcd296a9d",
+      "canonical_id": "ojk-pojk-12-pojk-03-2020",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-44bff4f4-d1cf-4d11-b9fb-b42f21413d7b-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-f141724d-0c77-418a-b88c-ba7b9e7ea268-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-6e961c51-325f-4169-8cbb-5974bcd1b8ba-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-605054a7fcfe",
+      "canonical_id": "ojk-pojk-39-pojk-03-2019",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-f984da49-010d-4d00-93f4-550024db8240-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-70ae6716-df98-494d-b472-093f31f9c3a2-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-2504511b-745b-48de-8440-aa96a9cc5ad2-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d0806b048778",
+      "canonical_id": "ojk-pojk-42-pojk-03-2019",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-d5cde2e5-eedf-4b9f-8576-82e788f29499-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-1d592216-c1da-4646-9147-19999cfd3105-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-f2602bf5-aceb-4844-bc33-462dba38b518-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-434a0b9b-3a31-493f-9bfc-7b9a28c489c4-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-21ac2ff6-fb21-4c7e-89e3-244398acd0b4-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b92b8fee9c97",
+      "canonical_id": "ojk-pojk-36-pojk-03-2019",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-e9bf6dd6-0827-4990-97a2-cc3df24043ff-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-86a95727-e4a1-4ab8-91e3-0d8c92d8da3a-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-f9aa020d-78ff-49b4-a249-a2d3c835f4ee-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-ad5cf3c8-c5cb-4e95-9471-4177ec9c52af-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fd2129887720",
+      "canonical_id": "ojk-pojk-25-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-f4ae5257-e595-4246-8fb7-46447748f235-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-b34a7fd3-60c4-452e-9055-3719099e19e7-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c6b61d4b0258",
+      "canonical_id": "ojk-pojk-28-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-26deaf3f-fb4d-4b66-9e4a-d8fea21856a6-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a01f050d-b08b-40f0-bc30-5812ab85c81e-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2a775d43c651",
+      "canonical_id": "ojk-pojk-41-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-61b976b9-df64-4e8e-92d7-7ef5464d7af0-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-d917ee64-5034-48cd-a277-3efbe314aeb4-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-aa80f0c0c02a",
+      "canonical_id": "ojk-pojk-37-pojk-03-2019",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-7675e34c-9483-4b0b-9ddf-69cf81341294-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-6e9a35bc-fe86-43cc-ad9a-8d9b9c0f1987-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-5fcb1b1d-588f-4248-8d82-dd99543e4188-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1b621c25676b",
+      "canonical_id": "ojk-pojk-12-pojk-03-2019",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-dd2f0b23-1fcb-4837-8108-48e2b92b0b5c-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7508d922-f1df-42fb-b2e0-8ec69ece8b7a-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-5daaa52a-2d57-4d2b-ba95-5628ae501a26-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-55900de4a222",
+      "canonical_id": "ojk-pojk-11-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-8feb8634-bf01-4574-8ce6-59e00e80d5ac-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c184cb46-3b8f-4db1-ab55-86036ee6fa3a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6f1658851f5b",
+      "canonical_id": "ojk-pojk-1-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-b3054473-af60-4421-a374-d1c460ab77a8-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a131e23f-4ae0-481d-a74c-fff22e3837ee-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1776f186fcac",
+      "canonical_id": "ojk-seojk-17-seojk-07-2018",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-8e0c0706-904d-48f8-8887-04320b355d37-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-4b4519e8-1bb8-40ed-afe0-92cf42a1b85a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c1076efc7823",
+      "canonical_id": "ojk-pojk-34-pojk-03-2018",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-4329e799-7b27-4e8e-8c47-95e256180aa4-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-09a09c89-9b03-4042-b4cd-c4637c380746-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-297f482a-66e9-41b2-8ea8-e9901edd31c6-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-dc5b5c75-1ca1-44d0-8fa2-3f35fd7a2092-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-02362104b0da",
+      "canonical_id": "ojk-pojk-18-pojk-07-2018",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-413c0083-8a8c-4873-bab7-009aa2512357-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-ec44a806-3b2a-4f80-9271-8b486873aa9f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b4a9315f6aeb",
+      "canonical_id": "ojk-pojk-15-pojk-03-2018",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-1f88a7c8-ba43-4f19-950b-9d5e8dac08cb-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-1d885564-dc82-4a73-ba4c-90c266a54981-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e96480fc0557",
+      "canonical_id": "ojk-seojk-9-seojk-03-2019",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-ffa14b8a-7f1b-4e21-b130-1e1333200ba7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7bb47149-1911-4ad7-b71a-d7b82b93da61-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-8efc0906-b956-4d15-bf2f-638dc887cec2-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-c074c1ff-fb94-4eda-82c3-751bb7ef4f7f-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-68d9a363-5c32-436f-8fa4-9d633943288f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-faa9153c9a2f",
+      "canonical_id": "ojk-pojk-2-pojk-03-2018",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-43070298-83f1-4754-a578-7136561eac07-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-812b02fb-e631-496a-b0e9-9ebd04debe6d-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-21cb7f1359ea",
+      "canonical_id": "ojk-pojk-12-pojk-03-2018",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-2f883953-1a66-4741-a569-2f689eea267a-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-16762819-d4b9-44b0-ba67-46561d2e192f-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-19c62715-32f6-4eec-9e68-91a252d8df10-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-866304663e0f",
+      "canonical_id": "ojk-seojk-50-seojk-03-2017",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-048fb070-0e61-477c-90a4-b9d600c200ab-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-3461791c-8ad1-46ed-90fd-15392306e24c-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-d4f1ac01-1af9-4f23-be07-186faed28c16-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-fff28a1b-1cff-484b-9e35-79c4c51bbabb-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c8fc20d01a25",
+      "canonical_id": "ojk-seojk-43-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-735278ee-d5ed-4d96-9a6c-39cbdd245d21-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a9e40422-00bf-4fba-be68-c32fea6b1931-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-3513fbdb-c598-4fe7-8690-ea0d0364ebec-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-47b2eb29a27f",
+      "canonical_id": "ojk-pojk-51-pojk-03-2017",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-2bc3eb67-4acd-47b7-87b3-e4de04d47a9f-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-738be66b-b22d-4692-91e0-1aeff84d51b9-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-5d873e9b-bb30-450b-a6d1-a8084fc079ed-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-641e235c-2e3a-4658-bae5-9ec93e00cf77-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-db84aab26aad",
+      "canonical_id": "ojk-seojk-42-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-e2596b3e-f68c-4b28-8a94-34519888d805-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-2526fd48-6d2a-4d11-ae03-5ce50de5f847-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-26bc1b14-50da-4e35-987f-47069b77af33-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0702e97967b7",
+      "canonical_id": "ojk-pojk-45-pojk-03-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-9ed33fde-4527-4e9a-8c4e-0b0ad430cfcb-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b4c1d0cf-2907-4c5a-9220-77a6dbbc7c18-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-15e33764-720d-4e47-b9bc-c29a224dff6b-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-6ee8a817-80ca-475b-942a-9adc2d2e7565-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-8260f69a-c547-4740-88e7-05fed689bbef-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7a0aba67f8ca",
+      "canonical_id": "ojk-pojk-46-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a5f75e9b-4d51-4ba7-95e1-8019a0c33678-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-9573fda4-98ed-4e35-8a61-5c0d5f60771a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-52f55f90de07",
+      "canonical_id": "ojk-seojk-44-seojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-d92fa820-f512-415e-bb04-0d5a97fbb31c-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-e24e4e54-2c16-46cb-bc78-2b80c8303803-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-93c6e9cb5c9b",
+      "canonical_id": "ojk-pojk-44-pojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-e3f57a2b-626f-440b-af99-bfc52154e732-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-282b296c-314f-4dd9-b2cd-9b83cb10bf39-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-38f386f6-8511-4ba2-aeed-f486ed70a092-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-241b600fc4c7",
+      "canonical_id": "ojk-pojk-43-pojk-03-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-0c39f357-8a38-425f-bf07-70e370702c53-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-2ce41517-de53-46fd-a932-7676d9a67705-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-427280ca-b508-4834-9212-e881d90b1d39-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-5c4695b7-bc0b-4a45-b633-31459d0d0520-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-823a808e-ddb0-4c07-8c35-1766a217cac7-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b579ba0ff15c",
+      "canonical_id": "ojk-pojk-42-pojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-3167103b-9120-41e2-8948-2310c4915d44-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b1d934fa-96c1-4f54-9054-c1336c119ac9-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-71310878-b373-444f-a65b-25baff8e1862-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a5ca50521f41",
+      "canonical_id": "ojk-pojk-40-pojk-03-2017",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-2f3ed591-931c-4e7f-b11d-8f522827c973-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7aa13460-a79e-4e3a-b426-67816ee5274d-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-704a5361-2522-42a5-bf13-65b8a4a1ef56-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-0cd6ff67-9eae-4961-9ef1-eb443c129556-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-27597a1c2237",
+      "canonical_id": "ojk-pojk-38-pojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-84ee9e02-ad61-4533-96cc-7674ef31bfa1-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-6398dd0a-acf0-40fa-8ed3-41136ac61679-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-1275169a-190e-4654-8f7b-4db3938cf4c0-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-69d1d015dc1f",
+      "canonical_id": "ojk-pojk-39-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-f9aef980-572d-4c26-99d3-903519ba16a3-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-6c8c95ae-8395-433f-97cf-e29bd2c74cae-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2b0c8c8e5070",
+      "canonical_id": "ojk-pojk-41-pojk-03-2017",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-17f3e62e-42d6-4a69-b9bd-4039c3e63b94-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b03060a9-abe5-4c60-be69-0227cf4a0eac-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-112becac-90fa-48cd-a710-03660d8aa1cc-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-878c587c-028d-4244-a1e3-bf5524a236a5-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-28295aa44eb0",
+      "canonical_id": "ojk-pojk-37-pojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-80bcc766-7ab4-4a0e-bd50-0ae6995d609d-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-fb8aa296-6229-435d-b9bf-63e3f120e51c-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-a8a69277-5ed4-40c6-8ce9-99575fd5d52f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6a789b06efc3",
+      "canonical_id": "ojk-seojk-35-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-5d17adfa-b838-4b58-82be-4645397143c4-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c0ab4648-da9b-46b5-b8c8-f830200560a1-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-6b6835cf-039f-4ca4-a1ae-de691b9f2aff-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2868c7a8d9ce",
+      "canonical_id": "ojk-seojk-32-seojk-03-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a5b8818d-6d1c-44fb-9aea-5747b2e62db1-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c3df3c93-b268-440c-822c-ee0ed05fd69c-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-30186b29-3dc7-49f3-aa42-d58c81b475d9-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-a91eef76-53c9-45e5-9e4a-bede50d55cc5-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-885b1e6b-9dbd-4040-9f91-abcdab9f0eda-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ea10a86f9bab",
+      "canonical_id": "ojk-seojk-33-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-e9c74223-46b8-484b-9af9-721aaf3ba57c-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-cbf39e8e-c8be-46b4-8dda-e4338fa3b234-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-376b54e6-0407-4c45-a146-6535db919c94-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-05efd1b45f9e",
+      "canonical_id": "ojk-seojk-21-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-37d56530-16b2-4609-baa6-a70328c02ec3-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-e63d2679-8a98-4adb-b562-485bbd1d521e-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-589087f5-356f-4642-8185-c24d74539850-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-eb74fc332ea4",
+      "canonical_id": "ojk-pojk-36-pojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-15d6b10c-50ca-4f2d-9066-fcbb0265b905-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-3a5c3fe4-dc57-46b0-9286-7955494b07a6-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-fe5e0694-ed64-40bc-a024-69381ec5a543-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-525e153682b3",
+      "canonical_id": "ojk-seojk-36-seojk-03-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-b1c2189b-41e4-4ea8-a89b-d96e0953c1df-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-e3c1bb98-bb8d-4be9-8597-12252ac5be2d-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-52340e6e-7b8c-424d-9e41-33b2312e36f3-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-8800d185-2e68-4130-8f84-7e0d518d0250-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-d2df48d2-63f6-4f00-8b4f-8459b23520ac-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2de373f3524a",
+      "canonical_id": "ojk-pojk-15-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-06c0d896-1b8d-4fbc-bf23-aa93a5a5eb37-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-f397f8a1-c4a3-45c1-b6d4-6c92d2113556-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-080394f6041a",
+      "canonical_id": "ojk-pojk-16-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-07977e74-6a74-454c-8519-ad4e76b62cb2-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-98c5271a-8395-42e1-9e9f-9cf09cd3c804-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-29755f2753aa",
+      "canonical_id": "ojk-pojk-14-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-bae30d45-1491-4923-a98f-e17e76b93c78-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-03ba3257-c1e6-44a1-815c-3806d34048d5-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fd6fa7a92f70",
+      "canonical_id": "ojk-pojk-18-pojk-03-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-b73b6ad7-63ae-4e11-98ab-b403801031e7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-4698106b-4d4b-4ab2-a16f-0ab2f1543750-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-f50cc89b-fbfc-4447-a1ec-25c724064a4a-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-6eae72d2-69c7-4f24-a65f-ad12e01eacc9-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-1ace82a4-6d36-49e9-b607-9fada4a8e089-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a10ec1654933",
+      "canonical_id": "ojk-seojk-12-seojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-bb6ef2c6-9dd9-46e6-ba9e-ddf6da76ec16-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-d92a30eb-b762-4838-9fc2-4303ded124c5-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-96787fd4718a",
+      "canonical_id": "ojk-pojk-13-pojk-03-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-55ae9537-9017-4e14-a153-ca46d5bc9dcf-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-abf5a209-7183-417a-8434-b4beedf14c47-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-434b6fb9-4e01-4f0c-b388-73cf9e2e81a2-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-eccd954b-9f9b-4e0b-88b0-878e1cc8f33b-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-3106563d-8a0a-437b-8015-228a78e85ae8-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b07cb35a7971",
+      "canonical_id": "ojk-pojk-57-pojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-77a81b94-fd73-4716-adda-6f0c8e7ecbdf-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-8424d782-0da0-462e-85c0-5331047511cb-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-6ead6a59-fc23-4494-ac90-403eeeb29007-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-486414e0cd45",
+      "canonical_id": "ojk-seojk-11-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-417bb196-c6a5-4e17-b0da-bb5d614a89c9-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-94b9d8f7-9d4b-4755-9293-af710fbeaa89-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-35cae02f-b799-4c4e-b8d4-3874c182f026-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-712adffc2b39",
+      "canonical_id": "ojk-seojk-4-seojk-03-2017",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-afc68f35-4147-449b-931b-03c775cd8548-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-40f44b25-4581-4c5f-b41a-e56348da3a7e-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-6b8c97ce-fb77-43df-84b8-14160bd403b3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-3392350cf23a",
+      "canonical_id": "ojk-sebi-18-26-dsta-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-baa68c09-78c7-4d1c-a18e-8aba400f7dd6-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-af759dc3-68c4-4d6e-acee-24f0ef3a662c-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-69bbdc1e-7167-4efe-9fe0-88a3bb8cfc66-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-19e5d1cfda63",
+      "canonical_id": "ojk-pojk-12-pojk-01-2017",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-e0f58b8c-ddad-467a-a4d5-3f4eac141473-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-f962263e-c007-42c1-b4e7-d0095ed94a02-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-adf88a17-95c5-4841-ae5d-8383669c7e23-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-b760a5c0-3a95-48bb-824e-74c9505e1407-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-7a8449a9-6d2e-4470-9aac-c70f746c9539-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fc0a5e0ad8bf",
+      "canonical_id": "ojk-seojk-37-seojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-77b0a920-6a9a-4b50-a777-f345bccd1432-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b7e3702b-20f6-4894-b550-447c3cf97c7e-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-7ffc8bf3-9607-4cca-94fa-88168e4ca15b-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ea23aaccc08d",
+      "canonical_id": "ojk-seojk-33-seojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-5ecbd53c-ac18-404b-8926-a4c177ec5450-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-6231a827-2401-4400-a511-4faa22cd9908-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-08452256-b0b4-47b6-907f-a8ff3adf288f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6ccc4a5c1c75",
+      "canonical_id": "ojk-pojk-27-pojk-03-2016",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-f5073d40-56a2-4471-83ee-76bb3bf959e7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7ed282be-c527-46ed-92cb-1791984d9104-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-02b164ba-8a59-4086-9bd8-5e017678e3e5-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-cef17cb7-6a0a-4d50-810e-782fb8c830de-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-4e243c46-576a-41cf-9537-985ed32db58b-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-12ba5ae8ee83",
+      "canonical_id": "ojk-pojk-25-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-8b54160b-00e6-4f3f-a91d-6c8023b237b7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-8fe398fe-437c-4034-a169-4e2ccac3d4b9-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-bff4bd9c0993",
+      "canonical_id": "ojk-seojk-39-seojk-03-2016",
+      "group_size": 5,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-c55a0f74-d1cd-4868-b089-f10ac0a1d1ba-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-f1c2b73c-c9ee-4f2d-8390-6efc6b1f8274-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-c321692f-1a38-4e0d-83b2-7e56c5f26048-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-1f81149e-4d03-4c78-92bf-3148aa91a220-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-b785e6bf-e5b8-4107-8739-7337b9e5e346-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d1879b00049b",
+      "canonical_id": "ojk-pojk-9-pojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a75d4921-6613-4101-beb4-280e4d5d0db9-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a06bee38-5370-4fa5-aac4-a5e4c2aa9425-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-5df9e2fa-f27b-46c2-bfea-9629c0e099dd-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0c168051e2b7",
+      "canonical_id": "ojk-pojk-6-pojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-99bab6a3-5775-44d0-8c45-f02fa4d2be67-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-1c7330cb-89b1-420d-b26f-44fb5d9cd2cf-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-8333d227-628b-42c8-965c-4693f2ca306a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7f7c36dfe2ec",
+      "canonical_id": "ojk-pojk-5-pojk-03-2016",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-c491a1da-dc8d-4642-993d-8a413a9b1abf-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-37e37c3a-e92a-45c3-bf1a-f4efb72d6bde-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-2e488575-9b2b-4bd4-a3fc-8d382b6888a3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8fb7466b3bec",
+      "canonical_id": "ojk-seojk-14-seojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-81f5f302-6196-4457-ab0e-69e876a1aaef-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-6e5266d9-1e60-41ba-8003-38f3ba501c84-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-76dadfafde7d",
+      "canonical_id": "ojk-pojk-27-pojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-e861e9f1-f706-4453-abeb-2930fdc81b54-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-29fd1ca5-e1d7-4b7a-b122-5da19a707b28-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7daefe7a7d50",
+      "canonical_id": "ojk-seojk-15-seojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-960271f1-f602-4a90-a44a-ad1f8f66e185-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-90dd7c90-c095-4f33-8406-dcec0d7e2772-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-eb45d73ccc88",
+      "canonical_id": "ojk-sebi-17-5-dsta-2015",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-0a252a71-cf53-4487-ab44-cdbfcd4d2bcc-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-12411a61-5c95-488d-ae41-e7e30d2558db-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-d6a8d376-2fda-45ac-a5a9-2976174e8c6e-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7ccdeb856fb6",
+      "canonical_id": "ojk-sebi-17-1-dsta-2015",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-08f6f995-2910-4f1a-9a03-bb323684a2a4-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-8a1fe9eb-1931-45f9-b29e-47821bbefd26-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-05f619d5-66ab-4b37-8d6c-e07c3b8dcb2b-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-476df74bf614",
+      "canonical_id": "ojk-pojk-18-pojk-03-2014",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-b4c6c048-b520-4831-83b8-cf58f5a25a8d-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-1dbbcf65-8d71-4c7e-99a9-d28a9cdd3e04-0-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-2eaecdb8-7673-43d9-afd8-dcc9cee33054-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-07442dff-7a92-4341-9c50-9a99e2a292c3-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-250035bbc077",
+      "canonical_id": "ojk-seojk-6-seojk-03-2015",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-0d1fc18d-7531-490e-91db-2fe85ee795ff-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-367703bb-1ba1-43ad-bb9d-15fc537cc115-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-d5e53102-1d36-43a2-a665-218f07ec33ca-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-f2c08e9e-e6d3-48a3-bd4e-2590d4113c9f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-057e4f1c9912",
+      "canonical_id": "ojk-sebi-16-17-dsta-2014",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-c188f004-d400-4875-9d6b-1be247b6bea4-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-16b331a9-763f-413a-b9aa-3d26dcbabc9b-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-a25b5e2e-1518-412a-95be-3b2b72206cda-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2f6d2957373e",
+      "canonical_id": "ojk-pojk-19-pojk-03-2014",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-bbe519fd-8cce-4fec-b4f9-085be8454997-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-791552c9-ecaa-4c5a-a15e-cc0c22b9be3b-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-680446f1-3dc6-4032-b1bc-a427b33d7fa8-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-85bf4faa-4b0e-46a7-8a7a-a4ca1c477179-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-520b90c8495c",
+      "canonical_id": "ojk-sebi-15-52-dsta-2013",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-bafa46c0-dcae-423a-bbc8-364bb35b5555-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-42a8188c-063e-4fb5-91a0-355d23c67e6c-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-28a0d025-8ae1-4aaa-b4b3-45883104c15d-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a02ce2118d8c",
+      "canonical_id": "ojk-pojk-17-pojk-03-2014",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-aa8ac786-0779-4423-856e-ae24dcf9c762-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-9db75a06-5d33-4965-9b54-b6b846e4ca62-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-5e19a1621165",
+      "canonical_id": "ojk-sebi-15-48-dsta-2013",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a933c2e6-cd8c-4622-b44e-3f1a7307edc6-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-cf054db7-48ca-4f80-aafc-29f19c89a8df-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9fe808a6-abf3-4df6-9160-347a9ce67192-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-dcc1a926d66e",
+      "canonical_id": "ojk-sebi-14-39-dpm-2012",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a3e9940a-d2a6-4dff-a0d9-8b2ef44784bd-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-470b00d6-4cfe-4703-b21b-fcc0714f1d2e-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-a53a6cb6-d6e5-4f93-b1f8-b14624d23a9f-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-837d9c8ea1fd",
+      "canonical_id": "ojk-sebi-14-31-dpnp-2012",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-6968a2e0-f61d-4ebc-a75e-a5ed3d01bc6d-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-ca35ce6d-f896-4ea0-b106-9f4ef55f119f-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-dec923f7-dc0f-4d15-84b2-1769e8d88e05-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e418975f6ff8",
+      "canonical_id": "bi-pbi-14-12-pbi-2012",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-02e0ce44-7cd7-4716-ac85-8952e3ac32b0-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-9094ae99-207f-4138-a2f4-05b486cf81b0-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-e5b852ce-7792-4ad9-b343-f0b7f1f31d96-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-5ecb95bf6300",
+      "canonical_id": "bi-pbi-13-19-pbi-2011",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-75d8b11b-1571-4734-9153-9b6937b74a33-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-eb4011b8-948e-4f36-84ec-b64267868c08-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-6092d8ff-4b65-421e-a134-5fbfdda753fc-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c0fd6e01cbba",
+      "canonical_id": "bi-pbi-13-8-pbi-2011",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a2278bb6-6848-4175-9c96-cdb4ae7315f5-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-56f83643-bc8b-46c7-b319-b0acf37f6f52-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-07ca3e77-7ca1-42f5-bfc0-eb3f85d9d052-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-11b095eb4043",
+      "canonical_id": "ojk-sebi-12-36-dpnp-2010",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-b1e30349-2dda-4618-a851-43c365b7fabf-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-68b6eed5-931d-4b6c-b6f6-9e899092f392-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8abed3f43e1e",
+      "canonical_id": "bi-pbi-12-7-pbi-2010",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-1061539d-d457-4553-aa02-a9951b98886b-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-4349a31f-abee-4d08-867b-5e4706e5351f-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-7a6997f2-d4f2-4e05-9aaf-6a59f8fd6add-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-795447042ca9",
+      "canonical_id": "ojk-sebi-13-3-dpm-2011",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-54ce549e-31b1-48c6-8fbb-9f94fd49a675-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a6c8495d-ca1d-4052-a48c-3c68f2147c83-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-88d712f7-627c-484f-b61d-171802935ea7-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a023d6024ceb",
+      "canonical_id": "bi-pbi-11-19-pbi-2009",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-6e886f7d-43d4-4fee-b0d7-b76daa665c84-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-3e1c693a-b9ac-4b0c-b88c-e6b879942248-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-f5d56f31-576e-47da-8d70-73f42afb9c2c-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-756153a0944a",
+      "canonical_id": "bi-pbi-12-22-pbi-2010",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-f5f7b77a-4ce0-47ba-90e7-d2ca5dabc855-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-konvensional-0ca5ea49-0d97-4c82-b5fe-39da4cc28626-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-9f5c104eba56",
+      "canonical_id": "bi-pbi-10-1-pbi-2008",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-7d034152-8b12-4ab6-b730-34f3b847ded2-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-1ffbd177-c487-4ee0-a48f-ebc3e4f9d732-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-890c702e-0c71-4537-a78b-b7d157c26a78-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-8b1054b8-c991-4c21-b0e6-8683d82b9c1c-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-05e2f0e07715",
+      "canonical_id": "bi-pbi-9-12-pbi-2007",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-217c26a1-4b8e-4a1f-93cb-fec6c8b0526b-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-241d4c2f-f504-41f6-a2f5-38b28081e167-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-122dea134127",
+      "canonical_id": "bi-pbi-10-9-pbi-2008",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-357b7e89-9c69-457a-aa58-0aec50b2c826-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-5cd4ddb7-9348-4407-a231-18ccd9813d7b-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-d810e97e-6f89-427c-8d3f-ef947211c8d1-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-syariah-0db4fbcb-5667-48cd-ac2f-72d226b0d3db-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-28b0afae34b0",
+      "canonical_id": "ojk-sebi-9-20-dpnp-2007",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-aca99a2c-c9b8-407a-ab18-510800f13e06-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-2c7083bf-32b9-45f0-8c57-2790445c56a7-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c8cd8d8220e3",
+      "canonical_id": "bi-pbi-8-17-pbi-2006",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-7bcfc69c-d98e-440d-82c2-16172ef2d855-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-d9ad7c1f-52e1-4297-9b8d-07f7660c5730-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7252991d8871",
+      "canonical_id": "bi-pbi-8-13-pbi-2006",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-433ceab8-6de6-46c1-94e0-4a4a344f2ec4-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-d549d69d-ed93-4992-a53f-4d354713f4e2-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-dc2167edd533",
+      "canonical_id": "ojk-sebi-8-14-dpnp-2006",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-31591ec0-4d75-422b-a22a-e345a1c20aea-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7bff391e-c782-4ee1-85d9-9e1ff2fe4644-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-dc2dac9f-1728-4823-aa4f-35ad367b6f85-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-35d5916e-88ff-4987-92af-2a0fdea6845c-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fe74c3683f3f",
+      "canonical_id": "bi-pbi-8-12-pbi-2006",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-3d8552cc-1189-4c22-af0a-cdd380e2d2de-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7348cc1e-6e16-4acc-b908-16fb49e95bac-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-7805f9f3-89de-4943-8af2-172251776296-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2eb957e3cba7",
+      "canonical_id": "ojk-sebi-7-25-dpnp-2005",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-aabcdf17-4d92-49db-b029-1fc5591da352-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-c8248110-91d6-4a5c-8545-5f611ef3eaa9-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-051398ec-4947-4ad1-99fe-3f3d64c04ec8-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-e61aafef-69ba-43a1-92f3-bf7662d768f6-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7db1b25c2e0b",
+      "canonical_id": "bi-pbi-7-3-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-70b59cd7-5c25-4d22-bd16-1afd8f7ecdbe-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-7fa93740-e25b-45bd-8102-c31ebfb517d8-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-634ae7492b67",
+      "canonical_id": "bi-pbi-2-19-pbi-2000",
+      "group_size": 4,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-801d0f45-7cb4-4e96-8d45-c6a6d6177f43-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-5cba17e3-24cd-4557-8455-d9d5b9083117-1-ketentuan-utuh",
+        "sikepo-ojk-bpr-konvensional-c54314b8-86da-4001-894b-d7e0ee52e46c-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-b0b6ec95-9c18-4d25-b21c-c68acc51371d-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-30bbf4b548bc",
+      "canonical_id": "ojk-sebi-7-48-dpnp-2005",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-2c5749e1-27d5-47b2-9c90-9df978639905-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-a644dab8-b0e8-4905-b8d8-d77e3a0f8827-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-74be9115ef82",
+      "canonical_id": "ojk-sk-dir-31-310-kep-dir-1999",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-586a0071-1580-457a-b7f8-6a67821450db-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-9f1880a1-c99d-4ada-9430-6bf89664df60-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c58c2c33883d",
+      "canonical_id": "ojk-sebi-7-14-dpnp-2005",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-ef6bfd15-33a8-470e-8554-63226a4d573f-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-553b0392-b886-4067-bae0-445b93549dc5-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4dea75262512",
+      "canonical_id": "ojk-sk-dir-28-76-kep-dir-1995",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-00c585aa-2829-48a6-80f7-adc09c554c70-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-b6b5e049-4245-4e6b-909c-9a652e6dabb3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0766c90252a0",
+      "canonical_id": "ojk-sk-dir-23-88-kep-dir-1991",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-a3dcb8bf-e9f7-4c52-8434-3c3cb7045d22-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-60503333-0cee-42b3-a7b1-5165ee4005c8-1-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9358e099-5ecc-438d-8767-0d39ac9fd71f-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-a7658f553261",
+      "canonical_id": "ojk-sk-dir-32-53-kep-dir-1999",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-konvensional-c0868c5c-d535-42d9-86c4-0fee853e94c7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bank-umum-syariah-ba1d8318-ce0d-4b0f-8ee3-45e4999ec664-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8f1a5ede5fb8",
+      "canonical_id": "ojk-pojk-2-pojk-03-2022",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-d1157074-3247-481f-8331-ac117fe4061c-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-6e7a2146-9d56-4c5b-8a86-d7421217e214-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-4ed92ecb3120",
+      "canonical_id": "ojk-seojk-14-seojk-03-2021",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-a2d08aca-0976-40f5-b53a-ec5d66d9714e-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-fe13c11f-55c2-4692-99d8-b971349d820e-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-fcda821b1fc4",
+      "canonical_id": "ojk-seojk-27-seojk-03-2020",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-441f88a4-a804-4fd4-b157-d21c493e56dc-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-8743adcf-1f39-4bfd-beea-e330f78a643b-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-cb7f9ca03d57",
+      "canonical_id": "ojk-pojk-59-pojk-03-2020",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-85084f61-71cf-408d-986e-279052c167ca-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-444b1cc7-7ecd-4518-8748-5ac861ec6023-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b58167c53ffa",
+      "canonical_id": "ojk-seojk-10-seojk-03-2020",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-4611bae4-b9f9-47ef-b6c3-64d7e78dc364-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-65902813-3d1b-4344-b3f2-cd25ee6f8105-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6acf836425a5",
+      "canonical_id": "ojk-seojk-8-seojk-03-2018",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-1e6dcb31-1130-42dc-823a-082673aacc48-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-52d35a46-6093-49a7-9b15-b0c16724c56f-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6671472b3f2d",
+      "canonical_id": "ojk-seojk-49-seojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-5366f81d-3a55-455e-9c4a-85f693655509-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-cc9c4147-bb0a-41f0-aa76-f1c935c4a1f0-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2c56753bab8c",
+      "canonical_id": "ojk-seojk-10-seojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-d90b3380-8a73-4313-ad33-00e2d18a74d9-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-9367b2b9-2568-4c90-966b-a7ecde396f20-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-9e295c7c33da",
+      "canonical_id": "ojk-pojk-65-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-363f6cdd-80a0-4296-b5fc-a0acdd970515-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-43c9dfa9-1aa9-4c77-8e0c-9ed817778697-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8273603e1a34",
+      "canonical_id": "ojk-pojk-64-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-c66b6fc7-4377-4b1d-a085-647f4f1c5446-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-e62c7cc2-7648-4f3e-98d3-18f169ecc5fb-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-96861e25918a",
+      "canonical_id": "ojk-pojk-32-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-9a074c78-2d38-4608-95b2-e4ea431b5c57-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-0e2210aa-263b-4190-b3e0-0ba30cbc4421-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c43b43d7da95",
+      "canonical_id": "ojk-pojk-2-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-8b0ff5d0-5590-428d-8ad8-62572630ad62-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-b700c732-6e40-450b-ab8e-4ecf6f84f003-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ebde5948568d",
+      "canonical_id": "ojk-seojk-36-seojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-f7cf62a8-a069-42f2-aab1-a50b89fdb655-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-1d2ac6d3-8a8f-4e4f-be22-a487261e51d3-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-c2fef556b409",
+      "canonical_id": "ojk-seojk-8-seojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-02935926-ab85-4aad-939b-2233e5659df6-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-af03d223-3162-47a7-820f-a0756d02fa03-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-59cfcd4a8124",
+      "canonical_id": "ojk-pojk-8-pojk-03-2014",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-c7892dce-e970-4823-919f-6c649cc46e68-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-7440ab03-73b0-48aa-934a-7c66fa8a9b21-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-11c5f873d821",
+      "canonical_id": "ojk-seojk-10-seojk-03-2014",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-5a47211a-f535-41a7-b6f7-ac35d523d601-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-f597e627-72d3-42a5-8e14-1181977dbf94-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-1fa7909f690f",
+      "canonical_id": "ojk-pojk-16-pojk-03-2014",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-7394d4e5-b817-4b84-86aa-e76f9c65f5ec-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-d21de0bd-0ee8-4c44-a7e7-ed033a0f2001-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-dba2cb856587",
+      "canonical_id": "ojk-sebi-15-37-dsta-2013",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-a4297027-c02e-48f8-b736-2a53b939ed8e-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-b0d2d584-f783-43c2-8329-74b9a3f830f3-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-78fe804fe33e",
+      "canonical_id": "bi-pbi-15-4-pbi-2013",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-1b061330-7e7e-4ec3-8491-d0542bdef3ad-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-1ad8eb38-56f2-4bce-8980-43a75a107810-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-7bc0fafb17ed",
+      "canonical_id": "ojk-sebi-15-26-dpbs-2013",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-b0814c83-b470-4373-a4f6-a3de9c1b0e53-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-217180aa-12e8-4f96-9416-ed1bf43b59e2-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-99f7264a7dcf",
+      "canonical_id": "ojk-sebi-14-25-dpbs-2012",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-32165b7c-b4df-41d4-87eb-5fb9767a6376-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-5df40b47-ca3c-4dd6-8f34-31e63c5eaaeb-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-55a0631d-83ed-4dc6-985f-55a94fe40c3a-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-761472d11e1a",
+      "canonical_id": "ojk-sebi-13-28-dpnp-2011",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-4521c5e0-8284-43db-abfb-7d433ffa09d1-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-7ecac47f-b2fe-4b34-8c11-0684daf7393b-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-5af2911d314b",
+      "canonical_id": "ojk-sebi-13-19-dsm-2011",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-9be5f4a2-1d7f-456b-804d-b0361ae11a5c-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-0e6fb06c-c9a4-42ed-ba78-7bd609e33b60-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b082acc511a1",
+      "canonical_id": "ojk-sebi-11-36-dpnp-2009",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-abd8fde7-2e82-47c5-9e6c-bb58f9f40d43-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-e661f5d4-93e0-4a63-872c-371addd9f757-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-55949faeab60",
+      "canonical_id": "ojk-sebi-12-13-dpbs-2010",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-1d1f8431-476d-4b96-9479-7a6b971b7426-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-e7793795-079e-4bf8-bce5-efaf34b0db2f-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-10b1297e3d87",
+      "canonical_id": "ojk-sebi-11-28-dpbs-2009",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-8db0ef72-ff93-4fcb-ac9b-eb3606885dbb-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-7dcde64a-a4c8-4287-b129-fa693f0d4709-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-25478411620e",
+      "canonical_id": "bi-pbi-11-33-pbi-2009",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-bdd4f503-9feb-4197-b9c9-0fe7e3a2010f-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-475f1442-8965-42fa-9074-8fd8c772f35d-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-480b5651dab8",
+      "canonical_id": "ojk-sebi-10-13-dpnp-2008",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-80fd3c1a-7f9c-4f20-8c99-6fe874e85d97-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-d6053c76-9dbe-4a68-9414-25726e5321a6-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-0002f70b-e80a-4678-95f2-32e56bc47d69-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-5fef354fc841",
+      "canonical_id": "ojk-sebi-10-14-dpbs-2008",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-f98ee161-2c9a-4233-aee6-f757673a28c7-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-b422880a-16f3-486e-bacb-2adac472ab95-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-3a1b8a8fbf59",
+      "canonical_id": "bi-pbi-10-10-pbi-2008",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-a677bd30-8b9d-464b-864f-4b27df738fb1-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-8e36c451-95d7-4638-b68f-547bd2d67964-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-9dbcf7cf-bd44-48b7-9f0e-f9df13783423-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-8d0d6c61beac",
+      "canonical_id": "ojk-sebi-10-6-dsm-2008",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-1cfae9b9-a09b-4155-8dd2-d635183a385f-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-052c084c-448f-4c95-b4dc-74ca75b08450-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-5e8150f7d80c",
+      "canonical_id": "ojk-sebi-8-16-dpbs-2006",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-801bafc6-f345-4b9d-95b6-e7a0d2bb8483-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-0532e13d-76f3-452c-80ef-bb7e994b518e-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-71b0e9c6d646",
+      "canonical_id": "bi-pbi-7-50-pbi-2005",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-138aeebb-4212-4c2a-99d9-b07cb4c0ceef-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-c774c591-8fc3-4754-bbb6-493f0da2430b-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-970ad320-96f4-4bf4-a736-2c92af15166a-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2c1fdcd667bb",
+      "canonical_id": "bi-pbi-7-27-pbi-2005",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-c5951151-0f59-4233-b6e0-778af73fc0a1-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-1c30e12f-4a2e-43c6-b4b4-9b6420195cb2-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-673cf2bfbb0b",
+      "canonical_id": "ojk-sebi-7-24-dpnp-2005",
+      "group_size": 3,
+      "preferred_file_id": "sikepo-ojk-bank-umum-syariah-9b08c282-65c0-44bd-9bf1-3502699722dc-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-adaa128e-c9ca-4e93-90fd-101f2eb09b95-0-ketentuan-utuh",
+        "sikepo-ojk-unit-usaha-syariah-7d69cdc3-3dbf-48c9-8a96-8352ec02f4d0-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-60ca1efedd61",
+      "canonical_id": "ojk-pojk-23-tahun-2024",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-d5ce9490-9629-4ea7-a7ea-f9505383e71b-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-51413b48-fd26-42cc-a203-4b543025ca85-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-0ce0714164ee",
+      "canonical_id": "ojk-pojk-23-tahun-2022",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-a2cffbcc-0721-4560-b057-09afef040c2f-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-33b6ccb1-e88d-4e12-b31d-361dd8b185d8-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2724d4f5c9c4",
+      "canonical_id": "ojk-seojk-11-seojk-03-2022",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-8d129f53-3a15-49b7-b82a-690cf1ef3677-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-20d7176a-59e6-437d-a057-087e70f9a1d1-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-35c2cc7107b3",
+      "canonical_id": "ojk-pojk-25-pojk-03-2021",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-1819b22f-10b0-4d88-aa28-57bd5a062d34-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-1dc53a88-f985-4975-b9d4-47824b1efb6c-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-6d27be9cb436",
+      "canonical_id": "ojk-pojk-3-pojk-03-2022",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-70f7ed31-0cc2-4674-a8e2-9e9261f5c6c0-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-36bfce4f-2845-491c-8488-e868ceacc5c3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-718dd00f2596",
+      "canonical_id": "ojk-pojk-15-pojk-03-2021",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-d397dfde-8590-4bb8-9e25-0ac8fa380260-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-0cf70494-46ca-467a-85bb-53222ce0ce93-0-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-efdbbfd584e1",
+      "canonical_id": "ojk-pojk-34-pojk-03-2020",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-6f9e4911-0af1-44d6-b28b-954c7fc440b0-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-df54f7c2-0584-4dac-89cf-59a199043e57-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-687744345ad2",
+      "canonical_id": "ojk-pojk-21-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-97e19a3d-b2c4-4196-81aa-15f9196bc2ba-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-cdcdfd56-24a1-4f85-becc-fd5d06f462ea-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-f92bfcb518f0",
+      "canonical_id": "ojk-pojk-13-pojk-03-2019",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-fde98a58-f650-4872-8699-774f607b67d7-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-80e7bf9d-e8e2-4997-ba6e-070b770c7aa9-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-40c6cdb1bf0e",
+      "canonical_id": "ojk-seojk-56-seojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-197783d2-2d64-4652-8685-affe02c5e0ab-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-44bb74da-aea0-4b15-bee1-d4b3344dd07a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-46bdbe7c84be",
+      "canonical_id": "ojk-pojk-47-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-d0247f7f-e342-4f3b-a33d-ca1ad6db0774-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-72eb7332-455b-495e-81f9-593d07400cc2-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-e1ec2b258db1",
+      "canonical_id": "ojk-pojk-19-pojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-d0031b0e-8875-40ea-a45f-1e43ec0dc700-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-aab85eeb-c5e8-428b-aef8-eda35e25f194-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ec2d723b18cc",
+      "canonical_id": "ojk-seojk-15-seojk-03-2017",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-51bea0c8-4122-423f-bea6-10a7f092f513-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-ba5982cc-73c0-46c7-8f19-47325560a487-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-b9955533205e",
+      "canonical_id": "ojk-pojk-75-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-0a769582-144c-4699-b43c-08b3bbcfdaf3-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-8fa6ddeb-ccfb-4f28-a08f-5160d9c3cbe3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-d23c85ea8dfb",
+      "canonical_id": "ojk-pojk-62-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-a6ea2145-0b24-4d76-9ca2-af89874a4113-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-07ba5f5f-25ea-466e-85d9-f7d425b0ce24-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-2cd3f3007563",
+      "canonical_id": "ojk-pojk-37-pojk-03-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-feac06b9-a8a4-4209-978e-a00a240a4c60-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-6f6cf8b0-c04f-45ac-8387-6f9954241ef3-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-ff407698ea1c",
+      "canonical_id": "ojk-pojk-44-pojk-03-2015",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-aadf0630-b4cf-4786-b084-e8d0ecf9413c-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-6d81e6e3-439d-470a-b040-f17ebb7ab06a-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-805aee71bd84",
+      "canonical_id": "ojk-sk-dir-32-54-kep-dir-1999",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-konvensional-37d1ccc4-f4ce-46e7-b154-b3dc6f1fd42f-1-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-bpr-syariah-8845209c-c8a3-40cb-bbef-e5cba682ec61-1-ketentuan-utuh"
+      ]
+    },
+    {
+      "group_id": "primary-duplicate-118d6fafbd69",
+      "canonical_id": "bi-pbi-18-21-pbi-2016",
+      "group_size": 2,
+      "preferred_file_id": "sikepo-ojk-bpr-syariah-4ac531dc-d7e9-4225-9223-288689d4ef1b-0-ketentuan-utuh",
+      "reason": "same_canonical_id_and_sha256",
+      "duplicate_file_ids": [
+        "sikepo-ojk-unit-usaha-syariah-251c2020-1881-40f5-81d6-48192f76e72d-0-ketentuan-utuh"
+      ]
+    }
+  ]
+}

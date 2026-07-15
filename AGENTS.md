@@ -17,14 +17,15 @@ The `frontend/` directory contains the web application that consumes this projec
 
 ## Generated Corpus Safety
 
-The extracted corpus and indexes are expensive generated assets. `processed/` is gitignored, so a plain extraction can overwrite OCR-enhanced output without Git being able to restore it.
+The generated corpus is a v2-only legal-unit contract. `processed/` is gitignored, so Git cannot recover a changed corpus, index, or OCR-enhanced raw extraction.
 
-- Do not run `uv run python -m thinking_layer.cli extract`, `all`, or `build` as a generic troubleshooting step, for frontend/API work, or merely because an index is stale.
-- Treat an unscoped `extract` as a full corpus rewrite. Run it only for an explicitly requested full re-extraction and only after making or confirming a backup of the current generated artifacts.
-- For OCR, parsing, or document corrections, use explicit `--file-id ... --replace-existing` runs. Test one page before replacing a full file; never start full-corpus OCR by default.
-- Rebuild downstream artifacts only after their inputs changed: run `report`, `build-source-corpus --include-secondary`, `build-index`, and `build-document-catalog` after an accepted extraction replacement. Do not rebuild them for UI-only, API-only, query-planning, ranking, or answer-presentation changes.
-- Before suggesting or executing a rebuild, inspect `GET /healthz`, identify exactly which input changed, and choose the narrowest command. Use `build-index --incremental` only for compatible append-only source-corpus changes.
-- Starting or restarting `uv run python -m thinking_layer.api` is sufficient for ordinary local use; it does not require extraction, corpus, index, or catalog rebuilds.
+- Do not run `extract`, `all`, `build`, or `rebuild-blocks` for routine troubleshooting, frontend/API work, ranking work, or a stale index alone. Starting or restarting `uv run python -m thinking_layer.api` is sufficient for ordinary local use.
+- Every searchable/citable corpus row must have `chunk_schema_version: 2`, an explicit legal path, node provenance, retrieval text, display text, anchors, and source block IDs. The only admissible v2 evidence units are atomic legal leaves and bounded `enumeration_aggregate` units; never restore sentence-block or inferred-citation compatibility paths.
+- Before any accepted extraction replacement or corpus-wide migration, inspect `GET /healthz`, identify the changed input, and create or verify a complete backup of both `processed/` and generated reports. Rebuild only the downstream artifacts whose inputs changed.
+- A full v2 legal-unit rebuild uses saved raw LiteParse pages with `rebuild-blocks`, then `report`, `build-source-corpus --include-secondary`, and `build-index`. The SQLite search index is the sole runtime index and citation lookup store. It requires explicit authorization and a verified backup.
+- `rebuild-blocks` must skip every file currently listed in `reports/ocr_needed.json`. Do not enable OCR or re-run OCR as part of a legal-unit migration. Report the skipped file IDs/count and validate the resulting corpus coverage.
+- For a document correction, use an explicit `extract --file-id ... --replace-existing` run only after a one-page review. Do not replace a document that is currently listed as OCR-needed without separate explicit OCR authorization.
+- Use `build-index --incremental` only for compatible append-only source-corpus changes. A legal-unit migration or replacement requires a full SQLite index rebuild.
 
 ## React Server State
 
@@ -33,27 +34,6 @@ For the frontend, use TanStack Query for API-backed server state: queries, mutat
 - Follow React's “You Might Not Need an Effect” guidance: calculate derived display data during render and handle user-triggered API calls in event handlers or TanStack Query mutations.
 - Use `useEffect` only to synchronize with an external system that cannot be expressed through rendering, an event handler, or TanStack Query. Keep each required Effect narrowly scoped with complete dependencies and cleanup.
 - Keep API request functions typed and centralized in the frontend API client. Use stable query keys for reads, and invalidate/update affected query keys after successful mutations when cached data becomes stale.
-
-## Hugging Face research
-
-Use the Hugging Face Hub CLI (`hf`) for current model, embedding, reranker, quantization, compatibility, and local-inference research. If `hf` is not on `PATH`, use `$HOME/.local/bin/hf`. Do not choose models from memory, download counts, or leaderboard rank alone.
-
-```bash
-hf models list --search "multilingual embedding retrieval" --limit 20 --sort downloads --format json
-hf models info MODEL_ID --expand=downloads,likes,tags,config,cardData,safetensors,transformersInfo --format json
-hf models card MODEL_ID --text
-hf papers search "legal multilingual retrieval reranking" --limit 10 --format json
-hf papers read PAPER_ID
-```
-
-For each serious candidate, check and record:
-
-- exact model ID/revision, task and architecture;
-- Indonesian/language coverage and linked paper;
-- license and commercial restrictions;
-- parameters, dimensions, context length, memory, and latency;
-- pooling, normalization, query/document prefixes or instructions;
-- `trust_remote_code`, custom code, quantization, device, and SentenceTransformers/Transformers support.
 
 ## Repository retrieval policy
 

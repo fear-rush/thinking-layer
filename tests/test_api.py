@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import sqlite3
 import unittest
 from pathlib import Path
@@ -16,10 +15,8 @@ from thinking_layer.api.dependencies import (
     get_health_service,
     get_query_service,
 )
-from thinking_layer.api.schemas.documents import DocumentBlockResponse, DocumentResponse
 from thinking_layer.api.schemas.health import HealthResponse
 from thinking_layer.api.services.documents import DocumentService
-from thinking_layer.api.services.document_catalog import build_document_catalog
 from thinking_layer.api.services.feedback import FeedbackService
 from thinking_layer.api.services.query_service import QueryExecution
 from thinking_layer.indexing.lexical import build_search_index
@@ -34,12 +31,21 @@ class StubQueryService:
             "confidence": {"label": "strong", "score": 0.9, "reasons": ["primary evidence"]},
             "citations": [
                 {
+                    "id": "c1",
                     "file_id": "bi-pjp",
                     "block_id": "bi-pjp-1",
+                    "chunk_schema_version": 2,
+                    "source_block_ids": ["bi-pjp-1"],
                     "issuer": "BI",
                     "document": "PBI Penyedia Jasa Pembayaran",
                     "page": 1,
+                    "page_start": 1,
+                    "page_end": 1,
                     "pasal": "Pasal 1",
+                    "unit_path": ["Pasal 1"],
+                    "legal_path": {"pasal": "Pasal 1"},
+                    "anchors": [],
+                    "source_spans": [],
                     "quality": "document_page_pasal",
                 }
             ],
@@ -84,6 +90,9 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(body["request_id"], "request-123")
         self.assertEqual(body["status"], "answerable")
         self.assertEqual(body["citations"][0]["file_id"], "bi-pjp")
+        self.assertEqual(body["citations"][0]["source_block_ids"], ["bi-pjp-1"])
+        self.assertEqual(body["citations"][0]["page_start"], 1)
+        self.assertEqual(body["citations"][0]["page_end"], 1)
         self.assertNotIn("trace", body)
 
     def test_query_rejects_empty_question(self) -> None:
@@ -115,44 +124,13 @@ class ApiTests(unittest.TestCase):
             unavailable = DocumentService(
                 directory_path / "missing.sqlite",
                 index_is_current=lambda: False,
-                catalog_path=directory_path / "missing-catalog.sqlite",
-                docs_path=directory_path / "missing-docs.ndjson",
             )
             self.app.dependency_overrides[get_document_service] = lambda: unavailable
 
             response = self.client.get("/v1/documents/bi-pjp")
 
         self.assertEqual(response.status_code, 503)
-        self.assertIn("build-document-catalog", response.json()["detail"])
-
-    def test_document_routes_can_use_compact_catalog_when_sqlite_search_is_unavailable(self) -> None:
-        with TemporaryDirectory() as directory:
-            directory_path = Path(directory)
-            docs_path = directory_path / "docs.ndjson"
-            catalog_path = directory_path / "catalog.sqlite"
-            block = {
-                "file_id": "bi-pjp",
-                "block_id": "bi-pjp-1",
-                "document_title": "PBI Penyedia Jasa Pembayaran",
-                "issuer": "BI",
-                "text": "Penyedia jasa pembayaran wajib memenuhi ketentuan.",
-                "page_start": 1,
-                "citation": {"text": "PBI Penyedia Jasa Pembayaran, hlm. 1"},
-            }
-            docs_path.write_text(json.dumps(block) + "\n", encoding="utf-8")
-            self.assertEqual(build_document_catalog(catalog_path, docs_path), 1)
-            service = DocumentService(
-                directory_path / "missing.sqlite",
-                index_is_current=lambda: False,
-                catalog_path=catalog_path,
-                docs_path=docs_path,
-            )
-            self.app.dependency_overrides[get_document_service] = lambda: service
-
-            response = self.client.get("/v1/documents/bi-pjp/blocks/bi-pjp-1")
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["text"], block["text"])
+        self.assertIn("build-index", response.json()["detail"])
 
     def test_feedback_is_persisted_locally(self) -> None:
         with TemporaryDirectory() as directory:
@@ -176,8 +154,10 @@ class ApiTests(unittest.TestCase):
     @staticmethod
     def _document_service(database_path: Path) -> DocumentService:
         block = {
+            "chunk_schema_version": 2,
             "file_id": "bi-pjp",
             "block_id": "bi-pjp-1",
+            "node_id": "bi-pjp-1",
             "document_title": "PBI Penyedia Jasa Pembayaran",
             "issuer": "BI",
             "source": "ease-bi",
@@ -191,12 +171,22 @@ class ApiTests(unittest.TestCase):
             "lifecycle_status": "current",
             "is_current": True,
             "page_start": 1,
+            "page_end": 1,
             "pasal": "Pasal 1",
             "ayat": None,
             "huruf": None,
             "section_type": "pasal",
             "citation_quality": "document_page_pasal",
             "citation": {"text": "PBI Penyedia Jasa Pembayaran, hlm. 1, Pasal 1"},
+            "legal_path": {"pasal": "Pasal 1"},
+            "unit_path": ["Pasal 1"],
+            "anchors": [],
+            "source_spans": [],
+            "source_block_ids": ["bi-pjp-1"],
+            "legal_unit": {"type": "pasal", "legal_path": {"pasal": "Pasal 1"}, "source_spans": []},
+            "display_text": "Penyedia jasa pembayaran wajib memenuhi ketentuan.",
+            "retrieval_text": "Pasal 1 Penyedia jasa pembayaran wajib memenuhi ketentuan.",
+            "assembled_text": "Penyedia jasa pembayaran wajib memenuhi ketentuan.",
             "text": "Penyedia jasa pembayaran wajib memenuhi ketentuan.",
         }
         index = build_search_index([block])

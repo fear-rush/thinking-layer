@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -24,22 +24,51 @@ class ConfidenceResponse(BaseModel):
 
 
 class CitationResponse(BaseModel):
-    file_id: str | None = None
-    block_id: str | None = None
+    id: str
+    file_id: str
+    block_id: str
+    chunk_schema_version: Literal[2]
+    source_block_ids: list[str]
     issuer: str | None = None
     document: str | None = None
-    page: int | None = None
+    page: int
+    page_start: int
+    page_end: int
     pasal: str | None = None
     ayat: str | None = None
     huruf: str | None = None
+    unit_path: list[str]
+    legal_path: dict[str, Any]
+    anchors: list[dict[str, Any]]
+    source_spans: list[dict[str, Any]]
     text: str | None = None
+    excerpt: str | None = None
+    assembled_text: str | None = None
     quality: str | None = None
+
+
+class FindingResponse(BaseModel):
+    id: str
+    text: str
+    citation_ids: list[str]
+    kind: Literal["direct_rule", "definition", "scope", "sanction", "other"] = "other"
+    status: Literal["supported"] = "supported"
+
+
+class RelatedDocumentResponse(BaseModel):
+    document: str
+    issuer: str | None = None
+    direct: bool = False
 
 
 class QueryResponse(BaseModel):
     request_id: str
     status: Literal["answerable", "partial", "not_found"]
     answer: str
+    summary: str | None = None
+    findings: list[FindingResponse] = Field(default_factory=list)
+    related_documents: list[RelatedDocumentResponse] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
     confidence: ConfidenceResponse
     citations: list[CitationResponse]
     duration_ms: int = Field(ge=0)

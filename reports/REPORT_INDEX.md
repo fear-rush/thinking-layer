@@ -1,42 +1,22 @@
 # Report Index
 
-This directory contains only regenerated current-baseline reports. JSON files are machine-readable companions for the matching Markdown reports.
+This directory contains the current v2 corpus state and the retained terminal golden-evaluation evidence. Historical, exploratory, and superseded reports are not kept here; every non-terminal report can be regenerated from its named command.
 
-## Corpus And Extraction
+## Corpus State
 
-- `corpus_audit.md/json`: source metadata/file audit.
-- `extraction_summary.md/json`: LiteParse extraction summary from existing processed outputs.
-- `extraction_spot_check.md/json`: focused extraction/citation spot check for high-value BI/OJK regulation areas.
-- `ocr_needed.md/json`: files skipped because OCR is needed or extraction failed.
-- `parser_comparison_sample.md/json`: small LiteParse vs MinerU/layout-parser comparison gate before parser switching.
-- `source_corpus_baseline.md/json`: citation-ready source corpus summary.
-- `visual_spot_check.md/json`: rendered page review for QRIS, SNAP, XLSX, and GMRA extraction quality.
+- `extraction_summary.json` and `extraction_summary.md`: extraction coverage from the saved v2 outputs. Regenerate with `uv run python -m thinking_layer.cli report`.
+- `ocr_needed.json` and `ocr_needed.md`: files excluded because they require OCR. The JSON file is also the mandatory skip list for `rebuild-blocks`.
+- `source_corpus_baseline.json` and `source_corpus_baseline.md`: citation-ready source-corpus counts and coverage. Regenerate with `uv run python -m thinking_layer.cli build-source-corpus --include-secondary`.
+- `v2_corpus_audit.json`: structural, provenance, citation-admission, and duplicate-suppression gate. Regenerate with `uv run python -m thinking_layer.cli v2-corpus-audit`.
+- `primary_duplicate_files.json`: exact-primary duplicate groups and the canonical/suppressed file decisions produced by corpus construction.
 
-## Heuristics And Answer Correctness
+## Terminal Golden Evidence
 
-- `heuristics_audit.md`: active values loaded from `resources/config/`.
-- `answer_noise_audit.md/json`: legal boilerplate/noise classification over the current source corpus.
-- `cross_regulator_coverage_audit.md/json`: direct-vs-adjacent topic coverage for BI/OJK comparison queries.
-- `regression_audit.md`: comparison of current development evaluations against the frozen regression baseline.
+The authoritative source is `resources/golden_questions.v2.json`: 44 exact legal-unit cases spanning BI and OJK documents, cross-regulator retrieval, parser boundaries, structured answer behavior, and refusal cases.
 
-## Development Evaluations
+- `golden_v2_preflight_terminal.json`: all 52 exact target variants were present in the v2 index.
+- `golden_v2_smoke_terminal.json`: terminal 12-case smoke run; 11 accepted, average score `0.950`.
+- `golden_v2_full_terminal.json`: terminal 44-case run; 22 accepted, average score `0.664`.
+- `golden_v2_post_rebuild_analysis.md`: failure analysis and ranked follow-up work for the terminal run.
 
-- `retrieval_smoke_test.md/json`: focused retrieval smoke tests.
-- `natural_language_eval.md/json`: broader natural-language retrieval tests.
-- `evidence_eval.md/json`: evidence-pack evaluation against `resources/gold_questions.json`.
-- `answer_eval.md/json`: deterministic answer evaluation against `resources/gold_questions.json`.
-- `answer_quality_eval.md/json`: answer presentation/quality checks against `resources/answer_quality_questions.json`.
-- `development_issue_triage.md`: separate development investigation and verification for holdout findings.
-- `lexicon_review.md`: reviewed generated lexicon candidates, approved failure-driven aliases, and active-runtime verification.
-- `query_trace_<slug>.json`: local observability records emitted by `trace-query` when explicitly requested.
-- `semantic_retrieval_smoke.md`: bounded SentenceTransformers dense-retrieval implementation smoke check; not a quality benchmark.
-- `semantic_retrieval_benchmark.md/json`: bounded model-matrix comparison of BM25, dense retrieval, and RRF; current result does not justify adoption.
-- `semantic_retrieval_benchmark_corrected.md/json`: corrected 5,000-block comparison with E5 prefixes; no candidate beats BM25, and GTE is locally incompatible.
-
-## External Validation
-
-- `blind_external_holdout_manifest.json`: reviewer-owned blind validation summary from 2026-07-11.
-- `blind_external_holdout_evidence.md/json`: blind evidence results.
-- `blind_external_holdout_answer.md/json`: blind answer results.
-- `blind_external_holdout_answer_quality.md/json`: blind answer-quality results.
-- `blind_external_holdout_triage.md`: classified blind-holdout failures.
+Use `thinking_layer/evaluation/README.md` for the authoritative preflight, smoke, full-suite, filtering, and comparison commands. A report score is regression evidence, not a substitute for legal review.

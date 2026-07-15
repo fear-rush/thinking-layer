@@ -4,25 +4,18 @@ import argparse
 
 from .answer.composer import cmd_answer
 from .answer.noise import cmd_answer_noise_audit
-from .answer.quality import cmd_eval_answer_quality
 from .corpus.build import cmd_all, cmd_audit, cmd_build
 from .corpus.extraction_pipeline import cmd_extract, cmd_rebuild_blocks, cmd_report
 from .corpus.parser_comparison import cmd_parser_comparison
 from .corpus.source_corpus import cmd_build_source_corpus
 from .corpus.spot_check import cmd_extraction_spot_check
+from .corpus.v2_audit import cmd_v2_corpus_audit
 from .config.heuristic_audit import cmd_heuristics_audit
-from .evaluation.answer import cmd_eval_answer
-from .evaluation.evidence import cmd_eval_evidence
-from .evaluation.holdout import cmd_validate_holdout
-from .evaluation.natural import cmd_eval_natural
-from .evaluation.retrieval import cmd_smoke_test
-from .evaluation.semantic import cmd_benchmark_retrieval
 from .indexing.sqlite import cmd_build_index
 from .indexing.semantic import cmd_build_semantic_index, cmd_semantic_search
 from .lexicon.candidates import cmd_extract_lexicon_candidates
 from .lexicon.merge import cmd_merge_lexicon
 from .observability import cmd_trace_query
-from .api.services.document_catalog import build_document_catalog
 from .config.paths import ROOT
 from .retrieval.evidence import cmd_evidence
 from .retrieval.planning import cmd_plan_query
@@ -61,12 +54,33 @@ def main() -> None:
     report_parser = subparsers.add_parser("report", help="Write extraction summary reports from existing outputs.")
     report_parser.set_defaults(func=cmd_report)
 
-    rebuild_blocks_parser = subparsers.add_parser("rebuild-blocks", help="Rebuild processed/blocks.ndjson from saved raw LiteParse JSON.")
+    rebuild_blocks_parser = subparsers.add_parser("rebuild-blocks", help="Rebuild v2 legal-unit blocks from saved raw LiteParse JSON.")
+    rebuild_blocks_parser.add_argument("--file-id", action="append", default=None, help="Rebuild only an explicit saved-raw file ID.")
+    rebuild_blocks_parser.add_argument("--replace-existing", action="store_true", help="Atomically replace blocks for explicit --file-id targets.")
     rebuild_blocks_parser.set_defaults(func=cmd_rebuild_blocks)
 
     extraction_spot_check_parser = subparsers.add_parser("extraction-spot-check", help="Spot-check extraction/citation quality for high-value documents.")
     extraction_spot_check_parser.add_argument("--source-corpus", default=None, help="Path to source_corpus.ndjson. Defaults to processed/source_corpus.ndjson.")
     extraction_spot_check_parser.set_defaults(func=cmd_extraction_spot_check)
+
+    v2_audit_parser = subparsers.add_parser(
+        "v2-corpus-audit",
+        help="Audit generated v2 blocks/source corpus and fail on structural or source-hygiene violations.",
+    )
+    v2_audit_parser.add_argument("--blocks", default=None, help="Blocks NDJSON path. Defaults to processed/blocks.ndjson.")
+    v2_audit_parser.add_argument(
+        "--source-corpus",
+        default=None,
+        help="Source corpus NDJSON path. Defaults to processed/source_corpus.ndjson.",
+    )
+    v2_audit_parser.add_argument("--output", default=None, help="JSON report path. Defaults to reports/v2_corpus_audit.json.")
+    v2_audit_parser.add_argument("--max-examples", type=int, default=5, help="Maximum examples retained per check.")
+    v2_audit_parser.add_argument(
+        "--report-only",
+        action="store_true",
+        help="Write and print the report without returning a failing exit status.",
+    )
+    v2_audit_parser.set_defaults(func=cmd_v2_corpus_audit)
 
     parser_comparison_parser = subparsers.add_parser("parser-comparison", help="Write small LiteParse vs MinerU/layout-parser comparison report.")
     parser_comparison_parser.set_defaults(func=cmd_parser_comparison)
@@ -75,9 +89,6 @@ def main() -> None:
     index_parser.add_argument("--limit", type=int, default=None, help="Only index the first N blocks, for development.")
     index_parser.add_argument("--incremental", action="store_true", help="Append newly added source-corpus rows when the existing corpus is unchanged up to the previous index offset; otherwise rebuild safely.")
     index_parser.set_defaults(func=cmd_build_index)
-
-    document_catalog_parser = subparsers.add_parser("build-document-catalog", help="Build compact file/block lookup data for API citation URLs.")
-    document_catalog_parser.set_defaults(func=lambda args: print(f"Indexed {build_document_catalog()} citation blocks."))
 
     semantic_index_parser = subparsers.add_parser("build-semantic-index", help="Build an isolated persisted semantic index.")
     semantic_index_parser.add_argument("--model", default=None, help="SentenceTransformer model ID. Defaults to semantic retrieval config.")
@@ -92,7 +103,7 @@ def main() -> None:
     semantic_search_parser.add_argument("--source", choices=["peraturan-ojk", "ease-bi", "sikepo-ojk"], default=None)
     semantic_search_parser.add_argument("--role", default=None)
     semantic_search_parser.add_argument("--include-secondary", action="store_true")
-    semantic_search_parser.add_argument("--limit", type=int, default=10)
+    semantic_search_parser.add_argument("--limit", type=int, default=None, help="Result limit. Defaults to semantic retrieval config.")
     semantic_search_parser.set_defaults(func=cmd_semantic_search)
 
     source_corpus_parser = subparsers.add_parser("build-source-corpus", help="Write normalized citation-ready source corpus from extracted blocks.")
@@ -123,11 +134,6 @@ def main() -> None:
     search_parser.add_argument("--limit", type=int, default=10, help="Number of results.")
     search_parser.set_defaults(func=cmd_search)
 
-    smoke_parser = subparsers.add_parser("smoke-test", help="Run retrieval smoke tests and write reports.")
-    smoke_parser.add_argument("--limit", type=int, default=8, help="Results per query.")
-    smoke_parser.add_argument("--max-searches", type=int, default=6, help="Maximum planned searches per query.")
-    smoke_parser.set_defaults(func=cmd_smoke_test)
-
     lexicon_parser = subparsers.add_parser("extract-lexicon-candidates", help="Derive entity/topic/alias candidates from local corpus artifacts.")
     lexicon_parser.add_argument("--min-score", type=float, default=0.0, help="Only write candidates with at least this score.")
     lexicon_parser.add_argument("--generated-min-score", type=float, default=12.0, help="Minimum score for generated lexicon draft entries.")
@@ -137,7 +143,11 @@ def main() -> None:
     lexicon_parser.set_defaults(func=cmd_extract_lexicon_candidates)
 
     merge_lexicon_parser = subparsers.add_parser("merge-lexicon", help="Merge reviewed generated lexicon entries with resources/query_lexicon.json.")
-    merge_lexicon_parser.add_argument("--output", default=str(ROOT / "resources" / "query_lexicon.merged.json"), help="Output path for merged lexicon.")
+    merge_lexicon_parser.add_argument(
+        "--output",
+        default=str(ROOT / "processed" / "lexicon" / "query_lexicon.merged.json"),
+        help="Output path for the generated merge preview.",
+    )
     merge_lexicon_parser.set_defaults(func=cmd_merge_lexicon)
 
     plan_parser = subparsers.add_parser("plan-query", help="Plan natural-language regulatory searches.")
@@ -180,73 +190,6 @@ def main() -> None:
     trace_parser.add_argument("--write-report", action="store_true", help="Write a JSON trace under reports/.")
     trace_parser.add_argument("--output", default=None, help="Optional JSON trace output path.")
     trace_parser.set_defaults(func=cmd_trace_query)
-
-    eval_answer_parser = subparsers.add_parser("eval-answer", help="Evaluate deterministic answers against manually curated gold questions.")
-    eval_answer_parser.add_argument("--gold-file", default=None, help="Path to gold questions JSON. Defaults to resources/gold_questions.json.")
-    eval_answer_parser.add_argument("--max-searches", type=int, default=8, help="Maximum planned searches per question.")
-    eval_answer_parser.add_argument("--result-limit", type=int, default=12, help="Merged evidence blocks per question.")
-    eval_answer_parser.add_argument("--per-document-limit", type=int, default=3, help="Maximum evidence blocks per document.")
-    eval_answer_parser.add_argument("--max-documents", type=int, default=6, help="Maximum documents to include per answer.")
-    eval_answer_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum citations per document in answers.")
-    eval_answer_parser.add_argument("--limit", type=int, default=None, help="Evaluate only the first N questions.")
-    eval_answer_parser.add_argument("--include-answers", action="store_true", help="Include full answers and evidence packs in answer_eval.json.")
-    eval_answer_parser.add_argument("--report-prefix", default=None, help="Report filename prefix under reports/. Defaults to answer_eval.")
-    eval_answer_parser.add_argument("--progress", action="store_true", help="Print progress while evaluating.")
-    eval_answer_parser.set_defaults(func=cmd_eval_answer)
-
-    eval_answer_quality_parser = subparsers.add_parser("eval-answer-quality", help="Evaluate answer presentation quality with deterministic checks.")
-    eval_answer_quality_parser.add_argument("--quality-file", default=None, help="Path to answer quality questions JSON. Defaults to resources/answer_quality_questions.json.")
-    eval_answer_quality_parser.add_argument("--max-searches", type=int, default=8, help="Maximum planned searches per question.")
-    eval_answer_quality_parser.add_argument("--result-limit", type=int, default=12, help="Merged evidence blocks per question.")
-    eval_answer_quality_parser.add_argument("--per-document-limit", type=int, default=3, help="Maximum evidence blocks per document.")
-    eval_answer_quality_parser.add_argument("--max-documents", type=int, default=6, help="Maximum citations to include per answer.")
-    eval_answer_quality_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum candidate citations per document.")
-    eval_answer_quality_parser.add_argument("--limit", type=int, default=None, help="Evaluate only the first N questions.")
-    eval_answer_quality_parser.add_argument("--include-answers", action="store_true", help="Include full answers and evidence packs in answer_quality_eval.json.")
-    eval_answer_quality_parser.add_argument("--report-prefix", default=None, help="Report filename prefix under reports/. Defaults to answer_quality_eval.")
-    eval_answer_quality_parser.add_argument("--progress", action="store_true", help="Print progress while evaluating.")
-    eval_answer_quality_parser.set_defaults(func=cmd_eval_answer_quality)
-
-    eval_evidence_parser = subparsers.add_parser("eval-evidence", help="Evaluate evidence packs against manually curated gold questions.")
-    eval_evidence_parser.add_argument("--gold-file", default=None, help="Path to gold questions JSON. Defaults to resources/gold_questions.json.")
-    eval_evidence_parser.add_argument("--max-searches", type=int, default=8, help="Maximum planned searches per question.")
-    eval_evidence_parser.add_argument("--result-limit", type=int, default=12, help="Merged evidence blocks per question.")
-    eval_evidence_parser.add_argument("--per-document-limit", type=int, default=3, help="Maximum evidence blocks per document.")
-    eval_evidence_parser.add_argument("--limit", type=int, default=None, help="Evaluate only the first N questions.")
-    eval_evidence_parser.add_argument("--include-packs", action="store_true", help="Include full evidence packs in evidence_eval.json.")
-    eval_evidence_parser.add_argument("--report-prefix", default=None, help="Report filename prefix under reports/. Defaults to evidence_eval or holdout_eval.")
-    eval_evidence_parser.add_argument("--progress", action="store_true", help="Print progress while evaluating.")
-    eval_evidence_parser.set_defaults(func=cmd_eval_evidence)
-
-    eval_natural_parser = subparsers.add_parser("eval-natural", help="Evaluate planned retrieval on natural-language user questions.")
-    eval_natural_parser.add_argument("--max-searches", type=int, default=6, help="Maximum planned searches per query.")
-    eval_natural_parser.add_argument("--limit", type=int, default=8, help="Number of merged results per query.")
-    eval_natural_parser.set_defaults(func=cmd_eval_natural)
-
-    benchmark_parser = subparsers.add_parser("benchmark-retrieval", help="Compare BM25, dense, and RRF retrieval on development gold questions.")
-    benchmark_parser.add_argument("--models", default=None, help="Comma-separated SentenceTransformer model IDs. Defaults to semantic config candidates.")
-    benchmark_parser.add_argument("--corpus-limit", type=int, default=5000, help="Bounded source-corpus blocks for the benchmark.")
-    benchmark_parser.add_argument("--candidate-limit", type=int, default=20, help="Candidate results per retriever before metric cutoffs and RRF.")
-    benchmark_parser.add_argument("--question-limit", type=int, default=None, help="Evaluate only the first N gold questions.")
-    benchmark_parser.add_argument("--gold-file", default=None, help="Gold questions JSON; defaults to resources/gold_questions.json.")
-    benchmark_parser.add_argument("--batch-size", type=int, default=32, help="Embedding batch size.")
-    benchmark_parser.add_argument("--normalize-embeddings", action=argparse.BooleanOptionalAction, default=True, help="Normalize embeddings before dot-product search.")
-    benchmark_parser.add_argument("--report-prefix", default=None, help="Report filename prefix under reports/.")
-    benchmark_parser.add_argument("--progress", action="store_true", help="Print model and query progress.")
-    benchmark_parser.set_defaults(func=cmd_benchmark_retrieval)
-
-    validate_holdout_parser = subparsers.add_parser("validate-holdout", help="Run external holdout evidence, answer, and answer-quality validation.")
-    validate_holdout_parser.add_argument("--gold-file", required=True, help="External holdout questions JSON.")
-    validate_holdout_parser.add_argument("--quality-file", required=True, help="External answer-quality questions JSON.")
-    validate_holdout_parser.add_argument("--report-prefix", default="external_holdout", help="Report filename prefix under reports/.")
-    validate_holdout_parser.add_argument("--max-searches", type=int, default=6, help="Maximum planned searches per question.")
-    validate_holdout_parser.add_argument("--result-limit", type=int, default=10, help="Merged evidence blocks per question.")
-    validate_holdout_parser.add_argument("--per-document-limit", type=int, default=2, help="Maximum evidence blocks per document.")
-    validate_holdout_parser.add_argument("--max-documents", type=int, default=6, help="Maximum citations to include per answer.")
-    validate_holdout_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum candidate citations per document.")
-    validate_holdout_parser.add_argument("--allow-template", action="store_true", help="Allow placeholder template IDs for dry runs only.")
-    validate_holdout_parser.add_argument("--progress", action="store_true", help="Print progress while evaluating.")
-    validate_holdout_parser.set_defaults(func=cmd_validate_holdout)
 
     all_parser = subparsers.add_parser("all", help="Run audit and build.")
     all_parser.add_argument("--hash", action="store_true", help="Compute sha256 hashes for existing files.")

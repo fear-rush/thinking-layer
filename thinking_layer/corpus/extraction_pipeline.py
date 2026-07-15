@@ -13,6 +13,30 @@ from ..common.io import read_ndjson_file
 from ..config.heuristics import heuristic_section
 from ..config.paths import PROCESSED_DIR, RAW_LITEPARSE_DIR, REPORTS_DIR, ROOT
 
+
+def refresh_extracted_metadata(
+    extracted: dict[str, Any],
+    manifests_by_artifact: dict[tuple[str, str], dict[str, Any]],
+) -> dict[str, Any]:
+    """Overlay current catalog metadata on a saved extraction record.
+
+    Raw LiteParse pages are intentionally reusable, but issuer, lifecycle, and
+    duplicate-resolution metadata can change when the catalog is rebuilt.  A
+    legal-unit rebuild must therefore use the current manifest rather than
+    freezing the metadata that happened to exist at extraction time.
+    """
+    key = (
+        str(extracted.get("file_id") or ""),
+        str(extracted.get("resolved_path") or ""),
+    )
+    manifest = manifests_by_artifact.get(key)
+    if manifest is None:
+        raise SystemExit(
+            "Saved extraction has no matching current manifest row: "
+            f"file_id={key[0]!r}, resolved_path={key[1]!r}"
+        )
+    return {**extracted, **manifest}
+
 def write_ocr_reports(items: list[dict[str, Any]]) -> None:
     REPORTS_DIR.mkdir(exist_ok=True)
     json_path = REPORTS_DIR / "ocr_needed.json"
@@ -162,9 +186,7 @@ def write_extraction_summary() -> None:
 def should_extract_manifest(row: dict[str, Any], include_sikepo: bool) -> bool:
     if not row.get("exists"):
         return False
-    if row.get("source") == "sikepo-ojk" and not include_sikepo:
-        return False
-    return True
+    return row.get("source") != "sikepo-ojk" or include_sikepo
 
 def filter_manifests_for_args(manifests: list[dict[str, Any]], args: argparse.Namespace) -> list[dict[str, Any]]:
     file_ids = set(getattr(args, "file_id", None) or [])
@@ -437,7 +459,7 @@ def cmd_extract(args: argparse.Namespace) -> None:
     else:
         print("LibreOffice not detected; Office documents were skipped.")
 
-def cmd_report(args: argparse.Namespace) -> None:
+def cmd_report(_args: argparse.Namespace) -> None:
     ocr_items = json.load((REPORTS_DIR / "ocr_needed.json").open("r", encoding="utf-8")) if (REPORTS_DIR / "ocr_needed.json").exists() else []
     write_ocr_reports(ocr_items)
     write_extraction_summary()
@@ -446,18 +468,64 @@ def cmd_report(args: argparse.Namespace) -> None:
     print("Refreshed reports/ocr_needed.json")
     print("Refreshed reports/ocr_needed.md")
 
+
+def current_ocr_needed_file_ids() -> set[str]:
+    """Read the migration exclusion set without invoking OCR or extraction."""
+    path = REPORTS_DIR / "ocr_needed.json"
+    if not path.exists():
+        return set()
+    with path.open("r", encoding="utf-8") as handle:
+        rows = json.load(handle)
+    if not isinstance(rows, list):
+        raise SystemExit("reports/ocr_needed.json must contain a list before rebuilding v2 legal-unit blocks.")
+    return {str(row["file_id"]) for row in rows if isinstance(row, dict) and row.get("file_id")}
+
+
 def cmd_rebuild_blocks(args: argparse.Namespace) -> None:
     extracted_path = PROCESSED_DIR / "extracted_documents.ndjson"
     blocks_path = PROCESSED_DIR / "blocks.ndjson"
-    if not extracted_path.exists():
-        raise SystemExit("Missing processed/extracted_documents.ndjson. Run extraction first.")
+    manifest_path = PROCESSED_DIR / "file_manifest.ndjson"
+    if not extracted_path.exists() or not manifest_path.exists():
+        raise SystemExit("Missing extracted documents or file manifest. Run the catalog build first.")
+
+    manifests_by_artifact = {
+        (str(row.get("file_id") or ""), str(row.get("resolved_path") or "")): row
+        for row in read_ndjson_file(manifest_path)
+    }
+    target_file_ids = {str(value) for value in (getattr(args, "file_id", None) or [])}
+    replace_existing = bool(getattr(args, "replace_existing", False))
+    if target_file_ids and not replace_existing:
+        raise SystemExit("Targeted rebuild-blocks requires --replace-existing.")
+    if replace_existing and not target_file_ids:
+        raise SystemExit("--replace-existing requires at least one --file-id.")
 
     block_count = 0
     document_count = 0
     missing_raw: list[dict[str, Any]] = []
-    with blocks_path.open("w", encoding="utf-8") as blocks_out:
-        for extracted in read_ndjson_file(extracted_path):
+    ocr_excluded_file_ids = current_ocr_needed_file_ids()
+    ocr_skipped: list[str] = []
+    rebuild_path = blocks_path.with_suffix(".rebuild.tmp.ndjson")
+    try:
+        extracted_rows = read_ndjson_file(extracted_path)
+        if target_file_ids:
+            extracted_rows = [
+                row for row in extracted_rows
+                if str(row.get("file_id") or "") in target_file_ids
+            ]
+            found_file_ids = {str(row.get("file_id") or "") for row in extracted_rows}
+            missing_targets = sorted(target_file_ids - found_file_ids)
+            if missing_targets:
+                raise SystemExit(f"Unknown extracted --file-id target(s): {', '.join(missing_targets)}")
+
+        replacements_by_file: dict[str, list[dict[str, Any]]] = {}
+        rebuilt_documents: list[list[dict[str, Any]]] = []
+        for saved_extraction in extracted_rows:
+            extracted = refresh_extracted_metadata(saved_extraction, manifests_by_artifact)
             if extracted.get("extraction_status") != "extracted_ok":
+                continue
+            file_id = str(extracted.get("file_id") or "")
+            if file_id in ocr_excluded_file_ids:
+                ocr_skipped.append(file_id)
                 continue
             raw_path_value = extracted.get("raw_liteparse_path")
             raw_path = ROOT / raw_path_value if raw_path_value else None
@@ -466,14 +534,48 @@ def cmd_rebuild_blocks(args: argparse.Namespace) -> None:
                 continue
             raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
             pages = raw_payload.get("pages") or []
-            for block in extract_blocks(extracted, pages):
-                if block.get("page_start") is None:
-                    continue
-                blocks_out.write(json.dumps(block, ensure_ascii=False) + "\n")
-                block_count += 1
+            rebuilt = [
+                block for block in extract_blocks(extracted, pages)
+                if block.get("page_start") is not None
+            ]
+            replacements_by_file.setdefault(file_id, []).extend(rebuilt)
+            rebuilt_documents.append(rebuilt)
+            block_count += len(rebuilt)
             document_count += 1
 
+        if target_file_ids and (ocr_skipped or missing_raw):
+            raise SystemExit("Targeted rebuild refused because a requested file is OCR-excluded or missing saved raw JSON.")
+
+        with rebuild_path.open("w", encoding="utf-8") as blocks_out:
+            if target_file_ids:
+                emitted: set[str] = set()
+                for existing in read_ndjson_file(blocks_path):
+                    file_id = str(existing.get("file_id") or "")
+                    if file_id in target_file_ids:
+                        if file_id not in emitted:
+                            for replacement in replacements_by_file.get(file_id, []):
+                                blocks_out.write(json.dumps(replacement, ensure_ascii=False) + "\n")
+                            emitted.add(file_id)
+                        continue
+                    blocks_out.write(json.dumps(existing, ensure_ascii=False) + "\n")
+                for file_id in sorted(target_file_ids - emitted):
+                    for replacement in replacements_by_file.get(file_id, []):
+                        blocks_out.write(json.dumps(replacement, ensure_ascii=False) + "\n")
+            else:
+                for rebuilt in rebuilt_documents:
+                    for block in rebuilt:
+                        blocks_out.write(json.dumps(block, ensure_ascii=False) + "\n")
+        rebuild_path.replace(blocks_path)
+    except BaseException:
+        rebuild_path.unlink(missing_ok=True)
+        raise
+
     write_extraction_summary()
-    print(f"Rebuilt {blocks_path.relative_to(ROOT)} ({block_count} blocks from {document_count} documents)")
+    action = "Replaced" if target_file_ids else "Rebuilt"
+    print(f"{action} {blocks_path.relative_to(ROOT)} ({block_count} blocks from {document_count} documents)")
+    if ocr_skipped:
+        listed = ", ".join(sorted(ocr_skipped)[:20])
+        suffix = " ..." if len(ocr_skipped) > 20 else ""
+        print(f"Skipped {len(ocr_skipped)} document(s) listed in reports/ocr_needed.json: {listed}{suffix}")
     if missing_raw:
         print(f"Skipped {len(missing_raw)} extracted documents with missing raw LiteParse JSON")

@@ -7,9 +7,8 @@ from dataclasses import dataclass
 from typing import Any
 
 from ..config.heuristics import heuristic_section
-from ..corpus.citations import citation_quality_for_block
-from ..common.io import iter_ndjson_file, read_json, read_ndjson_file
-from ..config.paths import PROCESSED_DIR, ROOT, SEARCH_INDEX_DIR, SOURCE_CORPUS_PATH, STOPWORDS_PATH
+from ..common.io import iter_ndjson_file
+from ..config.paths import PROCESSED_DIR, ROOT, SOURCE_CORPUS_PATH, STOPWORDS_PATH
 from ..retrieval.query_tools import contains_pattern, load_stopwords, tokenize, tokenize_with_stopwords
 from ..common.text import normalize_space
 from .scoring import apply_lexical_boosts, bm25_term_score, candidate_terms_for, query_terms_for, relevant_exact_phrases
@@ -31,17 +30,12 @@ def load_search_blocks(
     include_secondary: bool,
 ) -> list[dict[str, Any]]:
     blocks: list[dict[str, Any]] = []
-    if SOURCE_CORPUS_PATH.exists():
-        source_path = SOURCE_CORPUS_PATH
-        rows = iter_ndjson_file(source_path)
-    else:
-        extracted_ok = {
-            row["file_id"]
-            for row in read_ndjson_file(PROCESSED_DIR / "extracted_documents.ndjson")
-            if row.get("extraction_status") == "extracted_ok"
-        }
-        source_path = PROCESSED_DIR / "blocks.ndjson"
-        rows = (row for row in iter_ndjson_file(source_path) if row.get("file_id") in extracted_ok)
+    if not SOURCE_CORPUS_PATH.exists():
+        raise SystemExit(
+            "Missing processed/source_corpus.ndjson. "
+            "Run `uv run python -m thinking_layer.cli build-source-corpus --include-secondary` first."
+        )
+    rows = iter_ndjson_file(SOURCE_CORPUS_PATH)
 
     for row in rows:
         if issuer and row.get("issuer", "").lower() != issuer.lower():
@@ -52,7 +46,7 @@ def load_search_blocks(
             continue
         if not include_secondary and row.get("file_role") in {"secondary_faq", "secondary_summary"}:
             continue
-        if not row.get("text") or not row.get("page_start"):
+        if row.get("chunk_schema_version") != 2 or not row.get("retrieval_text") or not row.get("page_start"):
             continue
         blocks.append(row)
     return blocks
@@ -83,7 +77,7 @@ def load_search_blocks_from_offset(
                 continue
             if not include_secondary and row.get("file_role") in {"secondary_faq", "secondary_summary"}:
                 continue
-            if not row.get("text") or not row.get("page_start"):
+            if row.get("chunk_schema_version") != 2 or not row.get("retrieval_text") or not row.get("page_start"):
                 continue
             blocks.append(row)
     return blocks
@@ -98,6 +92,9 @@ def build_bm25(blocks: list[dict[str, Any]], stopwords: set[str]) -> tuple[list[
         title = block.get("document_title") or ""
         heading = " ".join(block.get("heading_path") or [])
         reg_number = block.get("number") or ""
+        # V2 legal nodes keep the human-facing excerpt separate from the
+        # contextual representation used for matching.
+        body_text = block["retrieval_text"]
         weighted_text = " ".join(
             [
                 title,
@@ -110,7 +107,7 @@ def build_bm25(blocks: list[dict[str, Any]], stopwords: set[str]) -> tuple[list[
                 heading,
                 block.get("pasal") or "",
                 block.get("ayat") or "",
-                block.get("text") or "",
+                body_text,
             ]
         )
         terms = Counter(tokenize_with_stopwords(weighted_text, stopwords))
@@ -155,9 +152,14 @@ def index_signature() -> dict[str, Any]:
     blocks_path = PROCESSED_DIR / "blocks.ndjson"
     extracted_path = PROCESSED_DIR / "extracted_documents.ndjson"
     source_corpus_path = SOURCE_CORPUS_PATH
-    corpus_path = source_corpus_path if source_corpus_path.exists() else blocks_path
+    if not source_corpus_path.exists():
+        raise FileNotFoundError(
+            "Missing processed/source_corpus.ndjson. "
+            "Run `uv run python -m thinking_layer.cli build-source-corpus --include-secondary` first."
+        )
+    corpus_path = source_corpus_path
     return {
-        "version": 2,
+        "version": 3,
         "corpus_path": str(corpus_path.relative_to(ROOT)) if corpus_path.exists() else None,
         "corpus_mtime": corpus_path.stat().st_mtime if corpus_path.exists() else None,
         "corpus_size": corpus_path.stat().st_size if corpus_path.exists() else None,
@@ -172,8 +174,8 @@ def index_signature() -> dict[str, Any]:
 
 
 def source_state() -> dict[str, Any]:
-    """Return append-detection metadata for the corpus selected by the index."""
-    corpus_path = SOURCE_CORPUS_PATH if SOURCE_CORPUS_PATH.exists() else PROCESSED_DIR / "blocks.ndjson"
+    """Return append-detection metadata for the v2 source corpus."""
+    corpus_path = SOURCE_CORPUS_PATH
     if not corpus_path.exists():
         return {"path": None, "size": None, "prefix_sha1": None}
     size = corpus_path.stat().st_size
@@ -200,79 +202,6 @@ def sha1_prefix(path, length: int) -> str:
             remaining -= len(chunk)
     return digest.hexdigest()
 
-def write_search_index(index: SearchIndex, filters: dict[str, Any], source_state_value: dict[str, Any] | None = None) -> None:
-    SEARCH_INDEX_DIR.mkdir(parents=True, exist_ok=True)
-    docs_path = SEARCH_INDEX_DIR / "docs.ndjson"
-    terms_path = SEARCH_INDEX_DIR / "terms.ndjson"
-    postings_path = SEARCH_INDEX_DIR / "postings.ndjson"
-    metadata_path = SEARCH_INDEX_DIR / "metadata.json"
-
-    with docs_path.open("w", encoding="utf-8") as f:
-        for doc_id, (block, doc_len) in enumerate(zip(index.blocks, index.doc_lengths)):
-            doc = dict(block)
-            doc["_doc_id"] = doc_id
-            doc["_doc_len"] = doc_len
-            f.write(json.dumps(doc, ensure_ascii=False) + "\n")
-
-    with terms_path.open("w", encoding="utf-8") as f:
-        for doc_id, terms in enumerate(index.doc_terms):
-            f.write(json.dumps({"doc_id": doc_id, "terms": dict(terms)}, ensure_ascii=False) + "\n")
-
-    with postings_path.open("w", encoding="utf-8") as f:
-        for term, doc_ids in sorted(index.postings.items()):
-            f.write(json.dumps({"term": term, "doc_ids": doc_ids}, ensure_ascii=False) + "\n")
-
-    metadata = {
-        "signature": index_signature(),
-        "source_state": source_state_value or source_state(),
-        "filters": filters,
-        "doc_count": len(index.blocks),
-        "term_count": len(index.doc_freq),
-        "avg_len": index.avg_len,
-        "doc_freq": dict(index.doc_freq),
-    }
-    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-def persisted_index_exists() -> bool:
-    return all(
-        (SEARCH_INDEX_DIR / name).exists()
-        for name in ("metadata.json", "docs.ndjson", "terms.ndjson", "postings.ndjson")
-    )
-
-def load_persisted_search_index() -> SearchIndex:
-    if not persisted_index_exists():
-        raise SystemExit("Missing persisted search index. Run `uv run python -m thinking_layer.cli build-index` first.")
-
-    metadata = read_json(SEARCH_INDEX_DIR / "metadata.json")
-    current_signature = index_signature()
-    if metadata.get("signature") != current_signature:
-        print("Warning: persisted search index may be stale. Rebuild with `build-index`.", flush=True)
-
-    blocks: list[dict[str, Any]] = []
-    doc_lengths: list[int] = []
-    for row in read_ndjson_file(SEARCH_INDEX_DIR / "docs.ndjson"):
-        doc_lengths.append(int(row.pop("_doc_len", 0)))
-        row.pop("_doc_id", None)
-        blocks.append(row)
-
-    doc_terms: list[Counter[str]] = []
-    for row in read_ndjson_file(SEARCH_INDEX_DIR / "terms.ndjson"):
-        doc_terms.append(Counter(row.get("terms") or {}))
-
-    postings: dict[str, list[int]] = {}
-    for row in read_ndjson_file(SEARCH_INDEX_DIR / "postings.ndjson"):
-        postings[row["term"]] = row.get("doc_ids") or []
-
-    return SearchIndex(
-        blocks=blocks,
-        doc_terms=doc_terms,
-        doc_lengths=doc_lengths,
-        doc_freq=Counter(metadata.get("doc_freq") or {}),
-        postings=postings,
-        avg_len=float(metadata.get("avg_len") or 0.0),
-        stopwords=load_stopwords(),
-    )
-
 def get_search_index(
     issuer: str | None = None,
     role: str | None = None,
@@ -280,17 +209,12 @@ def get_search_index(
     include_secondary: bool = True,
     prefer_persisted: bool = True,
 ) -> SearchIndex:
-    if prefer_persisted and not issuer and not role and not source and include_secondary and persisted_index_exists() and persisted_index_is_current():
-        return load_persisted_search_index()
+    # Kept as an API-compatible argument for callers that previously selected
+    # the removed JSON index. In-memory indexes are now built only from the
+    # canonical v2 source corpus; production retrieval uses SQLite directly.
+    _ = prefer_persisted
     blocks = load_search_blocks(issuer, role, source, include_secondary)
     return build_search_index(blocks)
-
-
-def persisted_index_is_current() -> bool:
-    if not persisted_index_exists():
-        return False
-    metadata = read_json(SEARCH_INDEX_DIR / "metadata.json")
-    return metadata.get("signature") == index_signature()
 
 def filter_index(index: SearchIndex, issuer: str | None, role: str | None, source: str | None, include_secondary: bool) -> SearchIndex:
     if not issuer and not role and not source and include_secondary:
@@ -308,7 +232,13 @@ def filter_index(index: SearchIndex, issuer: str | None, role: str | None, sourc
         blocks.append(block)
     return build_search_index(blocks)
 
-def bm25_search(query: str, index: SearchIndex, limit: int, issuer: str | None = None) -> list[dict[str, Any]]:
+def bm25_search(
+    query: str,
+    index: SearchIndex,
+    limit: int,
+    issuer: str | None = None,
+    file_ids: set[str] | None = None,
+) -> list[dict[str, Any]]:
     query_terms = query_terms_for(query, index.stopwords)
     if not query_terms or not index.blocks:
         return []
@@ -327,6 +257,8 @@ def bm25_search(query: str, index: SearchIndex, limit: int, issuer: str | None =
         block = index.blocks[doc_index]
         terms = index.doc_terms[doc_index]
         if issuer and block.get("issuer") != issuer:
+            continue
+        if file_ids and block.get("file_id") not in file_ids:
             continue
         doc_len = index.doc_lengths[doc_index] or 1
         score = bm25_term_score(query_counter, terms, index.doc_freq, total_docs, doc_len, index.avg_len)
@@ -365,15 +297,15 @@ def dedupe_results(results: list[dict[str, Any]], limit: int) -> list[dict[str, 
             break
     return deduped
 
-def planned_search(query: str, index: SearchIndex, limit: int) -> list[dict[str, Any]]:
+def planned_search(query: str, index: SearchIndex, limit: int, file_ids: set[str] | None = None) -> list[dict[str, Any]]:
     if not needs_balanced_issuer_search(query):
-        return dedupe_results(bm25_search(query, index, limit * 2), limit)
+        return dedupe_results(bm25_search(query, index, limit * 2, file_ids=file_ids), limit)
 
     config = heuristic_section("retrieval_ranking", "balanced_issuer_search")
     per_issuer_limit = max(int(config.get("min_per_issuer_limit", 3)), limit // 2)
     candidate_multiplier = int(config.get("candidate_multiplier", 3))
-    bi = bm25_search(query, index, per_issuer_limit * candidate_multiplier, issuer="BI")
-    ojk = bm25_search(query, index, per_issuer_limit * candidate_multiplier, issuer="OJK")
+    bi = bm25_search(query, index, per_issuer_limit * candidate_multiplier, issuer="BI", file_ids=file_ids)
+    ojk = bm25_search(query, index, per_issuer_limit * candidate_multiplier, issuer="OJK", file_ids=file_ids)
 
     merged: list[dict[str, Any]] = []
     for bucket in (bi[:per_issuer_limit], ojk[:per_issuer_limit]):

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Behavior-preserving extraction heuristics. Values are manual and not calibrated yet.",
+    "description": "Raw LiteParse and OCR ingestion settings for the v2 legal-unit parser.",
     "calibrated": false
   },
   "liteparse": {
@@ -22,48 +22,6 @@
     "num_workers": 1,
     "description": "Optional LiteParse OCR profile for PaddleOCR HTTP server. Indonesian regulatory PDFs use Latin script; keep language=en to avoid model reloads. Keep disabled for full-corpus baseline; enable only for OCR-needed samples."
   },
-  "sentence_blocks": {
-    "flush_on_blank_min_chars": 350,
-    "hard_flush_min_chars": 1200,
-    "soft_flush_min_chars": 550,
-    "min_block_chars": 8,
-    "page_number_regex": "-?\\s*\\d+\\s*-?",
-    "sentence_end_regex": "[.;:]$",
-    "table_separator_regex": "^\\s*\\|?\\s*:?-{3,}:?\\s*(\\|\\s*:?-{3,}:?\\s*)+\\|?\\s*$",
-    "table_row_min_pipes": 2,
-    "preserve_table_rows": true,
-    "list_item_starts_new_block": true,
-    "table_context_prefix_max_chars": 180
-  },
-  "headings": {
-    "heading_regexes": [
-      "^#+\\s+\\S+",
-      "^(BAB|BAGIAN|PARAGRAF)\\s+[IVXLCDM0-9]+\\\\b",
-      "^(PASAL)\\s+\\d+[A-Z]?\\\\b",
-      "^[IVXLCDM]+\\.\\s+\\S+",
-      "^[A-Z]\\.\\s+[A-Z][A-Z\\s]{6,}$"
-    ],
-    "pasal_heading_regex": "^Pasal\\s+\\d+[A-Z]?\\b",
-    "bab_heading_regex": "^BAB\\b",
-    "max_heading_path_items": 4,
-    "heading_text_max_chars": 120
-  },
-  "citations": {
-    "pasal_regex": "\\bPasal\\s+(\\d+[A-Z]?)\\b",
-    "ayat_start_regex": "^\\s*(?:Ayat\\s*)?\\((\\d+[a-z]?)\\)",
-    "ayat_word_start_regex": "^\\s*Ayat\\s+(\\d+[a-z]?)\\b",
-    "ayat_regex": "(^|\\s)\\((\\d+[a-z]?)\\)",
-    "ayat_word_regex": "\\bayat\\s+(\\d+[a-z]?)\\b",
-    "huruf_label_regex": "^\\s*Huruf\\s+([a-z])\\b",
-    "huruf_context_regex": "\\bayat\\s+\\(?\\d+[a-z]?\\)?\\s+huruf\\s+([a-z])\\b",
-    "huruf_list_regex": "^\\(?([a-z])\\)?[.)]\\s+"
-  },
-  "block_type": {
-    "article_regex": "\\bpasal\\s+\\d+[a-z]?\\b",
-    "faq_question_scan_chars": 180,
-    "table_pipe_min_count": 4,
-    "list_item_regex": "^(\\(?\\d+[a-z]?\\)|[a-z]\\.|[ivxlcdm]+\\.)\\s+"
-  },
   "raw_output": {
     "slug_max_chars": 160
   },
@@ -71,8 +29,5 @@
     "empty_page_text_chars": 20,
     "total_text_min_chars": 100,
     "empty_page_ratio_threshold": 0.70
-  },
-  "block_id": {
-    "slug_max_chars": 180
   }
 }
