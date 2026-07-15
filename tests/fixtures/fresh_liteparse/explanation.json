@@ -1,0 +1,285 @@
+{
+  "contract": "thinking-layer-fresh-liteparse-v1",
+  "file_id": "peraturan-ojk-pojk-tentang-layanan-pinjam-meminjam-uang-berbasis-teknologi-informasi-1-sal-penjelasan-pojk-fintech-pdf",
+  "liteparse_options": {
+    "emit_word_boxes": true,
+    "extract_links": true,
+    "image_mode": "off",
+    "ocr_enabled": false,
+    "output_format": "markdown",
+    "quiet": true
+  },
+  "liteparse_version": "2.4.0",
+  "pages": [
+    {
+      "height": 935.52001953125,
+      "markdown": "Pasal 50\n\nCukup jelas.\n\nPasal 51\n\nCukup jelas.\n\nPasal 52\n\nCukup jelas.\n\nTAMBAHAN LEMBARAN NEGARA REPUBLIK INDONESIA NOMOR 6005",
+      "page_num": 16,
+      "text": "- 16 -\n\n\n\n\nPasal 50\nCukup jelas.\n\n\nPasal 51\nCukup jelas.\n\n\nPasal 52\nCukup jelas.\n\n\n\n\nTAMBAHAN LEMBARAN NEGARA REPUBLIK INDONESIA NOMOR 6005",
+      "text_items": [
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.2919921875,
+          "rotation": 0.0,
+          "text": "- 16 -",
+          "width": 32.15997314453125,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "-",
+              "width": 4.79998779296875,
+              "x": 281.69000244140625,
+              "y": 38.0880126953125
+            },
+            {
+              "height": 11.2919921875,
+              "text": "16",
+              "width": 14.8800048828125,
+              "x": 290.3299865722656,
+              "y": 38.0880126953125
+            },
+            {
+              "height": 11.2919921875,
+              "text": "-",
+              "width": 4.79998779296875,
+              "x": 309.04998779296875,
+              "y": 38.0880126953125
+            }
+          ],
+          "x": 281.69000244140625,
+          "y": 38.0880126953125
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.2919921875,
+          "rotation": 0.0,
+          "text": "Pasal 50",
+          "width": 49.91600799560547,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "Pasal",
+              "width": 31.20000457763672,
+              "x": 99.26399993896484,
+              "y": 108.90802001953125
+            },
+            {
+              "height": 11.2919921875,
+              "text": "50",
+              "width": 14.8800048828125,
+              "x": 134.3000030517578,
+              "y": 108.90802001953125
+            }
+          ],
+          "x": 99.26399993896484,
+          "y": 108.90802001953125
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.3399658203125,
+          "rotation": 0.0,
+          "text": "Cukup jelas.",
+          "width": 74.39997863769531,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "Cukup",
+              "width": 40.08000183105469,
+              "x": 127.58000183105469,
+              "y": 130.02801513671875
+            },
+            {
+              "height": 11.3399658203125,
+              "text": "jelas.",
+              "width": 31.52398681640625,
+              "x": 170.45599365234375,
+              "y": 130.02801513671875
+            }
+          ],
+          "x": 127.58000183105469,
+          "y": 130.02801513671875
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.2919921875,
+          "rotation": 0.0,
+          "text": "Pasal 51",
+          "width": 49.91600799560547,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "Pasal",
+              "width": 31.20000457763672,
+              "x": 99.26399993896484,
+              "y": 172.26806640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "51",
+              "width": 14.8800048828125,
+              "x": 134.3000030517578,
+              "y": 172.26806640625
+            }
+          ],
+          "x": 99.26399993896484,
+          "y": 172.26806640625
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.3399658203125,
+          "rotation": 0.0,
+          "text": "Cukup jelas.",
+          "width": 74.39997863769531,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "Cukup",
+              "width": 40.08000183105469,
+              "x": 127.58000183105469,
+              "y": 193.3880615234375
+            },
+            {
+              "height": 11.3399658203125,
+              "text": "jelas.",
+              "width": 31.52398681640625,
+              "x": 170.45599365234375,
+              "y": 193.3880615234375
+            }
+          ],
+          "x": 127.58000183105469,
+          "y": 193.3880615234375
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.2919921875,
+          "rotation": 0.0,
+          "text": "Pasal 52",
+          "width": 49.91600799560547,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "Pasal",
+              "width": 31.20000457763672,
+              "x": 99.26399993896484,
+              "y": 235.6280517578125
+            },
+            {
+              "height": 11.2919921875,
+              "text": "52",
+              "width": 14.8800048828125,
+              "x": 134.3000030517578,
+              "y": 235.6280517578125
+            }
+          ],
+          "x": 99.26399993896484,
+          "y": 235.6280517578125
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.3399658203125,
+          "rotation": 0.0,
+          "text": "Cukup jelas.",
+          "width": 74.39997863769531,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "Cukup",
+              "width": 40.08000183105469,
+              "x": 127.58000183105469,
+              "y": 256.748046875
+            },
+            {
+              "height": 11.3399658203125,
+              "text": "jelas.",
+              "width": 31.52398681640625,
+              "x": 170.45599365234375,
+              "y": 256.748046875
+            }
+          ],
+          "x": 127.58000183105469,
+          "y": 256.748046875
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Bookman Old Style",
+          "font_size": 12.0,
+          "height": 11.2919921875,
+          "rotation": 0.0,
+          "text": "TAMBAHAN LEMBARAN NEGARA REPUBLIK INDONESIA NOMOR 6005",
+          "width": 425.3659973144531,
+          "words": [
+            {
+              "height": 11.2919921875,
+              "text": "TAMBAHAN",
+              "width": 70.29601287841797,
+              "x": 70.8479995727539,
+              "y": 320.258056640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "LEMBARAN",
+              "width": 69.70799255371094,
+              "x": 144.9840087890625,
+              "y": 320.258056640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "NEGARA",
+              "width": 52.11799621582031,
+              "x": 218.53199768066406,
+              "y": 320.258056640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "REPUBLIK",
+              "width": 62.988006591796875,
+              "x": 274.489990234375,
+              "y": 320.258056640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "INDONESIA",
+              "width": 69.93600463867188,
+              "x": 341.197998046875,
+              "y": 320.258056640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "NOMOR",
+              "width": 47.6400146484375,
+              "x": 414.9739990234375,
+              "y": 320.258056640625
+            },
+            {
+              "height": 11.2919921875,
+              "text": "6005",
+              "width": 29.760009765625,
+              "x": 466.4539794921875,
+              "y": 320.258056640625
+            }
+          ],
+          "x": 70.8479995727539,
+          "y": 320.258056640625
+        }
+      ],
+      "width": 595.3200073242188
+    }
+  ],
+  "source_path": "downloads/peraturan-ojk/pojk-tentang-layanan-pinjam-meminjam-uang-berbasis-teknologi-informasi/SAL - PENJELASAN POJK Fintech.pdf",
+  "source_sha256": "cca6e1ccc1cad8f00674ff588887769dd75162411d04f8936181742f1eaefdd7",
+  "source_url": "https://ojk.go.id/id/regulasi/Documents/Pages/POJK-tentang-Layanan-Pinjam-Meminjam-Uang-Berbasis-Teknologi-Informasi/SAL%20-%20PENJELASAN%20POJK%20Fintech.pdf"
+}

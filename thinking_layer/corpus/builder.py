@@ -20,7 +20,7 @@ from .context import assemble_contextual_units
 from .eligibility import OcrEligibility
 from .lifecycle import LifecycleGraph, extract_lifecycle_relations
 from .liteparse_normalizer import MarkdownNormalizationError
-from .parser import parse_raw_document
+from .parser import QuarantinedDocumentError, parse_raw_document
 
 
 @dataclass(frozen=True)
@@ -33,6 +33,7 @@ class CorpusBuildResult:
     audit: CorpusAudit
     skipped_ocr_file_ids: tuple[str, ...]
     quarantined_sources: tuple[tuple[str, str], ...]
+    geometry_disagreements: tuple[tuple[str, str, str], ...]
     manifest_path: Path
 
 
@@ -99,6 +100,19 @@ def _load_raw(path: Path) -> dict[str, Any]:
     return raw
 
 
+def _raw_document_paths(raw_dir: Path) -> tuple[Path, ...]:
+    """Return fresh document records without treating extraction metadata as input."""
+
+    documents_dir = raw_dir / "documents"
+    if documents_dir.exists():
+        return tuple(sorted(documents_dir.glob("*.json")))
+    return tuple(
+        path
+        for path in sorted(raw_dir.glob("*.json"))
+        if path.name not in {"inventory.json", "manifest.json"}
+    )
+
+
 def _publish_build(staging_dir: Path, output_dir: Path) -> None:
     if output_dir.exists():
         shutil.rmtree(output_dir)
@@ -113,7 +127,7 @@ def build_corpus(
 ) -> CorpusBuildResult:
     """Build the only accepted corpus contract from fresh OCR-disabled raw pages."""
     eligibility = OcrEligibility.load(ocr_needed_path)
-    raw_paths = tuple(sorted(raw_dir.glob("*.json")))
+    raw_paths = _raw_document_paths(raw_dir)
     if not raw_paths:
         raise ValueError(
             f"no fresh raw JSON files found in {raw_dir}; run the OCR-disabled source extraction first"
@@ -127,6 +141,7 @@ def build_corpus(
     observed_file_ids: set[str] = set()
     skipped_file_ids: set[str] = set()
     quarantined_sources: dict[str, str] = {}
+    geometry_disagreements: list[tuple[str, str, str]] = []
 
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     staging_dir = Path(mkdtemp(prefix=f".{output_dir.name}.", dir=output_dir.parent))
@@ -154,9 +169,18 @@ def build_corpus(
                 document = catalog_raw_record(raw, path)
                 try:
                     parsed = parse_raw_document(raw)
-                except MarkdownNormalizationError as error:
+                except (MarkdownNormalizationError, QuarantinedDocumentError) as error:
                     quarantined_sources[file_id] = error.reason
+                    if isinstance(error, QuarantinedDocumentError):
+                        geometry_disagreements.extend(
+                            (file_id, disagreement.block_id, disagreement.reason)
+                            for disagreement in error.geometry_disagreements
+                        )
                     continue
+                geometry_disagreements.extend(
+                    (file_id, disagreement.block_id, disagreement.reason)
+                    for disagreement in parsed.geometry_disagreements
+                )
                 document_contexts = assemble_contextual_units(parsed)
                 document_relations = extract_lifecycle_relations(document, parsed.nodes)
                 document_audit = audit_corpus(
@@ -227,6 +251,11 @@ def build_corpus(
                 {"file_id": file_id, "reason": reason}
                 for file_id, reason in sorted(quarantined_sources.items())
             ],
+            "geometry_disagreement_count": len(geometry_disagreements),
+            "geometry_disagreements": [
+                {"file_id": file_id, "block_id": block_id, "reason": reason}
+                for file_id, block_id, reason in sorted(geometry_disagreements)
+            ],
             "raw_input_sha256": _aggregate_input_hash(raw_paths),
             "ocr_exclusion_list_sha256": _sha256(ocr_needed_path),
             "git_hash": _git_hash(),
@@ -254,6 +283,7 @@ def build_corpus(
         audit=audit,
         skipped_ocr_file_ids=reported_ocr_file_ids,
         quarantined_sources=tuple(sorted(quarantined_sources.items())),
+        geometry_disagreements=tuple(sorted(geometry_disagreements)),
         manifest_path=output_dir / "manifest.json",
     )
 

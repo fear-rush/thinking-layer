@@ -27,7 +27,9 @@ _OJK_LONG_FORM = re.compile(
     r"(?:/([A-Z.0-9]+))?(?:\s+TAHUN\s+|/)(\d{4})\b",
     re.IGNORECASE,
 )
-_TITLE_STOP = re.compile(r"\b(DENGAN\s+RAHMAT|MENIMBANG\s*:|MENGINGAT\s*:)\b", re.IGNORECASE)
+_TITLE_STOP = re.compile(
+    r"\b(DENGAN\s+RAHMAT|MENIMBANG\s*:|MENGINGAT\s*:)\b", re.IGNORECASE
+)
 
 
 @dataclass(frozen=True)
@@ -44,7 +46,11 @@ class Catalog:
 
     @property
     def uncatalogued_file_ids(self) -> tuple[str, ...]:
-        return tuple(document.file_id for document in self.source_documents if document.instrument is None)
+        return tuple(
+            document.file_id
+            for document in self.source_documents
+            if document.instrument is None
+        )
 
     @property
     def instruments(self) -> tuple[InstrumentIdentity, ...]:
@@ -101,6 +107,10 @@ def _role_for(file_id: str, title: str) -> str:
         return "secondary_summary"
     if "penjelasan" in normalized:
         return "explanation"
+    if "lampiran" in normalized or "attachment" in normalized:
+        return "attachment"
+    if "seojk" in normalized or "sebi" in normalized or "surat edaran" in normalized:
+        return "circular"
     return "primary_regulation"
 
 
@@ -111,7 +121,9 @@ def catalog_raw_record(raw_record: Mapping[str, Any], raw_path: Path) -> SourceD
     try:
         relative_path = raw_path.resolve().relative_to(ROOT).as_posix()
     except ValueError as error:
-        raise ValueError(f"saved raw path must be inside the repository: {raw_path}") from error
+        raise ValueError(
+            f"saved raw path must be inside the repository: {raw_path}"
+        ) from error
     source_bytes = raw_path.read_bytes()
     title = _title_from_raw(raw_record)
     instrument = extract_instrument_identity(title)

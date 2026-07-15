@@ -10,6 +10,7 @@ from typing import Any
 from ..domain.legal import LegalNode, LegalPath, SourceSpan
 from .eligibility import OcrEligibility
 from .liteparse_normalizer import (
+    GeometryDisagreement,
     NormalizedBlock,
     NormalizedDocument,
     NormalizedPage,
@@ -32,6 +33,23 @@ class ParsedDocument:
     file_id: str
     nodes: tuple[LegalNode, ...]
     page_count: int
+    family: str = "other"
+    geometry_disagreements: tuple[GeometryDisagreement, ...] = ()
+
+
+class QuarantinedDocumentError(ValueError):
+    """No citable source blocks remain after evidence-preserving quarantine."""
+
+    def __init__(
+        self,
+        file_id: str,
+        reason: str,
+        geometry_disagreements: tuple[GeometryDisagreement, ...] = (),
+    ) -> None:
+        super().__init__(f"fresh raw document {file_id} quarantined: {reason}")
+        self.file_id = file_id
+        self.reason = reason
+        self.geometry_disagreements = geometry_disagreements
 
 
 @dataclass
@@ -114,8 +132,14 @@ def _plain_line(line: str) -> str:
 
 
 def _anchor(
-    line: str, *, allow_subprovision: bool, heading_block: bool
+    line: str,
+    *,
+    allow_subprovision: bool,
+    heading_block: bool,
+    legal_zone: bool,
 ) -> tuple[str, str | None] | None:
+    if not legal_zone:
+        return None
     plain = _plain_line(line)
     if not plain:
         return None
@@ -135,15 +159,18 @@ def _anchor(
 
 
 def _line_anchors(
-    line: str, *, state: _ParseState, heading_block: bool
+    line: str, *, state: _ParseState, heading_block: bool, legal_zone: bool
 ) -> tuple[tuple[int, tuple[str, str | None]], ...]:
     anchors: list[tuple[int, tuple[str, str | None]]] = []
     leading_offset = len(line) - len(line.lstrip())
     if anchor := _anchor(
-        line, allow_subprovision=state.pasal is not None, heading_block=heading_block
+        line,
+        allow_subprovision=state.pasal is not None,
+        heading_block=heading_block,
+        legal_zone=legal_zone,
     ):
         anchors.append((leading_offset, anchor))
-    if state.pasal is not None and not heading_block:
+    if state.pasal is not None and not heading_block and legal_zone:
         for match in _INLINE_AYAT.finditer(line):
             value = match.group(1).strip()[1:-1].strip()
             anchors.append((match.start(1), ("ayat", value)))
@@ -247,7 +274,10 @@ def _parse_block(
 
     for line_start, line_end, line in _line_ranges(content_markdown):
         for offset, anchor in _line_anchors(
-            line, state=state, heading_block=block.kind == "heading"
+            line,
+            state=state,
+            heading_block=block.kind == "heading",
+            legal_zone=block.zone == "normative",
         ):
             start = content_start + line_start + offset
             flush(start)
@@ -276,6 +306,7 @@ def parse_normalized_document(normalized: NormalizedDocument) -> ParsedDocument:
             block
             for block in page.blocks
             if block.kind in {"heading", "paragraph", "verbatim_block"}
+            and block.quarantine_reason is None
         )
         for block in parseable_blocks:
             nodes.extend(
@@ -284,11 +315,21 @@ def parse_normalized_document(normalized: NormalizedDocument) -> ParsedDocument:
                 )
             )
     if not nodes:
+        if normalized.geometry_disagreements:
+            raise QuarantinedDocumentError(
+                normalized.file_id,
+                "all parseable blocks failed geometry validation",
+                normalized.geometry_disagreements,
+            )
         raise ValueError(
             f"fresh raw document {normalized.file_id} produced no legal nodes"
         )
     return ParsedDocument(
-        file_id=normalized.file_id, nodes=tuple(nodes), page_count=len(normalized.pages)
+        file_id=normalized.file_id,
+        nodes=tuple(nodes),
+        page_count=len(normalized.pages),
+        family=normalized.family,
+        geometry_disagreements=normalized.geometry_disagreements,
     )
 
 

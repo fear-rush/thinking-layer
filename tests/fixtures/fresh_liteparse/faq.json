@@ -1,0 +1,764 @@
+{
+  "contract": "thinking-layer-fresh-liteparse-v1",
+  "file_id": "peraturan-ojk-12seojk052025-sertifikasi-kompetensi-kerja-bagi-ppdp-2-faq-seojk-12-seojk05-2025-sertifikasi-kompetensi-kerja-bagi-perusahaan-perasuransian-lembaga-penjamin-dana-pensiun-serta-lembaga-khusus-bidang-perasuransian-penjaminan-dan-dana-pensiun-pdf",
+  "liteparse_options": {
+    "emit_word_boxes": true,
+    "extract_links": true,
+    "image_mode": "off",
+    "ocr_enabled": false,
+    "output_format": "markdown",
+    "quiet": true
+  },
+  "liteparse_version": "2.4.0",
+  "pages": [
+    {
+      "height": 842.0399780273438,
+      "markdown": "Sertifikat yang telah diterbitkan sebelum tanggal pemberlakuan POJK SDM PPDP (23 Juni 2025) masih dapat digunakan dan tetap berlaku. Sejak SEOJK ini berlaku, harus mengacu pada KKNI dan SKKNI Dana Pensiun yang berlaku, selanjutnya mengunakan sertifikat di bidang Dana Pensiun sebagaimana yang diatur dalam SEOJK ini.\n\n# 11. Kapan SEOJK ini mulai berlaku?\n\nSEOJK ini mulai berlaku sejak tanggal ditetapkannya SEOJK ini. Adapun POJK SDM PPDP mulai berlaku 6 bulan sejak tanggal diundangkan, yakni sejak tanggal 23 Juni 2025.",
+      "page_num": 6,
+      "text": "Sertifikat yang telah diterbitkan sebelum tanggal pemberlakuan POJK SDM\nPPDP (23 Juni 2025) masih dapat digunakan dan tetap berlaku. Sejak\nSEOJK ini berlaku, harus mengacu pada KKNI dan SKKNI Dana Pensiun\nyang berlaku, selanjutnya mengunakan sertifikat di bidang Dana Pensiun\nsebagaimana yang diatur dalam SEOJK ini.\n\n\n    11.   Kapan SEOJK ini mulai berlaku?\n          SEOJK ini mulai berlaku sejak tanggal ditetapkannya SEOJK ini. Adapun\n          POJK SDM PPDP mulai berlaku 6 bulan sejak tanggal diundangkan, yakni\n          sejak tanggal 23 Juni 2025.\n\n\n\n\n\n\n\n\n\n\n          Page 6 of 6    https://jdih.ojk.go.id",
+      "text_items": [
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.51007080078125,
+          "rotation": 0.0,
+          "text": "Sertifikat yang telah diterbitkan sebelum tanggal pemberlakuan POJK SDM",
+          "width": 410.9631042480469,
+          "words": [
+            {
+              "height": 10.51007080078125,
+              "text": "Sertifikat",
+              "width": 49.555198669433594,
+              "x": 113.54000091552734,
+              "y": 87.3939208984375
+            },
+            {
+              "height": 10.388671875,
+              "text": "yang",
+              "width": 25.70111083984375,
+              "x": 166.76336669921875,
+              "y": 87.51531982421875
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "telah",
+              "width": 26.827194213867188,
+              "x": 196.2953643798828,
+              "y": 87.3939208984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "diterbitkan",
+              "width": 59.593902587890625,
+              "x": 226.97552490234375,
+              "y": 87.3939208984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "sebelum",
+              "width": 45.153594970703125,
+              "x": 290.4223937988281,
+              "y": 87.3939208984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "tanggal",
+              "width": 39.269287109375,
+              "x": 339.54998779296875,
+              "y": 87.3939208984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "pemberlakuan",
+              "width": 77.8099365234375,
+              "x": 382.6832580566406,
+              "y": 87.3939208984375
+            },
+            {
+              "height": 10.388671875,
+              "text": "POJK",
+              "width": 30.161285400390625,
+              "x": 464.34613037109375,
+              "y": 87.51531982421875
+            },
+            {
+              "height": 10.388671875,
+              "text": "SDM",
+              "width": 26.22003173828125,
+              "x": 498.2830810546875,
+              "y": 87.51531982421875
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 87.3939208984375
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.56524658203125,
+          "rotation": 0.0,
+          "text": "PPDP (23 Juni 2025) masih dapat digunakan dan tetap berlaku. Sejak",
+          "width": 411.1803283691406,
+          "words": [
+            {
+              "height": 10.388671875,
+              "text": "PPDP",
+              "width": 29.38848114013672,
+              "x": 113.54000091552734,
+              "y": 106.8353271484375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "(23",
+              "width": 16.92431640625,
+              "x": 149.50831604003906,
+              "y": 106.76910400390625
+            },
+            {
+              "height": 10.388671875,
+              "text": "Juni",
+              "width": 24.674392700195312,
+              "x": 173.00143432617188,
+              "y": 106.8353271484375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "2025)",
+              "width": 30.558731079101562,
+              "x": 204.29983520507812,
+              "y": 106.76910400390625
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "masih",
+              "width": 33.07585144042969,
+              "x": 241.49000549316406,
+              "y": 106.71392822265625
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "dapat",
+              "width": 30.602874755859375,
+              "x": 281.1788024902344,
+              "y": 106.71392822265625
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "digunakan",
+              "width": 57.540496826171875,
+              "x": 318.37255859375,
+              "y": 106.71392822265625
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "dan",
+              "width": 20.490264892578125,
+              "x": 382.5260009765625,
+              "y": 106.71392822265625
+            },
+            {
+              "height": 10.388671875,
+              "text": "tetap",
+              "width": 27.37921142578125,
+              "x": 409.62921142578125,
+              "y": 106.8353271484375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "berlaku.",
+              "width": 44.9755859375,
+              "x": 443.57720947265625,
+              "y": 106.71392822265625
+            },
+            {
+              "height": 10.55419921875,
+              "text": "Sejak",
+              "width": 29.620330810546875,
+              "x": 495.1000061035156,
+              "y": 106.71392822265625
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 106.71392822265625
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.51007080078125,
+          "rotation": 0.0,
+          "text": "SEOJK ini berlaku, harus mengacu pada KKNI dan SKKNI Dana Pensiun",
+          "width": 410.9555969238281,
+          "words": [
+            {
+              "height": 10.388671875,
+              "text": "SEOJK",
+              "width": 38.662086486816406,
+              "x": 113.54000091552734,
+              "y": 126.27532958984375
+            },
+            {
+              "height": 10.388671875,
+              "text": "ini",
+              "width": 13.855194091796875,
+              "x": 157.2032012939453,
+              "y": 126.27532958984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "berlaku,",
+              "width": 45.02113342285156,
+              "x": 176.12574768066406,
+              "y": 126.1539306640625
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "harus",
+              "width": 31.65167236328125,
+              "x": 226.25,
+              "y": 126.1539306640625
+            },
+            {
+              "height": 10.388671875,
+              "text": "mengacu",
+              "width": 48.8851318359375,
+              "x": 262.94696044921875,
+              "y": 126.27532958984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "pada",
+              "width": 26.473907470703125,
+              "x": 316.9104919433594,
+              "y": 126.1539306640625
+            },
+            {
+              "height": 10.388671875,
+              "text": "KKNI",
+              "width": 27.765594482421875,
+              "x": 348.4627990722656,
+              "y": 126.27532958984375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "dan",
+              "width": 20.490234375,
+              "x": 381.218505859375,
+              "y": 126.1539306640625
+            },
+            {
+              "height": 10.388671875,
+              "text": "SKKNI",
+              "width": 35.074066162109375,
+              "x": 406.76507568359375,
+              "y": 126.27532958984375
+            },
+            {
+              "height": 10.388671875,
+              "text": "Dana",
+              "width": 28.957916259765625,
+              "x": 446.8292236328125,
+              "y": 126.27532958984375
+            },
+            {
+              "height": 10.388671875,
+              "text": "Pensiun",
+              "width": 43.740478515625,
+              "x": 480.755126953125,
+              "y": 126.27532958984375
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 126.1539306640625
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.55419921875,
+          "rotation": 0.0,
+          "text": "yang berlaku, selanjutnya mengunakan sertifikat di bidang Dana Pensiun",
+          "width": 411.00079345703125,
+          "words": [
+            {
+              "height": 10.388671875,
+              "text": "yang",
+              "width": 25.8115234375,
+              "x": 113.36335754394531,
+              "y": 145.5953369140625
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "berlaku,",
+              "width": 44.910736083984375,
+              "x": 144.08767700195312,
+              "y": 145.47393798828125
+            },
+            {
+              "height": 10.55419921875,
+              "text": "selanjutnya",
+              "width": 62.98321533203125,
+              "x": 193.97000122070312,
+              "y": 145.47393798828125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "mengunakan",
+              "width": 70.86581420898438,
+              "x": 261.79974365234375,
+              "y": 145.47393798828125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "sertifikat",
+              "width": 47.957763671875,
+              "x": 337.60040283203125,
+              "y": 145.47393798828125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "di",
+              "width": 10.15679931640625,
+              "x": 390.47100830078125,
+              "y": 145.47393798828125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "bidang",
+              "width": 36.57550048828125,
+              "x": 405.57373046875,
+              "y": 145.47393798828125
+            },
+            {
+              "height": 10.388671875,
+              "text": "Dana",
+              "width": 28.83648681640625,
+              "x": 447.06207275390625,
+              "y": 145.5953369140625
+            },
+            {
+              "height": 10.388671875,
+              "text": "Pensiun",
+              "width": 43.740447998046875,
+              "x": 480.6236877441406,
+              "y": 145.5953369140625
+            }
+          ],
+          "x": 113.36335754394531,
+          "y": 145.47393798828125
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.51007080078125,
+          "rotation": 0.0,
+          "text": "sebagaimana yang diatur dalam SEOJK ini.",
+          "width": 235.78125,
+          "words": [
+            {
+              "height": 10.51007080078125,
+              "text": "sebagaimana",
+              "width": 70.68912506103516,
+              "x": 113.54000091552734,
+              "y": 164.7939453125
+            },
+            {
+              "height": 10.388671875,
+              "text": "yang",
+              "width": 25.8115234375,
+              "x": 187.46383666992188,
+              "y": 164.91534423828125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "diatur",
+              "width": 32.910247802734375,
+              "x": 216.75296020507812,
+              "y": 164.7939453125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "dalam",
+              "width": 33.28558349609375,
+              "x": 253.08560180664062,
+              "y": 164.7939453125
+            },
+            {
+              "height": 10.388671875,
+              "text": "SEOJK",
+              "width": 38.662078857421875,
+              "x": 289.7935791015625,
+              "y": 164.91534423828125
+            },
+            {
+              "height": 10.388671875,
+              "text": "ini.",
+              "width": 17.421112060546875,
+              "x": 331.900146484375,
+              "y": 164.91534423828125
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 164.7939453125
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDHEE+BookmanOldStyle-Bold",
+          "font_size": 11.039999961853027,
+          "height": 10.37762451171875,
+          "rotation": 0.0,
+          "text": "11.",
+          "width": 18.393600463867188,
+          "words": [
+            {
+              "height": 10.37762451171875,
+              "text": "11.",
+              "width": 18.393600463867188,
+              "x": 78.02400207519531,
+              "y": 203.66424560546875
+            }
+          ],
+          "x": 78.02400207519531,
+          "y": 203.66424560546875
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDHEE+BookmanOldStyle-Bold",
+          "font_size": 11.039999961853027,
+          "height": 10.4990234375,
+          "rotation": 0.0,
+          "text": "Kapan SEOJK ini mulai berlaku?",
+          "width": 188.57568359375,
+          "words": [
+            {
+              "height": 10.37762451171875,
+              "text": "Kapan",
+              "width": 36.200157165527344,
+              "x": 113.54000091552734,
+              "y": 203.66424560546875
+            },
+            {
+              "height": 10.37762451171875,
+              "text": "SEOJK",
+              "width": 39.903350830078125,
+              "x": 153.3800048828125,
+              "y": 203.66424560546875
+            },
+            {
+              "height": 10.4990234375,
+              "text": "ini",
+              "width": 15.36767578125,
+              "x": 197.04800415039062,
+              "y": 203.5428466796875
+            },
+            {
+              "height": 10.4990234375,
+              "text": "mulai",
+              "width": 32.2919921875,
+              "x": 216.1251220703125,
+              "y": 203.5428466796875
+            },
+            {
+              "height": 10.4990234375,
+              "text": "berlaku?",
+              "width": 49.98912048339844,
+              "x": 252.12657165527344,
+              "y": 203.5428466796875
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 203.5428466796875
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.55419921875,
+          "rotation": 0.0,
+          "text": "SEOJK ini mulai berlaku sejak tanggal ditetapkannya SEOJK ini. Adapun",
+          "width": 411.1466979980469,
+          "words": [
+            {
+              "height": 10.388671875,
+              "text": "SEOJK",
+              "width": 38.67792510986328,
+              "x": 113.54000091552734,
+              "y": 223.14532470703125
+            },
+            {
+              "height": 10.388671875,
+              "text": "ini",
+              "width": 13.855209350585938,
+              "x": 156.95407104492188,
+              "y": 223.14532470703125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "mulai",
+              "width": 30.779510498046875,
+              "x": 175.63375854492188,
+              "y": 223.02392578125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "berlaku",
+              "width": 41.223358154296875,
+              "x": 211.2377471923828,
+              "y": 223.02392578125
+            },
+            {
+              "height": 10.55419921875,
+              "text": "sejak",
+              "width": 28.052642822265625,
+              "x": 257.45001220703125,
+              "y": 223.02392578125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "tanggal",
+              "width": 39.2913818359375,
+              "x": 290.3299865722656,
+              "y": 223.02392578125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "ditetapkannya",
+              "width": 77.51119995117188,
+              "x": 334.4458312988281,
+              "y": 223.02392578125
+            },
+            {
+              "height": 10.388671875,
+              "text": "SEOJK",
+              "width": 38.662078857421875,
+              "x": 416.6821594238281,
+              "y": 223.14532470703125
+            },
+            {
+              "height": 10.388671875,
+              "text": "ini.",
+              "width": 17.41033935546875,
+              "x": 460.10247802734375,
+              "y": 223.14532470703125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "Adapun",
+              "width": 42.42669677734375,
+              "x": 482.260009765625,
+              "y": 223.02392578125
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 223.02392578125
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.55419921875,
+          "rotation": 0.0,
+          "text": "POJK SDM PPDP mulai berlaku 6 bulan sejak tanggal diundangkan, yakni",
+          "width": 410.6330871582031,
+          "words": [
+            {
+              "height": 10.388671875,
+              "text": "POJK",
+              "width": 30.28272247314453,
+              "x": 113.54000091552734,
+              "y": 242.46533203125
+            },
+            {
+              "height": 10.388671875,
+              "text": "SDM",
+              "width": 26.220001220703125,
+              "x": 147.95167541503906,
+              "y": 242.46533203125
+            },
+            {
+              "height": 10.388671875,
+              "text": "PPDP",
+              "width": 29.38848876953125,
+              "x": 178.3889617919922,
+              "y": 242.46533203125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "mulai",
+              "width": 30.779541015625,
+              "x": 211.96160888671875,
+              "y": 242.34393310546875
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "berlaku",
+              "width": 41.4552001953125,
+              "x": 246.95843505859375,
+              "y": 242.34393310546875
+            },
+            {
+              "height": 10.388671875,
+              "text": "6",
+              "width": 6.84478759765625,
+              "x": 292.6309509277344,
+              "y": 242.46533203125
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "bulan",
+              "width": 31.375701904296875,
+              "x": 303.659912109375,
+              "y": 242.34393310546875
+            },
+            {
+              "height": 10.55419921875,
+              "text": "sejak",
+              "width": 27.942230224609375,
+              "x": 339.2418518066406,
+              "y": 242.34393310546875
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "tanggal",
+              "width": 39.512237548828125,
+              "x": 371.3682556152344,
+              "y": 242.34393310546875
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "diundangkan,",
+              "width": 75.24871826171875,
+              "x": 415.0977783203125,
+              "y": 242.34393310546875
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "yakni",
+              "width": 29.874267578125,
+              "x": 494.298828125,
+              "y": 242.34393310546875
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 242.34393310546875
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.55419921875,
+          "rotation": 0.0,
+          "text": "sejak tanggal 23 Juni 2025.",
+          "width": 150.453125,
+          "words": [
+            {
+              "height": 10.55419921875,
+              "text": "sejak",
+              "width": 28.052635192871094,
+              "x": 113.54000091552734,
+              "y": 261.6639404296875
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "tanggal",
+              "width": 39.28031921386719,
+              "x": 145.0702362060547,
+              "y": 261.6639404296875
+            },
+            {
+              "height": 10.388671875,
+              "text": "23",
+              "width": 13.689620971679688,
+              "x": 187.86126708984375,
+              "y": 261.78533935546875
+            },
+            {
+              "height": 10.388671875,
+              "text": "Juni",
+              "width": 24.685440063476562,
+              "x": 205.00640869140625,
+              "y": 261.78533935546875
+            },
+            {
+              "height": 10.388671875,
+              "text": "2025.",
+              "width": 30.912017822265625,
+              "x": 233.08111572265625,
+              "y": 261.78533935546875
+            }
+          ],
+          "x": 113.54000091552734,
+          "y": 261.6639404296875
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "BCDFEE+BookmanOldStyle",
+          "font_size": 11.039999961853027,
+          "height": 10.51007080078125,
+          "rotation": 0.0,
+          "text": "Page 6 of 6",
+          "width": 58.824798583984375,
+          "words": [
+            {
+              "height": 10.38861083984375,
+              "text": "Page",
+              "width": 24.9283447265625,
+              "x": 268.3699951171875,
+              "y": 798.3753662109375
+            },
+            {
+              "height": 10.38861083984375,
+              "text": "6",
+              "width": 6.84478759765625,
+              "x": 296.80999755859375,
+              "y": 798.3753662109375
+            },
+            {
+              "height": 10.51007080078125,
+              "text": "of",
+              "width": 10.764007568359375,
+              "x": 307.1300048828125,
+              "y": 798.25390625
+            },
+            {
+              "height": 10.38861083984375,
+              "text": "6",
+              "width": 6.84478759765625,
+              "x": 320.3500061035156,
+              "y": 798.3753662109375
+            }
+          ],
+          "x": 268.3699951171875,
+          "y": 798.25390625
+        },
+        {
+          "confidence": 1.0,
+          "font_name": "Times-Italic",
+          "font_size": 12.0,
+          "height": 13.27203369140625,
+          "rotation": 0.0,
+          "text": "https://jdih.ojk.go.id",
+          "width": 98.1719970703125,
+          "words": [
+            {
+              "height": 13.27203369140625,
+              "text": "https://jdih.ojk.go.id",
+              "width": 98.1719970703125,
+              "x": 425.6400146484375,
+              "y": 807.251953125
+            }
+          ],
+          "x": 425.6400146484375,
+          "y": 807.251953125
+        }
+      ],
+      "width": 595.3200073242188
+    }
+  ],
+  "source_path": "downloads/peraturan-ojk/12seojk052025-sertifikasi-kompetensi-kerja-bagi-ppdp/FAQ SEOJK 12-SEOJK05-2025 Sertifikasi Kompetensi Kerja bagi PPDP.pdf",
+  "source_sha256": "a882566bebbedd9c6f3b44b5d25206ceeb1aa0b3ba1cc171404acf996d191483",
+  "source_url": "https://ojk.go.id/id/regulasi/Documents/Pages/12SEOJK052025-Sertifikasi-Kompetensi-Kerja-bagi-PPDP/FAQ%20SEOJK%2012-SEOJK05-2025%20Sertifikasi%20Kompetensi%20Kerja%20bagi%20PPDP.pdf"
+}

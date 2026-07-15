@@ -79,3 +79,60 @@ def test_rebuilds_clean_outputs_and_reports_ocr_coverage() -> None:
         assert manifest["skipped_ocr_file_ids"] == ["fixture-scan-only"]
         assert (output_dir / "legal_nodes.ndjson").exists()
         assert (output_dir / "contextual_units.ndjson").exists()
+
+
+def test_reports_geometry_disagreements_and_quarantines_an_unanchored_source() -> None:
+    with TemporaryDirectory(dir=ROOT) as temporary:
+        root = Path(temporary)
+        raw_dir = root / "raw"
+        output_dir = root / "corpus"
+        raw_dir.mkdir()
+        (raw_dir / "mismatch.json").write_text(
+            json.dumps(
+                {
+                    "contract": "thinking-layer-fresh-liteparse-v1",
+                    "file_id": "fixture-geometry-mismatch",
+                    "source_path": "downloads/peraturan-ojk/POJK 1.pdf",
+                    "liteparse_options": {"ocr_enabled": False},
+                    "pages": [
+                        {
+                            "page_num": 1,
+                            "markdown": "PERATURAN OTORITAS JASA KEUANGAN\n\nPasal 1\nBank wajib melapor.",
+                            "text": "PERATURAN OTORITAS JASA KEUANGAN\n\nPasal 1\nBank wajib melapor.",
+                            "text_items": [
+                                {
+                                    "text": "tata letak berbeda",
+                                    "x": 1,
+                                    "y": 1,
+                                    "width": 10,
+                                    "height": 10,
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        exclusions = root / "ocr_needed.json"
+        exclusions.write_text("[]", encoding="utf-8")
+
+        result = build_corpus(
+            raw_dir=raw_dir, output_dir=output_dir, ocr_needed_path=exclusions
+        )
+
+        assert result.source_document_count == 0
+        assert result.quarantined_sources == (
+            (
+                "fixture-geometry-mismatch",
+                "all parseable blocks failed geometry validation",
+            ),
+        )
+        assert result.geometry_disagreements
+        manifest = json.loads(result.manifest_path.read_text(encoding="utf-8"))
+        assert manifest["geometry_disagreement_count"] == len(
+            result.geometry_disagreements
+        )
+        assert {entry["reason"] for entry in manifest["geometry_disagreements"]} == {
+            "markdown_geometry_text_disagreement"
+        }

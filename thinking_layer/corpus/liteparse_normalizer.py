@@ -9,8 +9,9 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from itertools import pairwise
+from math import ceil
 from typing import Any
 
 from markdown_it import MarkdownIt
@@ -21,6 +22,16 @@ from ..common.text import normalize_space
 
 _LINK = re.compile(r"(?<!!)\[([^\]]+)\]\(([^\s)]+)(?:\s+[^)]*)?\)")
 _TABLE_DELIMITER = re.compile(r"^\s*\|?\s*:?-{1,}:?\s*(?:\|\s*:?-{1,}:?\s*)+\|?\s*$")
+_WORD = re.compile(r"[\wÀ-ÖØ-öø-ÿ]+", re.UNICODE)
+_FRESH_CONTRACT = "thinking-layer-fresh-liteparse-v1"
+_GEOMETRY_BLOCK_KINDS = {
+    "heading",
+    "paragraph",
+    "list_item",
+    "table_header_cell",
+    "table_cell",
+    "verbatim_block",
+}
 
 
 class MarkdownNormalizationError(ValueError):
@@ -60,6 +71,25 @@ class MarkdownLink:
 
 
 @dataclass(frozen=True)
+class GeometryAnchor:
+    """A page-region confirmation for a Markdown-derived block."""
+
+    page_num: int
+    x: float
+    y: float
+    width: float
+    height: float
+    text_item_count: int
+
+
+@dataclass(frozen=True)
+class GeometryDisagreement:
+    block_id: str
+    page_num: int
+    reason: str
+
+
+@dataclass(frozen=True)
 class NormalizedBlock:
     """A Markdown-derived semantic block with lossless provenance."""
 
@@ -72,6 +102,9 @@ class NormalizedBlock:
     parent_block_id: str | None
     child_block_ids: tuple[str, ...]
     links: tuple[MarkdownLink, ...] = ()
+    zone: str = "unknown"
+    geometry_anchor: GeometryAnchor | None = None
+    quarantine_reason: str | None = None
 
 
 @dataclass(frozen=True)
@@ -91,6 +124,8 @@ class NormalizedPage:
 class NormalizedDocument:
     file_id: str
     pages: tuple[NormalizedPage, ...]
+    family: str = "other"
+    geometry_disagreements: tuple[GeometryDisagreement, ...] = ()
 
 
 @dataclass
@@ -366,6 +401,141 @@ def _page_markdown(page: Mapping[str, Any]) -> str:
     raise ValueError("fresh raw page requires non-empty markdown or text")
 
 
+def _document_family(
+    raw_record: Mapping[str, Any], pages: tuple[NormalizedPage, ...]
+) -> str:
+    """Classify only from saved source evidence; never infer a legal zone by number."""
+
+    source_hint = " ".join(
+        str(raw_record.get(key) or "")
+        for key in ("file_id", "source_path", "source_url")
+    ).casefold()
+    markdown_hint = "\n".join(page.raw_markdown for page in pages[:2]).casefold()
+    evidence = f"{source_hint}\n{markdown_hint}"
+    if "faq" in evidence or "frequently asked" in evidence:
+        return "faq"
+    if "penjelasan" in source_hint or markdown_hint.lstrip().startswith("penjelasan"):
+        return "explanation"
+    if "lampiran" in source_hint or markdown_hint.lstrip().startswith("lampiran"):
+        return "attachment"
+    if "surat edaran" in evidence or "seojk" in evidence or "sebi" in evidence:
+        return "circular"
+    if "keputusan" in evidence or re.search(r"\bsk\b", source_hint):
+        return "decision"
+    if "peraturan" in evidence or re.search(
+        r"(?m)^pasal\s+\d+", markdown_hint, flags=re.IGNORECASE
+    ):
+        return "regulation"
+    return "other"
+
+
+def _zoned_pages(
+    pages: tuple[NormalizedPage, ...], *, family: str
+) -> tuple[NormalizedPage, ...]:
+    """Mark source-backed document zones before legal-anchor interpretation."""
+
+    default_zone = "normative" if family in {"regulation", "decision"} else family
+    zone = default_zone
+    zoned_pages: list[NormalizedPage] = []
+    for page in pages:
+        zoned_blocks: list[NormalizedBlock] = []
+        for block in page.blocks:
+            marker = normalize_space(
+                block.display_text or block.raw_markdown
+            ).casefold()
+            if family in {"regulation", "decision"}:
+                if marker.startswith("penjelasan"):
+                    zone = "explanation"
+                elif marker.startswith("lampiran"):
+                    zone = "attachment"
+            zoned_blocks.append(replace(block, zone=zone))
+        zoned_pages.append(replace(page, blocks=tuple(zoned_blocks)))
+    return tuple(zoned_pages)
+
+
+def _tokens(value: str) -> set[str]:
+    return {
+        token.casefold()
+        for token in _WORD.findall(value)
+        if any(character.isalpha() for character in token) and len(token) >= 2
+    }
+
+
+def _geometry_items(
+    page: Mapping[str, Any],
+) -> tuple[tuple[str, float, float, float, float], ...]:
+    raw_items = page.get("text_items")
+    if not isinstance(raw_items, list):
+        return ()
+    items: list[tuple[str, float, float, float, float]] = []
+    for item in raw_items:
+        if not isinstance(item, Mapping):
+            continue
+        text = item.get("text")
+        coordinates = tuple(item.get(name) for name in ("x", "y", "width", "height"))
+        if not isinstance(text, str) or not text.strip():
+            continue
+        if not all(isinstance(value, (int, float)) for value in coordinates):
+            continue
+        x, y, width, height = (float(value) for value in coordinates)
+        if width <= 0 or height <= 0:
+            continue
+        items.append((text, x, y, width, height))
+    return tuple(items)
+
+
+def _geometry_validated_page(
+    page: NormalizedPage, raw_page: Mapping[str, Any], *, enforce: bool
+) -> tuple[NormalizedPage, tuple[GeometryDisagreement, ...]]:
+    if not enforce:
+        return page, ()
+    items = _geometry_items(raw_page)
+    disagreements: list[GeometryDisagreement] = []
+    blocks: list[NormalizedBlock] = []
+    for block in page.blocks:
+        if block.kind not in _GEOMETRY_BLOCK_KINDS:
+            blocks.append(block)
+            continue
+        block_tokens = _tokens(block.display_text)
+        if not block_tokens:
+            blocks.append(block)
+            continue
+        matching_items = [item for item in items if _tokens(item[0]) & block_tokens]
+        matched_tokens = {
+            token for item in matching_items for token in _tokens(item[0])
+        }
+        required_matches = max(1, ceil(len(block_tokens) * 0.5))
+        if len(matched_tokens & block_tokens) < required_matches:
+            reason = (
+                "missing_usable_text_item_geometry"
+                if not items
+                else "markdown_geometry_text_disagreement"
+            )
+            disagreements.append(
+                GeometryDisagreement(block.block_id, page.page_num, reason)
+            )
+            blocks.append(replace(block, quarantine_reason=reason))
+            continue
+        x_start = min(item[1] for item in matching_items)
+        y_start = min(item[2] for item in matching_items)
+        x_end = max(item[1] + item[3] for item in matching_items)
+        y_end = max(item[2] + item[4] for item in matching_items)
+        blocks.append(
+            replace(
+                block,
+                geometry_anchor=GeometryAnchor(
+                    page_num=page.page_num,
+                    x=x_start,
+                    y=y_start,
+                    width=x_end - x_start,
+                    height=y_end - y_start,
+                    text_item_count=len(matching_items),
+                ),
+            )
+        )
+    return replace(page, blocks=tuple(blocks)), tuple(disagreements)
+
+
 def normalize_raw_document(raw_record: Mapping[str, Any]) -> NormalizedDocument:
     """Normalize a saved non-OCR LiteParse record without modifying its source text."""
 
@@ -376,6 +546,7 @@ def normalize_raw_document(raw_record: Mapping[str, Any]) -> NormalizedDocument:
     if not isinstance(pages, list) or not pages:
         raise ValueError(f"fresh raw document {file_id} requires pages")
     normalized_pages: list[NormalizedPage] = []
+    raw_pages: list[Mapping[str, Any]] = []
     seen_pages: set[int] = set()
     for page in pages:
         if not isinstance(page, Mapping):
@@ -388,9 +559,27 @@ def normalize_raw_document(raw_record: Mapping[str, Any]) -> NormalizedDocument:
                 f"fresh raw document {file_id} has duplicate page_num {page_num}"
             )
         seen_pages.add(page_num)
+        raw_pages.append(page)
         normalized_pages.append(
             normalize_page(
                 file_id=file_id, page_num=page_num, markdown=_page_markdown(page)
             )
         )
-    return NormalizedDocument(file_id=file_id, pages=tuple(normalized_pages))
+    pages = tuple(normalized_pages)
+    family = _document_family(raw_record, pages)
+    zoned_pages = _zoned_pages(pages, family=family)
+    enforce_geometry = raw_record.get("contract") == _FRESH_CONTRACT
+    geometry_disagreements: list[GeometryDisagreement] = []
+    validated_pages: list[NormalizedPage] = []
+    for page, raw_page in zip(zoned_pages, raw_pages, strict=True):
+        validated_page, disagreements = _geometry_validated_page(
+            page, raw_page, enforce=enforce_geometry
+        )
+        validated_pages.append(validated_page)
+        geometry_disagreements.extend(disagreements)
+    return NormalizedDocument(
+        file_id=file_id,
+        pages=tuple(validated_pages),
+        family=family,
+        geometry_disagreements=tuple(geometry_disagreements),
+    )

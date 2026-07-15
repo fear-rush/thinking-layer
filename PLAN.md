@@ -1,6 +1,6 @@
 # Backend Hard-Cutover Plan
 
-Status: Phase 1 complete; Phase 0 source inventory and fresh OCR-disabled extraction are in progress. Full-corpus publication is blocked until fresh raw extraction, LiteParse Markdown normalization, and their acceptance gates pass.
+Status: Phases 0 and 1 complete; Phase 2 is in progress. Full-corpus publication is blocked until LiteParse Markdown normalization and its acceptance gates pass.
 
 Scope: backend, generated corpus, catalog, index, API contract, evaluation, tests, resources, and reports
 

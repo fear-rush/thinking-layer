@@ -1,16 +1,32 @@
 # thinking-layer
 
-The backend is in a destructive hard-cutover migration. The legacy corpus, retrieval,
-answering, API, evaluation, and test contracts have been removed and are not runnable.
+The backend is in a destructive hard-cutover migration. Phases 0 and 1 are complete;
+Phase 2—the source-backed corpus truth layer—is in progress. The legacy retrieval,
+answering, API, and evaluation contracts remain removed and are not runnable.
 
-The prior LiteParse output has been discarded. The next corpus build is blocked on
-a fresh, pinned, OCR-disabled extraction from downloaded source documents. Documents
-named by reports/ocr_needed.json must be skipped before extraction and reported as
-an explicit coverage limitation; OCR remains disabled.
+The prior LiteParse output was discarded and replaced with a fresh, pinned,
+OCR-disabled extraction from downloaded source documents. The current fresh-run
+manifest inventories 3,816 PDFs: 3,767 were extracted, 48 OCR-required files were
+skipped, and one parse failure was recorded. OCR remains disabled; every file named
+by `reports/ocr_needed.json` is excluded before LiteParse is invoked and reported as
+an explicit coverage limitation.
 
-The implementation order and acceptance gates are defined in PLAN.md.
-The first restored runtime surface will be the clean corpus build, followed by the
-SQLite database, two-stage retrieval, API, and real-index evaluation.
+The generated raw records live under `processed/raw/liteparse/` and are intentionally
+ignored by Git. They contain Markdown, text, text-item geometry, word boxes, source
+hashes, extraction settings, and a reproducibility manifest. Do not replace them with
+legacy raw extraction.
 
-The fresh source-inventory and extraction command will be restored before the corpus
-build command. Do not populate `processed/raw/liteparse/` from a legacy extraction.
+The restored commands are:
+
+```sh
+uv run python -m thinking_layer.cli extract
+uv run python -m thinking_layer.cli build
+```
+
+The clean build currently classifies regulations, explanations, attachments,
+circulars, and FAQs from source evidence. Legal paths are created only in normative
+regulation/decision zones. Markdown blocks are validated against LiteParse geometry;
+disagreements are quarantined and reported in the corpus manifest rather than guessed.
+
+No full corpus, database, API, or coverage claim is published until the remaining
+normalization, structural-audit, and clean-build acceptance gates in `PLAN.md` pass.
