@@ -16,10 +16,9 @@ from thinking_layer.corpus.source_corpus import (
 )
 
 
-def v2_block(*, path: dict[str, str] | None = None, page: int | None = 3, **overrides: object) -> dict[str, object]:
+def legal_block(*, path: dict[str, str] | None = None, page: int | None = 3, **overrides: object) -> dict[str, object]:
     legal_path = path or {}
     block: dict[str, object] = {
-        "chunk_schema_version": 2,
         "block_id": "node-1",
         "node_id": "node-1",
         "canonical_id": "doc-1",
@@ -45,26 +44,26 @@ def v2_block(*, path: dict[str, str] | None = None, page: int | None = 3, **over
 
 
 class CitationTests(unittest.TestCase):
-    def test_citation_quality_tracks_explicit_v2_legal_path(self) -> None:
-        self.assertEqual(citation_quality_for_block(v2_block(page=None)), "document_only")
-        self.assertEqual(citation_quality_for_block(v2_block(path={})), "document_page")
+    def test_citation_quality_tracks_explicit_canonical_legal_path(self) -> None:
+        self.assertEqual(citation_quality_for_block(legal_block(page=None)), "document_only")
+        self.assertEqual(citation_quality_for_block(legal_block(path={})), "document_page")
         self.assertEqual(
-            citation_quality_for_block(v2_block(path={"pasal": "Pasal 2"})),
+            citation_quality_for_block(legal_block(path={"pasal": "Pasal 2"})),
             "document_page_pasal",
         )
         self.assertEqual(
-            citation_quality_for_block(v2_block(path={"pasal": "Pasal 2", "ayat": "(1)"})),
+            citation_quality_for_block(legal_block(path={"pasal": "Pasal 2", "ayat": "(1)"})),
             "document_page_pasal_ayat",
         )
         self.assertEqual(
             citation_quality_for_block(
-                v2_block(path={"pasal": "Pasal 2", "ayat": "(1)", "huruf": "huruf a"})
+                legal_block(path={"pasal": "Pasal 2", "ayat": "(1)", "huruf": "huruf a"})
             ),
             "document_page_pasal_ayat_huruf",
         )
         self.assertEqual(
             citation_quality_for_block(
-                v2_block(
+                legal_block(
                     path={
                         "section": "IV. LAPORAN DEBITUR",
                         "point": "7",
@@ -78,7 +77,7 @@ class CitationTests(unittest.TestCase):
 
     def test_outline_citation_uses_explicit_section_labels_without_pasal_aliases(self) -> None:
         row = normalize_source_corpus_block(
-            v2_block(
+            legal_block(
                 path={
                     "section": "IV. LAPORAN DEBITUR",
                     "point": "7",
@@ -112,9 +111,9 @@ class CitationTests(unittest.TestCase):
         self.assertIsNone(row["ayat"])
         self.assertIsNone(row["huruf"])
 
-    def test_normalize_source_corpus_block_preserves_v2_citation_contract(self) -> None:
+    def test_normalize_source_corpus_block_preserves_canonical_citation_contract(self) -> None:
         row = normalize_source_corpus_block(
-            v2_block(
+            legal_block(
                 path={"pasal": "Pasal 4", "ayat": "(2)", "huruf": "huruf b"},
                 page=10,
                 regulation_type="POJK",
@@ -138,9 +137,9 @@ class CitationTests(unittest.TestCase):
         self.assertEqual(row["lifecycle_status"], "active")
         self.assertTrue(row["citation_policy"]["must_say_not_found_when_unsure"])
 
-    def test_normalize_source_corpus_block_cleans_v2_table_text(self) -> None:
+    def test_normalize_source_corpus_block_cleans_canonical_table_text(self) -> None:
         row = normalize_source_corpus_block(
-            v2_block(
+            legal_block(
                 path={"pasal": "Pasal 2", "ayat": "(1)"},
                 page=4,
                 block_type="table_or_row",
@@ -152,22 +151,22 @@ class CitationTests(unittest.TestCase):
 
         self.assertEqual(row["text"], "a. Bank Umum; b. BPR")
 
-    def test_non_v2_blocks_are_rejected_instead_of_inferred(self) -> None:
-        with self.assertRaisesRegex(ValueError, "chunk_schema_version=2"):
+    def test_non_legal_blocks_are_rejected_instead_of_inferred(self) -> None:
+        with self.assertRaisesRegex(ValueError, "legal_unit mapping"):
             normalize_source_corpus_block({"block_id": "invalid", "document_title": "POJK", "text": "invalid"})
 
-    def test_section_type_and_priority_use_v2_contract(self) -> None:
+    def test_section_type_and_priority_use_canonical_contract(self) -> None:
         self.assertEqual(source_priority_for_role("secondary_faq"), "secondary")
-        self.assertEqual(section_type_for_block(v2_block(file_role="secondary_faq", legal_unit={"type": "huruf", "legal_path": {}, "source_spans": []})), "faq")
-        self.assertEqual(section_type_for_block(v2_block(file_role="attachment", legal_unit={"type": "table", "legal_path": {}, "source_spans": []})), "attachment")
-        self.assertEqual(citation_text_for_block(v2_block(document_title="Dokumen A", page_start=None, page_end=None)), "Dokumen A")
+        self.assertEqual(section_type_for_block(legal_block(file_role="secondary_faq", legal_unit={"type": "huruf", "legal_path": {}, "source_spans": []})), "faq")
+        self.assertEqual(section_type_for_block(legal_block(file_role="attachment", legal_unit={"type": "table", "legal_path": {}, "source_spans": []})), "attachment")
+        self.assertEqual(citation_text_for_block(legal_block(document_title="Dokumen A", page_start=None, page_end=None)), "Dokumen A")
 
     def test_source_corpus_block_key_requires_both_citation_identifiers(self) -> None:
         self.assertEqual(source_corpus_block_key({"file_id": "file-1", "block_id": "block-1"}), ("file-1", "block-1"))
         self.assertIsNone(source_corpus_block_key({"file_id": "file-1"}))
 
     def test_duplicate_primary_copy_is_excluded_with_auditable_reason(self) -> None:
-        block = v2_block(
+        block = legal_block(
             citation_admission="atomic_leaf",
             searchable_primary=False,
             primary_duplicate_status="duplicate",

@@ -11,7 +11,6 @@ from ..config.paths import PROCESSED_DIR, REPORTS_DIR, SOURCE_CORPUS_PATH
 from .extraction import table_readability
 
 
-AUDIT_SCHEMA_VERSION = 1
 ACCEPTED_CITATION_ADMISSIONS = {"atomic_leaf", "enumeration_aggregate"}
 _DANGLING_REFERENCE_RE = re.compile(
     r"\b(?:(?:pada|dalam|di)\s+)?(?:ayat|Pasal|huruf)\s*$",
@@ -19,7 +18,7 @@ _DANGLING_REFERENCE_RE = re.compile(
 )
 _URL_CONTAMINATION_RE = re.compile(r"https?://(?:www\.)?jdih\.ojk\.go\.id/?", re.IGNORECASE)
 _EXPLANATION_CONTAMINATION_RE = re.compile(
-    r"(?:\bCukup\s+jelas\b|\bAgar\s+setiap\s+orang\s+mengetahuinya\b)",
+    r"(?:^\s*(?:Pasal\s+\d+[A-Z]?\s+)?Cukup\s+jelas\.?\s*$|\bAgar\s+setiap\s+orang\s+mengetahuinya\b)",
     re.IGNORECASE,
 )
 _EXPECTED_ISSUER = {
@@ -29,7 +28,7 @@ _EXPECTED_ISSUER = {
     "SEOJK": "OJK",
 }
 _CHECK_NAMES = (
-    "non_v2_or_missing_provenance",
+    "missing_legal_unit_provenance",
     "dangling_legal_reference",
     "oversized_normative_pasal",
     "url_contamination",
@@ -83,8 +82,6 @@ def _example(row: dict[str, Any], *, layer: str | None = None, reason: str | Non
 
 def _missing_provenance(row: dict[str, Any]) -> list[str]:
     missing: list[str] = []
-    if row.get("chunk_schema_version") != 2:
-        missing.append("chunk_schema_version")
     if not row.get("node_id"):
         missing.append("node_id")
     if not isinstance(row.get("legal_unit"), dict):
@@ -115,7 +112,7 @@ def _issuer_mismatch(row: dict[str, Any]) -> str | None:
     return f"{instrument}_expected_{expected}_found_{actual or 'missing'}" if actual != expected else None
 
 
-def audit_v2_artifacts(
+def audit_corpus_artifacts(
     blocks: Iterable[dict[str, Any]],
     source_rows: Iterable[dict[str, Any]],
     *,
@@ -150,7 +147,8 @@ def audit_v2_artifacts(
         page_end = row.get("page_end")
         page_delta = page_end - page_start if isinstance(page_start, int) and isinstance(page_end, int) else 0
         if (
-            unit_type == "pasal"
+            admitted
+            and unit_type == "pasal"
             and (_document_part(row) or "normative") == "normative"
             and ((page_delta >= 2 and len(text) > 1_500) or len(text) > 3_000)
         ):
@@ -194,7 +192,7 @@ def audit_v2_artifacts(
         missing = _missing_provenance(row)
         if missing:
             record(
-                "non_v2_or_missing_provenance",
+                "missing_legal_unit_provenance",
                 row,
                 layer="blocks",
                 reason=",".join(missing),
@@ -212,7 +210,7 @@ def audit_v2_artifacts(
         missing = _missing_provenance(row)
         if missing:
             record(
-                "non_v2_or_missing_provenance",
+                "missing_legal_unit_provenance",
                 row,
                 layer="source_corpus",
                 reason=",".join(missing),
@@ -232,7 +230,6 @@ def audit_v2_artifacts(
 
     failed = [name for name, check in checks.items() if check["blocking"] and check["count"]]
     return {
-        "schema_version": AUDIT_SCHEMA_VERSION,
         "status": "fail" if failed else "pass",
         "summary": {
             "blocks_scanned": blocks_scanned,
@@ -245,19 +242,19 @@ def audit_v2_artifacts(
     }
 
 
-def cmd_v2_corpus_audit(args: argparse.Namespace) -> None:
+def cmd_corpus_audit(args: argparse.Namespace) -> None:
     blocks_path = Path(args.blocks) if args.blocks else PROCESSED_DIR / "blocks.ndjson"
     source_path = Path(args.source_corpus) if args.source_corpus else SOURCE_CORPUS_PATH
     for path in (blocks_path, source_path):
         if not path.exists():
             raise SystemExit(f"Missing audit input: {path}")
 
-    report = audit_v2_artifacts(
+    report = audit_corpus_artifacts(
         iter_ndjson_file(blocks_path),
         iter_ndjson_file(source_path),
         max_examples=args.max_examples,
     )
-    output_path = Path(args.output) if args.output else REPORTS_DIR / "v2_corpus_audit.json"
+    output_path = Path(args.output) if args.output else REPORTS_DIR / "corpus_audit.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     output_path.write_text(payload, encoding="utf-8")

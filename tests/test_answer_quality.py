@@ -47,7 +47,7 @@ class AnswerQualityTests(unittest.TestCase):
     def test_structured_answer_rewards_complete_supported_claim_with_exact_targets(self) -> None:
         result = evaluate_answer_quality(
             {
-                "id": "v2-supported",
+                "id": "canonical-supported",
                 "query": "apa ketentuan PJP?",
                 "expected_behavior": "answerable",
                 "required_issuers": ["BI"],
@@ -76,7 +76,7 @@ class AnswerQualityTests(unittest.TestCase):
             }
         ]
         result = evaluate_answer_quality(
-            {"id": "v2-invalid", "query": "apa ketentuan PJP?", "expected_behavior": "answerable"}, answer
+            {"id": "canonical-invalid", "query": "apa ketentuan PJP?", "expected_behavior": "answerable"}, answer
         )
 
         self.assertFalse(result["accepted"])

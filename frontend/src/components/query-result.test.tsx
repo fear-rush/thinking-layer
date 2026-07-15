@@ -75,7 +75,7 @@ describe("QueryResult", () => {
     expect(screen.getByText("Lihat kutipan")).toBeTruthy();
     expect(screen.getByRole("link", { name: "bi-pjp-5-1" })).toHaveProperty(
       "pathname",
-      "/v1/documents/bi-pjp/blocks/bi-pjp-5-1",
+      "/documents/bi-pjp/blocks/bi-pjp-5-1",
     );
   });
 });

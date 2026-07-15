@@ -25,13 +25,25 @@ def clean_claim_text(text: str, config: dict[str, Any]) -> str:
 
 def evidence_claim_text(item: dict[str, Any]) -> str:
     config = heuristic_section("answer_ranking", "claim_text")
-    # V2 aggregates and atomic leaves already carry citation-backed assembled
+    # Canonical aggregates and atomic leaves already carry citation-backed assembled
     # text.  Never synthesize a claim from positional neighbors outside the
     # item's source_block_ids graph.
-    snippet_text = clean_claim_text(
-        str(item.get("assembled_text") or item.get("text") or item.get("snippet") or ""),
-        config,
-    )
+    raw_text = str(item.get("assembled_text") or item.get("text") or item.get("snippet") or "")
+    if item.get("section_type") == "enumeration_aggregate":
+        # Preserve only actual legal child labels. References such as
+        # ``sebagaimana dimaksud dalam huruf i`` occur mid-sentence and must
+        # not become new bullets after whitespace normalization.
+        raw_text = re.sub(
+            r"(?im)(^|[\n:;])\s*huruf\s+([a-z])\s+",
+            lambda match: f"{match.group(1)} __LEGAL_HURUF_{match.group(2).lower()}__ ",
+            raw_text,
+        )
+        raw_text = re.sub(
+            r"(?im)(^|[\n:;])\s*angka\s+(\d+[a-z]?)\s+",
+            lambda match: f"{match.group(1)} __LEGAL_ANGKA_{match.group(2).lower()}__ ",
+            raw_text,
+        )
+    snippet_text = clean_claim_text(raw_text, config)
     if item.get("section_type") == "enumeration_aggregate":
         max_chars = int(config.get("enumeration_aggregate_max_chars", 1600))
     else:
@@ -53,21 +65,11 @@ def evidence_claim_text(item: dict[str, Any]) -> str:
     if snippet_text[:1].islower():
         snippet_text = snippet_text[:1].upper() + snippet_text[1:]
     if item.get("section_type") == "enumeration_aggregate":
-        # The v2 unit is already a bounded parent plus its direct children.
+        # The canonical unit is already a bounded parent plus its direct children.
         # Render its legal labels as a compact nested list instead of one long
         # paragraph; the text and source graph remain unchanged.
-        snippet_text = re.sub(
-            r"\s+huruf\s+([a-z])\s+",
-            lambda match: f"\n  - {match.group(1)}. ",
-            snippet_text,
-            flags=re.IGNORECASE,
-        )
-        snippet_text = re.sub(
-            r"\s+angka\s+(\d+[a-z]?)\s+",
-            lambda match: f"\n  - {match.group(1)}. ",
-            snippet_text,
-            flags=re.IGNORECASE,
-        )
+        snippet_text = re.sub(r"\s*__LEGAL_HURUF_([a-z])__\s*", r"\n  - \1. ", snippet_text)
+        snippet_text = re.sub(r"\s*__LEGAL_ANGKA_(\d+[a-z]?)__\s*", r"\n  - \1. ", snippet_text)
     if not snippet_text:
         return str(config.get("fallback_claim") or "Ketentuan relevan ditemukan pada sumber yang dikutip.")
     return snippet_text
@@ -254,6 +256,20 @@ def row_document_key(row: tuple[float, str, dict[str, Any], dict[str, Any]]) -> 
     title = normalize_space(str(row[2].get("document") or "")).casefold()
     return f"title:{title}"
 
+
+def row_legal_order_key(row: tuple[float, str, dict[str, Any], dict[str, Any]]) -> tuple[int, int, int]:
+    """Order sibling legal units by Ayat, then Huruf, then Angka."""
+
+    path = row[3].get("legal_path") or {}
+    ayat_match = re.search(r"\d+", str(path.get("ayat") or ""))
+    huruf_match = re.search(r"[a-z]", str(path.get("huruf") or "").casefold())
+    angka_match = re.search(r"\d+", str(path.get("angka") or ""))
+    return (
+        int(ayat_match.group(0)) if ayat_match else 0,
+        ord(huruf_match.group(0)) - ord("a") + 1 if huruf_match else 0,
+        int(angka_match.group(0)) if angka_match else 0,
+    )
+
 def row_has_usable_claim(row: tuple[float, str, dict[str, Any], dict[str, Any]], query: str) -> bool:
     claim = evidence_claim_text(row[3])
     cached_alignment = row[3].get("answer_alignment") or {}
@@ -296,7 +312,7 @@ def answer_status_for_pack(pack: dict[str, Any]) -> str:
 
 
 def source_block_ids_for_item(item: dict[str, Any]) -> list[str]:
-    """Return the v2 legal-unit source graph for an assembled claim."""
+    """Return the canonical legal-unit source graph for an assembled claim."""
     raw_ids = item["source_block_ids"]
     return list(dict.fromkeys(str(block_id) for block_id in raw_ids if block_id))
 
@@ -314,7 +330,7 @@ def legal_unit_path_for_item(item: dict[str, Any]) -> list[str]:
     raw_path = item["unit_path"]
     return [str(part) for part in raw_path if part]
 
-def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_citations_per_document: int = 2) -> dict[str, Any]:
+def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_citations_per_document: int = 3) -> dict[str, Any]:
     status = answer_status_for_pack(pack)
     confidence = pack.get("confidence") or {}
     if status == "not_found":
@@ -370,11 +386,10 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
     # need more than one legal unit.  Narrow yes/no, scalar, and bounded-list
     # questions should lead with the single best unit; adding the adjacent
     # paragraph is usually citation noise rather than useful support.
-    max_findings = min(2, max_documents)
+    max_findings = min(3, max_documents)
     if (
         query_l.startswith(("apakah ", "bolehkah ", "berapa ", "kapan ", "melalui kanal apa ", "melalui apa "))
         or "apa aktivitas inti" in query_l
-        or "apa saja" in query_l
     ):
         max_findings = 1
     requested_issuers = [issuer for issuer in (pack.get("plan") or {}).get("issuers", []) if issuer]
@@ -457,6 +472,17 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
         if len(selected_rows) >= max_findings:
             break
 
+    if any(term in query_l for term in ("apa saja", "sebutkan", "daftar", "rincian")) and selected_rows:
+        sibling_parents = {
+            (
+                str(row[3].get("file_id") or ""),
+                str((row[3].get("legal_path") or {}).get("pasal") or ""),
+            )
+            for row in selected_rows
+        }
+        if len(sibling_parents) == 1 and all(next(iter(sibling_parents))):
+            selected_rows.sort(key=row_legal_order_key)
+
     findings: list[dict[str, Any]] = []
     documents_used_by_title: dict[str, dict[str, Any]] = {}
     citations: list[dict[str, Any]] = []
@@ -486,7 +512,6 @@ def compose_template_answer(pack: dict[str, Any], max_documents: int = 6, max_ci
                 "file_id": item.get("file_id"),
                 "block_id": item.get("block_id"),
                 "source_block_ids": source_block_ids_for_item(item),
-                "chunk_schema_version": int(item["chunk_schema_version"]),
                 "issuer": issuer,
                 "document": doc.get("document"),
                 "page": page_start,

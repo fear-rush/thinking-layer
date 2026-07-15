@@ -1,54 +1,54 @@
 {
-  "rows": 398930,
-  "documents": 1346,
-  "files": 1506,
+  "rows": 357784,
+  "documents": 1503,
+  "files": 1679,
   "sources": {
-    "ease-bi": 28460,
-    "peraturan-ojk": 370470
+    "ease-bi": 27886,
+    "peraturan-ojk": 329898
   },
   "issuers": {
-    "BI": 64089,
-    "OJK": 334841
+    "BI": 62819,
+    "OJK": 294965
   },
   "source_priority": {
-    "primary": 396777,
-    "secondary": 2153
+    "primary": 355812,
+    "secondary": 1972
   },
   "file_roles": {
-    "primary_regulation": 394444,
-    "operational_requirement": 1501,
-    "secondary_summary": 748,
-    "secondary_faq": 1405,
-    "attachment": 832
+    "primary_regulation": 353870,
+    "operational_requirement": 1493,
+    "secondary_summary": 523,
+    "secondary_faq": 1449,
+    "attachment": 449
   },
   "section_types": {
-    "angka": 80333,
-    "huruf": 150974,
-    "ayat": 96141,
-    "pasal": 31024,
-    "enumeration_aggregate": 37297,
-    "abstrak": 748,
-    "faq": 1405,
-    "point": 38,
-    "subpoint": 60,
-    "item": 78,
-    "attachment": 832
+    "angka": 39018,
+    "huruf": 119040,
+    "ayat": 82923,
+    "pasal": 30435,
+    "enumeration_aggregate": 49963,
+    "point": 10924,
+    "subpoint": 13538,
+    "item": 9522,
+    "abstrak": 523,
+    "faq": 1449,
+    "attachment": 449
   },
   "lifecycle_status": {
-    "unknown": 398930
+    "unknown": 357784
   },
   "citation_quality": {
-    "document_page_pasal": 98096,
-    "document_page_pasal_ayat_huruf": 105361,
-    "document_page_pasal_ayat": 105271,
-    "document_page": 90026,
-    "document_page_section": 176
+    "document_page_pasal": 91646,
+    "document_page_pasal_ayat_huruf": 97897,
+    "document_page_pasal_ayat": 99993,
+    "document_page": 13845,
+    "document_page_section": 54403
   },
   "duplicate_block_rows_skipped": 1,
-  "duplicate_primary_rows_excluded": 15897,
+  "duplicate_primary_rows_excluded": 15531,
   "duplicate_primary_files_excluded": 41,
   "unreadable_table_rows_quarantined": 52,
-  "issuer_identity_corrected_rows": 35629,
+  "issuer_identity_corrected_rows": 34933,
   "sikepo_metadata_coverage": {
     "primary_ojk_keys": 1513,
     "sikepo_keys": 422,

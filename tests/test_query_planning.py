@@ -3,7 +3,11 @@ from __future__ import annotations
 import unittest
 
 from thinking_layer.retrieval.planning import build_query_plan
-from thinking_layer.retrieval.search import direct_enumeration_aggregate_multiplier, planned_result_score
+from thinking_layer.retrieval.search import (
+    direct_enumeration_aggregate_multiplier,
+    plan_allows_global_title_scope,
+    planned_result_score,
+)
 
 
 class QueryPlanningTests(unittest.TestCase):
@@ -17,7 +21,8 @@ class QueryPlanningTests(unittest.TestCase):
             search for search in plan["searches"] if search["reason"] == "predicate:boleh:dapat"
         ]
         self.assertEqual(len(predicate_searches), 1)
-        self.assertIn("kapan dapat di luar Indonesia", predicate_searches[0]["query"])
+        self.assertIn("dapat", predicate_searches[0]["query"])
+        self.assertIn("di luar Indonesia", predicate_searches[0]["query"])
 
     def test_bank_slik_query_expands_to_ojk_reporting_plan(self) -> None:
         plan = build_query_plan("apa kewajiban bank terkait pelaporan SLIK?", max_searches=4)
@@ -36,6 +41,38 @@ class QueryPlanningTests(unittest.TestCase):
         self.assertIn("BI", plan["issuers"])
         self.assertIn("pjp", plan["entities"])
         self.assertTrue(any(search.get("issuer") == "BI" for search in plan["searches"]))
+
+    def test_pjp_advertising_question_searches_bi_consumer_rules(self) -> None:
+        plan = build_query_plan(
+            "apa saja aturan periklanan yang harus dipenuhi oleh penyedia jasa pembayaran?",
+            max_searches=12,
+        )
+
+        self.assertEqual(plan["issuers"], ["BI"])
+        self.assertIn("advertising_marketing", plan["topics"])
+        self.assertTrue(
+            any(
+                search["reason"] == "topic:advertising_marketing:enumeration"
+                and "iklan" in search["query"]
+                and "ketentuan" in search["query"]
+                for search in plan["searches"]
+            )
+        )
+        self.assertTrue(
+            any(
+                search["issuer"] == "BI"
+                and search["reason"] == "topic:advertising_marketing"
+                and "iklan" in search["query"]
+                for search in plan["searches"]
+            )
+        )
+        self.assertFalse(plan_allows_global_title_scope(plan))
+
+    def test_entity_only_question_can_still_use_focused_title_scope(self) -> None:
+        plan = build_query_plan("Apa aktivitas Penyedia Jasa Pembayaran?", max_searches=8)
+
+        self.assertEqual(plan["topics"], ["payments"])
+        self.assertTrue(plan_allows_global_title_scope(plan))
 
     def test_ambiguous_institution_data_query_searches_both_regulators_with_legal_aliases(self) -> None:
         plan = build_query_plan(
@@ -128,10 +165,12 @@ class QueryPlanningTests(unittest.TestCase):
         plan = build_query_plan("Apa aktivitas Penyedia Jasa Pembayaran?", max_searches=8)
 
         enumeration_searches = [search for search in plan["searches"] if search["reason"].startswith("direct_enumeration:")]
+        self.assertEqual(len(enumeration_searches), 2)
         self.assertEqual(
-            [search["query"] for search in enumeration_searches],
-            ["penyedia jasa pembayaran aktivitas meliputi", "pjp aktivitas meliputi"],
+            {search["query"].removesuffix(" aktivitas meliputi") for search in enumeration_searches},
+            {"penyedia jasa pembayaran", "pjp"},
         )
+        self.assertTrue(all("aktivitas" in search["query"] and "meliputi" in search["query"] for search in enumeration_searches))
         self.assertTrue(all(search["issuer"] == "BI" for search in enumeration_searches))
         self.assertTrue(all(search["role"] == "primary_regulation" for search in enumeration_searches))
 

@@ -12,11 +12,11 @@
 
 ## Blocks
 
-- Total blocks: 417673
-- Sources: `{'ease-bi': 39466, 'peraturan-ojk': 378207}`
-- Roles: `{'primary_regulation': 413186, 'operational_requirement': 1501, 'secondary_summary': 748, 'secondary_faq': 1406, 'attachment': 832}`
-- Types: `{'legal_unit': 417620, 'table_or_row': 53}`
-- Citation fields present: `{'page': 417673, 'pasal': 325030, 'ayat': 315964, 'huruf': 233322}`
+- Total blocks: 375489
+- Sources: `{'ease-bi': 38619, 'peraturan-ojk': 336870}`
+- Roles: `{'primary_regulation': 371574, 'operational_requirement': 1493, 'secondary_summary': 523, 'secondary_faq': 1450, 'attachment': 449}`
+- Types: `{'legal_unit': 375436, 'table_or_row': 53}`
+- Citation fields present: `{'page': 375489, 'pasal': 305408, 'ayat': 226007, 'huruf': 163440}`
 
 ## Skipped Or Needs Review
 

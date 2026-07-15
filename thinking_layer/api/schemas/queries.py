@@ -27,7 +27,6 @@ class CitationResponse(BaseModel):
     id: str
     file_id: str
     block_id: str
-    chunk_schema_version: Literal[2]
     source_block_ids: list[str]
     issuer: str | None = None
     document: str | None = None

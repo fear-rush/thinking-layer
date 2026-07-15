@@ -92,7 +92,6 @@ class DocumentService:
             section_type=block.get("section_type"),
             citation_quality=block.get("citation_quality"),
             citation_text=citation.get("text"),
-            chunk_schema_version=block.get("chunk_schema_version"),
             node_id=block.get("node_id"),
             parent_id=block.get("parent_id"),
             previous_id=block.get("previous_id"),

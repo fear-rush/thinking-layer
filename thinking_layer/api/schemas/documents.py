@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Literal
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -33,7 +33,6 @@ class DocumentBlockResponse(BaseModel):
     section_type: str | None = None
     citation_quality: str | None = None
     citation_text: str | None = None
-    chunk_schema_version: Literal[2]
     node_id: str
     parent_id: str | None = None
     previous_id: str | None = None

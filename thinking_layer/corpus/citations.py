@@ -6,25 +6,20 @@ from typing import Any
 from .normalization import normalize_extracted_text
 
 
-LEGAL_UNIT_V2_SCHEMA_VERSION = 2
-
-
 def legal_unit_for_block(block: dict[str, Any]) -> dict[str, Any]:
-    """Return the required v2 structural payload for a corpus block."""
-    if block.get("chunk_schema_version") != LEGAL_UNIT_V2_SCHEMA_VERSION:
-        raise ValueError("Corpus blocks must use chunk_schema_version=2")
+    """Return the required structural payload for a corpus block."""
     legal_unit = block.get("legal_unit")
     if not isinstance(legal_unit, dict):
-        raise ValueError("V2 corpus blocks must include a legal_unit mapping")
+        raise ValueError("Corpus blocks must include a legal_unit mapping")
     return dict(legal_unit)
 
 
 def legal_path_for_block(block: dict[str, Any]) -> dict[str, Any]:
-    """Return the required explicit v2 legal path without prose inference."""
+    """Return the required explicit legal path without prose inference."""
     legal_unit = legal_unit_for_block(block)
     path = legal_unit.get("legal_path") or block.get("legal_path")
     if not isinstance(path, dict):
-        raise ValueError("V2 corpus blocks must include a legal_path mapping")
+        raise ValueError("Corpus blocks must include a legal_path mapping")
     return dict(path)
 
 
@@ -50,8 +45,8 @@ def legal_path_labels(path: dict[str, Any]) -> list[str]:
     ]
 
 
-def v2_legal_unit_contract(block: dict[str, Any]) -> dict[str, Any]:
-    """Copy the required portable v2 node contract into a normalized row."""
+def legal_unit_contract(block: dict[str, Any]) -> dict[str, Any]:
+    """Copy the required portable legal-node contract into a normalized row."""
 
     legal_unit = legal_unit_for_block(block)
 
@@ -60,7 +55,6 @@ def v2_legal_unit_contract(block: dict[str, Any]) -> dict[str, Any]:
     anchors = [dict(raw_anchors)] if isinstance(raw_anchors, Mapping) else raw_anchors
     source_spans = legal_unit.get("source_spans")
     return {
-        "chunk_schema_version": LEGAL_UNIT_V2_SCHEMA_VERSION,
         "node_id": block.get("node_id"),
         "document_part": block.get("document_part") or legal_unit.get("document_part"),
         "parent_id": block.get("parent_id"),
@@ -222,7 +216,7 @@ def normalize_source_corpus_block(
             "must_say_not_found_when_unsure": True,
         },
     }
-    row.update(v2_legal_unit_contract(block))
+    row.update(legal_unit_contract(block))
     row["display_text"] = display_text
     row["retrieval_text"] = retrieval_text
     row["assembled_text"] = str(block.get("assembled_text") or retrieval_text)

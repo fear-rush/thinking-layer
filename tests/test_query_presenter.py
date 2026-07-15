@@ -8,14 +8,13 @@ from thinking_layer.retrieval.evidence import evidence_item
 
 
 class QueryPresenterTests(unittest.TestCase):
-    def test_evidence_carries_v2_nested_legal_unit_provenance_to_the_composer(self) -> None:
+    def test_evidence_carries_canonical_nested_legal_unit_provenance_to_the_composer(self) -> None:
         item = evidence_item(
             "apa ketentuan PJP?",
             {
                 "_score": 10,
-                "chunk_schema_version": 2,
                 "file_id": "bi-pjp",
-                "block_id": "v2-pjp-2-1",
+                "block_id": "canonical-pjp-2-1",
                 "document_title": "PBI Penyedia Jasa Pembayaran",
                 "page_start": 4,
                 "page_end": 5,
@@ -26,14 +25,14 @@ class QueryPresenterTests(unittest.TestCase):
                 "unit_path": ["Pasal 2", "(1)"],
                 "anchors": {"page_start": 4, "page_end": 5},
                 "source_spans": [
-                    {"span_id": "v2-pjp-2-1:page-4:span-1", "page": 4, "line_start": 1, "line_end": 3}
+                    {"span_id": "canonical-pjp-2-1:page-4:span-1", "page": 4, "line_start": 1, "line_end": 3}
                 ],
-                "source_block_ids": ["v2-pjp-2-1"],
+                "source_block_ids": ["canonical-pjp-2-1"],
                 "legal_unit": {
                     "type": "ayat",
                     "legal_path": {"pasal": "Pasal 2", "ayat": "(1)"},
                     "source_spans": [
-                        {"span_id": "v2-pjp-2-1:page-4:span-1", "page": 4, "line_start": 1, "line_end": 3}
+                        {"span_id": "canonical-pjp-2-1:page-4:span-1", "page": 4, "line_start": 1, "line_end": 3}
                     ]
                 },
             },
@@ -43,10 +42,10 @@ class QueryPresenterTests(unittest.TestCase):
         self.assertEqual(item["anchors"]["page_end"], 5)
         self.assertEqual(item["source_spans"][0]["page"], 4)
 
-    def test_preserves_v2_legal_unit_provenance_in_the_public_contract(self) -> None:
+    def test_preserves_canonical_legal_unit_provenance_in_the_public_contract(self) -> None:
         response = present_query(
             QueryExecution(
-                request_id="request-v2",
+                request_id="request-canonical",
                 duration_ms=5,
                 trace={},
                 answer={
@@ -67,8 +66,7 @@ class QueryPresenterTests(unittest.TestCase):
                         {
                             "id": "c1",
                             "file_id": "bi-pjp",
-                            "block_id": "v2-pjp-2-1",
-                            "chunk_schema_version": 2,
+                            "block_id": "canonical-pjp-2-1",
                             "source_block_ids": ["raw-pjp-4-2", "raw-pjp-5-1"],
                             "page": 4,
                             "page_start": 4,
@@ -96,7 +94,7 @@ class QueryPresenterTests(unittest.TestCase):
     def test_preserves_parser_anchor_list_for_the_public_contract(self) -> None:
         response = present_query(
             QueryExecution(
-                request_id="request-v2-anchor",
+                request_id="request-canonical-anchor",
                 duration_ms=1,
                 trace={},
                 answer={
@@ -108,7 +106,6 @@ class QueryPresenterTests(unittest.TestCase):
                             "id": "c1",
                             "file_id": "bi-pjp",
                             "block_id": "node-1",
-                            "chunk_schema_version": 2,
                             "source_block_ids": ["node-1"],
                             "page": 4,
                             "page_start": 4,

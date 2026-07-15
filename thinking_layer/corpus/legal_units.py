@@ -2,7 +2,7 @@
 
 The existing extraction pipeline is deliberately permissive: it creates small
 search blocks from whatever a document parser returned.  This module is the
-stricter, lossless layer that sits before v2 chunk selection.  It only depends
+stricter, lossless layer that sits before evidence selection. It only depends
 on supplied page dictionaries, so fixture tests can exercise legal structure
 without LiteParse, generated corpus assets, or a database.
 
@@ -23,7 +23,6 @@ from ..common.text import normalize_space, slugify
 from .metadata import short_hash
 
 
-CHUNK_SCHEMA_VERSION = 2
 MAX_PARENT_LEAD_IN_CHARS = 360
 MAX_RETRIEVAL_ALIASES_PER_UNIT = 3
 MAX_RETRIEVAL_ALIAS_CHARS = 300
@@ -54,7 +53,7 @@ _ATTACHMENT_BOUNDARY_RE = re.compile(
     re.IGNORECASE,
 )
 _PROMULGATION_BOUNDARY_RE = re.compile(
-    r"^(?:Agar(?:\s+setiap(?:\s+orang\s+mengetahuinya\b)?)?|Ditetapkan\s+di\b|Diundangkan\s+di\b)",
+    r"^(?:Agar(?:\s+setiap)?$|Agar\s+setiap\s+orang\s+mengetahuinya\b|Ditetapkan\s+di\b|Diundangkan\s+di\b)",
     re.IGNORECASE,
 )
 _INLINE_PROMULGATION_RE = re.compile(r"\bAgar\s+setiap\s+orang\s+mengetahuinya\b", re.IGNORECASE)
@@ -396,7 +395,7 @@ def _path_key(path: dict[str, str]) -> str:
 def _node_id(document_id: str, path: dict[str, str], ordinal: int) -> str:
     path_key = _path_key(path) or "preamble"
     unit_type = path.get("_type", "unit")
-    seed = f"{document_id}:legal-unit:v{CHUNK_SCHEMA_VERSION}:{unit_type}:{path_key}:{ordinal}"
+    seed = f"{document_id}:legal-unit:{unit_type}:{path_key}:{ordinal}"
     return f"{slugify(seed)[:180]}-{short_hash(seed)}"
 
 
@@ -616,7 +615,6 @@ def _as_dict(unit: _Unit) -> dict[str, Any]:
         "retrieval_source_id": unit.node_id,
     }
     return {
-        "chunk_schema_version": CHUNK_SCHEMA_VERSION,
         "node_id": unit.node_id,
         "block_id": unit.node_id,
         "unit_type": unit.unit_type,
@@ -659,10 +657,25 @@ def _enumeration_aggregates(units: Iterable[_Unit]) -> list[dict[str, Any]]:
     recursively copying a whole chapter or arbitrary descendants.
     """
     aggregates: list[dict[str, Any]] = []
+    child_types_by_parent = {
+        "pasal": {"huruf", "angka"},
+        "ayat": {"huruf", "angka"},
+        "huruf": {"angka"},
+        "point": {"subpoint", "item"},
+        "subpoint": {"item"},
+    }
     for parent in units:
-        if parent.unit_type not in {"pasal", "ayat", "huruf"}:
+        child_types = child_types_by_parent.get(parent.unit_type)
+        if not child_types:
             continue
-        children = [child for child in parent.children if child.unit_type in {"huruf", "angka"}]
+        children: list[_Unit] = []
+        seen_child_labels: set[tuple[str, str]] = set()
+        for child in parent.children:
+            child_key = (child.unit_type, child.label)
+            if child.unit_type not in child_types or child_key in seen_child_labels:
+                continue
+            seen_child_labels.add(child_key)
+            children.append(child)
         if not (MIN_ENUMERATION_CHILDREN <= len(children) <= MAX_ENUMERATION_CHILDREN):
             continue
         if not normalize_space(" ".join(parent.direct_lines)):
@@ -683,11 +696,7 @@ def _enumeration_aggregates(units: Iterable[_Unit]) -> list[dict[str, Any]]:
             "page_end": source_spans[-1]["page"],
             "line_end": source_spans[-1]["line_end"],
         }
-        local_path = " > ".join(
-            parent.path[kind]
-            for kind in ("pasal", "ayat", "huruf", "angka")
-            if parent.path.get(kind)
-        )
+        local_path = " > ".join(parent.path[kind] for kind in _PATH_TYPES if parent.path.get(kind))
         retrieval_text = normalize_space(f"{local_path}. {display_text}")
         source_block_ids = [parent.node_id, *(child.node_id for child in children)]
         continuation = {
@@ -716,7 +725,6 @@ def _enumeration_aggregates(units: Iterable[_Unit]) -> list[dict[str, Any]]:
         }
         aggregates.append(
             {
-                "chunk_schema_version": CHUNK_SCHEMA_VERSION,
                 "node_id": node_id,
                 "block_id": node_id,
                 "unit_type": "enumeration_aggregate",

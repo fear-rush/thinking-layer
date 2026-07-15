@@ -7,7 +7,7 @@ from ..services.query_service import QueryExecution
 
 
 def present_citation(item: dict[str, Any]) -> CitationResponse:
-    """Validate the canonical v2 citation payload at the API boundary."""
+    """Validate the canonical citation payload at the API boundary."""
     return CitationResponse.model_validate(item)
 
 

@@ -46,7 +46,7 @@ def load_search_blocks(
             continue
         if not include_secondary and row.get("file_role") in {"secondary_faq", "secondary_summary"}:
             continue
-        if row.get("chunk_schema_version") != 2 or not row.get("retrieval_text") or not row.get("page_start"):
+        if not row.get("retrieval_text") or not row.get("page_start"):
             continue
         blocks.append(row)
     return blocks
@@ -77,7 +77,7 @@ def load_search_blocks_from_offset(
                 continue
             if not include_secondary and row.get("file_role") in {"secondary_faq", "secondary_summary"}:
                 continue
-            if row.get("chunk_schema_version") != 2 or not row.get("retrieval_text") or not row.get("page_start"):
+            if not row.get("retrieval_text") or not row.get("page_start"):
                 continue
             blocks.append(row)
     return blocks
@@ -92,7 +92,7 @@ def build_bm25(blocks: list[dict[str, Any]], stopwords: set[str]) -> tuple[list[
         title = block.get("document_title") or ""
         heading = " ".join(block.get("heading_path") or [])
         reg_number = block.get("number") or ""
-        # V2 legal nodes keep the human-facing excerpt separate from the
+        # Legal nodes keep the human-facing excerpt separate from the
         # contextual representation used for matching.
         body_text = block["retrieval_text"]
         weighted_text = " ".join(
@@ -159,7 +159,6 @@ def index_signature() -> dict[str, Any]:
         )
     corpus_path = source_corpus_path
     return {
-        "version": 3,
         "corpus_path": str(corpus_path.relative_to(ROOT)) if corpus_path.exists() else None,
         "corpus_mtime": corpus_path.stat().st_mtime if corpus_path.exists() else None,
         "corpus_size": corpus_path.stat().st_size if corpus_path.exists() else None,
@@ -174,7 +173,7 @@ def index_signature() -> dict[str, Any]:
 
 
 def source_state() -> dict[str, Any]:
-    """Return append-detection metadata for the v2 source corpus."""
+    """Return append-detection metadata for the source corpus."""
     corpus_path = SOURCE_CORPUS_PATH
     if not corpus_path.exists():
         return {"path": None, "size": None, "prefix_sha1": None}
@@ -211,7 +210,7 @@ def get_search_index(
 ) -> SearchIndex:
     # Kept as an API-compatible argument for callers that previously selected
     # the removed JSON index. In-memory indexes are now built only from the
-    # canonical v2 source corpus; production retrieval uses SQLite directly.
+    # canonical source corpus; production retrieval uses SQLite directly.
     _ = prefer_persisted
     blocks = load_search_blocks(issuer, role, source, include_secondary)
     return build_search_index(blocks)

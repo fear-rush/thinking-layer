@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from thinking_layer.corpus.legal_units import CHUNK_SCHEMA_VERSION, parse_legal_units
+from thinking_layer.corpus.legal_units import parse_legal_units
 
 
 def unit_by_path(units: list[dict[str, object]], **path: str) -> dict[str, object]:
@@ -10,6 +10,62 @@ def unit_by_path(units: list[dict[str, object]], **path: str) -> dict[str, objec
 
 
 class LegalUnitParserTests(unittest.TestCase):
+    def test_normative_agar_clause_does_not_open_promulgation(self) -> None:
+        units = parse_legal_units(
+            [
+                {
+                    "page_num": 6,
+                    "text": "\n".join(
+                        [
+                            "Pasal 2",
+                            "Agar pelaksanaan Transfer Dana berjalan aman, Penyelenggara wajib menerapkan prinsip kehati-hatian.",
+                            "Pasal 3",
+                            "Penyelenggara wajib menyampaikan pemberitahuan.",
+                        ]
+                    ),
+                },
+            ],
+            document_id="normative-agar-fixture",
+        )
+
+        self.assertTrue(all(unit["document_part"] == "normative" for unit in units))
+        self.assertIn("Agar pelaksanaan Transfer Dana", unit_by_path(units, pasal="Pasal 2")["display_text"])
+
+    def test_outline_items_form_a_bounded_enumeration_aggregate(self) -> None:
+        units = parse_legal_units(
+            [
+                {
+                    "page_num": 19,
+                    "text": "\n".join(
+                        [
+                            "XIV. BATAS MAKSIMUM MANFAAT EKONOMI",
+                            "3. Batas maksimum manfaat ekonomi terdiri atas:",
+                            "b. Pendanaan konsumtif:",
+                            "1) sebesar 0,3% per hari untuk tenor sampai dengan 6 bulan; dan",
+                            "2) sebesar 0,2% per hari untuk tenor di atas 6 bulan.",
+                        ]
+                    ),
+                },
+                {
+                    "page_num": 20,
+                    "text": "2) Simulasi lanjutan yang mengulang label halaman sebelumnya. " + ("rincian " * 400),
+                },
+            ],
+            document_id="outline-enumeration-fixture",
+            enable_outline=True,
+        )
+
+        aggregate = next(
+            unit
+            for unit in units
+            if unit.get("legal_unit_role") == "enumeration_aggregate"
+            and unit["legal_path"].get("subpoint") == "b"
+        )
+        self.assertIn("0,3%", aggregate["display_text"])
+        self.assertIn("0,2%", aggregate["display_text"])
+        self.assertNotIn("Simulasi lanjutan", aggregate["display_text"])
+        self.assertEqual(aggregate["legal_path"]["section"], "XIV. BATAS MAKSIMUM MANFAAT EKONOMI")
+
     def test_seojk_outline_uses_explicit_section_path_without_legal_anchor_invention(self) -> None:
         units = parse_legal_units(
             [
@@ -137,7 +193,6 @@ class LegalUnitParserTests(unittest.TestCase):
         huruf = [unit for unit in units if unit["unit_type"] == "huruf"]
         aggregates = [unit for unit in units if unit.get("legal_unit_role") == "enumeration_aggregate"]
 
-        self.assertEqual(ayat["chunk_schema_version"], CHUNK_SCHEMA_VERSION)
         self.assertEqual(ayat["display_text"], "(1) PJP menyelenggarakan aktivitas yang meliputi:")
         self.assertEqual([unit["legal_path"]["huruf"] for unit in huruf], ["huruf a", "huruf b"])
         self.assertTrue(all(unit["legal_path"]["pasal"] == "Pasal 2" for unit in huruf))

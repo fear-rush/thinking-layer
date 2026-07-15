@@ -1,4 +1,4 @@
-"""Raw LiteParse helpers and the v2-only legal-unit corpus adapter."""
+"""Raw LiteParse helpers and the legal-unit corpus adapter."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from typing import Any
 from ..common.text import normalize_space, slugify
 from ..config.heuristics import heuristic_section
 from ..config.paths import RAW_LITEPARSE_DIR
-from .legal_units import CHUNK_SCHEMA_VERSION, parse_legal_units
+from .legal_units import parse_legal_units
 from .metadata import short_hash
 from .normalization import markdown_table_rows
 
@@ -126,7 +126,7 @@ def classify_extraction_status(pages: list[dict[str, Any]], total_text_len: int)
 
 
 def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Emit the sole v2 corpus block contract from ordered raw page text.
+    """Emit the corpus block contract from ordered raw page text.
 
     The parser owns legal structure, source anchors, and deterministic IDs.
     This adapter owns manifest provenance and the explicit evidence-admission
@@ -182,9 +182,19 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                 re.IGNORECASE,
             )
         )
+        page_start = node.get("page_start")
+        page_end = node.get("page_end")
+        page_delta = page_end - page_start if isinstance(page_start, int) and isinstance(page_end, int) else 0
+        is_oversized_normative_pasal = (
+            unit_type == "pasal"
+            and document_part == "normative"
+            and ((page_delta >= 2 and len(display_text) > 1_500) or len(display_text) > 3_000)
+        )
         quarantine_reason = (
             "unreadable_table"
             if is_quarantined_table
+            else "oversized_normative_pasal"
+            if is_oversized_normative_pasal
             else "non_evidence_document_part"
             if document_part == "promulgation"
             else "dangling_legal_reference"
@@ -201,7 +211,6 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
         blocks.append(
             {
                 **node,
-                "chunk_schema_version": CHUNK_SCHEMA_VERSION,
                 "canonical_id": manifest["canonical_id"],
                 "file_id": manifest["file_id"],
                 "source": manifest["source"],
@@ -230,7 +239,7 @@ def extract_blocks(manifest: dict[str, Any], pages: list[dict[str, Any]]) -> lis
                 "primary_duplicate_group_size": manifest.get("primary_duplicate_group_size"),
                 "primary_duplicate_reason": manifest.get("primary_duplicate_reason"),
                 "block_type": "table_or_row" if unit_type == "table" else "legal_unit",
-                "extraction_method": "legal_units_v2",
+                "extraction_method": "legal_units",
                 "citation_admission": citation_admission,
                 "citation_quarantine": (
                     {

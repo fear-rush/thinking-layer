@@ -8,7 +8,7 @@ test("submits optional feedback with the query request id", async ({ page }) => 
 
   // 2. Submit negative feedback and verify the API request contract.
   const feedbackRequestPromise = page.waitForRequest(
-    (request) => request.url().endsWith("/v1/feedback") && request.method() === "POST",
+    (request) => request.url().endsWith("/feedback") && request.method() === "POST",
   );
   await page.getByRole("button", { name: "Belum membantu" }).click();
   const feedbackRequest = await feedbackRequestPromise;

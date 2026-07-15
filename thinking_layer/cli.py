@@ -9,7 +9,7 @@ from .corpus.extraction_pipeline import cmd_extract, cmd_rebuild_blocks, cmd_rep
 from .corpus.parser_comparison import cmd_parser_comparison
 from .corpus.source_corpus import cmd_build_source_corpus
 from .corpus.spot_check import cmd_extraction_spot_check
-from .corpus.v2_audit import cmd_v2_corpus_audit
+from .corpus.corpus_audit import cmd_corpus_audit
 from .config.heuristic_audit import cmd_heuristics_audit
 from .indexing.sqlite import cmd_build_index
 from .indexing.semantic import cmd_build_semantic_index, cmd_semantic_search
@@ -54,7 +54,7 @@ def main() -> None:
     report_parser = subparsers.add_parser("report", help="Write extraction summary reports from existing outputs.")
     report_parser.set_defaults(func=cmd_report)
 
-    rebuild_blocks_parser = subparsers.add_parser("rebuild-blocks", help="Rebuild v2 legal-unit blocks from saved raw LiteParse JSON.")
+    rebuild_blocks_parser = subparsers.add_parser("rebuild-blocks", help="Rebuild legal-unit blocks from saved raw LiteParse JSON.")
     rebuild_blocks_parser.add_argument("--file-id", action="append", default=None, help="Rebuild only an explicit saved-raw file ID.")
     rebuild_blocks_parser.add_argument("--replace-existing", action="store_true", help="Atomically replace blocks for explicit --file-id targets.")
     rebuild_blocks_parser.set_defaults(func=cmd_rebuild_blocks)
@@ -63,24 +63,24 @@ def main() -> None:
     extraction_spot_check_parser.add_argument("--source-corpus", default=None, help="Path to source_corpus.ndjson. Defaults to processed/source_corpus.ndjson.")
     extraction_spot_check_parser.set_defaults(func=cmd_extraction_spot_check)
 
-    v2_audit_parser = subparsers.add_parser(
-        "v2-corpus-audit",
-        help="Audit generated v2 blocks/source corpus and fail on structural or source-hygiene violations.",
+    corpus_audit_parser = subparsers.add_parser(
+        "corpus-audit",
+        help="Audit generated blocks/source corpus and fail on structural or source-hygiene violations.",
     )
-    v2_audit_parser.add_argument("--blocks", default=None, help="Blocks NDJSON path. Defaults to processed/blocks.ndjson.")
-    v2_audit_parser.add_argument(
+    corpus_audit_parser.add_argument("--blocks", default=None, help="Blocks NDJSON path. Defaults to processed/blocks.ndjson.")
+    corpus_audit_parser.add_argument(
         "--source-corpus",
         default=None,
         help="Source corpus NDJSON path. Defaults to processed/source_corpus.ndjson.",
     )
-    v2_audit_parser.add_argument("--output", default=None, help="JSON report path. Defaults to reports/v2_corpus_audit.json.")
-    v2_audit_parser.add_argument("--max-examples", type=int, default=5, help="Maximum examples retained per check.")
-    v2_audit_parser.add_argument(
+    corpus_audit_parser.add_argument("--output", default=None, help="JSON report path. Defaults to reports/corpus_audit.json.")
+    corpus_audit_parser.add_argument("--max-examples", type=int, default=5, help="Maximum examples retained per check.")
+    corpus_audit_parser.add_argument(
         "--report-only",
         action="store_true",
         help="Write and print the report without returning a failing exit status.",
     )
-    v2_audit_parser.set_defaults(func=cmd_v2_corpus_audit)
+    corpus_audit_parser.set_defaults(func=cmd_corpus_audit)
 
     parser_comparison_parser = subparsers.add_parser("parser-comparison", help="Write small LiteParse vs MinerU/layout-parser comparison report.")
     parser_comparison_parser.set_defaults(func=cmd_parser_comparison)
@@ -175,7 +175,7 @@ def main() -> None:
     answer_parser.add_argument("--limit", type=int, default=12, help="Number of merged evidence blocks.")
     answer_parser.add_argument("--per-document-limit", type=int, default=3, help="Maximum evidence blocks per document.")
     answer_parser.add_argument("--max-documents", type=int, default=6, help="Maximum documents to include in the answer.")
-    answer_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum citations per document in the answer.")
+    answer_parser.add_argument("--max-citations-per-document", type=int, default=3, help="Maximum citations per document in the answer.")
     answer_parser.add_argument("--write-report", action="store_true", help="Write markdown and JSON answer reports.")
     answer_parser.set_defaults(func=cmd_answer)
 
@@ -185,7 +185,7 @@ def main() -> None:
     trace_parser.add_argument("--limit", type=int, default=12, help="Merged evidence blocks.")
     trace_parser.add_argument("--per-document-limit", type=int, default=3, help="Maximum evidence blocks per document.")
     trace_parser.add_argument("--max-documents", type=int, default=6, help="Maximum documents used in the answer.")
-    trace_parser.add_argument("--max-citations-per-document", type=int, default=2, help="Maximum citations per document.")
+    trace_parser.add_argument("--max-citations-per-document", type=int, default=3, help="Maximum citations per document.")
     trace_parser.add_argument("--top-evidence", type=int, default=10, help="Number of evidence summaries to retain in the trace.")
     trace_parser.add_argument("--write-report", action="store_true", help="Write a JSON trace under reports/.")
     trace_parser.add_argument("--output", default=None, help="Optional JSON trace output path.")

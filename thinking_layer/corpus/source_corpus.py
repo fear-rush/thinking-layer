@@ -12,10 +12,10 @@ from ..config.paths import PROCESSED_DIR, REPORTS_DIR, ROOT, SOURCE_CORPUS_PATH
 
 
 def is_source_corpus_eligible(block: dict[str, Any]) -> bool:
-    """Admit v2 only through extraction's explicit citation contract.
+    """Admit only extraction rows with the explicit citation contract.
 
-    Version 2 deliberately indexes atomic legal leaves and the narrowly
-    bounded enumeration aggregates that make a legal list readable.  This
+    The corpus indexes atomic legal leaves and the narrowly bounded
+    enumeration aggregates that make a legal list readable. This
     guard prevents a future raw-parent node from reaching retrieval merely
     because it has a page and display text.
     """
@@ -23,9 +23,9 @@ def is_source_corpus_eligible(block: dict[str, Any]) -> bool:
 
 
 def source_corpus_exclusion_reason(block: dict[str, Any]) -> str | None:
-    """Explain deterministic v2 admission exclusions for audit reporting."""
-    if block.get("chunk_schema_version") != 2:
-        return "non_v2"
+    """Explain deterministic admission exclusions for audit reporting."""
+    if not isinstance(block.get("legal_unit"), dict) or not isinstance(block.get("legal_path"), dict):
+        return "missing_legal_structure"
     if block.get("file_role") == "primary_regulation" and block.get("searchable_primary") is False:
         return "duplicate_primary_file"
     if block.get("citation_admission") == "quarantined_unreadable_table":

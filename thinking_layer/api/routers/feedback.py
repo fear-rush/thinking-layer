@@ -7,7 +7,7 @@ from ..schemas.feedback import FeedbackRequest, FeedbackResponse
 from ..services.feedback import FeedbackService
 
 
-router = APIRouter(prefix="/v1", tags=["feedback"])
+router = APIRouter(tags=["feedback"])
 
 
 @router.post("/feedback", response_model=FeedbackResponse, status_code=status.HTTP_201_CREATED)

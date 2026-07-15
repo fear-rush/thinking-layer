@@ -1,8 +1,7 @@
 {
   "metadata": {
-    "suite": "legal-answer-golden-v2",
-    "suite_version": 1,
-    "generated_at": "2026-07-14T17:24:57.205020+00:00",
+    "suite": "legal-answer-golden",
+    "generated_at": "2026-07-15T04:53:38.490916+00:00",
     "tier": "full",
     "selected_case_ids": [
       "bi_qris_mandatory",

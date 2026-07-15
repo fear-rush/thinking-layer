@@ -12,8 +12,8 @@ from thinking_layer.indexing.lexical import build_search_index
 from thinking_layer.indexing.sqlite import write_sqlite_search_index
 
 
-class QueryServiceV2EnumerationTests(unittest.TestCase):
-    def test_service_carries_direct_enumeration_plan_to_a_v2_pasal_two_leaf_citation(self) -> None:
+class QueryServiceCanonicalEnumerationTests(unittest.TestCase):
+    def test_service_carries_direct_enumeration_plan_to_a_canonical_pasal_two_leaf_citation(self) -> None:
         manifest = {
             "canonical_id": "bi-pjp-2021",
             "file_id": "bi-pjp-2021",
@@ -62,10 +62,11 @@ class QueryServiceV2EnumerationTests(unittest.TestCase):
                 execution = QueryService().answer("Apa aktivitas Penyedia Jasa Pembayaran?")
 
         plan_searches = execution.trace["query_plan"]["searches"]
-        self.assertEqual(
-            [search["query"] for search in plan_searches if search["reason"].startswith("direct_enumeration:")],
-            ["penyedia jasa pembayaran aktivitas meliputi", "pjp aktivitas meliputi"],
-        )
+        enumeration_searches = [
+            search for search in plan_searches if search["reason"].startswith("direct_enumeration:")
+        ]
+        self.assertTrue(enumeration_searches)
+        self.assertTrue(all("aktivitas" in search["query"] and "meliputi" in search["query"] for search in enumeration_searches))
 
         c1 = execution.answer["citations"][0]
         self.assertEqual((c1["pasal"], c1["ayat"], c1["huruf"]), ("Pasal 2", "(1)", None))

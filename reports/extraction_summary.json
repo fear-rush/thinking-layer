@@ -20,27 +20,27 @@
     }
   },
   "blocks": {
-    "total": 417673,
+    "total": 375489,
     "sources": {
-      "ease-bi": 39466,
-      "peraturan-ojk": 378207
+      "ease-bi": 38619,
+      "peraturan-ojk": 336870
     },
     "roles": {
-      "primary_regulation": 413186,
-      "operational_requirement": 1501,
-      "secondary_summary": 748,
-      "secondary_faq": 1406,
-      "attachment": 832
+      "primary_regulation": 371574,
+      "operational_requirement": 1493,
+      "secondary_summary": 523,
+      "secondary_faq": 1450,
+      "attachment": 449
     },
     "types": {
-      "legal_unit": 417620,
+      "legal_unit": 375436,
       "table_or_row": 53
     },
     "citation_fields_present": {
-      "page": 417673,
-      "pasal": 325030,
-      "ayat": 315964,
-      "huruf": 233322
+      "page": 375489,
+      "pasal": 305408,
+      "ayat": 226007,
+      "huruf": 163440
     }
   },
   "skipped_or_needs_review": {

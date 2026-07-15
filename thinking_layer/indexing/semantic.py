@@ -49,7 +49,7 @@ def semantic_text(block: dict[str, Any], max_chars: int) -> str:
     number = block.get("number") or ""
     pasal = block.get("pasal") or ""
     ayat = block.get("ayat") or ""
-    # The v2 contract keeps a legal node's human-facing excerpt separate from
+    # The canonical contract keeps a legal node's human-facing excerpt separate from
     # the context used to produce a retrieval representation.
     text = block["retrieval_text"]
     value = " ".join(part for part in (title, heading, number, pasal, ayat, text) if part)

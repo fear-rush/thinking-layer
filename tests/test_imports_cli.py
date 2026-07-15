@@ -16,10 +16,9 @@ from thinking_layer.indexing.semantic import _role_texts, cmd_semantic_search, s
 from thinking_layer.observability import trace_from_answer
 
 
-def v2_index_block(*, block_id: str, file_id: str, page: int, title: str, text: str) -> dict[str, object]:
+def index_block(*, block_id: str, file_id: str, page: int, title: str, text: str) -> dict[str, object]:
     legal_path = {"pasal": "Pasal 1", "ayat": "(1)"}
     return {
-        "chunk_schema_version": 2,
         "block_id": block_id,
         "node_id": block_id,
         "file_id": file_id,
@@ -77,7 +76,7 @@ class ImportCliTests(unittest.TestCase):
 
     def test_semantic_text_preserves_retrieval_context_and_limit(self) -> None:
         block = {
-            **v2_index_block(
+            **index_block(
                 block_id="pjp-1",
                 file_id="pjp",
                 page=1,
@@ -181,21 +180,20 @@ class ImportCliTests(unittest.TestCase):
 
         trace = trace_from_answer(answer, generated_at="2026-07-11T00:00:00+00:00")
 
-        self.assertEqual(trace["schema_version"], 1)
         self.assertEqual(trace["decision"]["status"], "not_found")
         self.assertTrue(trace["decision"]["refused"])
         self.assertEqual(trace["retrieval"]["evidence_count"], 0)
         self.assertEqual(trace["query_plan"]["search_count"], 1)
 
     def test_append_search_index_adds_only_new_documents_and_postings(self) -> None:
-        first = v2_index_block(
+        first = index_block(
             block_id="first-1",
             file_id="first",
             page=1,
             title="PBI Pembayaran",
             text="Penyedia jasa pembayaran wajib memenuhi ketentuan.",
         )
-        second = v2_index_block(
+        second = index_block(
             block_id="second-1",
             file_id="second",
             page=2,
@@ -224,14 +222,14 @@ class ImportCliTests(unittest.TestCase):
                     index_signature()
 
     def test_incremental_sqlite_build_appends_without_json_companions(self) -> None:
-        first = v2_index_block(
+        first = index_block(
             block_id="first-1",
             file_id="first",
             page=1,
             title="PBI Pembayaran",
             text="Penyedia jasa pembayaran wajib memenuhi ketentuan.",
         )
-        second = v2_index_block(
+        second = index_block(
             block_id="second-1",
             file_id="second",
             page=2,

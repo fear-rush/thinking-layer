@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from thinking_layer.evaluation.golden import (
+    acceptance_gate_passed,
     citation_matches_variant,
     compare_summaries,
     evaluate_golden_answer,
@@ -104,7 +105,6 @@ class GoldenEvaluationContractTests(unittest.TestCase):
                 "file_id": allowed["file_id"],
                 "block_id": "allowed-block",
                 "source_block_ids": ["allowed-block"],
-                "chunk_schema_version": 2,
                 "page_start": allowed["page_start"],
                 "page_end": allowed["page_end"],
                 "legal_path": allowed["legal_path"],
@@ -198,8 +198,8 @@ class GoldenEvaluationContractTests(unittest.TestCase):
         smoke_ids = set(self.suite["metadata"]["tiers"]["smoke"])
         expected_ids = [case["id"] for case in self.suite["cases"] if case["id"] in smoke_ids]
         self.assertEqual([case["id"] for case in smoke], expected_ids)
-        self.assertEqual(len(smoke), 12)
-        self.assertEqual(len(select_cases(self.suite, tier="full")), 44)
+        self.assertEqual(len(smoke), 13)
+        self.assertEqual(len(select_cases(self.suite, tier="full")), 45)
         categories = {case["category"] for case in smoke}
         self.assertTrue({"direct_exact", "enumeration_exact", "cross_document", "table_refusal", "no_answer"}.issubset(categories))
         issuers = {
@@ -339,6 +339,11 @@ class GoldenEvaluationContractTests(unittest.TestCase):
             {"citation_precision": 1, "exact_targets": -1},
         )
 
+    def test_acceptance_gate_requires_every_selected_live_case(self) -> None:
+        self.assertTrue(acceptance_gate_passed({"accepted": 3, "total": 3}))
+        self.assertFalse(acceptance_gate_passed({"accepted": 2, "total": 3}))
+        self.assertFalse(acceptance_gate_passed({"accepted": 0, "total": 0}))
+
     def test_validation_rejects_unknown_smoke_case(self) -> None:
         payload = copy.deepcopy(self.suite)
         payload["metadata"]["tiers"]["smoke"].append("missing_case")
@@ -357,7 +362,6 @@ class GoldenEvaluationContractTests(unittest.TestCase):
             "file_id": variant["file_id"],
             "block_id": "gold-block",
             "source_block_ids": ["gold-block"],
-            "chunk_schema_version": 2,
             "page_start": variant["page_start"],
             "page_end": variant["page_end"],
             "legal_path": variant["legal_path"],

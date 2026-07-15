@@ -26,7 +26,6 @@ class TopicCoverageTests(unittest.TestCase):
                     "file_role": "primary_regulation",
                     "citations": [
                         {
-                            "chunk_schema_version": 2,
                             "file_id": "bi-pjp",
                             "block_id": "bi-pjp-1",
                             "source_block_ids": ["bi-pjp-1"],
@@ -55,7 +54,6 @@ class TopicCoverageTests(unittest.TestCase):
                     "file_role": "primary_regulation",
                     "citations": [
                         {
-                            "chunk_schema_version": 2,
                             "file_id": "ojk-akd-85-1",
                             "block_id": "ojk-akd-85-1",
                             "source_block_ids": ["ojk-akd-85-1"],

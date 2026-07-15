@@ -37,6 +37,9 @@ _GENERIC_QUERY_TERMS = {
     "diwajibkan",
     "harus",
     "dipatuhi",
+    "dipenuhi",
+    "memenuhi",
+    "penuhi",
     "sanksi",
     "denda",
     "tugas",
@@ -89,12 +92,21 @@ _TOKEN_ALIASES = {
     "mengirimkan": "sampai",
     "menyampaikan": "sampai",
     "penyampaian": "sampai",
+    "dipenuhi": "penuhi",
+    "memenuhi": "penuhi",
 }
 
 _PREDICATE_PATTERNS: dict[str, tuple[tuple[str, ...], tuple[str, ...]]] = {
     "obligation": (
         ("kewajiban", "wajib", "harus", "diwajibkan", "dipatuhi"),
-        ("wajib", "harus", "dilarang", "berkewajiban", "pihak yang wajib"),
+        (
+            "wajib",
+            "harus",
+            "dilarang",
+            "berkewajiban",
+            "pihak yang wajib",
+            "dengan memperhatikan ketentuan",
+        ),
     ),
     "sanction": (
         ("sanksi", "denda", "terlambat", "pelanggaran"),
@@ -221,6 +233,7 @@ def answer_alignment(
     query: str,
     item: dict[str, Any],
     *,
+    plan: dict[str, Any] | None = None,
     minimum_distinctive_ratio: float = 0.75,
     allow_missing_value: bool = False,
     allow_missing_predicate: bool = False,
@@ -228,17 +241,41 @@ def answer_alignment(
     document, claim = _text_for_item(item)
     stopwords = load_stopwords()
     raw_terms = tokenize_with_stopwords(query, stopwords)
+    lexical_distinctive_terms = [
+        _normalize_token(term)
+        for term in raw_terms
+        if term.casefold() not in _GENERIC_QUERY_TERMS and not re.fullmatch(r"\d+(?:[/.]\d+)*", term)
+    ]
+    consumed_terms: set[str] = set()
+    matched_concepts: list[str] = []
+    evidence_concepts: set[str] = set()
+    query_l = query.casefold()
+    evidence_l = f"{document} {claim}".casefold()
+    for concept in (plan or {}).get("entity_concepts") or []:
+        query_patterns = [str(value).casefold() for value in concept.get("query_patterns") or []]
+        if not any(re.search(rf"(?<!\w){re.escape(pattern)}(?!\w)", query_l) for pattern in query_patterns):
+            continue
+        concept_term = f"entity:{concept.get('name')}"
+        matched_concepts.append(concept_term)
+        for pattern in query_patterns:
+            consumed_terms.update(_normalize_token(term) for term in tokenize_with_stopwords(pattern, stopwords))
+        evidence_patterns = [str(value).casefold() for value in concept.get("evidence_patterns") or []]
+        if any(re.search(rf"(?<!\w){re.escape(pattern)}(?!\w)", evidence_l) for pattern in evidence_patterns):
+            evidence_concepts.add(concept_term)
+
     distinctive_terms = tuple(
         dict.fromkeys(
-            _normalize_token(term)
-            for term in raw_terms
-            if term.casefold() not in _GENERIC_QUERY_TERMS and not re.fullmatch(r"\d+(?:[/.]\d+)*", term)
+            [
+                *(term for term in lexical_distinctive_terms if term not in consumed_terms),
+                *matched_concepts,
+            ]
         )
     )
     evidence_terms = {
         _normalize_token(term)
         for term in tokenize_with_stopwords(f"{document} {claim}", stopwords)
     }
+    evidence_terms.update(evidence_concepts)
     matched_terms = tuple(term for term in distinctive_terms if term in evidence_terms)
     ratio = len(matched_terms) / max(1, len(distinctive_terms)) if distinctive_terms else 1.0
     required_hits = math.ceil(len(distinctive_terms) * minimum_distinctive_ratio) if distinctive_terms else 0

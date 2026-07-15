@@ -4,21 +4,21 @@ This report validates the normalized, citation-ready corpus used before retrieva
 
 ## Summary
 
-- Source corpus rows: 398930
+- Source corpus rows: 357784
 - Duplicate source blocks skipped: 1
-- Exact duplicate primary rows excluded: 15897
+- Exact duplicate primary rows excluded: 15531
 - Exact duplicate primary files excluded: 41
 - Unreadable table rows quarantined: 52
-- Rows whose legal issuer differs from the hosting source: 35629
-- Documents: 1346
-- Files: 1506
-- Sources: `{'ease-bi': 28460, 'peraturan-ojk': 370470}`
-- Issuers: `{'BI': 64089, 'OJK': 334841}`
-- Source priority: `{'primary': 396777, 'secondary': 2153}`
-- File roles: `{'primary_regulation': 394444, 'operational_requirement': 1501, 'secondary_summary': 748, 'secondary_faq': 1405, 'attachment': 832}`
-- Section types: `{'angka': 80333, 'huruf': 150974, 'ayat': 96141, 'pasal': 31024, 'enumeration_aggregate': 37297, 'abstrak': 748, 'faq': 1405, 'point': 38, 'subpoint': 60, 'item': 78, 'attachment': 832}`
-- Lifecycle status: `{'unknown': 398930}`
-- Citation quality: `{'document_page_pasal': 98096, 'document_page_pasal_ayat_huruf': 105361, 'document_page_pasal_ayat': 105271, 'document_page': 90026, 'document_page_section': 176}`
+- Rows whose legal issuer differs from the hosting source: 34933
+- Documents: 1503
+- Files: 1679
+- Sources: `{'ease-bi': 27886, 'peraturan-ojk': 329898}`
+- Issuers: `{'BI': 62819, 'OJK': 294965}`
+- Source priority: `{'primary': 355812, 'secondary': 1972}`
+- File roles: `{'primary_regulation': 353870, 'operational_requirement': 1493, 'secondary_summary': 523, 'secondary_faq': 1449, 'attachment': 449}`
+- Section types: `{'angka': 39018, 'huruf': 119040, 'ayat': 82923, 'pasal': 30435, 'enumeration_aggregate': 49963, 'point': 10924, 'subpoint': 13538, 'item': 9522, 'abstrak': 523, 'faq': 1449, 'attachment': 449}`
+- Lifecycle status: `{'unknown': 357784}`
+- Citation quality: `{'document_page_pasal': 91646, 'document_page_pasal_ayat_huruf': 97897, 'document_page_pasal_ayat': 99993, 'document_page': 13845, 'document_page_section': 54403}`
 
 ## Sikepo Metadata Coverage
 

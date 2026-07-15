@@ -23,7 +23,7 @@ function citationHref(citation: Citation, blockId = citation.block_id) {
     return null;
   }
 
-  return `/v1/documents/${encodeURIComponent(citation.file_id)}/blocks/${encodeURIComponent(blockId)}`;
+  return `/documents/${encodeURIComponent(citation.file_id)}/blocks/${encodeURIComponent(blockId)}`;
 }
 
 function citationPages(citation: Citation) {

@@ -1,8 +1,7 @@
 {
   "metadata": {
-    "suite": "legal-answer-golden-v2",
-    "version": 1,
-    "reviewed_against": "processed/search_index/search.sqlite after the corpus-wide v2 rebuild",
+    "suite": "legal-answer-golden",
+    "reviewed_against": "processed/search_index/search.sqlite after the corpus-wide canonical rebuild",
     "scope": {
       "represented_issuers": ["BI", "OJK"],
       "unrepresented_issuer_policy": "Questions requiring a primary source from another issuer must refuse; a mention inside a BI/OJK document is not issuer coverage.",
@@ -13,6 +12,7 @@
       "smoke": [
         "bi_qris_mandatory",
         "bi_pip_core_activities",
+        "bi_pjp_advertising_rules",
         "bi_prohibited_standard_clauses",
         "bi_written_complaint_twenty_days",
         "bi_apu_edd_high_risk",
@@ -37,14 +37,14 @@
         "exact_targets",
         "citation_count",
         "citation_precision",
-        "v2_provenance"
+        "provenance"
       ],
       "weights": {
         "status": 0.15,
         "answer_terms": 0.15,
         "exact_targets": 0.3,
         "citation_precision": 0.15,
-        "v2_provenance": 0.1,
+        "provenance": 0.1,
         "required_issuers": 0.05,
         "citation_count": 0.05,
         "uncertainty": 0.03,
@@ -128,6 +128,65 @@
             "text_terms": ["penyediaan informasi Sumber Dana", "payment initiation", "penatausahaan Sumber Dana", "layanan remitansi"]
           }]
         }]}
+      }
+    },
+    {
+      "id": "bi_pjp_advertising_rules",
+      "category": "enumeration_exact",
+      "query": "apa saja aturan periklanan yang harus dipenuhi oleh penyedia jasa pembayaran?",
+      "expected": {
+        "statuses": ["answerable"],
+        "required_issuers": ["BI"],
+        "answer": {
+          "required_term_groups": [
+            ["bahasa Indonesia"],
+            ["kinerja masa lalu"],
+            ["gratis"],
+            ["nama", "logo"],
+            ["berizin", "diawasi"],
+            ["testimoni", "endorsement"]
+          ]
+        },
+        "citations": {
+          "target_mode": "all",
+          "min_citations": 3,
+          "max_citations": 3,
+          "targets": [
+            {
+              "name": "pjp-advertising-information-rules",
+              "variants": [{
+                "issuer": "BI",
+                "file_id": "ease-bi-ketentuan-1296-0-padg-no-20-tahun-2023-tata-cara-pelaksanaan-pelindungan-konsumen-bank-indonesia",
+                "page_start": 4,
+                "page_end": 4,
+                "legal_path": {"pasal": "Pasal 7", "ayat": "(1)"},
+                "text_terms": ["bahasa Indonesia", "kinerja masa lalu", "kata superlatif", "gratis"]
+              }]
+            },
+            {
+              "name": "pjp-advertising-testimonial-rule",
+              "variants": [{
+                "issuer": "BI",
+                "file_id": "ease-bi-ketentuan-1296-0-padg-no-20-tahun-2023-tata-cara-pelaksanaan-pelindungan-konsumen-bank-indonesia",
+                "page_start": 5,
+                "page_end": 5,
+                "legal_path": {"pasal": "Pasal 7", "ayat": "(2)"},
+                "text_terms": ["testimoni Konsumen", "anjuran (endorsement)", "memperhatikan ketentuan"]
+              }]
+            },
+            {
+              "name": "pjp-advertising-identity-disclosure",
+              "variants": [{
+                "issuer": "BI",
+                "file_id": "ease-bi-ketentuan-1296-0-padg-no-20-tahun-2023-tata-cara-pelaksanaan-pelindungan-konsumen-bank-indonesia",
+                "page_start": 5,
+                "page_end": 5,
+                "legal_path": {"pasal": "Pasal 7", "ayat": "(3)"},
+                "text_terms": ["nama dan/atau logo Penyelenggara", "berizin dan diawasi oleh Bank Indonesia"]
+              }]
+            }
+          ]
+        }
       }
     },
     {
@@ -225,7 +284,7 @@
         "citations": {"target_mode": "all", "min_citations": 1, "max_citations": 4, "targets": [{
           "name": "insurance-marketing-information", "variants": [{
             "issuer": "OJK", "file_id": "peraturan-ojk-pojk-8-tahun-2024-produk-asuransi-dan-saluran-pemasaran-produk-asuransi-0-pojk-8-tahun-2024-produk-asuransi-dan-saluran-pemasaran-produk-asuransi-pdf",
-            "page_start": 27, "page_end": 27, "legal_path": {"pasal": "Pasal 55", "ayat": "(1)", "huruf": "huruf a"},
+            "page_start": 27, "page_end": 27, "legal_path": {"pasal": "Pasal 55", "huruf": "huruf a"},
             "text_terms": ["akurat, jelas, jujur, dan tidak menyesatkan"]
           }]
         }]}
@@ -298,7 +357,7 @@
         "citations": {"target_mode": "all", "min_citations": 1, "max_citations": 4, "targets": [{
           "name": "lpbbti-consumer-rate-2025", "variants": [{
             "issuer": "OJK", "file_id": "peraturan-ojk-seojk-19-seojk06-2025-penyelenggaraan-lpbbti-0-seojk-19-seojk06-2025-penyelenggaraan-layanan-pendanaan-bersama-berbasis-teknologi-informasi-pdf",
-            "page_start": 19, "page_end": 19, "legal_path": {"huruf": "huruf b"},
+            "page_start": 19, "page_end": 19, "legal_path": {"section": "XIV. BATAS MAKSIMUM MANFAAT EKONOMI", "point": "3", "subpoint": "b"},
             "text_terms": ["0,3%", "0,2%", "6 (enam) bulan"]
           }]
         }]}

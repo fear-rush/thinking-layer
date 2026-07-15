@@ -95,7 +95,7 @@ class ExtractionTests(unittest.TestCase):
 
         self.assertEqual(blocks, [])
 
-    def test_extract_blocks_emits_only_v2_atomic_leaves_and_bounded_aggregate(self) -> None:
+    def test_extract_blocks_emits_only_canonical_atomic_leaves_and_bounded_aggregate(self) -> None:
         pages = [
             {
                 "page_num": 4,
@@ -130,15 +130,14 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(len(atomic), 2)
         self.assertEqual([block["huruf"] for block in atomic], ["huruf a", "huruf b"])
         self.assertEqual(len(aggregates), 1)
-        self.assertTrue(all(block["chunk_schema_version"] == 2 for block in blocks))
-        self.assertTrue(all(block["extraction_method"] == "legal_units_v2" for block in blocks))
+        self.assertTrue(all(block["extraction_method"] == "legal_units" for block in blocks))
         self.assertTrue(all(block["document_part"] == "normative" for block in blocks))
         self.assertTrue(all(block["legal_unit"]["document_part"] == "normative" for block in blocks))
         self.assertTrue(all(block["pasal"] == "Pasal 2" and block["ayat"] == "(1)" for block in blocks))
         self.assertIn("PJP menyelenggarakan aktivitas", aggregates[0]["display_text"])
         self.assertEqual(aggregates[0]["citation_target_id"], atomic[0]["parent_id"])
 
-    def test_v2_table_leaf_retains_legal_owner_without_sentence_splitting(self) -> None:
+    def test_canonical_table_leaf_retains_legal_owner_without_sentence_splitting(self) -> None:
         pages = [
             {
                 "page_num": 2,

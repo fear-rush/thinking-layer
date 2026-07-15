@@ -13,17 +13,18 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test",
-    "lint": "oxlint src e2e playwright.config.ts",
-    "format": "oxfmt --write src/components src/lib src/routes e2e playwright.config.ts vite.config.ts",
-    "format:check": "oxfmt --check src/components src/lib src/routes e2e playwright.config.ts vite.config.ts"
+    "test:e2e": "bun run test:e2e:fixture",
+    "test:e2e:fixture": "playwright test",
+    "test:e2e:live": "THINKING_LAYER_E2E_BACKEND=live playwright test",
+    "lint": "oxlint src e2e e2e-live playwright.config.ts",
+    "format": "oxfmt --write src/components src/lib src/routes e2e e2e-live playwright.config.ts vite.config.ts",
+    "format:check": "oxfmt --check src/components src/lib src/routes e2e e2e-live playwright.config.ts vite.config.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-query": "5.101.2",
     "@tanstack/react-query-devtools": "5.101.2",
     "@tanstack/react-router": "latest",
-    "@tanstack/react-start": "latest",
     "@tanstack/router-plugin": "^1.132.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

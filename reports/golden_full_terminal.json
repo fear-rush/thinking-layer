@@ -1,8 +1,7 @@
 {
   "metadata": {
-    "suite": "legal-answer-golden-v2",
-    "suite_version": 1,
-    "generated_at": "2026-07-14T17:26:05.615483+00:00",
+    "suite": "legal-answer-golden",
+    "generated_at": "2026-07-15T04:53:53.957566+00:00",
     "tier": "full",
     "selected_case_ids": [
       "bi_qris_mandatory",
@@ -61,24 +60,24 @@
     "failures": []
   },
   "summary": {
-    "accepted": 22,
+    "accepted": 21,
     "total": 44,
-    "acceptance_rate": 0.5,
-    "average_score": 0.664,
+    "acceptance_rate": 0.477,
+    "average_score": 0.648,
     "hard_failure_counts": {
       "answer_terms": 15,
-      "citation_count": 8,
-      "citation_precision": 21,
-      "exact_targets": 21,
-      "required_issuers": 8,
-      "status": 10,
-      "v2_provenance": 8
+      "citation_count": 7,
+      "citation_precision": 22,
+      "exact_targets": 23,
+      "provenance": 7,
+      "required_issuers": 7,
+      "status": 11
     },
     "latency_ms": {
-      "p50": 1678.676,
-      "p95": 18655.431,
-      "max": 20128.925,
-      "total": 179999.6
+      "p50": 1640.62,
+      "p95": 16491.142,
+      "max": 19900.997,
+      "total": 167899.214
     },
     "by_category": {
       "direct_exact": {
@@ -86,7 +85,7 @@
         "total": 18
       },
       "enumeration_exact": {
-        "accepted": 4,
+        "accepted": 3,
         "total": 9
       },
       "amendment_exact": {
@@ -130,7 +129,7 @@
         "total": 2
       }
     },
-    "wall_time_ms": 180003.429
+    "wall_time_ms": 167902.918
   },
   "rows": [
     {
@@ -235,10 +234,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 153.583
+        "latency_ms": 155.072
       }
     },
     {
@@ -318,7 +317,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -327,9 +326,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 129.194
+        "latency_ms": 134.743
       }
     },
     {
@@ -410,10 +409,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1300.469
+        "latency_ms": 1512.443
       }
     },
     {
@@ -498,7 +497,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -507,9 +506,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 845.69
+        "latency_ms": 1119.73
       }
     },
     {
@@ -591,14 +590,14 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "answer_terms",
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 1320.73
+        "latency_ms": 1332.225
       }
     },
     {
@@ -675,7 +674,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -684,9 +683,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 779.004
+        "latency_ms": 800.561
       }
     },
     {
@@ -772,10 +771,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 430.646
+        "latency_ms": 492.014
       }
     },
     {
@@ -881,10 +880,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 468.713
+        "latency_ms": 541.771
       }
     },
     {
@@ -954,15 +953,13 @@
       "evaluation": {
         "id": "ojk_personal_data_prohibition",
         "category": "enumeration_exact",
-        "accepted": true,
-        "score": 1.0,
-        "status": "answerable",
+        "accepted": false,
+        "score": 0.25,
+        "status": "partial",
         "citation_count": 1,
-        "target_recall": 1.0,
-        "citation_precision": 1.0,
-        "target_hits": [
-          "ojk-data-prohibitions"
-        ],
+        "target_recall": 0.0,
+        "citation_precision": 0.0,
+        "target_hits": [],
         "allowed_target_hits": [],
         "required_issuers": [
           "OJK"
@@ -971,18 +968,23 @@
           "OJK"
         ],
         "checks": {
-          "status": true,
-          "answer_terms": true,
+          "status": false,
+          "answer_terms": false,
           "forbidden_terms": true,
           "uncertainty": true,
           "required_issuers": true,
-          "exact_targets": true,
+          "exact_targets": false,
           "citation_count": true,
-          "citation_precision": true,
-          "v2_provenance": true
+          "citation_precision": false,
+          "provenance": true
         },
-        "failure_reasons": [],
-        "latency_ms": 4070.461
+        "failure_reasons": [
+          "status",
+          "answer_terms",
+          "exact_targets",
+          "citation_precision"
+        ],
+        "latency_ms": 338.381
       }
     },
     {
@@ -1028,7 +1030,6 @@
                     "page_end": 27,
                     "legal_path": {
                       "pasal": "Pasal 55",
-                      "ayat": "(1)",
                       "huruf": "huruf a"
                     },
                     "text_terms": [
@@ -1067,14 +1068,14 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "answer_terms",
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 11541.517
+        "latency_ms": 12467.867
       }
     },
     {
@@ -1171,10 +1172,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 2820.605
+        "latency_ms": 2939.362
       }
     },
     {
@@ -1319,10 +1320,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 2531.0
+        "latency_ms": 3338.971
       }
     },
     {
@@ -1404,10 +1405,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 19469.683
+        "latency_ms": 16965.834
       }
     },
     {
@@ -1450,7 +1451,9 @@
                     "page_start": 19,
                     "page_end": 19,
                     "legal_path": {
-                      "huruf": "huruf b"
+                      "section": "XIV. BATAS MAKSIMUM MANFAAT EKONOMI",
+                      "point": "3",
+                      "subpoint": "b"
                     },
                     "text_terms": [
                       "0,3%",
@@ -1468,9 +1471,9 @@
         "id": "ojk_lpbbti_consumer_rate_2025",
         "category": "amendment_exact",
         "accepted": false,
-        "score": 0.05,
-        "status": "not_found",
-        "citation_count": 0,
+        "score": 0.25,
+        "status": "partial",
+        "citation_count": 1,
         "target_recall": 0.0,
         "citation_precision": 0.0,
         "target_hits": [],
@@ -1478,28 +1481,27 @@
         "required_issuers": [
           "OJK"
         ],
-        "issuer_hits": [],
+        "issuer_hits": [
+          "OJK"
+        ],
         "checks": {
           "status": false,
           "answer_terms": false,
           "forbidden_terms": true,
           "uncertainty": true,
-          "required_issuers": false,
+          "required_issuers": true,
           "exact_targets": false,
-          "citation_count": false,
+          "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": true
         },
         "failure_reasons": [
           "status",
           "answer_terms",
-          "required_issuers",
           "exact_targets",
-          "citation_count",
-          "citation_precision",
-          "v2_provenance"
+          "citation_precision"
         ],
-        "latency_ms": 14173.025
+        "latency_ms": 13801.219
       }
     },
     {
@@ -1575,7 +1577,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -1584,9 +1586,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 3588.806
+        "latency_ms": 3101.423
       }
     },
     {
@@ -1672,10 +1674,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 278.213
+        "latency_ms": 298.788
       }
     },
     {
@@ -1762,13 +1764,13 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 1469.831
+        "latency_ms": 1452.459
       }
     },
     {
@@ -1854,10 +1856,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 2061.593
+        "latency_ms": 2092.893
       }
     },
     {
@@ -1942,14 +1944,14 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "answer_terms",
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 10479.208
+        "latency_ms": 10767.772
       }
     },
     {
@@ -2036,7 +2038,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -2045,9 +2047,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 2387.678
+        "latency_ms": 2506.526
       }
     },
     {
@@ -2130,13 +2132,13 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 1226.977
+        "latency_ms": 1313.999
       }
     },
     {
@@ -2229,10 +2231,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 56.38
+        "latency_ms": 60.633
       }
     },
     {
@@ -2316,10 +2318,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1267.57
+        "latency_ms": 1337.09
       }
     },
     {
@@ -2407,14 +2409,14 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "answer_terms",
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 1644.723
+        "latency_ms": 1796.497
       }
     },
     {
@@ -2499,10 +2501,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1712.629
+        "latency_ms": 1785.475
       }
     },
     {
@@ -2609,12 +2611,12 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "exact_targets"
         ],
-        "latency_ms": 1297.922
+        "latency_ms": 1330.368
       }
     },
     {
@@ -2711,7 +2713,7 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "status",
@@ -2719,7 +2721,7 @@
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 1196.06
+        "latency_ms": 1267.51
       }
     },
     {
@@ -2779,14 +2781,12 @@
         "id": "bi_apu_beneficial_owner_verification",
         "category": "direct_exact",
         "accepted": false,
-        "score": 0.85,
+        "score": 0.55,
         "status": "answerable",
         "citation_count": 2,
-        "target_recall": 1.0,
-        "citation_precision": 0.5,
-        "target_hits": [
-          "bi-beneficial-owner-verification"
-        ],
+        "target_recall": 0.0,
+        "citation_precision": 0.0,
+        "target_hits": [],
         "allowed_target_hits": [],
         "required_issuers": [
           "BI"
@@ -2800,15 +2800,16 @@
           "forbidden_terms": true,
           "uncertainty": true,
           "required_issuers": true,
-          "exact_targets": true,
+          "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
+          "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 174.231
+        "latency_ms": 185.507
       }
     },
     {
@@ -2897,10 +2898,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 359.828
+        "latency_ms": 379.436
       }
     },
     {
@@ -3011,7 +3012,7 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "status",
@@ -3019,7 +3020,7 @@
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 20128.925
+        "latency_ms": 19900.997
       }
     },
     {
@@ -3101,13 +3102,13 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 436.441
+        "latency_ms": 494.551
       }
     },
     {
@@ -3213,10 +3214,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 2792.438
+        "latency_ms": 2725.428
       }
     },
     {
@@ -3304,10 +3305,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 2244.454
+        "latency_ms": 2185.669
       }
     },
     {
@@ -3424,10 +3425,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 4169.498
+        "latency_ms": 4029.442
       }
     },
     {
@@ -3509,7 +3510,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -3518,9 +3519,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 367.439
+        "latency_ms": 340.371
       }
     },
     {
@@ -3610,7 +3611,7 @@
           "exact_targets": false,
           "citation_count": false,
           "citation_precision": false,
-          "v2_provenance": false
+          "provenance": false
         },
         "failure_reasons": [
           "status",
@@ -3619,9 +3620,9 @@
           "exact_targets",
           "citation_count",
           "citation_precision",
-          "v2_provenance"
+          "provenance"
         ],
-        "latency_ms": 3777.878
+        "latency_ms": 3520.588
       }
     },
     {
@@ -3680,10 +3681,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 10561.864
+        "latency_ms": 7515.422
       }
     },
     {
@@ -3744,10 +3745,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 9146.792
+        "latency_ms": 6258.224
       }
     },
     {
@@ -3829,14 +3830,12 @@
         "id": "cross_regulator_consumer_data",
         "category": "cross_document",
         "accepted": false,
-        "score": 0.4,
+        "score": 0.55,
         "status": "partial",
         "citation_count": 2,
-        "target_recall": 0.5,
-        "citation_precision": 0.5,
-        "target_hits": [
-          "ojk-consumer-data-rule"
-        ],
+        "target_recall": 0.0,
+        "citation_precision": 0.0,
+        "target_hits": [],
         "allowed_target_hits": [],
         "required_issuers": [
           "BI",
@@ -3848,21 +3847,20 @@
         ],
         "checks": {
           "status": true,
-          "answer_terms": false,
+          "answer_terms": true,
           "forbidden_terms": true,
           "uncertainty": true,
           "required_issuers": true,
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
-          "answer_terms",
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 19446.444
+        "latency_ms": 18652.596
       }
     },
     {
@@ -3965,13 +3963,13 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 12323.808
+        "latency_ms": 12232.216
       }
     },
     {
@@ -4053,13 +4051,13 @@
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 2679.851
+        "latency_ms": 2005.266
       }
     },
     {
@@ -4113,10 +4111,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1.201
+        "latency_ms": 1.181
       }
     },
     {
@@ -4171,10 +4169,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 743.476
+        "latency_ms": 651.898
       }
     },
     {
@@ -4229,33 +4227,11 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1943.122
+        "latency_ms": 1768.796
       }
     }
-  ],
-  "comparison": {
-    "accepted_delta": 13,
-    "acceptance_rate_delta": 0.295,
-    "average_score_delta": 0.247,
-    "latency_ms_delta": {
-      "p50": -223.051,
-      "p95": 454.093,
-      "max": -86.39
-    },
-    "hard_failure_count_delta": {
-      "answer_terms": -12,
-      "citation_count": -15,
-      "citation_precision": -12,
-      "exact_targets": -8,
-      "required_issuers": -13,
-      "status": -13,
-      "uncertainty": -3,
-      "v2_provenance": -14
-    },
-    "comparable_case_count": true,
-    "same_case_ids": true
-  }
+  ]
 }

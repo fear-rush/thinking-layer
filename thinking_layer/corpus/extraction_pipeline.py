@@ -477,7 +477,7 @@ def current_ocr_needed_file_ids() -> set[str]:
     with path.open("r", encoding="utf-8") as handle:
         rows = json.load(handle)
     if not isinstance(rows, list):
-        raise SystemExit("reports/ocr_needed.json must contain a list before rebuilding v2 legal-unit blocks.")
+        raise SystemExit("reports/ocr_needed.json must contain a list before rebuilding canonical legal-unit blocks.")
     return {str(row["file_id"]) for row in rows if isinstance(row, dict) and row.get("file_id")}
 
 

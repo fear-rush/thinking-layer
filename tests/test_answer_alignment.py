@@ -20,7 +20,6 @@ def answer_item(
     return {
         "file_id": "file-1",
         "block_id": block_id,
-        "chunk_schema_version": 2,
         "source_block_ids": [block_id],
         "unit_path": [pasal],
         "legal_path": {"pasal": pasal},
@@ -437,6 +436,25 @@ class AnswerAlignmentTests(unittest.TestCase):
         self.assertIn("peraturan terkait", claim)
         self.assertIn("perundang-undangan", claim)
         self.assertNotIn("...", claim)
+
+    def test_enumeration_cross_reference_is_not_rendered_as_a_child_label(self) -> None:
+        filler = "ketentuan yang mudah dibaca Konsumen; " * 38
+        claim = evidence_claim_text(
+            {
+                "section_type": "enumeration_aggregate",
+                "assembled_text": (
+                    "(1) Penyelenggara wajib memberikan informasi dengan ketentuan:\n"
+                    f"huruf a {filler}\n"
+                    "huruf j penggunaan kata superlatif sebagaimana dimaksud dalam huruf i harus "
+                    "mencantumkan bukti; dan\n"
+                    "huruf k kata gratis tidak boleh digunakan jika Konsumen tetap membayar biaya lain."
+                ),
+            }
+        )
+
+        self.assertIn("\n  - j. penggunaan kata superlatif sebagaimana dimaksud dalam huruf i", claim)
+        self.assertNotIn("\n  - i. harus mencantumkan", claim)
+        self.assertIn("\n  - k. kata gratis tidak boleh digunakan", claim)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ from ..schemas.queries import QueryRequest, QueryResponse
 from ..services.query_service import QueryService
 
 
-router = APIRouter(prefix="/v1", tags=["queries"])
+router = APIRouter(tags=["queries"])
 
 
 @router.post("/queries", response_model=QueryResponse)

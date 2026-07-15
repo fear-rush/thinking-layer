@@ -31,7 +31,7 @@ def document_representative_rank(block: dict[str, Any]) -> tuple[int, int, int, 
     citation_quality_rank = {
         # For normal entries, keep the most precise legal anchor available.
         # Bounded enumeration aggregates are ranked ahead separately below:
-        # they are the only parent-level units admitted by v2 and preserve a
+        # they are the only parent-level units admitted by canonical and preserve a
         # governing lead-in plus its immediate list items as one readable
         # answer claim.
         "document_page_pasal_ayat_huruf": 0,

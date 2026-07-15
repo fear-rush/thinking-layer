@@ -5,7 +5,7 @@
   },
   "claim_text": {
     "max_chars": 420,
-    "enumeration_aggregate_max_chars": 1600,
+    "enumeration_aggregate_max_chars": 4000,
     "min_boundary_chars": 180,
     "fallback_claim": "Ketentuan relevan ditemukan pada sumber yang dikutip.",
     "strip_regexes": [

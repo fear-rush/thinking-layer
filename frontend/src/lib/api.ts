@@ -72,7 +72,7 @@ async function responseJson<T>(response: Response): Promise<T> {
 }
 
 export async function createQuery(question: string): Promise<QueryResponse> {
-  const response = await fetch("/v1/queries", {
+  const response = await fetch("/queries", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ question }),
@@ -86,7 +86,7 @@ export async function createFeedback(input: {
   helpful: boolean;
   comment?: string;
 }): Promise<void> {
-  const response = await fetch("/v1/feedback", {
+  const response = await fetch("/feedback", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({

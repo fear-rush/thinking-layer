@@ -91,6 +91,7 @@
     "regulated_subject_leading_multiplier": 2.25,
     "regulated_subject_late_multiplier": 0.65,
     "compound_aggregate_multiplier": 2.0,
+    "enumeration_request_aggregate_multiplier": 2.5,
     "direct_enumeration_governing_ayat_multiplier": 5.0,
     "role_multiplier": {
       "primary_regulation": 1.60,

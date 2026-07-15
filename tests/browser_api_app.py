@@ -1,3 +1,9 @@
+"""Deterministic API fixture for frontend UI-contract tests only.
+
+It deliberately does not exercise retrieval, generated corpus assets, or the
+real QueryService. Live browser acceptance tests start the production API.
+"""
+
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -84,7 +90,6 @@ class BrowserDocumentService:
             section_type="pasal",
             citation_quality="document_page_pasal",
             citation_text="PBI Penyedia Jasa Pembayaran, hlm. 1, Pasal 1",
-            chunk_schema_version=2,
             node_id=block_id,
             anchors={"page_start": 1, "page_end": 1},
             source_spans=[{"block_id": block_id, "page_start": 1, "page_end": 1}],
@@ -124,7 +129,6 @@ def _citation() -> dict[str, object]:
         "id": "c1",
         "file_id": "bi-pjp",
         "block_id": "bi-pjp-1",
-        "chunk_schema_version": 2,
         "source_block_ids": ["bi-pjp-1"],
         "issuer": "BI",
         "document": "PBI Penyedia Jasa Pembayaran",

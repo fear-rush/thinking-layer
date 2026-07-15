@@ -13,7 +13,7 @@ from thinking_layer.retrieval.planning import build_query_plan
 from thinking_layer.retrieval.search import execute_query_plan
 
 
-class V2PjpTitleRetrievalTests(unittest.TestCase):
+class CanonicalPjpTitleRetrievalTests(unittest.TestCase):
     def test_persisted_title_representative_prefers_the_pasal_two_ayat_one_aggregate(self) -> None:
         manifest = {
             "canonical_id": "bi-pjp-2021",
@@ -69,7 +69,11 @@ class V2PjpTitleRetrievalTests(unittest.TestCase):
                 ):
                     planned_hits = execute_query_plan(plan, limit=8)
                 direct_enumeration_hits = sqlite_search(
-                    plan["searches"][1]["query"],
+                    next(
+                        search["query"]
+                        for search in plan["searches"]
+                        if search["reason"].startswith("direct_enumeration:")
+                    ),
                     limit=8,
                     issuer="BI",
                     role="primary_regulation",

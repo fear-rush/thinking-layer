@@ -7,7 +7,7 @@ from ..schemas.documents import DocumentBlockResponse, DocumentResponse
 from ..services.documents import DocumentNotFoundError, DocumentService, DocumentStoreUnavailableError
 
 
-router = APIRouter(prefix="/v1/documents", tags=["documents"])
+router = APIRouter(prefix="/documents", tags=["documents"])
 
 
 def document_error(error: Exception) -> HTTPException:

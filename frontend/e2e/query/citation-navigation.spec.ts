@@ -14,7 +14,7 @@ test("opens the cited source block", async ({ context, page }) => {
   const citationPage = await citationPagePromise;
   await citationPage.waitForLoadState();
 
-  await expect(citationPage).toHaveURL(/\/v1\/documents\/bi-pjp\/blocks\/bi-pjp-1$/);
+  await expect(citationPage).toHaveURL(/\/documents\/bi-pjp\/blocks\/bi-pjp-1$/);
   await expect(citationPage.locator("body")).toContainText(
     "Penyedia jasa pembayaran wajib memenuhi ketentuan BI.",
   );

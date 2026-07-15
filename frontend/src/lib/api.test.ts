@@ -21,7 +21,7 @@ describe("createQuery", () => {
     vi.stubGlobal("fetch", fetchMock);
 
     await expect(createQuery("Apa ketentuannya?")).resolves.toEqual(payload);
-    expect(fetchMock).toHaveBeenCalledWith("/v1/queries", {
+    expect(fetchMock).toHaveBeenCalledWith("/queries", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ question: "Apa ketentuannya?" }),

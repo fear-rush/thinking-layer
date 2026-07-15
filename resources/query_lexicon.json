@@ -85,8 +85,10 @@
     {
       "name": "pjp",
       "patterns": ["pjp", "penyedia jasa pembayaran", "jasa pembayaran"],
-      "expansions": ["penyedia jasa pembayaran", "sistem pembayaran", "perizinan penyedia jasa pembayaran", "penyelenggaraan penyedia jasa pembayaran"],
-      "exact_phrases": ["penyedia jasa pembayaran"]
+      "expansions": ["penyelenggara di bidang sistem pembayaran penyedia jasa pembayaran", "penyedia jasa pembayaran", "sistem pembayaran", "perizinan penyedia jasa pembayaran", "penyelenggaraan penyedia jasa pembayaran"],
+      "exact_phrases": ["penyedia jasa pembayaran"],
+      "alignment_aliases": ["pjp", "penyedia jasa pembayaran", "penyelenggara"],
+      "issuer": "BI"
     },
     {
       "name": "pip",
@@ -218,6 +220,8 @@
       "patterns": ["periklanan", "iklan", "promosi", "pemasaran", "marketing", "brosur", "penawaran produk", "campaign"],
       "exclude_patterns": ["seragam", "pakaian", "uniform"],
       "expansions": [
+        "iklan testimoni anjuran endorsement",
+        "promosi iklan nama logo berizin diawasi Bank Indonesia",
         "iklan pemasaran produk bank",
         "iklan pemasaran produk layanan jasa keuangan",
         "penyediaan informasi penyampaian informasi pemasaran produk layanan jasa keuangan",
@@ -225,6 +229,7 @@
         "transparansi informasi produk bank penggunaan data pribadi nasabah"
       ],
       "exact_phrases": ["iklan", "pemasaran produk", "pemasaran produk layanan jasa keuangan", "transparansi informasi produk bank"],
+      "enumeration_terms": "iklan syarat ketentuan kinerja riset hadiah gratis",
       "issuer": "OJK"
     },
     {

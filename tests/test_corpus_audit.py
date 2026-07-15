@@ -9,13 +9,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from thinking_layer.corpus.v2_audit import audit_v2_artifacts, cmd_v2_corpus_audit
+from thinking_layer.corpus.corpus_audit import audit_corpus_artifacts, cmd_corpus_audit
 
 
 def valid_row(block_id: str = "block-1", **overrides: object) -> dict[str, object]:
     legal_path = {"pasal": "Pasal 1", "ayat": "(1)"}
     row: dict[str, object] = {
-        "chunk_schema_version": 2,
         "block_id": block_id,
         "node_id": block_id,
         "file_id": "bi-pbi-1-2026",
@@ -54,12 +53,12 @@ def valid_row(block_id: str = "block-1", **overrides: object) -> dict[str, objec
     return row
 
 
-class V2CorpusAuditTests(unittest.TestCase):
-    def test_clean_v2_fixture_passes_every_gate(self) -> None:
+class CanonicalCorpusAuditTests(unittest.TestCase):
+    def test_clean_canonical_fixture_passes_every_gate(self) -> None:
         block = valid_row()
         source = deepcopy(block)
 
-        report = audit_v2_artifacts([block], [source])
+        report = audit_corpus_artifacts([block], [source])
 
         self.assertEqual(report["status"], "pass")
         self.assertEqual(report["summary"]["failed_checks"], 0)
@@ -71,7 +70,7 @@ class V2CorpusAuditTests(unittest.TestCase):
             retrieval_text="Pasal 1 ayat (1). Bank wajib memberikan penjelasan tertulis.",
         )
 
-        report = audit_v2_artifacts([block], [deepcopy(block)])
+        report = audit_corpus_artifacts([block], [deepcopy(block)])
 
         self.assertEqual(report["checks"]["document_part_contamination"]["count"], 0)
 
@@ -79,9 +78,10 @@ class V2CorpusAuditTests(unittest.TestCase):
         blocks = [valid_row("clean")]
         sources = [deepcopy(blocks[0])]
 
-        non_v2 = valid_row("non-v2", chunk_schema_version=1)
-        blocks.append(non_v2)
-        sources.append(valid_row("non-v2"))
+        missing_provenance = valid_row("missing-provenance")
+        del missing_provenance["node_id"]
+        blocks.append(missing_provenance)
+        sources.append(valid_row("missing-provenance"))
 
         dangling = valid_row("dangling", display_text="(2) Ketentuan sebagaimana dimaksud pada ayat")
         blocks.append(dangling)
@@ -169,7 +169,7 @@ class V2CorpusAuditTests(unittest.TestCase):
         blocks.append(explanation)
         sources.append(deepcopy(explanation))
 
-        report = audit_v2_artifacts(blocks, sources, max_examples=1)
+        report = audit_corpus_artifacts(blocks, sources, max_examples=1)
 
         self.assertEqual(report["status"], "fail")
         self.assertEqual(report["summary"]["failed_checks"], 9)
@@ -194,12 +194,12 @@ class V2CorpusAuditTests(unittest.TestCase):
             )
 
             with redirect_stdout(StringIO()), self.assertRaisesRegex(SystemExit, "1"):
-                cmd_v2_corpus_audit(args)
+                cmd_corpus_audit(args)
 
             args.report_only = True
             stdout = StringIO()
             with redirect_stdout(stdout):
-                cmd_v2_corpus_audit(args)
+                cmd_corpus_audit(args)
 
             compact = json.loads(stdout.getvalue())
             written = json.loads(output_path.read_text(encoding="utf-8"))

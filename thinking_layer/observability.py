@@ -56,7 +56,6 @@ def trace_from_answer(answer: dict[str, Any], *, generated_at: str | None = None
     refused = status == "not_found" or bool(confidence.get("must_say_not_found"))
 
     return {
-        "schema_version": 1,
         "generated_at_utc": generated_at or datetime.now(timezone.utc).isoformat(),
         "query": pack.get("query"),
         "query_plan": {
@@ -99,7 +98,7 @@ def build_query_trace(
     limit: int = 12,
     per_document_limit: int = 3,
     max_documents: int = 6,
-    max_citations_per_document: int = 2,
+    max_citations_per_document: int = 3,
     top_evidence: int = 10,
 ) -> dict[str, Any]:
     answer = build_answer(

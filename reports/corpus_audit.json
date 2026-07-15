@@ -1,15 +1,14 @@
 {
-  "schema_version": 1,
   "status": "pass",
   "summary": {
-    "blocks_scanned": 417673,
-    "source_rows_scanned": 398930,
-    "unique_units_scanned": 417391,
+    "blocks_scanned": 375489,
+    "source_rows_scanned": 357784,
+    "unique_units_scanned": 375217,
     "failed_checks": 0,
     "blocking_violations": 0
   },
   "checks": {
-    "non_v2_or_missing_provenance": {
+    "missing_legal_unit_provenance": {
       "count": 0,
       "blocking": true,
       "examples": []

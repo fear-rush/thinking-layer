@@ -16,7 +16,7 @@ from ..answer.composer import build_answer
 from ..config.paths import SEARCH_INDEX_DB
 
 
-DEFAULT_GOLDEN_PATH = Path(__file__).resolve().parents[2] / "resources" / "golden_questions.v2.json"
+DEFAULT_GOLDEN_PATH = Path(__file__).resolve().parents[2] / "resources" / "golden_questions.json"
 
 
 def load_golden_suite(path: Path = DEFAULT_GOLDEN_PATH) -> dict[str, Any]:
@@ -200,7 +200,7 @@ def preflight_exact_targets(
                             "page_start": variant["page_start"],
                             "page_end": variant["page_end"],
                             "legal_path": variant["legal_path"],
-                            "reason": "exact target is absent from the current v2 index",
+                            "reason": "exact target is absent from the current index",
                         }
                     )
     except (sqlite3.DatabaseError, json.JSONDecodeError, zlib.error) as error:
@@ -232,12 +232,11 @@ def _target_hits(
     return hit_names, sorted(set(matched_citation_indexes))
 
 
-def _has_v2_provenance(citation: dict[str, Any]) -> bool:
+def _has_provenance(citation: dict[str, Any]) -> bool:
     page_start = int(citation.get("page_start") or citation.get("page") or 0)
     page_end = int(citation.get("page_end") or page_start)
     return bool(
-        citation.get("chunk_schema_version") == 2
-        and citation.get("file_id")
+        citation.get("file_id")
         and citation.get("block_id")
         and citation.get("source_block_ids")
         and citation.get("anchors")
@@ -285,7 +284,7 @@ def evaluate_golden_answer(spec: dict[str, Any], answer: dict[str, Any], gates: 
         target_recall = len(target_hits) / max(1, len(targets))
         target_ok = bool(target_hits) if target_mode == "any" else len(target_hits) == len(targets)
         citation_precision = len(matched_indexes) / max(1, len(citations))
-        provenance_ok = bool(citations) and all(_has_v2_provenance(citation) for citation in citations)
+        provenance_ok = bool(citations) and all(_has_provenance(citation) for citation in citations)
 
     min_citations = int(citations_spec.get("min_citations", 0 if is_not_found or must_be_empty else 1))
     max_citations = int(citations_spec.get("max_citations", 0 if is_not_found or must_be_empty else 6))
@@ -303,14 +302,14 @@ def evaluate_golden_answer(spec: dict[str, Any], answer: dict[str, Any], gates: 
         "exact_targets": target_ok,
         "citation_count": citation_count_ok,
         "citation_precision": precision_ok,
-        "v2_provenance": provenance_ok,
+        "provenance": provenance_ok,
     }
     weights = gates.get("weights") or {
         "status": 0.15,
         "answer_terms": 0.15,
         "exact_targets": 0.30,
         "citation_precision": 0.15,
-        "v2_provenance": 0.10,
+        "provenance": 0.10,
         "required_issuers": 0.05,
         "citation_count": 0.05,
         "uncertainty": 0.03,
@@ -340,7 +339,7 @@ def evaluate_golden_answer(spec: dict[str, Any], answer: dict[str, Any], gates: 
 
 def _run_case(spec: dict[str, Any], gates: dict[str, Any]) -> dict[str, Any]:
     started = time.perf_counter()
-    answer = build_answer(spec["query"], 8, 12, 3, 6, 2)
+    answer = build_answer(spec["query"], 8, 12, 3, 6, 3)
     evaluation = evaluate_golden_answer(spec, answer, gates)
     evaluation["latency_ms"] = round((time.perf_counter() - started) * 1000, 3)
     return {"spec": spec, "evaluation": evaluation}
@@ -417,6 +416,13 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def acceptance_gate_passed(summary: dict[str, Any]) -> bool:
+    """A live acceptance run passes only when every selected case passes."""
+
+    total = int(summary.get("total") or 0)
+    return total > 0 and int(summary.get("accepted") or 0) == total
+
+
 def compare_summaries(current: dict[str, Any], prior: dict[str, Any]) -> dict[str, Any]:
     current_failures = current.get("hard_failure_counts") or {}
     prior_failures = prior.get("hard_failure_counts") or {}
@@ -456,7 +462,16 @@ def main() -> None:
     parser.add_argument("--compare-to", type=Path, help="Prior JSON report produced by this runner.")
     parser.add_argument("--preflight-only", action="store_true", help="Validate exact corpus targets without answering.")
     parser.add_argument("--skip-preflight", action="store_true", help="Skip the default exact-target corpus check.")
+    parser.add_argument(
+        "--require-acceptance",
+        action="store_true",
+        help="Exit non-zero unless every selected live case passes; requires exact-target preflight.",
+    )
     args = parser.parse_args()
+    if args.require_acceptance and args.preflight_only:
+        raise SystemExit("--require-acceptance cannot be used with --preflight-only")
+    if args.require_acceptance and args.skip_preflight:
+        raise SystemExit("--require-acceptance cannot be used with --skip-preflight")
     payload = load_golden_suite(args.gold_file)
     errors = validate_golden_suite(payload)
     if errors:
@@ -478,7 +493,6 @@ def main() -> None:
 
     report_metadata = {
         "suite": payload["metadata"]["suite"],
-        "suite_version": payload["metadata"]["version"],
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "tier": args.tier,
         "selected_case_ids": [case["id"] for case in cases],
@@ -511,6 +525,12 @@ def main() -> None:
     print(json.dumps({key: result[key] for key in result if key != "rows"}, ensure_ascii=False, indent=2))
     if args.output:
         args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if args.require_acceptance and not acceptance_gate_passed(result.get("summary") or {}):
+        summary = result["summary"]
+        raise SystemExit(
+            f"live acceptance failed: {summary['accepted']}/{summary['total']} cases accepted; "
+            f"hard failures: {summary['hard_failure_counts']}"
+        )
 
 
 if __name__ == "__main__":

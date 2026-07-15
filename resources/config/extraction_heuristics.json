@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Raw LiteParse and OCR ingestion settings for the v2 legal-unit parser.",
+    "description": "Raw LiteParse and OCR ingestion settings for the canonical legal-unit parser.",
     "calibrated": false
   },
   "liteparse": {

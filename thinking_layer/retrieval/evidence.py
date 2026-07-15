@@ -127,7 +127,6 @@ def evidence_item(query: str, row: dict[str, Any]) -> dict[str, Any]:
         "section_type": row.get("section_type") or section_type_for_block(row),
         "block_type": row.get("block_type"),
         "citation_admission": row.get("citation_admission"),
-        "chunk_schema_version": row.get("chunk_schema_version"),
         "node_id": row.get("node_id"),
         "parent_id": row.get("parent_id"),
         "previous_id": row.get("previous_id"),
@@ -190,6 +189,7 @@ def evidence_confidence(items: list[dict[str, Any]], expected_issuers: list[str 
         answer_alignment(
             query,
             item,
+            plan=plan,
             minimum_distinctive_ratio=alignment_threshold,
             allow_missing_value=ambiguous or query_requests_compound_answer(query),
             allow_missing_predicate=query_requests_compound_answer(query),
@@ -327,6 +327,7 @@ def build_evidence_pack(query: str, max_searches: int, limit: int, per_document_
         item["answer_alignment"] = answer_alignment(
             query,
             item,
+            plan=plan,
             minimum_distinctive_ratio=alignment_threshold,
             allow_missing_value=ambiguous or query_requests_compound_answer(query),
             allow_missing_predicate=query_requests_compound_answer(query),

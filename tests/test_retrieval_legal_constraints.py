@@ -33,7 +33,6 @@ def legal_block(
         unit_path.append(ayat)
     source_ids = [block_id]
     return {
-        "chunk_schema_version": 2,
         "file_id": file_id,
         "block_id": block_id,
         "node_id": block_id,

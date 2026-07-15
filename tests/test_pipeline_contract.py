@@ -29,9 +29,8 @@ def manifest() -> dict[str, object]:
     }
 
 
-def v2_block() -> dict[str, object]:
+def legal_block() -> dict[str, object]:
     return {
-        "chunk_schema_version": 2,
         "block_id": "node-angka-a",
         "node_id": "node-angka-a",
         "parent_id": "node-huruf-a",
@@ -70,11 +69,10 @@ def v2_block() -> dict[str, object]:
     }
 
 
-class V2PipelineContractTests(unittest.TestCase):
-    def test_v2_normalization_keeps_legal_graph_and_separate_text_roles(self) -> None:
-        row = normalize_source_corpus_block(v2_block())
+class CanonicalPipelineContractTests(unittest.TestCase):
+    def test_canonical_normalization_keeps_legal_graph_and_separate_text_roles(self) -> None:
+        row = normalize_source_corpus_block(legal_block())
 
-        self.assertEqual(row["chunk_schema_version"], 2)
         self.assertEqual(row["node_id"], "node-angka-a")
         self.assertEqual(row["parent_id"], "node-huruf-a")
         self.assertEqual(row["previous_id"], "node-angka-0")
@@ -87,17 +85,17 @@ class V2PipelineContractTests(unittest.TestCase):
         self.assertTrue(row["continuation"]["is_cross_page"])
         self.assertEqual(row["citation"]["text"], "PBI Contoh, hlm. 4, Pasal 2, ayat (1), huruf a, angka 1")
 
-    def test_source_corpus_admission_rejects_unmarked_v2_parents(self) -> None:
-        atomic_leaf = v2_block()
+    def test_source_corpus_admission_rejects_unmarked_canonical_parents(self) -> None:
+        atomic_leaf = legal_block()
         aggregate = {
-            **v2_block(),
+            **legal_block(),
             "block_id": "node-aggregate",
             "node_id": "node-aggregate",
             "unit_type": "enumeration_aggregate",
             "legal_unit_role": "enumeration_aggregate",
             "citation_admission": "enumeration_aggregate",
         }
-        parent = {**v2_block(), "citation_admission": None}
+        parent = {**legal_block(), "citation_admission": None}
 
         self.assertTrue(is_source_corpus_eligible(atomic_leaf))
         self.assertTrue(is_source_corpus_eligible(aggregate))
@@ -123,15 +121,14 @@ class V2PipelineContractTests(unittest.TestCase):
         blocks = extract_blocks(manifest(), pages)
 
         self.assertEqual(len(blocks), 1)
-        self.assertEqual(blocks[0]["chunk_schema_version"], 2)
         self.assertEqual(blocks[0]["unit_type"], "angka")
         self.assertEqual(blocks[0]["document_part"], "normative")
         self.assertEqual(blocks[0]["citation_admission"], "atomic_leaf")
         self.assertEqual(blocks[0]["file_id"], "bi-pbi-1-2026")
         self.assertEqual(blocks[0]["legal_path"]["pasal"], "Pasal 2")
 
-    def test_lexical_sqlite_and_document_lookup_preserve_v2_fields(self) -> None:
-        row = normalize_source_corpus_block(v2_block())
+    def test_lexical_sqlite_and_document_lookup_preserve_canonical_fields(self) -> None:
+        row = normalize_source_corpus_block(legal_block())
         index = build_search_index([row])
         self.assertIn("indonesia", index.doc_terms[0])
 
@@ -154,7 +151,6 @@ class V2PipelineContractTests(unittest.TestCase):
             response = service.get_block("bi-pbi-1-2026", "node-angka-a")
 
         self.assertEqual(response.text, "1. Penyedia wajib menyampaikan laporan.")
-        self.assertEqual(response.chunk_schema_version, 2)
         self.assertEqual(response.legal_path["pasal"], "Pasal 2")
         self.assertEqual(response.source_spans[-1]["page"], 5)
         self.assertTrue(response.continuation["is_cross_page"])

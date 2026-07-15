@@ -32,7 +32,7 @@ class QueryService:
             limit=12,
             per_document_limit=3,
             max_documents=6,
-            max_citations_per_document=2,
+            max_citations_per_document=3,
         )
         duration_ms = round((perf_counter() - started_at) * 1_000)
         trace = trace_from_answer(answer)

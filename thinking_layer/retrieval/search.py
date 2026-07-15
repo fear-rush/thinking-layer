@@ -56,7 +56,7 @@ def row_matches_document_constraints(row: dict[str, Any], constraints: dict[str,
 
 
 def row_matches_legal_constraints(row: dict[str, Any], constraints: dict[str, str]) -> bool:
-    """Require exact requested v2 anchors; another Pasal is never a substitute."""
+    """Require exact requested canonical anchors; another Pasal is never a substitute."""
 
     if not row_matches_document_constraints(row, constraints):
         return False
@@ -183,6 +183,21 @@ def focused_scope_quality(raw_query: str, rows: list[dict[str, Any]]) -> tuple[f
     )
 
 
+def plan_allows_global_title_scope(plan: dict[str, Any]) -> bool:
+    """Limit every passage search to title hits only for subject-only queries.
+
+    A topic can be governed by a generally applicable regulation whose title
+    does not name the regulated entity.  Globally pinning an entity+topic
+    question to entity-titled documents therefore drops valid implementing or
+    consumer-protection provisions before passage ranking can see them.
+    """
+
+    # ``payments`` is also matched by the words inside PJP/PIP entity names;
+    # by itself it does not make the question a separate subject+topic query.
+    substantive_topics = set(plan.get("topics") or []) - {"payments"}
+    return not substantive_topics
+
+
 def regulated_subject_multiplier(raw_query: str, row: dict[str, Any], config: dict[str, Any]) -> float:
     """Prefer a clause whose leading subject is the role named by the user."""
 
@@ -209,6 +224,17 @@ def compound_aggregate_multiplier(raw_query: str, row: dict[str, Any], config: d
     if row.get("citation_admission") != "enumeration_aggregate" or " dan " not in raw_query.casefold():
         return 1.0
     return float(config.get("compound_aggregate_multiplier", 2.0))
+
+
+def enumeration_request_aggregate_multiplier(raw_query: str, row: dict[str, Any], config: dict[str, Any]) -> float:
+    """Prefer a complete bounded legal list when the user asks for a list."""
+
+    if row.get("citation_admission") != "enumeration_aggregate":
+        return 1.0
+    query_l = raw_query.casefold()
+    if not any(term in query_l for term in ("apa saja", "sebutkan", "daftar", "rincian")):
+        return 1.0
+    return float(config.get("enumeration_request_aggregate_multiplier", 2.5))
 
 
 def query_requests_legal_siblings(query: str) -> bool:
@@ -367,7 +393,7 @@ def execute_query_plan(
         try:
             scoped_file_ids: set[str] | None = None
             plan_issuers = {issuer for issuer in plan.get("issuers") or [] if issuer}
-            if not constraints and len(plan_issuers) == 1:
+            if not constraints and len(plan_issuers) == 1 and plan_allows_global_title_scope(plan):
                 scope_candidates: list[tuple[tuple[float, float], set[str]]] = []
                 primary_topic = str((plan.get("topics") or [""])[0])
                 for scope_search in plan["searches"]:
@@ -497,7 +523,7 @@ def execute_query_plan(
         base_index = get_search_index(prefer_persisted=True)
     scoped_file_ids: set[str] | None = None
     plan_issuers = {issuer for issuer in plan.get("issuers") or [] if issuer}
-    if not constraints and len(plan_issuers) == 1:
+    if not constraints and len(plan_issuers) == 1 and plan_allows_global_title_scope(plan):
         scope_candidates: list[tuple[tuple[float, float], set[str]]] = []
         primary_topic = str((plan.get("topics") or [""])[0])
         for scope_search in plan["searches"]:
@@ -721,6 +747,7 @@ def planned_result_score(raw_query: str, search: dict[str, Any], search_rank: in
         * direct_enumeration_aggregate_multiplier(search, row, config)
         * regulated_subject_multiplier(raw_query, row, config)
         * compound_aggregate_multiplier(raw_query, row, config)
+        * enumeration_request_aggregate_multiplier(raw_query, row, config)
         * legal_constraint_multiplier
     )
 

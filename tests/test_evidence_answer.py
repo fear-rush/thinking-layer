@@ -118,7 +118,6 @@ class EvidenceAnswerTests(unittest.TestCase):
                     "file_role": "primary_regulation",
                     "citations": [
                         {
-                            "chunk_schema_version": 2,
                             "source_block_ids": ["modal-ventura-preamble"],
                             "unit_path": ["Pasal 1"],
                             "legal_path": {"pasal": "Pasal 1"},
@@ -136,7 +135,6 @@ class EvidenceAnswerTests(unittest.TestCase):
                             "snippet": "PERATURAN OTORITAS JASA KEUANGAN NOMOR 25 TAHUN 2023 DENGAN RAHMAT TUHAN YANG MAHA ESA DEWAN KOMISIONER OTORITAS JASA KEUANGAN, Menimbang : bahwa ...",
                         },
                         {
-                            "chunk_schema_version": 2,
                             "source_block_ids": ["modal-ventura-2-1"],
                             "unit_path": ["Pasal 2", "(1)"],
                             "legal_path": {"pasal": "Pasal 2", "ayat": "(1)"},
@@ -170,7 +168,6 @@ class EvidenceAnswerTests(unittest.TestCase):
     def test_evidence_item_demotes_noisy_table_artifacts_unless_table_is_requested(self) -> None:
         base_row = {
             "_score": 100.0,
-            "chunk_schema_version": 2,
             "block_id": "slik-2-1",
             "node_id": "slik-2-1",
             "issuer": "OJK",
@@ -249,7 +246,7 @@ class EvidenceAnswerTests(unittest.TestCase):
         self.assertFalse(is_usable_answer_claim(continuation["text"], continuation, query=query))
         self.assertTrue(is_usable_answer_claim(obligation["text"], obligation, query=query))
 
-    def test_answer_claim_uses_v2_assembled_text_with_source_graph(self) -> None:
+    def test_answer_claim_uses_canonical_assembled_text_with_source_graph(self) -> None:
         item = {
             "file_id": "file-1",
             "block_id": "aggregate-1",

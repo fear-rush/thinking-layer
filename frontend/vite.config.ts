@@ -1,6 +1,6 @@
 import { defineConfig } from "vitest/config";
 
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -9,10 +9,12 @@ const apiTarget = process.env.THINKING_LAYER_API_URL ?? "http://127.0.0.1:8000";
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
-  plugins: [tailwindcss(), tanstackStart(), viteReact()],
+  plugins: [tailwindcss(), tanstackRouter({ target: "react" }), viteReact()],
   server: {
     proxy: {
-      "/v1": apiTarget,
+      "/queries": apiTarget,
+      "/feedback": apiTarget,
+      "/documents": apiTarget,
       "/healthz": apiTarget,
     },
   },

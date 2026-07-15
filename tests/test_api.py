@@ -34,7 +34,6 @@ class StubQueryService:
                     "id": "c1",
                     "file_id": "bi-pjp",
                     "block_id": "bi-pjp-1",
-                    "chunk_schema_version": 2,
                     "source_block_ids": ["bi-pjp-1"],
                     "issuer": "BI",
                     "document": "PBI Penyedia Jasa Pembayaran",
@@ -83,7 +82,7 @@ class ApiTests(unittest.TestCase):
         self.assertTrue(response.json()["document_lookup_ready"])
 
     def test_query_returns_stable_answer_and_citation_contract(self) -> None:
-        response = self.client.post("/v1/queries", json={"question": "apa aturan PJP?"})
+        response = self.client.post("/queries", json={"question": "apa aturan PJP?"})
 
         self.assertEqual(response.status_code, 200)
         body = response.json()
@@ -96,12 +95,12 @@ class ApiTests(unittest.TestCase):
         self.assertNotIn("trace", body)
 
     def test_query_rejects_empty_question(self) -> None:
-        response = self.client.post("/v1/queries", json={"question": ""})
+        response = self.client.post("/queries", json={"question": ""})
 
         self.assertEqual(response.status_code, 422)
 
     def test_query_rejects_blank_question(self) -> None:
-        response = self.client.post("/v1/queries", json={"question": "   "})
+        response = self.client.post("/queries", json={"question": "   "})
 
         self.assertEqual(response.status_code, 422)
 
@@ -110,8 +109,8 @@ class ApiTests(unittest.TestCase):
             service = self._document_service(Path(directory) / "search.sqlite")
             self.app.dependency_overrides[get_document_service] = lambda: service
 
-            document_response = self.client.get("/v1/documents/bi-pjp")
-            block_response = self.client.get("/v1/documents/bi-pjp/blocks/bi-pjp-1")
+            document_response = self.client.get("/documents/bi-pjp")
+            block_response = self.client.get("/documents/bi-pjp/blocks/bi-pjp-1")
 
         self.assertEqual(document_response.status_code, 200)
         self.assertEqual(document_response.json()["document_title"], "PBI Penyedia Jasa Pembayaran")
@@ -127,7 +126,7 @@ class ApiTests(unittest.TestCase):
             )
             self.app.dependency_overrides[get_document_service] = lambda: unavailable
 
-            response = self.client.get("/v1/documents/bi-pjp")
+            response = self.client.get("/documents/bi-pjp")
 
         self.assertEqual(response.status_code, 503)
         self.assertIn("build-index", response.json()["detail"])
@@ -138,7 +137,7 @@ class ApiTests(unittest.TestCase):
             self.app.dependency_overrides[get_feedback_service] = lambda: FeedbackService(feedback_path)
 
             response = self.client.post(
-                "/v1/feedback",
+                "/feedback",
                 json={"request_id": "request-123", "helpful": True, "comment": "Citation is useful."},
             )
             conn = sqlite3.connect(feedback_path)
@@ -154,7 +153,6 @@ class ApiTests(unittest.TestCase):
     @staticmethod
     def _document_service(database_path: Path) -> DocumentService:
         block = {
-            "chunk_schema_version": 2,
             "file_id": "bi-pjp",
             "block_id": "bi-pjp-1",
             "node_id": "bi-pjp-1",

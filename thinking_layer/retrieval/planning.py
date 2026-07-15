@@ -21,7 +21,7 @@ def parse_legal_query_constraints(query: str) -> dict[str, str]:
     """Extract explicit legal anchors without inferring unstated provisions.
 
     These values are query constraints, not search synonyms.  A requested
-    ``Pasal 5`` may only be satisfied by a row whose v2 legal path contains
+    ``Pasal 5`` may only be satisfied by a row whose canonical legal path contains
     that exact Pasal.  Regulation metadata is intentionally conservative:
     only an explicitly written type/number/year is captured.
     """
@@ -135,7 +135,7 @@ def direct_enumeration_searches(
 
     These queries are intentionally only emitted when the user asks an explicit
     Indonesian enumeration question and names both a recognized legal subject and
-    a configured legal noun.  They target v2 leaves whose retrieval context
+    a configured legal noun.  They target canonical leaves whose retrieval context
     includes the governing lead-in (for example, ``... aktivitas yang meliputi``).
     """
     nouns = direct_enumeration_nouns(query, config)
@@ -303,12 +303,24 @@ def build_query_plan(query: str, max_searches: int = 12) -> dict[str, Any]:
     }.get(legal_constraints.get("regulation_type", ""))
     if legal_issuer and not explicit_issuers:
         explicit_issuers = [legal_issuer]
+    entity_issuers = unique_keep_order([item["issuer"] for item in entity_matches if item.get("issuer")])
+    entity_concepts = [
+        {
+            "name": item["name"],
+            "query_patterns": sorted(
+                item.get("matched_patterns") or [],
+                key=lambda pattern: len(normalize_space(pattern).split()),
+                reverse=True,
+            )[:1],
+            "evidence_patterns": item.get("alignment_aliases") or item.get("patterns") or [],
+        }
+        for item in entity_matches
+        if item.get("matched_patterns")
+    ]
     if explicit_issuers:
         issuers = explicit_issuers
-    else:
-        entity_issuers = unique_keep_order([item["issuer"] for item in entity_matches if item.get("issuer")])
-        if entity_issuers:
-            issuers = entity_issuers
+    elif entity_issuers:
+        issuers = entity_issuers
     ambiguity = ambiguity_for(query, entity_matches, topic_matches, explicit_issuers)
     if ambiguity == "institution_type":
         issuers = ["BI", "OJK"]
@@ -319,6 +331,7 @@ def build_query_plan(query: str, max_searches: int = 12) -> dict[str, Any]:
             "intents": intents,
             "issuers": [],
             "entities": [item["name"] for item in entity_matches],
+            "entity_concepts": entity_concepts,
             "topics": [item["name"] for item in topic_matches],
             "legal_constraints": legal_constraints,
             "ambiguity": None,
@@ -369,20 +382,26 @@ def build_query_plan(query: str, max_searches: int = 12) -> dict[str, Any]:
         )
     )
 
-    for entity in [item for item in entity_matches if item.get("name") not in generic_bank_names]:
-        if not should_expand_entity(entity, bool(topic_matches)):
-            continue
-        for expansion in ordered_expansions(query, entity):
-            for issuer in issuers:
-                searches.append(
-                    {
-                        "query": expansion,
-                        "issuer": issuer,
-                        "role": "primary_regulation",
-                        "include_secondary": True,
-                        "reason": f"entity:{entity['name']}",
-                    }
-                )
+    enumeration_config = planning_config.get("direct_enumeration") or {}
+    if any(pattern in query.casefold() for pattern in enumeration_config.get("question_patterns") or []):
+        for entity in [item for item in entity_matches if item.get("name") not in generic_bank_names]:
+            subjects = enumeration_subject_terms(query, entity, 1)
+            if not subjects:
+                continue
+            for topic in topic_matches:
+                enumeration_terms = normalize_space(str(topic.get("enumeration_terms") or ""))
+                if not enumeration_terms:
+                    continue
+                for issuer in issuers:
+                    searches.append(
+                        {
+                            "query": normalize_space(f"{subjects[0]} {enumeration_terms}"),
+                            "issuer": issuer,
+                            "role": "primary_regulation",
+                            "include_secondary": True,
+                            "reason": f"topic:{topic['name']}:enumeration",
+                        }
+                    )
 
     topic_search_groups: list[list[dict[str, Any]]] = []
     for topic in topic_matches:
@@ -390,6 +409,8 @@ def build_query_plan(query: str, max_searches: int = 12) -> dict[str, Any]:
         topic_issuer = topic.get("issuer")
         if explicit_issuers:
             topic_issuers = explicit_issuers
+        elif entity_issuers:
+            topic_issuers = issuers
         elif topic_issuer:
             topic_issuers = [topic_issuer]
         else:
@@ -413,6 +434,24 @@ def build_query_plan(query: str, max_searches: int = 12) -> dict[str, Any]:
         for group in topic_search_groups:
             if expansion_index < len(group):
                 searches.append(group[expansion_index])
+
+    # The requested legal topic is more discriminative than an entity name.
+    # Search it first so broad entity-title matches cannot consume the bounded
+    # plan before generally applicable operative provisions are considered.
+    for entity in [item for item in entity_matches if item.get("name") not in generic_bank_names]:
+        if not should_expand_entity(entity, bool(topic_matches)):
+            continue
+        for expansion in ordered_expansions(query, entity):
+            for issuer in issuers:
+                searches.append(
+                    {
+                        "query": expansion,
+                        "issuer": issuer,
+                        "role": "primary_regulation",
+                        "include_secondary": True,
+                        "reason": f"entity:{entity['name']}",
+                    }
+                )
 
     if not topic_matches and not [item for item in entity_matches if item.get("name") not in generic_bank_names]:
         for entity in entity_matches:
@@ -457,6 +496,7 @@ def build_query_plan(query: str, max_searches: int = 12) -> dict[str, Any]:
         "intents": intents,
         "issuers": issuers,
         "entities": [item["name"] for item in entity_matches],
+        "entity_concepts": entity_concepts,
         "topics": [item["name"] for item in topic_matches],
         "legal_constraints": legal_constraints,
         "ambiguity": ambiguity,

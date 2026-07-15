@@ -1,8 +1,7 @@
 {
   "metadata": {
-    "suite": "legal-answer-golden-v2",
-    "suite_version": 1,
-    "generated_at": "2026-07-14T17:24:57.547765+00:00",
+    "suite": "legal-answer-golden",
+    "generated_at": "2026-07-15T04:53:53.630099+00:00",
     "tier": "smoke",
     "selected_case_ids": [
       "bi_qris_mandatory",
@@ -29,20 +28,21 @@
     "failures": []
   },
   "summary": {
-    "accepted": 11,
+    "accepted": 10,
     "total": 12,
-    "acceptance_rate": 0.917,
-    "average_score": 0.95,
+    "acceptance_rate": 0.833,
+    "average_score": 0.9,
     "hard_failure_counts": {
       "answer_terms": 1,
-      "citation_precision": 1,
-      "exact_targets": 1
+      "citation_precision": 2,
+      "exact_targets": 2,
+      "status": 1
     },
     "latency_ms": {
-      "p50": 1528.556,
-      "p95": 19481.183,
-      "max": 19489.091,
-      "total": 59518.116
+      "p50": 1067.005,
+      "p95": 18339.06,
+      "max": 20055.106,
+      "total": 52422.821
     },
     "by_category": {
       "direct_exact": {
@@ -50,7 +50,7 @@
         "total": 2
       },
       "enumeration_exact": {
-        "accepted": 2,
+        "accepted": 1,
         "total": 2
       },
       "amendment_exact": {
@@ -74,7 +74,7 @@
         "total": 1
       }
     },
-    "wall_time_ms": 59519.215
+    "wall_time_ms": 52424.117
   },
   "rows": [
     {
@@ -179,10 +179,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 154.808
+        "latency_ms": 160.948
       }
     },
     {
@@ -263,10 +263,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1327.609
+        "latency_ms": 1440.712
       }
     },
     {
@@ -352,10 +352,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 443.66
+        "latency_ms": 595.896
       }
     },
     {
@@ -425,15 +425,13 @@
       "evaluation": {
         "id": "ojk_personal_data_prohibition",
         "category": "enumeration_exact",
-        "accepted": true,
-        "score": 1.0,
-        "status": "answerable",
+        "accepted": false,
+        "score": 0.25,
+        "status": "partial",
         "citation_count": 1,
-        "target_recall": 1.0,
-        "citation_precision": 1.0,
-        "target_hits": [
-          "ojk-data-prohibitions"
-        ],
+        "target_recall": 0.0,
+        "citation_precision": 0.0,
+        "target_hits": [],
         "allowed_target_hits": [],
         "required_issuers": [
           "OJK"
@@ -442,18 +440,23 @@
           "OJK"
         ],
         "checks": {
-          "status": true,
-          "answer_terms": true,
+          "status": false,
+          "answer_terms": false,
           "forbidden_terms": true,
           "uncertainty": true,
           "required_issuers": true,
-          "exact_targets": true,
+          "exact_targets": false,
           "citation_count": true,
-          "citation_precision": true,
-          "v2_provenance": true
+          "citation_precision": false,
+          "provenance": true
         },
-        "failure_reasons": [],
-        "latency_ms": 4060.554
+        "failure_reasons": [
+          "status",
+          "answer_terms",
+          "exact_targets",
+          "citation_precision"
+        ],
+        "latency_ms": 403.298
       }
     },
     {
@@ -535,10 +538,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 19474.713
+        "latency_ms": 16935.022
       }
     },
     {
@@ -631,10 +634,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 59.947
+        "latency_ms": 61.507
       }
     },
     {
@@ -719,10 +722,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 1729.504
+        "latency_ms": 1738.551
       }
     },
     {
@@ -811,10 +814,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 363.087
+        "latency_ms": 373.514
       }
     },
     {
@@ -902,10 +905,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 2241.072
+        "latency_ms": 3243.654
       }
     },
     {
@@ -966,10 +969,10 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 9422.162
+        "latency_ms": 6721.316
       }
     },
     {
@@ -1051,14 +1054,12 @@
         "id": "cross_regulator_consumer_data",
         "category": "cross_document",
         "accepted": false,
-        "score": 0.4,
+        "score": 0.55,
         "status": "partial",
         "citation_count": 2,
-        "target_recall": 0.5,
-        "citation_precision": 0.5,
-        "target_hits": [
-          "ojk-consumer-data-rule"
-        ],
+        "target_recall": 0.0,
+        "citation_precision": 0.0,
+        "target_hits": [],
         "allowed_target_hits": [],
         "required_issuers": [
           "BI",
@@ -1070,21 +1071,20 @@
         ],
         "checks": {
           "status": true,
-          "answer_terms": false,
+          "answer_terms": true,
           "forbidden_terms": true,
           "uncertainty": true,
           "required_issuers": true,
           "exact_targets": false,
           "citation_count": true,
           "citation_precision": false,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [
-          "answer_terms",
           "exact_targets",
           "citation_precision"
         ],
-        "latency_ms": 19489.091
+        "latency_ms": 20055.106
       }
     },
     {
@@ -1139,33 +1139,11 @@
           "exact_targets": true,
           "citation_count": true,
           "citation_precision": true,
-          "v2_provenance": true
+          "provenance": true
         },
         "failure_reasons": [],
-        "latency_ms": 751.909
+        "latency_ms": 693.297
       }
     }
-  ],
-  "comparison": {
-    "accepted_delta": 7,
-    "acceptance_rate_delta": 0.584,
-    "average_score_delta": 0.373,
-    "latency_ms_delta": {
-      "p50": 19.734,
-      "p95": 756.264,
-      "max": 653.86
-    },
-    "hard_failure_count_delta": {
-      "answer_terms": -4,
-      "citation_count": -5,
-      "citation_precision": -6,
-      "exact_targets": -4,
-      "required_issuers": -5,
-      "status": -5,
-      "uncertainty": -1,
-      "v2_provenance": -5
-    },
-    "comparable_case_count": true,
-    "same_case_ids": true
-  }
+  ]
 }
