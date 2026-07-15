@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from collections.abc import Iterable
 from dataclasses import dataclass, fields, is_dataclass
 from datetime import date
 from enum import Enum
@@ -12,13 +13,27 @@ import subprocess
 from tempfile import mkdtemp
 from typing import Any
 
+from pydantic import BaseModel
+
 from ..config.paths import CORPUS_DIR, OCR_NEEDED_PATH, RAW_LITEPARSE_DIR, ROOT
-from ..domain.legal import LifecycleRelation, SourceDocument
-from .audit import AuditFinding, CorpusAudit, audit_corpus
+from ..domain.legal import (
+    LEGAL_DOCUMENT_SCHEMA_VERSION,
+    LegalDocumentV1,
+    LifecycleRelation,
+    SourceDocument,
+)
+from .audit import (
+    AuditFinding,
+    CorpusAudit,
+    audit_corpus,
+    audit_legal_documents,
+    audit_quarantine_reporting,
+)
 from .catalog import Catalog, catalog_raw_record
 from .context import assemble_contextual_units
 from .eligibility import OcrEligibility
 from .lifecycle import LifecycleGraph, extract_lifecycle_relations
+from .legal_document import legal_document_from_parsed
 from .liteparse_normalizer import MarkdownNormalizationError
 from .parser import QuarantinedDocumentError, parse_raw_document
 
@@ -35,9 +50,12 @@ class CorpusBuildResult:
     quarantined_sources: tuple[tuple[str, str], ...]
     geometry_disagreements: tuple[tuple[str, str, str], ...]
     manifest_path: Path
+    schema_path: Path
 
 
 def _json_value(value: Any) -> Any:
+    if isinstance(value, BaseModel):
+        return value.model_dump(mode="json")
     if isinstance(value, Enum):
         return value.value
     if isinstance(value, date):
@@ -119,6 +137,68 @@ def _publish_build(staging_dir: Path, output_dir: Path) -> None:
     staging_dir.replace(output_dir)
 
 
+def _write_failure_manifest(
+    *,
+    path: Path,
+    error: Exception,
+    findings: list[AuditFinding],
+    raw_paths: tuple[Path, ...],
+    ocr_needed_path: Path,
+    source_document_ids: Iterable[str],
+    source_document_count: int,
+    node_count: int,
+    context_count: int,
+    lifecycle_relation_count: int,
+) -> None:
+    """Persist build evidence outside staging before its atomic cleanup."""
+
+    failure_findings = [
+        *findings,
+        AuditFinding("build_failure", str(error)),
+    ]
+    references = tuple(
+        dict.fromkeys(
+            [*source_document_ids]
+            + [
+                reference
+                for finding in failure_findings
+                for reference in finding.references
+            ]
+        )
+    )
+    manifest = {
+        "contract": "thinking-layer-corpus-v1",
+        "status": "failed",
+        "error": {"type": type(error).__name__, "message": str(error)},
+        "finding_codes": sorted({finding.code for finding in failure_findings}),
+        "findings": [
+            {
+                "code": finding.code,
+                "message": finding.message,
+                "references": list(finding.references),
+            }
+            for finding in failure_findings
+        ],
+        "representative_source_ids": list(references[:20]),
+        "counts": {
+            "raw_input_count": len(raw_paths),
+            "source_document_count": source_document_count,
+            "node_count": node_count,
+            "context_count": context_count,
+            "lifecycle_relation_count": lifecycle_relation_count,
+        },
+        "raw_input_sha256": _aggregate_input_hash(raw_paths) if raw_paths else None,
+        "ocr_exclusion_list_sha256": _sha256(ocr_needed_path)
+        if ocr_needed_path.exists()
+        else None,
+        "git_hash": _git_hash(),
+    }
+    path.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def build_corpus(
     *,
     raw_dir: Path = RAW_LITEPARSE_DIR,
@@ -126,13 +206,7 @@ def build_corpus(
     ocr_needed_path: Path = OCR_NEEDED_PATH,
 ) -> CorpusBuildResult:
     """Build the only accepted corpus contract from fresh OCR-disabled raw pages."""
-    eligibility = OcrEligibility.load(ocr_needed_path)
-    raw_paths = _raw_document_paths(raw_dir)
-    if not raw_paths:
-        raise ValueError(
-            f"no fresh raw JSON files found in {raw_dir}; run the OCR-disabled source extraction first"
-        )
-
+    raw_paths: tuple[Path, ...] = ()
     source_documents: list[SourceDocument] = []
     relations: list[LifecycleRelation] = []
     findings: list[AuditFinding] = []
@@ -144,17 +218,29 @@ def build_corpus(
     geometry_disagreements: list[tuple[str, str, str]] = []
 
     output_dir.parent.mkdir(parents=True, exist_ok=True)
-    staging_dir = Path(mkdtemp(prefix=f".{output_dir.name}.", dir=output_dir.parent))
+    failure_manifest_path = output_dir.with_name(f"{output_dir.name}.failure.json")
+    staging_dir: Path | None = None
     try:
+        eligibility = OcrEligibility.load(ocr_needed_path)
+        raw_paths = _raw_document_paths(raw_dir)
+        if not raw_paths:
+            raise ValueError(
+                f"no fresh raw JSON files found in {raw_dir}; run the OCR-disabled source extraction first"
+            )
+        staging_dir = Path(
+            mkdtemp(prefix=f".{output_dir.name}.", dir=output_dir.parent)
+        )
         documents_path = staging_dir / "source_documents.ndjson"
         nodes_path = staging_dir / "legal_nodes.ndjson"
         contexts_path = staging_dir / "contextual_units.ndjson"
         relations_path = staging_dir / "lifecycle_relations.ndjson"
+        legal_documents_path = staging_dir / "legal_documents.ndjson"
         with (
             documents_path.open("w", encoding="utf-8") as documents_handle,
             nodes_path.open("w", encoding="utf-8") as nodes_handle,
             contexts_path.open("w", encoding="utf-8") as contexts_handle,
             relations_path.open("w", encoding="utf-8") as relations_handle,
+            legal_documents_path.open("w", encoding="utf-8") as legal_documents_handle,
         ):
             for path in raw_paths:
                 raw = _load_raw(path)
@@ -201,6 +287,18 @@ def build_corpus(
                     _write_record(contexts_handle, context)
                 for relation in document_relations:
                     _write_record(relations_handle, relation)
+                legal_document = legal_document_from_parsed(
+                    source_document=document,
+                    parsed=parsed,
+                    contexts=document_contexts,
+                    lifecycle_relations=document_relations,
+                )
+                # Validate the exact JSON-compatible representation that will be published.
+                legal_document = LegalDocumentV1.model_validate(
+                    legal_document.model_dump(mode="json")
+                )
+                _write_record(legal_documents_handle, legal_document)
+                findings.extend(audit_legal_documents((legal_document,)))
 
         try:
             Catalog(tuple(source_documents))
@@ -210,6 +308,13 @@ def build_corpus(
             LifecycleGraph(tuple(relations))
         except ValueError as error:
             findings.append(AuditFinding("lifecycle_cycle", str(error)))
+        findings.extend(
+            audit_quarantine_reporting(
+                source_document_ids=(document.file_id for document in source_documents),
+                quarantined_sources=quarantined_sources.items(),
+                geometry_disagreements=geometry_disagreements,
+            )
+        )
         audit = CorpusAudit(
             findings=tuple(findings),
             document_count=len(source_documents),
@@ -236,8 +341,20 @@ def build_corpus(
         if set(reported_ocr_file_ids) != skipped_file_ids | set(missing_reported_ids):
             raise ValueError("OCR exclusion accounting is inconsistent")
 
+        schema_path = staging_dir / "legal_document_v1.schema.json"
+        schema_path.write_text(
+            json.dumps(
+                LegalDocumentV1.model_json_schema(),
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
         manifest = {
             "contract": "thinking-layer-corpus-v1",
+            "legal_document_schema_version": LEGAL_DOCUMENT_SCHEMA_VERSION,
             "raw_input_count": len(raw_paths),
             "eligible_document_count": len(source_documents),
             "node_count": node_count,
@@ -261,7 +378,14 @@ def build_corpus(
             "git_hash": _git_hash(),
             "outputs": {
                 path.name: _sha256(path)
-                for path in (documents_path, nodes_path, contexts_path, relations_path)
+                for path in (
+                    documents_path,
+                    nodes_path,
+                    contexts_path,
+                    relations_path,
+                    legal_documents_path,
+                    schema_path,
+                )
             },
         }
         manifest_path = staging_dir / "manifest.json"
@@ -270,8 +394,22 @@ def build_corpus(
             encoding="utf-8",
         )
         _publish_build(staging_dir, output_dir)
-    except Exception:
-        shutil.rmtree(staging_dir, ignore_errors=True)
+        failure_manifest_path.unlink(missing_ok=True)
+    except Exception as error:
+        _write_failure_manifest(
+            path=failure_manifest_path,
+            error=error,
+            findings=findings,
+            raw_paths=raw_paths,
+            ocr_needed_path=ocr_needed_path,
+            source_document_ids=(document.file_id for document in source_documents),
+            source_document_count=len(source_documents),
+            node_count=node_count,
+            context_count=context_count,
+            lifecycle_relation_count=len(relations),
+        )
+        if staging_dir is not None:
+            shutil.rmtree(staging_dir, ignore_errors=True)
         raise
 
     return CorpusBuildResult(
@@ -285,6 +423,7 @@ def build_corpus(
         quarantined_sources=tuple(sorted(quarantined_sources.items())),
         geometry_disagreements=tuple(sorted(geometry_disagreements)),
         manifest_path=output_dir / "manifest.json",
+        schema_path=output_dir / "legal_document_v1.schema.json",
     )
 
 
@@ -305,6 +444,7 @@ def cmd_build(args: argparse.Namespace) -> None:
                 "skipped_ocr_count": len(result.skipped_ocr_file_ids),
                 "quarantined_source_count": len(result.quarantined_sources),
                 "manifest": result.manifest_path.as_posix(),
+                "schema": result.schema_path.as_posix(),
             },
             ensure_ascii=False,
         )

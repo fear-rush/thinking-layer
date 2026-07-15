@@ -4,13 +4,25 @@ import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 
-from ..domain.legal import ContextualUnit, LegalNode, LifecycleRelation, SourceDocument
+from pydantic import ValidationError
+
+from ..common.text import normalize_space
+from ..domain.legal import (
+    ContextualUnit,
+    LegalDocumentV1,
+    LegalNode,
+    LifecycleRelation,
+    SourceDocument,
+)
 from .lifecycle import LifecycleGraph
 
 
 _DANGLING_END = re.compile(
     r"\b(?:sebagaimana\s+dimaksud\s+(?:dalam|pada)|berdasarkan|sesuai\s+dengan)\s*$",
     re.IGNORECASE,
+)
+_MARKDOWN_PRESENTATION = re.compile(
+    r"(?m)^\s{0,3}#{1,6}\s|\*\*[^*\n]+\*\*|__[^_\n]+__|`[^`\n]+`|\[[^\]]+\]\([^)]*\)"
 )
 
 
@@ -67,7 +79,9 @@ def _invalid_spans(reference: str, spans: Iterable[object]) -> list[AuditFinding
                     references=(reference,),
                 )
             )
-        previous_page = max(previous_page, page_start if isinstance(page_start, int) else 0)
+        previous_page = max(
+            previous_page, page_start if isinstance(page_start, int) else 0
+        )
     return findings
 
 
@@ -177,7 +191,10 @@ def audit_corpus(
                         references=(context.context_id, primary.node_id),
                     )
                 )
-            if primary.parent_node_id is not None and primary.parent_node_id not in context.source_node_ids:
+            if (
+                primary.parent_node_id is not None
+                and primary.parent_node_id not in context.source_node_ids
+            ):
                 findings.append(
                     AuditFinding(
                         code="missing_governing_lead_in",
@@ -241,3 +258,138 @@ def audit_corpus(
         context_count=len(contextual_units),
         lifecycle_relation_count=len(relations),
     )
+
+
+def audit_legal_documents(
+    documents: Iterable[object],
+) -> tuple[AuditFinding, ...]:
+    """Verify published Legal JSON AST instances and display-text invariants."""
+
+    findings: list[AuditFinding] = []
+    for index, candidate in enumerate(documents):
+        try:
+            serialized = (
+                candidate.model_dump(mode="json")
+                if isinstance(candidate, LegalDocumentV1)
+                else candidate
+            )
+            document = LegalDocumentV1.model_validate(serialized)
+        except ValidationError as error:
+            for detail in error.errors():
+                location = ".".join(str(part) for part in detail["loc"])
+                findings.append(
+                    AuditFinding(
+                        code="legal_document_schema_invalid",
+                        message=f"serialized legal document {index} is invalid at {location}: {detail['msg']}",
+                        references=(str(index), location),
+                    )
+                )
+            continue
+
+        for block in document.source_blocks:
+            findings.extend(
+                _text_findings(
+                    reference=block.block_id,
+                    display_text=block.display_text,
+                    retrieval_text=block.retrieval_text,
+                )
+            )
+        for node in document.legal_nodes:
+            findings.extend(
+                _text_findings(
+                    reference=node.node_id,
+                    display_text=node.display_text,
+                    retrieval_text=node.retrieval_text,
+                )
+            )
+        for context in document.contextual_units:
+            findings.extend(
+                _text_findings(
+                    reference=context.context_id,
+                    display_text=context.display_text,
+                    retrieval_text=None,
+                )
+            )
+    return tuple(findings)
+
+
+def _text_findings(
+    *, reference: str, display_text: str, retrieval_text: str | None
+) -> tuple[AuditFinding, ...]:
+    findings: list[AuditFinding] = []
+    if _MARKDOWN_PRESENTATION.search(display_text):
+        findings.append(
+            AuditFinding(
+                code="raw_markdown_leakage",
+                message=f"{reference} exposes Markdown presentation syntax in display text",
+                references=(reference,),
+            )
+        )
+    if retrieval_text is not None:
+        if _MARKDOWN_PRESENTATION.search(retrieval_text):
+            findings.append(
+                AuditFinding(
+                    code="raw_markdown_leakage",
+                    message=f"{reference} exposes Markdown presentation syntax in retrieval text",
+                    references=(reference,),
+                )
+            )
+        if retrieval_text != normalize_space(display_text):
+            findings.append(
+                AuditFinding(
+                    code="invalid_retrieval_text",
+                    message=f"{reference} retrieval text is not normalized display text",
+                    references=(reference,),
+                )
+            )
+    return tuple(findings)
+
+
+def audit_quarantine_reporting(
+    *,
+    source_document_ids: Iterable[str],
+    quarantined_sources: Iterable[tuple[str, str]],
+    geometry_disagreements: Iterable[tuple[str, str, str]],
+) -> tuple[AuditFinding, ...]:
+    """Ensure quarantined source evidence is reportable but never publishable."""
+
+    published_ids = set(source_document_ids)
+    findings: list[AuditFinding] = []
+    quarantined = tuple(quarantined_sources)
+    quarantined_ids = {file_id for file_id, _ in quarantined}
+    for file_id, reason in quarantined:
+        if not file_id or not reason.strip():
+            findings.append(
+                AuditFinding(
+                    code="invalid_quarantine_report",
+                    message="quarantined sources require a file ID and reason",
+                    references=tuple(item for item in (file_id,) if item),
+                )
+            )
+        if file_id in published_ids:
+            findings.append(
+                AuditFinding(
+                    code="quarantined_source_published",
+                    message=f"quarantined source {file_id} was published",
+                    references=(file_id,),
+                )
+            )
+    for file_id, block_id, reason in geometry_disagreements:
+        if not file_id or not block_id or not reason.strip():
+            findings.append(
+                AuditFinding(
+                    code="invalid_geometry_disagreement_report",
+                    message="geometry disagreements require file ID, block ID, and reason",
+                    references=tuple(item for item in (file_id, block_id) if item),
+                )
+            )
+        if file_id in quarantined_ids or file_id in published_ids:
+            continue
+        findings.append(
+            AuditFinding(
+                code="unaccounted_geometry_disagreement",
+                message=f"geometry disagreement for unknown source {file_id}",
+                references=(file_id, block_id),
+            )
+        )
+    return tuple(findings)

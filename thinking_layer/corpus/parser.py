@@ -35,6 +35,7 @@ class ParsedDocument:
     page_count: int
     family: str = "other"
     geometry_disagreements: tuple[GeometryDisagreement, ...] = ()
+    normalized: NormalizedDocument | None = None
 
 
 class QuarantinedDocumentError(ValueError):
@@ -330,6 +331,7 @@ def parse_normalized_document(normalized: NormalizedDocument) -> ParsedDocument:
         page_count=len(normalized.pages),
         family=normalized.family,
         geometry_disagreements=normalized.geometry_disagreements,
+        normalized=normalized,
     )
 
 

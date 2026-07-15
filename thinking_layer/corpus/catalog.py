@@ -127,6 +127,7 @@ def catalog_raw_record(raw_record: Mapping[str, Any], raw_path: Path) -> SourceD
     source_bytes = raw_path.read_bytes()
     title = _title_from_raw(raw_record)
     instrument = extract_instrument_identity(title)
+    source_url = raw_record.get("source_url")
     return SourceDocument(
         file_id=file_id,
         instrument=instrument,
@@ -134,6 +135,7 @@ def catalog_raw_record(raw_record: Mapping[str, Any], raw_path: Path) -> SourceD
         role=_role_for(file_id, title),
         raw_path=relative_path,
         source_sha256=hashlib.sha256(source_bytes).hexdigest(),
+        source_url=source_url if isinstance(source_url, str) and source_url else None,
     )
 
 
