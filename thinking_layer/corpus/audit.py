@@ -1,127 +1,243 @@
 from __future__ import annotations
 
-from collections import Counter, defaultdict
-from pathlib import Path
-from typing import Any
+import re
+from collections.abc import Iterable
+from dataclasses import dataclass
 
-from .metadata import DownloadIndex, SourceRecord, file_entries, normalized_metadata, resolve_saved_path
-from ..config.paths import DOWNLOADS_DIR
-from ..common.text import normalize_space
+from ..domain.legal import ContextualUnit, LegalNode, LifecycleRelation, SourceDocument
+from .lifecycle import LifecycleGraph
 
 
-def build_audit(records: list[SourceRecord], download_index: DownloadIndex) -> dict[str, Any]:
-    by_source = Counter(record.source for record in records)
-    missing_required: dict[str, Counter[str]] = defaultdict(Counter)
-    files_by_source: dict[str, Counter[str]] = defaultdict(Counter)
-    file_roles = Counter()
-    missing_files: list[dict[str, Any]] = []
-    duplicate_candidates: dict[str, list[dict[str, str | None]]] = defaultdict(list)
+_DANGLING_END = re.compile(
+    r"\b(?:sebagaimana\s+dimaksud\s+(?:dalam|pada)|berdasarkan|sesuai\s+dengan)\s*$",
+    re.IGNORECASE,
+)
 
-    for record in records:
-        meta = normalized_metadata(record)
-        for field in ("title", "number", "year", "effective_date"):
-            if not meta.get(field):
-                missing_required[record.source][field] += 1
 
-        dedupe_key = "|".join(
-            [
-                meta.get("issuer") or "",
-                meta.get("regulation_type") or "",
-                meta.get("number") or "",
-                meta.get("year") or "",
-            ]
-        )
-        if meta.get("number"):
-            duplicate_candidates[dedupe_key].append(
-                {
-                    "source": record.source,
-                    "source_id": meta["source_id"],
-                    "title": meta["title"],
-                    "bank_slug": meta.get("bank_slug"),
-                }
+@dataclass(frozen=True)
+class AuditFinding:
+    code: str
+    message: str
+    references: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class CorpusAudit:
+    findings: tuple[AuditFinding, ...]
+    document_count: int
+    node_count: int
+    context_count: int
+    lifecycle_relation_count: int
+
+    @property
+    def passed(self) -> bool:
+        return not self.findings
+
+
+def _invalid_spans(reference: str, spans: Iterable[object]) -> list[AuditFinding]:
+    findings: list[AuditFinding] = []
+    previous_page = 0
+    for index, span in enumerate(spans):
+        page_start = getattr(span, "page_start", None)
+        page_end = getattr(span, "page_end", None)
+        char_start = getattr(span, "char_start", None)
+        char_end = getattr(span, "char_end", None)
+        if (
+            not isinstance(page_start, int)
+            or not isinstance(page_end, int)
+            or not isinstance(char_start, int)
+            or not isinstance(char_end, int)
+            or page_start < 1
+            or page_end < page_start
+            or char_start < 0
+            or char_end < char_start
+        ):
+            findings.append(
+                AuditFinding(
+                    code="invalid_source_span",
+                    message=f"{reference} has an invalid source span at position {index}",
+                    references=(reference,),
+                )
+            )
+        elif page_start < previous_page:
+            findings.append(
+                AuditFinding(
+                    code="unordered_source_span",
+                    message=f"{reference} source spans are not in page order",
+                    references=(reference,),
+                )
+            )
+        previous_page = max(previous_page, page_start if isinstance(page_start, int) else 0)
+    return findings
+
+
+def audit_corpus(
+    *,
+    source_documents: Iterable[SourceDocument],
+    nodes: Iterable[LegalNode],
+    contexts: Iterable[ContextualUnit],
+    lifecycle_relations: Iterable[LifecycleRelation],
+) -> CorpusAudit:
+    documents = tuple(source_documents)
+    legal_nodes = tuple(nodes)
+    contextual_units = tuple(contexts)
+    relations = tuple(lifecycle_relations)
+    findings: list[AuditFinding] = []
+
+    documents_by_id: dict[str, SourceDocument] = {}
+    document_identity_keys: set[str] = set()
+    for document in documents:
+        if document.file_id in documents_by_id:
+            findings.append(
+                AuditFinding(
+                    code="duplicate_source_document_id",
+                    message=f"duplicate source document ID: {document.file_id}",
+                    references=(document.file_id,),
+                )
+            )
+        documents_by_id[document.file_id] = document
+        if document.identity_key in document_identity_keys:
+            findings.append(
+                AuditFinding(
+                    code="duplicate_source_document_identity",
+                    message=f"duplicate source document identity: {document.file_id}",
+                    references=(document.file_id,),
+                )
+            )
+        document_identity_keys.add(document.identity_key)
+
+    nodes_by_id: dict[str, LegalNode] = {}
+    parent_node_ids = {
+        node.parent_node_id for node in legal_nodes if node.parent_node_id is not None
+    }
+    for node in legal_nodes:
+        if node.node_id in nodes_by_id:
+            findings.append(
+                AuditFinding(
+                    code="duplicate_legal_node_id",
+                    message=f"duplicate legal node ID: {node.node_id}",
+                    references=(node.node_id,),
+                )
+            )
+        nodes_by_id[node.node_id] = node
+        if node.document_id not in documents_by_id:
+            findings.append(
+                AuditFinding(
+                    code="unresolved_node_document",
+                    message=f"legal node {node.node_id} has no source document",
+                    references=(node.node_id, node.document_id),
+                )
+            )
+        if node.node_id not in parent_node_ids and _DANGLING_END.search(node.text):
+            findings.append(
+                AuditFinding(
+                    code="dangling_fragment",
+                    message=f"legal node {node.node_id} ends in an incomplete legal reference",
+                    references=(node.node_id,),
+                )
+            )
+        findings.extend(_invalid_spans(node.node_id, node.spans))
+
+    for node in legal_nodes:
+        if node.parent_node_id is not None and node.parent_node_id not in nodes_by_id:
+            findings.append(
+                AuditFinding(
+                    code="unresolved_parent_node",
+                    message=f"legal node {node.node_id} has an unresolved parent",
+                    references=(node.node_id, node.parent_node_id),
+                )
             )
 
-        entries = file_entries(record)
-        if not entries:
-            files_by_source[record.source]["missing_file_entries"] += 1
-
-        for entry in entries:
-            role = normalize_space(entry.get("kind")) or "unknown"
-            file_roles[role] += 1
-            content_type = normalize_space(entry.get("content_type")) or "unknown"
-            files_by_source[record.source][content_type] += 1
-            resolved_path, exists, error = resolve_saved_path(entry.get("saved_path"), download_index)
-            if not exists:
-                missing_files.append(
-                    {
-                        "source": record.source,
-                        "source_id": meta["source_id"],
-                        "title": meta["title"],
-                        "file_role": role,
-                        "saved_path": entry.get("saved_path"),
-                        "resolved_path": resolved_path,
-                        "error": error,
-                    }
+    context_ids: set[str] = set()
+    for context in contextual_units:
+        if context.context_id in context_ids:
+            findings.append(
+                AuditFinding(
+                    code="duplicate_context_id",
+                    message=f"duplicate contextual unit ID: {context.context_id}",
+                    references=(context.context_id,),
                 )
+            )
+        context_ids.add(context.context_id)
+        primary = nodes_by_id.get(context.primary_node_id)
+        if primary is None:
+            findings.append(
+                AuditFinding(
+                    code="unresolved_context_primary_node",
+                    message=f"context {context.context_id} has an unresolved primary node",
+                    references=(context.context_id, context.primary_node_id),
+                )
+            )
+        else:
+            if primary.document_id != context.document_id:
+                findings.append(
+                    AuditFinding(
+                        code="context_document_mismatch",
+                        message=f"context {context.context_id} does not match its primary node document",
+                        references=(context.context_id, primary.node_id),
+                    )
+                )
+            if primary.parent_node_id is not None and primary.parent_node_id not in context.source_node_ids:
+                findings.append(
+                    AuditFinding(
+                        code="missing_governing_lead_in",
+                        message=f"context {context.context_id} omits its primary node parent",
+                        references=(context.context_id, primary.parent_node_id),
+                    )
+                )
+        for source_node_id in context.source_node_ids:
+            if source_node_id not in nodes_by_id:
+                findings.append(
+                    AuditFinding(
+                        code="unresolved_context_source_node",
+                        message=f"context {context.context_id} has an unresolved source node",
+                        references=(context.context_id, source_node_id),
+                    )
+                )
+        findings.extend(_invalid_spans(context.context_id, context.spans))
 
-    duplicate_groups = [
-        {"key": key, "count": len(items), "items": items[:10]}
-        for key, items in duplicate_candidates.items()
-        if len(items) > 1
-    ]
-    duplicate_groups.sort(key=lambda item: item["count"], reverse=True)
+    for relation in relations:
+        if relation.source_document_id not in documents_by_id:
+            findings.append(
+                AuditFinding(
+                    code="unresolved_lifecycle_source_document",
+                    message=f"lifecycle relation {relation.relation_id} has an unresolved source document",
+                    references=(relation.relation_id, relation.source_document_id),
+                )
+            )
+        source_node = nodes_by_id.get(relation.source_node_id)
+        if source_node is None:
+            findings.append(
+                AuditFinding(
+                    code="unresolved_lifecycle_source_node",
+                    message=f"lifecycle relation {relation.relation_id} has an unresolved source node",
+                    references=(relation.relation_id, relation.source_node_id),
+                )
+            )
+        elif source_node.document_id != relation.source_document_id:
+            findings.append(
+                AuditFinding(
+                    code="lifecycle_provenance_mismatch",
+                    message=f"lifecycle relation {relation.relation_id} source node belongs to another document",
+                    references=(relation.relation_id, relation.source_node_id),
+                )
+            )
 
-    download_extensions = Counter(
-        path.suffix.lower().lstrip(".") or "no_ext"
-        for path in DOWNLOADS_DIR.rglob("*")
-        if path.is_file()
+    try:
+        LifecycleGraph(relations)
+    except ValueError as error:
+        findings.append(
+            AuditFinding(
+                code="lifecycle_cycle",
+                message=str(error),
+                references=tuple(relation.relation_id for relation in relations),
+            )
+        )
+
+    return CorpusAudit(
+        findings=tuple(findings),
+        document_count=len(documents),
+        node_count=len(legal_nodes),
+        context_count=len(contextual_units),
+        lifecycle_relation_count=len(relations),
     )
-
-    return {
-        "summary": {
-            "records_by_source": dict(sorted(by_source.items())),
-            "download_extensions": dict(sorted(download_extensions.items())),
-            "file_roles": dict(sorted(file_roles.items())),
-            "missing_files_count": len(missing_files),
-            "duplicate_candidate_groups": len(duplicate_groups),
-        },
-        "missing_required_fields": {
-            source: dict(fields) for source, fields in sorted(missing_required.items())
-        },
-        "files_by_source": {
-            source: dict(counter) for source, counter in sorted(files_by_source.items())
-        },
-        "missing_files": missing_files[:500],
-        "duplicate_candidates": duplicate_groups[:200],
-    }
-
-
-def write_audit_markdown(audit: dict[str, Any], path: Path) -> None:
-    lines = [
-        "# Corpus Audit",
-        "",
-        "## Summary",
-        "",
-    ]
-    for key, value in audit["summary"].items():
-        lines.append(f"- `{key}`: `{value}`")
-
-    lines.extend(["", "## Missing Required Fields", ""])
-    for source, fields in audit["missing_required_fields"].items():
-        lines.append(f"- `{source}`: `{fields}`")
-
-    lines.extend(["", "## Files By Source", ""])
-    for source, fields in audit["files_by_source"].items():
-        lines.append(f"- `{source}`: `{fields}`")
-
-    lines.extend(["", "## Top Duplicate Candidates", ""])
-    for group in audit["duplicate_candidates"][:25]:
-        lines.append(f"- `{group['key']}`: {group['count']} records")
-        for item in group["items"][:3]:
-            lines.append(f"  - {item['source']} | {item.get('bank_slug') or '-'} | {item['title']}")
-
-    lines.extend(["", "## Missing Files", ""])
-    for item in audit["missing_files"][:50]:
-        lines.append(f"- `{item['source']}` `{item['source_id']}` `{item['file_role']}`: {item['saved_path']}")
-
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")

@@ -1,6 +1,6 @@
 # Backend Hard-Cutover Plan
 
-Status: approved for destructive implementation, not yet implemented
+Status: Phase 1 complete; Phase 2 in progress. Full-corpus publication is blocked until LiteParse Markdown normalization and its acceptance gate pass.
 
 Scope: backend, generated corpus, catalog, index, API contract, evaluation, tests, resources, and reports
 
@@ -79,6 +79,8 @@ The completed backend must:
 source documents and saved non-OCR raw pages
   -> document eligibility filter
        exclude reports/ocr_needed.json
+  -> LiteParse normalization
+       Markdown AST as semantic source; layout items validate page anchors
   -> legal structure parser
        source nodes + hierarchy + spans + contextual units
   -> regulation catalog and lifecycle graph
@@ -100,6 +102,63 @@ source documents and saved non-OCR raw pages
 ```
 
 No title text, query expansion, or issuer prior may satisfy provision-level claim relevance.
+
+## LiteParse input and normalization contract
+
+Saved LiteParse extraction is accepted source data. Its Markdown is the canonical
+semantic representation for this migration: LiteParse emits Markdown specifically
+to reconstruct headings, paragraphs, lists, tables, links, and images from page
+layout. The migration must not demote that structure to a broad plain-text string
+or attempt to reconstruct the entire document from word boxes.
+
+Each eligible raw page has three distinct, complementary representations:
+
+- `markdown` is the primary source for semantic normalization and legal parsing.
+- `text` is a plain-text fallback only when Markdown is absent. It is not permitted
+  to replace present Markdown merely because it appears visually cleaner.
+- `text_items` retain spatial coordinates, font information, and page geometry.
+  They validate Markdown-to-page alignment and produce visual anchors; they are
+  not an alternative semantic parser.
+
+The normalizer must parse Markdown into a deterministic, provenance-preserving
+block tree. At minimum it must preserve heading level, paragraphs, ordered and
+unordered list items, tables with rows and cells, thematic/page breaks, links,
+and the exact source range of every resulting block. It must retain the raw
+Markdown alongside normalized display and retrieval text; normalization may
+remove presentation syntax only, never silently delete, reorder, infer, or
+rewrite legal words.
+
+Legal interpretation happens after block normalization, not while scanning raw
+page strings. The parser must first classify the document and its zones from
+source-backed signals: regulation, explanatory memorandum, attachment/form,
+decision, circular, FAQ, or other supporting material. It may create a legal
+path (`BAB`, `Bagian`, `Paragraf`, `Pasal`, `Ayat`, `Huruf`, `Angka`) only where
+the normalized structure and document zone support that meaning. A numbered FAQ
+question, table row, or attachment field is not an `Angka` legal provision merely
+because it begins with `1.`.
+
+Markdown tables and lists are first-class citation material. A table-derived
+node must preserve its table, row, and cell context; a list-derived node must
+retain its governing lead-in and nesting. Geometry may be used to confirm
+reading order, join a Markdown block to its page region, identify repeated page
+furniture, and produce page anchors. When Markdown and geometry disagree, the
+builder must record the disagreement and quarantine the affected block or
+document from searchable/citable legal units until reviewed; it must not guess.
+
+The normalized corpus must be auditable with these gates before publication:
+
+1. every accepted node maps to an exact Markdown range and at least one source page;
+2. semantic block coverage accounts for all non-furniture Markdown content;
+3. legal anchors have valid parent hierarchy and are not inferred from unrelated FAQ,
+   table, form, or signature content;
+4. table/list children retain a readable governing context;
+5. Markdown-to-geometry mismatches, unsupported constructs, and quarantined source
+   IDs are reported with counts and reasons in the manifest; and
+6. representative BI and OJK fixtures contain unmodified saved LiteParse records,
+   including regulations, explanations, attachments/tables, circulars, and FAQs.
+
+No full corpus, database, coverage claim, or API result is published until these
+normalization gates pass on the saved non-OCR raw inputs.
 
 ## File destruction manifest
 
@@ -217,8 +276,10 @@ Saved non-OCR raw page extraction may be reused only as input. It does not defin
 
 ### Corpus implementation to add
 
+- `thinking_layer/corpus/liteparse_normalizer.py`
+  - parse LiteParse Markdown into a provenance-preserving block tree before legal parsing; use text-item geometry only to validate and anchor the Markdown-derived blocks.
 - `thinking_layer/corpus/parser.py`
-  - parse hierarchy and source spans from eligible saved raw pages.
+  - derive legal hierarchy and source spans from normalized LiteParse blocks, never from broad page strings.
 - `thinking_layer/corpus/catalog.py`
   - construct non-colliding regulation and source-document records.
 - `thinking_layer/corpus/lifecycle.py`
@@ -370,6 +431,7 @@ The new suite tests system behavior through real data boundaries. Mocks are perm
 
 - `tests/unit/domain/test_instrument_identity.py`
 - `tests/unit/domain/test_query_spec.py`
+- `tests/unit/corpus/test_liteparse_normalizer.py`
 - `tests/unit/corpus/test_parser_boundaries.py`
 - `tests/unit/corpus/test_context_assembly.py`
 - `tests/unit/corpus/test_ocr_exclusion.py`
@@ -391,6 +453,11 @@ Unit fixtures must be minimal source-like legal text with independently written 
 - `tests/integration/test_api_real_database.py`
 
 Integration tests build or use a pinned miniature SQLite database from source fixtures. They do not patch search results or inject expected candidates.
+
+Corpus fixtures must be literal, minimized copies of saved LiteParse raw records,
+not hand-authored clean Markdown. They must cover a regulation, explanatory
+memorandum, attachment/table, circular, and FAQ so the normalizer is tested
+against the output it will actually consume.
 
 ### New acceptance tests
 
@@ -450,14 +517,35 @@ Exit gate: the old backend cannot run and no compatibility path exists.
 ### Phase 2: domain and corpus truth layer
 
 1. Implement domain models and OCR eligibility filtering.
-2. Rewrite legal structure parsing against representative saved raw pages from multiple BI and OJK document families.
-3. Build atomic legal nodes, explicit hierarchy, contextual units, and source spans.
-4. Build collision-resistant instrument identity and source-document identity.
-5. Build source-backed lifecycle relations and preserve unknown state.
-6. Add structural audits for dangling fragments, missing lead-ins, duplicate identities, relation cycles, bad spans, and unresolved sources.
-7. Write the new unit and clean-build integration tests.
+2. Add the LiteParse Markdown normalizer before any legal hierarchy parser. Parse the
+   Markdown AST and preserve page, Markdown-range, block, list, table, and link
+   provenance; retain the raw source text unchanged.
+3. Use `text_items` only to validate block-to-page alignment, derive visual anchors,
+   detect repeated page furniture, and report disagreements. Do not rebuild semantic
+   reading order from geometry when equivalent Markdown is present.
+4. Classify document family and content zones from normalized source evidence before
+   interpreting numeric markers. Support regulations, explanatory memoranda,
+   attachments/forms, decisions, circulars, and FAQs without conflating their
+   numbering systems.
+5. Rewrite legal structure parsing against representative unmodified saved LiteParse
+   records from multiple BI and OJK document families. Parse legal hierarchy only in
+   supported legal zones; preserve other source-backed material as typed contextual
+   blocks, not fictitious legal provisions.
+6. Build atomic legal nodes, explicit hierarchy, contextual units, source spans, and
+   table/list context from the normalized block tree.
+7. Build collision-resistant instrument identity and source-document identity.
+8. Build source-backed lifecycle relations and preserve unknown state.
+9. Add structural and normalization audits for dangling fragments, missing lead-ins,
+   duplicate identities, relation cycles, bad spans, unresolved sources, Markdown
+   coverage, false legal anchors, geometry disagreement, and quarantine reporting.
+10. Write unit and clean-build integration tests using real LiteParse fixtures, then
+    run the complete build only after those fixtures pass.
 
-Exit gate: eligible documents produce reproducible, readable, database-ready legal units; OCR-needed documents are absent and reported.
+Exit gate: accepted eligible documents produce reproducible, readable,
+database-ready units from Markdown-derived structure; every citable unit has
+Markdown and page provenance; non-legal/supporting material is typed correctly;
+OCR-needed and quarantined records are absent from legal-unit coverage and are
+reported explicitly.
 
 ### Phase 3: clean database build
 
@@ -523,13 +611,14 @@ The hard migration intentionally rebuilds generated artifacts. The accepted buil
 
 1. load the OCR exclusion list;
 2. remove old generated outputs;
-3. parse eligible saved non-OCR raw pages with the new parser;
-4. build the regulation catalog and lifecycle graph;
-5. build contextual and atomic legal units;
-6. create a new SQLite database from empty;
-7. run structural and citation audits;
-8. run real-index evaluation;
-9. publish hashes and skipped-document coverage.
+3. normalize eligible saved non-OCR LiteParse Markdown and validate its page anchors;
+4. parse supported legal hierarchy and typed supporting material from normalized blocks;
+5. build the regulation catalog and lifecycle graph;
+6. build contextual and atomic legal units;
+7. create a new SQLite database from empty;
+8. run normalization, structural, and citation audits;
+9. run real-index evaluation;
+10. publish hashes, skipped-document coverage, and normalization/quarantine coverage.
 
 There is no incremental build, old-schema reader, or fallback index during this migration.
 
@@ -539,6 +628,12 @@ There is no incremental build, old-schema reader, or fallback index during this 
 - `rg` finds no exact-prompt branch for known questions.
 - One clean command reproduces the eligible corpus and database from saved non-OCR inputs.
 - OCR is never invoked and all OCR-needed documents are explicitly excluded.
+- LiteParse Markdown is the semantic source of every accepted unit; `text_items`
+  validate its page anchors and never replace it as a competing parser.
+- Numbered FAQ content, forms, and table rows are never mislabeled as legal
+  provisions solely by marker shape.
+- Unsupported or contradictory source structure is quarantined and reported rather
+  than converted into a misleading citation.
 - Regulation identities do not collide.
 - Lifecycle claims are source-backed or explicitly unknown.
 - Document and provision retrieval are separate.

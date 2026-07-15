@@ -1,19 +1,4 @@
-.PHONY: test-fast test-live-api test-acceptance test-ui-fixture test-ui-live
+.PHONY: check-demolition
 
-# Fast, deterministic checks. These use fixtures or temporary SQLite indexes.
-test-fast:
-	uv run python -m unittest discover -s tests -v
-
-# Production QueryService and API against the current generated SQLite index.
-test-live-api:
-	uv run python -m unittest discover -s tests/acceptance -v
-
-# Exact live corpus/answer acceptance. This intentionally fails on any case.
-test-acceptance: test-live-api
-	uv run python -m thinking_layer.evaluation.golden --tier smoke --jobs 1 --require-acceptance
-
-test-ui-fixture:
-	cd frontend && bun run test:e2e:fixture
-
-test-ui-live:
-	cd frontend && bun run test:e2e:live
+check-demolition:
+	@! rg -n -i 'answer\.composer|retrieval\.(evidence|planning|query_tools|search|topic_coverage)|indexing\.(scoring|semantic|title)|config\.(heuristic_audit|heuristics)|lexicon\.(candidates|merge)|evaluation\.golden|confidence\.score' thinking_layer

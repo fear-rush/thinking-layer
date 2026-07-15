@@ -1,23 +1,26 @@
 from __future__ import annotations
 
 from fastapi import FastAPI
-
-from .routers.documents import router as documents_router
-from .routers.feedback import router as feedback_router
-from .routers.health import router as health_router
-from .routers.queries import router as queries_router
+from fastapi.responses import JSONResponse
 
 
 def create_app() -> FastAPI:
     app = FastAPI(
         title="Thinking Layer API",
-        version="0.1.0",
-        description="Citation-first Indonesian financial-regulation retrieval.",
+        version="0.0.0-migration",
+        description="The legacy retrieval API has been removed during the hard cutover.",
     )
-    app.include_router(health_router)
-    app.include_router(queries_router)
-    app.include_router(documents_router)
-    app.include_router(feedback_router)
+
+    @app.get("/healthz")
+    def health() -> JSONResponse:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "status": "migration_in_progress",
+                "detail": "The retrieval API will return when the new corpus and database contract is implemented.",
+            },
+        )
+
     return app
 
 
