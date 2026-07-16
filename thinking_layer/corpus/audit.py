@@ -15,17 +15,13 @@ from ..domain.legal import (
     SourceDocument,
 )
 from .lifecycle import LifecycleGraph
+from .text_quality import display_text_issue
 
 
 _DANGLING_END = re.compile(
     r"\b(?:sebagaimana\s+dimaksud\s+(?:dalam|pada)|berdasarkan|sesuai\s+dengan)\s*$",
     re.IGNORECASE,
 )
-_MARKDOWN_PRESENTATION = re.compile(
-    r"(?m)^\s{0,3}#{1,6}\s|\*\*[^*\n]+\*\*|__[^_\n]+__|`[^`\n]+`|\[[^\]]+\]\([^)]*\)"
-)
-
-
 @dataclass(frozen=True)
 class AuditFinding:
     code: str
@@ -119,6 +115,14 @@ def audit_corpus(
                 )
             )
         document_identity_keys.add(document.identity_key)
+        if issue := display_text_issue(document.title):
+            findings.append(
+                AuditFinding(
+                    code="invalid_catalog_title",
+                    message=f"source document {document.file_id} title {issue}",
+                    references=(document.file_id,),
+                )
+            )
 
     nodes_by_id: dict[str, LegalNode] = {}
     parent_node_ids = {
@@ -150,6 +154,25 @@ def audit_corpus(
                     references=(node.node_id,),
                 )
             )
+        if issue := display_text_issue(node.text):
+            findings.append(
+                AuditFinding(
+                    code="invalid_legal_node_text",
+                    message=f"legal node {node.node_id} {issue}",
+                    references=(node.node_id,),
+                )
+            )
+        if node.retrieval_text != normalize_space(node.text):
+            findings.append(
+                AuditFinding(
+                    code="invalid_legal_node_retrieval_text",
+                    message=(
+                        f"legal node {node.node_id} retrieval text is not normalized "
+                        "display text"
+                    ),
+                    references=(node.node_id,),
+                )
+            )
         findings.extend(_invalid_spans(node.node_id, node.spans))
 
     for node in legal_nodes:
@@ -173,6 +196,14 @@ def audit_corpus(
                 )
             )
         context_ids.add(context.context_id)
+        if issue := display_text_issue(context.display_text):
+            findings.append(
+                AuditFinding(
+                    code="invalid_context_display_text",
+                    message=f"context {context.context_id} {issue}",
+                    references=(context.context_id,),
+                )
+            )
         primary = nodes_by_id.get(context.primary_node_id)
         if primary is None:
             findings.append(
@@ -287,6 +318,10 @@ def audit_legal_documents(
             continue
 
         for block in document.source_blocks:
+            if not block.display_text:
+                # Structural Markdown syntax (for example a table separator)
+                # remains provenance-only and is never an exposed node/context.
+                continue
             findings.extend(
                 _text_findings(
                     reference=block.block_id,
@@ -317,30 +352,25 @@ def _text_findings(
     *, reference: str, display_text: str, retrieval_text: str | None
 ) -> tuple[AuditFinding, ...]:
     findings: list[AuditFinding] = []
-    if _MARKDOWN_PRESENTATION.search(display_text):
+    if issue := display_text_issue(display_text):
         findings.append(
             AuditFinding(
-                code="raw_markdown_leakage",
-                message=f"{reference} exposes Markdown presentation syntax in display text",
+                code="invalid_display_text",
+                message=f"{reference} {issue}",
                 references=(reference,),
             )
         )
-    if retrieval_text is not None:
-        if _MARKDOWN_PRESENTATION.search(retrieval_text):
-            findings.append(
-                AuditFinding(
-                    code="raw_markdown_leakage",
-                    message=f"{reference} exposes Markdown presentation syntax in retrieval text",
-                    references=(reference,),
-                )
+    # Retrieval text deliberately collapses display whitespace.  Literal
+    # footnote markers from separate lines can then resemble a Markdown
+    # emphasis pair, so presentation-syntax detection belongs to display text;
+    # derivation is enforced by the exact normalization invariant.
+    if retrieval_text is not None and retrieval_text != normalize_space(display_text):
+        findings.append(
+            AuditFinding(
+                code="invalid_retrieval_text",
+                message=f"{reference} retrieval text is not normalized display text",
+                references=(reference,),
             )
-        if retrieval_text != normalize_space(display_text):
-            findings.append(
-                AuditFinding(
-                    code="invalid_retrieval_text",
-                    message=f"{reference} retrieval text is not normalized display text",
-                    references=(reference,),
-                )
             )
     return tuple(findings)
 

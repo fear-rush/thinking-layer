@@ -43,3 +43,17 @@ def test_extracts_ojk_surat_edaran_identity() -> None:
 
 def test_preserves_unclassified_source_documents_as_unknown() -> None:
     assert extract_instrument_identity("PEDOMAN PENGAJUAN VERIFIKASI") is None
+
+
+def test_recognizes_legacy_bapepam_decisions() -> None:
+    identity = extract_instrument_identity(
+        "KEPUTUSAN KETUA BADAN PENGAWAS PASAR MODAL NOMOR KEP-62/PM/1996"
+    )
+
+    assert identity is not None
+    assert (identity.issuer, identity.instrument_type, identity.number, identity.year) == (
+        "BAPEPAM",
+        "KEP",
+        "62/PM",
+        1996,
+    )

@@ -4,7 +4,10 @@ from collections.abc import Mapping
 
 import pytest
 
-from thinking_layer.corpus.liteparse_normalizer import normalize_raw_document
+from thinking_layer.corpus.liteparse_normalizer import (
+    MarkdownNormalizationError,
+    normalize_raw_document,
+)
 from thinking_layer.corpus.parser import parse_raw_document
 
 
@@ -65,6 +68,88 @@ def test_retains_raw_slices_and_tree_structure(
         )
 
 
+def test_removes_repeated_liteparse_heading_markers_from_display_text() -> None:
+    normalized = normalize_raw_document(
+        {
+            "file_id": "fixture-repeated-heading-marker",
+            "pages": [{"page_num": 1, "markdown": "#### # Berdasarkan Jenis"}],
+        }
+    )
+
+    heading = normalized.pages[0].blocks[0]
+
+    assert heading.raw_markdown == "#### # Berdasarkan Jenis"
+    assert heading.display_text == "Berdasarkan Jenis"
+    assert heading.retrieval_text == "Berdasarkan Jenis"
+
+
+def test_removes_unparsed_liteparse_emphasis_punctuation_from_display_text() -> None:
+    normalized = normalize_raw_document(
+        {
+            "file_id": "fixture-unparsed-emphasis",
+            "pages": [
+                {
+                    "page_num": 1,
+                    "markdown": "*Catatan yang belum tertutup **Sumber rujukan *",
+                }
+            ],
+        }
+    )
+
+    paragraph = normalized.pages[0].blocks[0]
+
+    assert paragraph.display_text == "Catatan yang belum tertutup Sumber rujukan"
+    assert paragraph.retrieval_text == "Catatan yang belum tertutup Sumber rujukan"
+
+
+def test_removes_an_unparsed_link_target_but_preserves_its_exact_provenance() -> None:
+    normalized = normalize_raw_document(
+        {
+            "file_id": "fixture-unparsed-link",
+            "pages": [
+                {
+                    "page_num": 1,
+                    "markdown": "[Data](file:///E:/source directory/report.xlsx#A1)",
+                }
+            ],
+        }
+    )
+
+    paragraph = normalized.pages[0].blocks[0]
+
+    assert paragraph.display_text == "Data"
+    assert paragraph.links[0].text == "Data"
+    assert paragraph.links[0].target == "file:///E:/source directory/report.xlsx#A1"
+
+
+def test_repairs_only_unambiguous_title_cased_spaced_words() -> None:
+    normalized = normalize_raw_document(
+        {
+            "file_id": "fixture-spaced-title-case",
+            "pages": [{"page_num": 1, "markdown": "P e r a t u r a n berlaku."}],
+        }
+    )
+
+    assert normalized.pages[0].blocks[0].display_text == "Peraturan berlaku."
+
+
+@pytest.mark.parametrize(
+    "markdown",
+    (
+        "S U R A T E D A R A N",
+        "Ketentuan \x03\x04 tidak terbaca",
+    ),
+)
+def test_rejects_ambiguous_or_corrupt_visible_text(markdown: str) -> None:
+    with pytest.raises(MarkdownNormalizationError, match="display-text quality failure"):
+        normalize_raw_document(
+            {
+                "file_id": "fixture-unpublishable-text",
+                "pages": [{"page_num": 1, "markdown": markdown}],
+            }
+        )
+
+
 def test_preserves_links_with_exact_source_ranges(
     raw_record: Mapping[str, object],
 ) -> None:
@@ -111,4 +196,6 @@ def test_preserves_and_parses_fenced_liteparse_text_without_fence_syntax() -> No
     article = next(node for node in parsed.nodes if node.node_kind == "pasal")
 
     assert block.raw_markdown == "```\nPasal 7\nBank wajib melapor.\n```\n"
+    assert block.display_text == "Pasal 7\nBank wajib melapor."
+    assert block.retrieval_text == "Pasal 7 Bank wajib melapor."
     assert article.text == "Pasal 7 Bank wajib melapor."

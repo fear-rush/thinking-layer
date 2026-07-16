@@ -97,3 +97,13 @@ def test_geometry_disagreement_quarantines_instead_of_guessing() -> None:
     )
     with pytest.raises(QuarantinedDocumentError, match="geometry validation"):
         parse_raw_document(raw)
+
+
+def test_empty_liteparse_layout_fence_is_quarantined() -> None:
+    raw = {
+        "file_id": "fixture-empty-layout-fence",
+        "pages": [{"page_num": 1, "markdown": "```text\n\n```"}],
+    }
+
+    with pytest.raises(QuarantinedDocumentError, match="no_citable_normalized_content"):
+        parse_raw_document(raw)

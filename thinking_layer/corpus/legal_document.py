@@ -4,10 +4,6 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 
-from markdown_it import MarkdownIt
-from markdown_it.token import Token
-
-from ..common.text import normalize_space
 from ..domain.legal import (
     ContextualUnit,
     ContextualUnitV1,
@@ -33,31 +29,6 @@ from ..domain.legal import (
 from .context import assemble_contextual_units
 from .liteparse_normalizer import MarkdownRange, NormalizedBlock, NormalizedDocument
 from .parser import ParsedDocument
-
-
-_INLINE_PARSER = MarkdownIt("commonmark")
-
-
-def _display_text(markdown: str) -> str:
-    """Remove inline Markdown presentation while leaving wording intact."""
-
-    parts: list[str] = []
-    for token in _INLINE_PARSER.parse(markdown):
-        if token.type != "inline":
-            continue
-        parts.extend(_inline_parts(token))
-    display = "".join(parts).strip()
-    return display or markdown.strip()
-
-
-def _inline_parts(token: Token) -> list[str]:
-    parts: list[str] = []
-    for child in token.children or ():
-        if child.type in {"text", "code_inline", "html_inline", "image"}:
-            parts.append(child.content)
-        elif child.type in {"softbreak", "hardbreak"}:
-            parts.append("\n")
-    return parts
 
 
 def _instrument(identity: InstrumentIdentity | None) -> InstrumentIdentityV1 | None:
@@ -170,14 +141,13 @@ def _node(node: LegalNode, normalized: NormalizedDocument) -> LegalNodeV1:
         pages[span.page_start].raw_markdown[span.char_start : span.char_end]
         for span in node.spans
     )
-    display_text = _display_text(raw_markdown)
     return LegalNodeV1(
         node_id=node.node_id,
         document_id=node.document_id,
         node_kind=node.node_kind,
         raw_markdown=raw_markdown,
-        display_text=display_text,
-        retrieval_text=normalize_space(display_text),
+        display_text=node.text,
+        retrieval_text=node.retrieval_text,
         legal_path=_legal_path(node.legal_path),
         source_spans=tuple(_source_span(span) for span in node.spans),
         markdown_ranges=tuple(

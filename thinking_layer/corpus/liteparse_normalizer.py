@@ -18,9 +18,10 @@ from markdown_it import MarkdownIt
 from markdown_it.token import Token
 
 from ..common.text import normalize_space
+from .text_quality import DisplayTextQualityError, require_publishable_display_text
 
 
-_LINK = re.compile(r"(?<!!)\[([^\]]+)\]\(([^\s)]+)(?:\s+[^)]*)?\)")
+_LINK = re.compile(r"(?<!!)\[([^\]]+)\]\(([^)]*)\)")
 _TABLE_DELIMITER = re.compile(r"^\s*\|?\s*:?-{1,}:?\s*(?:\|\s*:?-{1,}:?\s*)+\|?\s*$")
 _WORD = re.compile(r"[\wÀ-ÖØ-öø-ÿ]+", re.UNICODE)
 _FRESH_CONTRACT = "thinking-layer-fresh-liteparse-v1"
@@ -154,6 +155,31 @@ _OPENING_KINDS = {
 }
 
 
+def _strip_repeated_heading_markers(text: str) -> str:
+    """Remove presentation-only heading markers emitted twice by LiteParse."""
+
+    previous = None
+    while text != previous:
+        previous = text
+        text = re.sub(r"(?m)^(?:\s{0,3}#{1,6}\s+)", "", text)
+    return text
+
+
+def _strip_unparsed_emphasis_markers(text: str) -> str:
+    """Remove emphasis punctuation that malformed LiteParse Markdown left literal."""
+
+    letter = r"[A-Za-zÀ-ÖØ-öø-ÿ]"
+    text = re.sub(rf"(?<!\S)(?:\*{{1,2}}|_{{1,2}})(?={letter})", "", text)
+    text = re.sub(rf"(?<={letter})(?:\*{{1,2}}|_{{1,2}})(?=\s|$)", "", text)
+    return re.sub(r"(?<=\s)(?:\*{1,2}|_{1,2})(?=\s|$)", "", text)
+
+
+def _strip_unparsed_links(text: str) -> str:
+    """Keep link labels when LiteParse emits a target MarkdownIt cannot parse."""
+
+    return _LINK.sub(r"\1", text)
+
+
 def _line_offsets(markdown: str) -> tuple[int, ...]:
     offsets = [0]
     for index, character in enumerate(markdown):
@@ -281,10 +307,13 @@ def _assign_table_cell_ranges(
 def _links(raw_markdown: str, source_range: MarkdownRange) -> tuple[MarkdownLink, ...]:
     links: list[MarkdownLink] = []
     for match in _LINK.finditer(raw_markdown):
+        target = match.group(2).strip()
+        if not target:
+            continue
         links.append(
             MarkdownLink(
                 text=match.group(1),
-                target=match.group(2),
+                target=target,
                 source_range=MarkdownRange(
                     page_num=source_range.page_num,
                     line_start=source_range.line_start,
@@ -315,7 +344,14 @@ def normalize_page(*, file_id: str, page_num: int, markdown: str) -> NormalizedP
                 token_map=token.map,
             )
             parent_index = open_blocks[-1] if open_blocks else None
-            drafts.append(_BlockDraft(kind, parent_index, source_range))
+            draft = _BlockDraft(kind, parent_index, source_range)
+            # LiteParse sometimes wraps page-layout text in a Markdown fence.  It
+            # is still source text, rather than author-intended code: retain the
+            # complete fence in ``raw_markdown`` but expose the token content to
+            # downstream parsing and display fields.
+            if token.type in {"fence", "code_block"}:
+                draft.display_text = token.content
+            drafts.append(draft)
             if token.nesting == 1:
                 open_blocks.append(len(drafts) - 1)
             continue
@@ -340,19 +376,26 @@ def normalize_page(*, file_id: str, page_num: int, markdown: str) -> NormalizedP
 
     for index in reversed(range(len(drafts))):
         draft = drafts[index]
-        if draft.display_text or draft.source_range is None:
-            continue
-        child_text = [
-            drafts[child].display_text
-            for child in children_by_parent[index]
-            if drafts[child].display_text
-        ]
-        if child_text:
-            draft.display_text = "\n".join(child_text)
-        else:
-            draft.display_text = markdown[
-                draft.source_range.char_start : draft.source_range.char_end
+        if not draft.display_text and draft.source_range is not None:
+            child_text = [
+                drafts[child].display_text
+                for child in children_by_parent[index]
+                if drafts[child].display_text
             ]
+            if child_text:
+                draft.display_text = "\n".join(child_text)
+            else:
+                draft.display_text = markdown[
+                    draft.source_range.char_start : draft.source_range.char_end
+                ]
+        try:
+            draft.display_text = require_publishable_display_text(draft.display_text)
+        except DisplayTextQualityError as error:
+            raise MarkdownNormalizationError(
+                file_id,
+                page_num,
+                f"display-text quality failure: {error}",
+            ) from error
 
     blocks: list[NormalizedBlock] = []
     for index, draft in enumerate(drafts):

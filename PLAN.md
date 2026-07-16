@@ -1,6 +1,6 @@
 # Backend Hard-Cutover Plan
 
-Status: Phases 0 and 1 complete; Phase 2 is in progress. Full-corpus publication is blocked until LiteParse Markdown normalization and its acceptance gates pass.
+Status: Phases 0 through 2 complete. The clean corpus is published; Phase 3 is next.
 
 Scope: backend, generated corpus, catalog, index, API contract, evaluation, tests, resources, and reports
 
@@ -643,10 +643,12 @@ Exit gate: the old backend cannot run and no compatibility path exists.
    retain only explicit, source-backed cross references; do not resolve ambiguous
    references by heuristic inference.
 10. Add structural and normalization audits for dangling fragments, missing lead-ins,
-   duplicate identities, relation cycles, bad spans, unresolved sources, Markdown
-   coverage, false legal anchors, raw-Markdown leakage into display fields, geometry
-   disagreement, schema validity, and quarantine reporting. Persist a failure
-   manifest before atomic staging cleanup.
+    duplicate identities, relation cycles, bad spans, unresolved sources, Markdown
+    coverage, false legal anchors, raw-Markdown leakage into display fields, geometry
+    disagreement, schema validity, and quarantine reporting. The publication gate
+    must reject ambiguous spaced-character text and non-printing control characters;
+    it may repair only unambiguous title-cased character spacing and must never guess
+    missing legal wording. Persist a failure manifest before atomic staging cleanup.
 11. Write unit and clean-build integration tests using fresh LiteParse fixtures,
     including regression fixtures for headings and inline formatting, tables, lists,
     attachments, circulars, and FAQs; then run the complete build only after those

@@ -11,6 +11,7 @@ from typing import Any
 from ..config.paths import ROOT
 from ..domain.legal import InstrumentIdentity, SourceDocument
 from .eligibility import OcrEligibility
+from .liteparse_normalizer import NormalizedDocument, normalize_raw_document
 
 
 _SPACE = re.compile(r"\s+")
@@ -27,8 +28,16 @@ _OJK_LONG_FORM = re.compile(
     r"(?:/([A-Z.0-9]+))?(?:\s+TAHUN\s+|/)(\d{4})\b",
     re.IGNORECASE,
 )
+_BAPEPAM_DECISION = re.compile(
+    r"\bKEP(?:UTUSAN)?[-\s]+(\d+)/(PM|BL)/(\d{4})\b", re.IGNORECASE
+)
 _TITLE_STOP = re.compile(
-    r"\b(DENGAN\s+RAHMAT|MENIMBANG\s*:|MENGINGAT\s*:)\b", re.IGNORECASE
+    r"\b(DENGAN\s+RAHMAT|MENIMBANG\s*:|MENGINGAT\s*:)", re.IGNORECASE
+)
+_TITLE_LEAD = re.compile(
+    r"\b(?:PERATURAN|KEPUTUSAN|SURAT\s+EDARAN|UNDANG-UNDANG|PBI|POJK|SEOJK|"
+    r"PADG|SEBI|KETENTUAN|PEDOMAN|DOKUMEN|FAQ|FREQUENTLY)\b",
+    re.IGNORECASE,
 )
 
 
@@ -79,27 +88,60 @@ def extract_instrument_identity(source_text: str) -> InstrumentIdentity | None:
         instrument_type, number, year = match.groups()
         issuer = "BI" if instrument_type.upper() in {"PBI", "PADG", "SEBI"} else "OJK"
         return InstrumentIdentity(issuer, instrument_type.upper(), number, int(year))
+    if match := _BAPEPAM_DECISION.search(normalized):
+        number, office, year = match.groups()
+        issuer = "BAPEPAM-LK" if office.upper() == "BL" else "BAPEPAM"
+        return InstrumentIdentity(issuer, "KEP", f"{number}/{office.upper()}", int(year))
     return None
 
 
-def _title_from_raw(raw_record: Mapping[str, Any]) -> str:
-    pages = raw_record.get("pages")
-    if not isinstance(pages, list) or not pages:
-        raise ValueError("saved raw document requires pages")
-    first_page = pages[0]
-    if not isinstance(first_page, Mapping):
-        raise ValueError("saved raw document contains an invalid first page")
-    value = first_page.get("markdown") or first_page.get("text")
-    if not isinstance(value, str) or not value.strip():
-        raise ValueError("saved raw document requires first-page text")
-    prefix = _TITLE_STOP.split(value, maxsplit=1)[0]
-    title = _normalize(prefix)
+def _title_from_normalized(normalized: NormalizedDocument) -> str:
+    """Use normalized, top-level first-page evidence for a catalog title."""
+
+    candidates: list[str] = []
+    seen: set[str] = set()
+    for block in normalized.pages[0].blocks:
+        if block.kind not in {
+            "heading",
+            "paragraph",
+            "verbatim_block",
+            "table_header_cell",
+            "table_cell",
+        }:
+            continue
+        if (
+            block.display_text
+            and block.display_text not in seen
+            and not _TITLE_STOP.match(block.display_text)
+        ):
+            candidates.append(block.display_text)
+            seen.add(block.display_text)
+    start = next(
+        (index for index, value in enumerate(candidates) if _TITLE_LEAD.search(value)),
+        0,
+    )
+    values: list[str] = []
+    for value in candidates[start:]:
+        prefix = _TITLE_STOP.split(value, maxsplit=1)[0]
+        if prefix:
+            values.append(prefix)
+        if _TITLE_STOP.search(value) or len(values) >= 3:
+            break
+    title = _normalize(" ".join(values))
     if not title:
-        raise ValueError("saved raw document has no source-backed title")
-    return title[:2_000]
+        raise ValueError("normalized document has no source-backed title")
+    return title[:500]
 
 
-def _role_for(file_id: str, title: str) -> str:
+def _role_for(file_id: str, title: str, family: str) -> str:
+    if family == "faq":
+        return "secondary_faq"
+    if family == "explanation":
+        return "explanation"
+    if family == "attachment":
+        return "attachment"
+    if family == "circular":
+        return "circular"
     normalized = f"{file_id} {title}".casefold()
     if "faq" in normalized or "frequently asked" in normalized:
         return "secondary_faq"
@@ -114,7 +156,9 @@ def _role_for(file_id: str, title: str) -> str:
     return "primary_regulation"
 
 
-def catalog_raw_record(raw_record: Mapping[str, Any], raw_path: Path) -> SourceDocument:
+def catalog_normalized_record(
+    raw_record: Mapping[str, Any], raw_path: Path, normalized: NormalizedDocument
+) -> SourceDocument:
     file_id = raw_record.get("file_id")
     if not isinstance(file_id, str) or not file_id.strip():
         raise ValueError(f"saved raw document requires file_id: {raw_path}")
@@ -125,17 +169,27 @@ def catalog_raw_record(raw_record: Mapping[str, Any], raw_path: Path) -> SourceD
             f"saved raw path must be inside the repository: {raw_path}"
         ) from error
     source_bytes = raw_path.read_bytes()
-    title = _title_from_raw(raw_record)
+    if normalized.file_id != file_id:
+        raise ValueError("catalog normalization file ID does not match raw record")
+    title = _title_from_normalized(normalized)
     instrument = extract_instrument_identity(title)
     source_url = raw_record.get("source_url")
     return SourceDocument(
         file_id=file_id,
         instrument=instrument,
         title=title,
-        role=_role_for(file_id, title),
+        role=_role_for(file_id, title, normalized.family),
         raw_path=relative_path,
         source_sha256=hashlib.sha256(source_bytes).hexdigest(),
         source_url=source_url if isinstance(source_url, str) and source_url else None,
+    )
+
+
+def catalog_raw_record(raw_record: Mapping[str, Any], raw_path: Path) -> SourceDocument:
+    """Catalog a raw record through the same quality-checked normalizer as builds."""
+
+    return catalog_normalized_record(
+        raw_record, raw_path, normalize_raw_document(raw_record)
     )
 
 

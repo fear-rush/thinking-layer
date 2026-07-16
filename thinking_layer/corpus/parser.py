@@ -3,10 +3,11 @@ from __future__ import annotations
 import json
 import re
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
+from ..common.text import normalize_space
 from ..domain.legal import LegalNode, LegalPath, SourceSpan
 from .eligibility import OcrEligibility
 from .liteparse_normalizer import (
@@ -16,6 +17,7 @@ from .liteparse_normalizer import (
     NormalizedPage,
     normalize_raw_document,
 )
+from .text_quality import require_publishable_display_text, retrieval_text
 
 
 _MARKDOWN_HEADING = re.compile(r"^#{1,6}\s+(.+)$")
@@ -26,6 +28,10 @@ _HURUF = re.compile(r"^(?:Huruf\s+)?([a-z])\s*[.)]\s+", re.IGNORECASE)
 _ANGKA = re.compile(r"^(?:Angka\s+)?(\d+)\s*[.)]\s+")
 _INLINE_AYAT = re.compile(r"(?<=[.;:])\s+(\(\s*\d+[A-Za-z]?\s*\))")
 _INLINE_HURUF = re.compile(r"(?<=[;:])\s+([a-z]\s*[.)])\s+", re.IGNORECASE)
+_DANGLING_END = re.compile(
+    r"\b(?:sebagaimana\s+dimaksud\s+(?:dalam|pada)|berdasarkan|sesuai\s+dengan)\s*$",
+    re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -65,6 +71,10 @@ class _ParseState:
     huruf_node_id: str | None = None
     angka_node_id: str | None = None
     last_node_id: str | None = None
+    # A LiteParse source block can split a cross-reference immediately after its
+    # governing phrase.  The next line can therefore begin with ``Pasal`` even
+    # though it is part of the current provision, not a new legal anchor.
+    awaits_reference_continuation: bool = False
 
     def legal_path(self) -> LegalPath:
         return LegalPath(
@@ -219,13 +229,15 @@ def _new_node(
     start, end = _trimmed_range(page_markdown, start, end)
     if start == end:
         return None
-    text = page_markdown[start:end]
+    # Spans remain exact raw-Mardown coordinates, while visible node text uses
+    # the same canonical display-text pipeline as every other published view.
+    text = require_publishable_display_text(page_markdown[start:end])
     return LegalNode(
         node_id=_node_id(file_id, page_num, start, kind),
         document_id=file_id,
         node_kind=kind,
         text=text,
-        retrieval_text=" ".join(text.split()),
+        retrieval_text=retrieval_text(text),
         legal_path=path,
         spans=(SourceSpan(page_num, page_num, start, end),),
         parent_node_id=parent_node_id,
@@ -272,6 +284,7 @@ def _parse_block(
         if node is not None:
             nodes.append(node)
             state.last_node_id = node.node_id
+            state.awaits_reference_continuation = bool(_DANGLING_END.search(node.text))
 
     for line_start, line_end, line in _line_ranges(content_markdown):
         for offset, anchor in _line_anchors(
@@ -280,6 +293,17 @@ def _parse_block(
             heading_block=block.kind == "heading",
             legal_zone=block.zone == "normative",
         ):
+            # Do not turn the target of an unfinished "... dimaksud dalam"
+            # reference into a new article.  This is a source-boundary join,
+            # not an inference: the preceding citable unit explicitly requires
+            # the following Pasal reference to complete its text.
+            pending_text = page.raw_markdown[active_start : content_start + line_start + offset]
+            if anchor[0] == "pasal" and (
+                state.awaits_reference_continuation
+                or _DANGLING_END.search(pending_text)
+            ):
+                state.awaits_reference_continuation = False
+                continue
             start = content_start + line_start + offset
             flush(start)
             kind, value = anchor
@@ -295,6 +319,42 @@ def _parse_block(
             active_parent = parent
     flush(content_end)
     return nodes
+
+
+def _join_dangling_fragments(nodes: list[LegalNode]) -> tuple[LegalNode, ...]:
+    """Join an explicitly unfinished leaf to its next source-backed fragment.
+
+    LiteParse can split a single sentence at a layout boundary.  If the first
+    resulting unit ends in a source-visible legal-reference lead-in, the next
+    parsed node completes that same sentence even when its marker looked like a
+    new anchor.  Keep the first unit's identity/path and combine the exact spans;
+    any children of the absorbed node become children of the combined unit.
+    """
+
+    joined = list(nodes)
+    index = 0
+    while index + 1 < len(joined):
+        parent_ids = {node.parent_node_id for node in joined if node.parent_node_id}
+        current = joined[index]
+        if current.node_id in parent_ids or not _DANGLING_END.search(current.text):
+            index += 1
+            continue
+        following = joined[index + 1]
+        combined = replace(
+            current,
+            text=normalize_space(f"{current.text} {following.text}"),
+            retrieval_text=normalize_space(
+                f"{current.retrieval_text} {following.retrieval_text}"
+            ),
+            spans=(*current.spans, *following.spans),
+        )
+        joined[index] = combined
+        for child_index in range(index + 2, len(joined)):
+            child = joined[child_index]
+            if child.parent_node_id == following.node_id:
+                joined[child_index] = replace(child, parent_node_id=combined.node_id)
+        del joined[index + 1]
+    return tuple(joined)
 
 
 def parse_normalized_document(normalized: NormalizedDocument) -> ParsedDocument:
@@ -315,6 +375,7 @@ def parse_normalized_document(normalized: NormalizedDocument) -> ParsedDocument:
                     file_id=normalized.file_id, page=page, block=block, state=state
                 )
             )
+    nodes = list(_join_dangling_fragments(nodes))
     if not nodes:
         if normalized.geometry_disagreements:
             raise QuarantinedDocumentError(
@@ -322,8 +383,13 @@ def parse_normalized_document(normalized: NormalizedDocument) -> ParsedDocument:
                 "all parseable blocks failed geometry validation",
                 normalized.geometry_disagreements,
             )
-        raise ValueError(
-            f"fresh raw document {normalized.file_id} produced no legal nodes"
+        # A fresh record may contain only an empty LiteParse layout fence.  It
+        # has no source-backed text to expose as a contextual unit, so publish
+        # neither a fictitious provision nor an empty artifact.  Quarantine it
+        # explicitly for the corpus limitation report instead.
+        raise QuarantinedDocumentError(
+            normalized.file_id,
+            "no_citable_normalized_content",
         )
     return ParsedDocument(
         file_id=normalized.file_id,

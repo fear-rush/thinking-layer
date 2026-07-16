@@ -1,7 +1,7 @@
 # thinking-layer
 
-The backend is in a destructive hard-cutover migration. Phases 0 and 1 are complete;
-Phase 2—the source-backed corpus truth layer—is in progress. The legacy retrieval,
+The backend is in a destructive hard-cutover migration. Phases 0 through 2 are
+complete; Phase 3—the clean SQLite database build—is next. The legacy retrieval,
 answering, API, and evaluation contracts remain removed and are not runnable.
 
 The prior LiteParse output was discarded and replaced with a fresh, pinned,
@@ -30,12 +30,12 @@ evidence. Legal paths are created only in normative regulation/decision zones.
 Markdown blocks are validated against LiteParse geometry; disagreements are
 quarantined and reported rather than guessed.
 
-The latest full-corpus build is intentionally unpublished: its durable failure report
-is `processed/corpus.failure.json`. It currently reports incomplete legal fragments at
-source boundaries and Markdown-presentation leakage findings. These are Phase 2
-acceptance-gate failures, not published corpus coverage. The builder preserves the
-machine-readable report before removing failed staging output.
-
-No full corpus, database, API, or coverage claim is published until the remaining
-normalization, fragment-handling, structural-audit, and clean-build acceptance gates
-in `PLAN.md` pass. Phase 3's SQLite build begins only after that publication gate.
+The current full-corpus build is published under `processed/corpus/`. It contains
+3,182 publishable source documents, 1,249,627 citable legal nodes and contextual
+units, 79 lifecycle relations, 48 OCR exclusions, and 585 quarantined sources. The
+strict publication gate removes Markdown presentation syntax, safely joins only
+unambiguous title-cased spaced words, and quarantines ambiguous spaced text,
+non-printing control characters, unmappable source ranges, or records without a
+clean source-backed catalog title. The manifest records every exclusion along with
+the corresponding input/output hashes and geometry disagreements. Phase 3 can now
+build the clean SQLite database from this corpus contract.

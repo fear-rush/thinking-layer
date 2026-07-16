@@ -101,3 +101,82 @@ def test_keeps_lowercase_ayat_cross_references_in_the_same_clause() -> None:
     ayat = next(node for node in parsed.nodes if node.legal_path.ayat == "2")
     assert "dimaksud pada ayat (1) dikelola" in ayat.retrieval_text
     assert sum(node.node_kind == "ayat" for node in parsed.nodes) == 1
+
+
+def test_keeps_a_source_boundary_pasal_reference_in_its_governing_clause() -> None:
+    parsed = parse_raw_document(
+        {
+            "file_id": "fixture-split-reference",
+            "pages": [
+                {
+                    "page_num": 1,
+                    "markdown": (
+                        "Pasal 18\n"
+                        "(2) Perubahan data sebagaimana dimaksud dalam\n\n"
+                        "Pasal 13 ayat (5);\n"
+                        "2. Ketentuan berikutnya.\n"
+                    ),
+                }
+            ],
+        }
+    )
+
+    ayat = next(node for node in parsed.nodes if node.legal_path.ayat == "2")
+    reference = next(node for node in parsed.nodes if "Pasal 13 ayat (5)" in node.text)
+    angka = next(node for node in parsed.nodes if node.legal_path.angka == "2")
+
+    assert reference.node_kind == "continuation"
+    assert reference.parent_node_id == ayat.node_id
+    assert angka.legal_path.pasal == "18"
+    assert angka.parent_node_id == ayat.node_id
+
+
+def test_keeps_an_inline_source_split_pasal_reference_in_its_governing_clause() -> None:
+    parsed = parse_raw_document(
+        {
+            "file_id": "fixture-inline-split-reference",
+            "pages": [
+                {
+                    "page_num": 1,
+                    "markdown": (
+                        "Pasal 21\n"
+                        "(1) Permohonan sebagaimana dimaksud dalam\n"
+                        "Pasal 17 disetujui Bank Indonesia.\n"
+                    ),
+                }
+            ],
+        }
+    )
+
+    ayat = next(node for node in parsed.nodes if node.legal_path.ayat == "1")
+
+    assert ayat.legal_path.pasal == "21"
+    assert "Pasal 17 disetujui" in ayat.text
+    assert not any(
+        node.node_kind == "pasal" and node.legal_path.pasal == "17"
+        for node in parsed.nodes
+    )
+
+
+def test_joins_an_unfinished_leaf_with_its_next_source_backed_fragment() -> None:
+    parsed = parse_raw_document(
+        {
+            "file_id": "fixture-fragment-join",
+            "pages": [
+                {
+                    "page_num": 1,
+                    "markdown": (
+                        "Pasal 21\n"
+                        "(3) Pemberitahuan sebagaimana dimaksud pada\n"
+                        "(4) ayat (3) disampaikan kepada Bank Indonesia.\n"
+                    ),
+                }
+            ],
+        }
+    )
+
+    ayat = next(node for node in parsed.nodes if node.legal_path.ayat == "3")
+
+    assert "dimaksud pada (4) ayat (3) disampaikan" in ayat.text
+    assert len(ayat.spans) == 2
+    assert not any(node.legal_path.ayat == "4" for node in parsed.nodes)

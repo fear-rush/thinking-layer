@@ -29,7 +29,7 @@ from .audit import (
     audit_legal_documents,
     audit_quarantine_reporting,
 )
-from .catalog import Catalog, catalog_raw_record
+from .catalog import Catalog, catalog_normalized_record
 from .context import assemble_contextual_units
 from .eligibility import OcrEligibility
 from .lifecycle import LifecycleGraph, extract_lifecycle_relations
@@ -252,7 +252,6 @@ def build_corpus(
                     skipped_file_ids.add(file_id)
                     continue
                 eligibility.validate_raw_record(raw)
-                document = catalog_raw_record(raw, path)
                 try:
                     parsed = parse_raw_document(raw)
                 except (MarkdownNormalizationError, QuarantinedDocumentError) as error:
@@ -262,6 +261,12 @@ def build_corpus(
                             (file_id, disagreement.block_id, disagreement.reason)
                             for disagreement in error.geometry_disagreements
                         )
+                    continue
+                assert parsed.normalized is not None
+                try:
+                    document = catalog_normalized_record(raw, path, parsed.normalized)
+                except ValueError as error:
+                    quarantined_sources[file_id] = f"catalog quality failure: {error}"
                     continue
                 geometry_disagreements.extend(
                     (file_id, disagreement.block_id, disagreement.reason)
@@ -275,7 +280,30 @@ def build_corpus(
                     contexts=document_contexts,
                     lifecycle_relations=document_relations,
                 )
+                legal_document = legal_document_from_parsed(
+                    source_document=document,
+                    parsed=parsed,
+                    contexts=document_contexts,
+                    lifecycle_relations=document_relations,
+                )
+                # Validate the exact JSON-compatible representation that will be published.
+                legal_document = LegalDocumentV1.model_validate(
+                    legal_document.model_dump(mode="json")
+                )
+                legal_document_findings = audit_legal_documents((legal_document,))
+                quality_findings = tuple(
+                    finding
+                    for finding in (*document_audit.findings, *legal_document_findings)
+                    if finding.code.startswith("invalid_")
+                )
+                if quality_findings:
+                    quarantined_sources[file_id] = (
+                        "publication quality failure: "
+                        + "; ".join(finding.message for finding in quality_findings)
+                    )
+                    continue
                 findings.extend(document_audit.findings)
+                findings.extend(legal_document_findings)
                 source_documents.append(document)
                 relations.extend(document_relations)
                 node_count += len(parsed.nodes)
@@ -287,18 +315,7 @@ def build_corpus(
                     _write_record(contexts_handle, context)
                 for relation in document_relations:
                     _write_record(relations_handle, relation)
-                legal_document = legal_document_from_parsed(
-                    source_document=document,
-                    parsed=parsed,
-                    contexts=document_contexts,
-                    lifecycle_relations=document_relations,
-                )
-                # Validate the exact JSON-compatible representation that will be published.
-                legal_document = LegalDocumentV1.model_validate(
-                    legal_document.model_dump(mode="json")
-                )
                 _write_record(legal_documents_handle, legal_document)
-                findings.extend(audit_legal_documents((legal_document,)))
 
         try:
             Catalog(tuple(source_documents))

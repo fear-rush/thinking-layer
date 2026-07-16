@@ -104,7 +104,7 @@ def test_audits_schema_validity_markdown_leakage_and_quarantine_reporting() -> N
     leaky["legal_nodes"][0]["display_text"] = "**leaked**"
     leaky["legal_nodes"][0]["retrieval_text"] = "**leaked**"
     leakage_codes = {finding.code for finding in audit_legal_documents((leaky,))}
-    assert "raw_markdown_leakage" in leakage_codes
+    assert "invalid_display_text" in leakage_codes
 
     report_codes = {
         finding.code
@@ -128,5 +128,69 @@ def test_audit_does_not_mistake_literal_legal_footnote_markers_for_markdown() ->
     serialized = artifact.model_dump(mode="json")
     serialized["legal_nodes"][0]["display_text"] = "Keterangan **)"
     serialized["legal_nodes"][0]["retrieval_text"] = "Keterangan **)"
+
+    assert not audit_legal_documents((serialized,))
+
+
+def test_audit_does_not_join_adjacent_literal_footnote_markers_as_bold_markdown() -> None:
+    raw = {
+        "file_id": "fixture-adjacent-footnote-markers",
+        "pages": [{"page_num": 1, "markdown": "Pasal 1\nBank wajib melapor."}],
+    }
+    artifact = legal_document_from_parsed(
+        source_document=_document(raw["file_id"]), parsed=parse_raw_document(raw)
+    )
+    serialized = artifact.model_dump(mode="json")
+    text = "Keterangan **) : rincian ***) : lanjutan"
+    serialized["legal_nodes"][0]["display_text"] = text
+    serialized["legal_nodes"][0]["retrieval_text"] = text
+
+    assert not audit_legal_documents((serialized,))
+
+
+def test_audit_does_not_mistake_triple_and_quadruple_footnote_markers_for_bold() -> None:
+    raw = {
+        "file_id": "fixture-long-footnote-markers",
+        "pages": [{"page_num": 1, "markdown": "Pasal 1\nBank wajib melapor."}],
+    }
+    artifact = legal_document_from_parsed(
+        source_document=_document(raw["file_id"]), parsed=parse_raw_document(raw)
+    )
+    serialized = artifact.model_dump(mode="json")
+    text = "Keterangan *** rincian footnote *** dan ****rincian berikutnya"
+    serialized["legal_nodes"][0]["display_text"] = text
+    serialized["legal_nodes"][0]["retrieval_text"] = text
+
+    assert not audit_legal_documents((serialized,))
+
+
+def test_audit_does_not_mistake_fill_in_blank_underscores_for_emphasis() -> None:
+    raw = {
+        "file_id": "fixture-fill-in-blanks",
+        "pages": [{"page_num": 1, "markdown": "Pasal 1\nBank wajib melapor."}],
+    }
+    artifact = legal_document_from_parsed(
+        source_document=_document(raw["file_id"]), parsed=parse_raw_document(raw)
+    )
+    serialized = artifact.model_dump(mode="json")
+    text = "Kepada: _____________________ Dari: _____________________"
+    serialized["legal_nodes"][0]["display_text"] = text
+    serialized["legal_nodes"][0]["retrieval_text"] = text
+
+    assert not audit_legal_documents((serialized,))
+
+
+def test_audit_does_not_mistake_escaped_footnote_markers_after_words_for_bold() -> None:
+    raw = {
+        "file_id": "fixture-escaped-footnote-markers",
+        "pages": [{"page_num": 1, "markdown": "Pasal 1\nBank wajib melapor."}],
+    }
+    artifact = legal_document_from_parsed(
+        source_document=_document(raw["file_id"]), parsed=parse_raw_document(raw)
+    )
+    serialized = artifact.model_dump(mode="json")
+    text = "Jumlah konsumen** Rp xxx,- Dst **) total dana"
+    serialized["legal_nodes"][0]["display_text"] = text
+    serialized["legal_nodes"][0]["retrieval_text"] = text
 
     assert not audit_legal_documents((serialized,))
