@@ -112,6 +112,76 @@ future contracts.
 - EASE-BI and Peraturan-OJK need separate source adapters and separate quality
   reporting.
 
+### 3.4 Research methodology
+
+The working method for Phases 1 and 2 is **grounded comparative documentary
+analysis**. This is a project-specific name for a practical combination of
+established methods; it is not presented as a new academic standard.
+
+The methods have distinct jobs:
+
+- **Diplomatic analysis** examines documentary genesis and authority: who created
+  the document, in what official capacity, for what purpose, through which
+  publication process, and which internal or external signs support authenticity
+  and legal function.
+- **Genre analysis** identifies recurring functional moves and zones such as title,
+  authority, consideration, legal basis, dictum, definitions, operative provisions,
+  closing, signature, explanation, and attachment. A move is a semantic function,
+  not merely a font size or heading level.
+- **Grounded qualitative coding and constant comparison** allow document roles,
+  bundle patterns, layout families, and exceptions to emerge from actual files. The
+  initial taxonomy is a hypothesis to challenge, not a label set to force.
+- **Corpus profiling and content analysis** measure how prevalent the reviewed
+  patterns are only after the codebook is stable enough to apply consistently.
+
+The research sequence is:
+
+1. Perform a direct walkthrough and write open observations without forcing the
+   initial taxonomy.
+2. Assign provisional codes to observed roles, structures, relationships, and
+   anomalies.
+3. Compare each new case with earlier cases and revise, merge, split, or retire
+   codes when the evidence requires it.
+4. Turn stable codes into a versioned codebook containing definitions, inclusion
+   rules, exclusion rules, positive examples, negative boundary examples,
+   counterexamples, and unresolved questions.
+5. Use maximum-variation purposive sampling to discover the range of OJK cases.
+6. After completing the planned variation-coverage grid, continue review in
+   documented, pre-sized batches until two consecutive batches add no new document
+   role, bundle shape, or layout family. This is the operational saturation rule,
+   not proof that no unseen exception exists.
+7. Freeze the discovery codebook, then draw a separate deterministic stratified
+   random audit sample to estimate classification performance and expose missed
+   patterns. Do not tune rules on this audit sample.
+8. Profile the complete source inventory only after the human distinctions are
+   explicit and reproducible.
+
+EASE-BI is small enough for a complete file census. Peraturan-OJK requires both a
+discovery set and a later audit set; a single “representative sample” is not enough.
+
+### 3.5 Unit of review and annotation boundary
+
+Human review must state which unit is being labeled:
+
+- portal record;
+- publication bundle;
+- downloaded file occurrence;
+- byte-identical content blob;
+- semantic document;
+- legal instrument;
+- internal document zone or functional move.
+
+Phases 1 and 2 label bundles, documents, roles, relationships, layout families, and
+coarse functional moves. They do **not** annotate every `BAB`, `Bagian`, `Pasal`,
+paragraph, or named entity. Fine-grained span or page-region annotation is deferred
+until extraction preserves stable text and page coordinates.
+
+Every formal review decision must include the source record, downloaded path,
+content hash, pages or office-container parts inspected, portal assertion, observed
+role, issuer and instrument-kind candidates, bundle relationship, layout-family
+candidate, observed functional moves, supporting evidence, uncertainty, reviewer,
+review date, and decision status.
+
 ## 4. Non-negotiable principles
 
 ### 4.1 Metadata is a sidecar, not legal text
@@ -174,6 +244,33 @@ EASE-BI or Peraturan-OJK record and its source hash.
 There is no target corpus size and no incentive to maximize accepted documents.
 Precision and honest exclusion are more important than coverage during this plan.
 
+### 4.7 Minimal research tooling
+
+The source trees, review files, and Git history are the system of record during
+discovery. Use the smallest tools that expose evidence without introducing a new
+platform:
+
+- ordinary PDF viewing and page rendering for visual inspection;
+- LibreOffice for DOCX and XLSX inspection;
+- Markdown for narrative findings and a versioned codebook;
+- JSONL for one-review-decision-per-record evidence;
+- `rg`, `jq`, `file`, `shasum`, `pdfinfo`, `pdffonts`, `pdftotext`, and
+  `pdftoppm` for read-only measurement and navigation.
+
+Later extraction experiments may evaluate family-appropriate libraries such as
+PyMuPDF for PDFs, `python-docx` for DOCX, and `openpyxl` for XLSX. No library is
+selected merely because it is popular; it must solve a measured need for a reviewed
+family.
+
+Label Studio may be reconsidered only if stable page-region or span labels must be
+produced at a scale that JSONL review can no longer support. Doccano, corpus-NLP
+workbenches, Obsidian, and Zotero are not source-of-truth systems for this phase.
+IFLA LRM, PROV-O, Dublin Core, and Akoma Ntoso may later be used as comparison
+references for identity, provenance, descriptive metadata, or legal-document
+modeling, but their schemas will not be adopted before local evidence establishes a
+need. Ontologies, RDF, knowledge graphs, ML, LLM classification, and embedding
+pipelines are explicitly premature.
+
 ## 5. Identity and authority model to establish
 
 The source-understanding layer must distinguish these identities:
@@ -229,10 +326,16 @@ actual EASE publication bundles --------+
 actual OJK publication bundles ----------+--> direct human walkthrough
                                                        |
                                                        v
-                                      written source and document map
+                                      open coding of observed evidence
                                                        |
                                                        v
-                                      reviewed roles and layout families
+                                      constant comparison in review batches
+                                                       |
+                                                       v
+                                      versioned codebook and source map
+                                                       |
+                                                       v
+                                      reviewed roles, bundles, and layouts
                                                        |
                                                        v
 data/*.json + downloads/**/* -----------> inventory automation
@@ -244,7 +347,10 @@ data/*.json + downloads/**/* -----------> inventory automation
                                       rules derived from reviewed evidence
                                                        |
                                                        v
-                                      extraction experiments by one family
+                                      independent stratified random audit
+                                                       |
+                                                       v
+                                      extraction experiment by one family
 ```
 
 The flow stops at any failed gate. It does not continue automatically to a corpus.
@@ -289,20 +395,30 @@ Work:
    tab and group hierarchy as a user of the portal would see it.
 2. Open representative Peraturan-OJK detail records as publication bundles. Compare
    the page metadata with each attached `peraturan`, `abstrak`, and `faq` file.
-3. Read enough of each selected file to answer: what is this document, who issued
-   it, what purpose does it serve, and is it itself normative?
-4. Write down recurring document roles, bundle shapes, title-page patterns,
-   explanation/attachment boundaries, forms, tables, and obvious legacy differences.
-5. Record confusing and contradictory cases without solving them in code.
-6. If a file is unreadable, mark it `deferred_unreadable` and continue immediately.
+3. Start the OJK walkthrough with maximum-variation cases selected across portal
+   file kind, declared regulation type, year band, sector, bundle size, duplicate
+   status, and suspicious or confusing filenames. This is a discovery set, not a
+   random accuracy sample.
+4. Apply diplomatic questions to each case: creator, issuer, authority, intended
+   function, publication context, signs of validation, relation to other bundle
+   files, and whether the file is itself normative.
+5. Record genre moves and internal zones without assuming their order or requiring
+   predefined names. Distinguish semantic function from typography.
+6. Open-code recurring document roles, bundle shapes, title-page patterns,
+   explanation/attachment boundaries, forms, tables, and legacy differences. Keep
+   the initial taxonomy challengeable.
+7. Record confusing cases, contradictions, negative boundary cases, and
+   counterexamples without solving them in code.
+8. If a file is unreadable, mark it `deferred_unreadable` and continue immediately.
    Do not investigate or repair it during this phase.
-7. Capture paths and hashes for every documented example so observations remain
-   tied to the actual bytes.
+9. Capture paths, hashes, inspected pages, and evidence for every documented example
+   so observations remain tied to the actual bytes.
 
 Exit gate:
 
 - the two walkthrough documents describe how each source publishes information;
-- at least one real example supports every proposed document role;
+- provisional codes are grounded in real examples and explicitly marked as
+  provisional;
 - important counterexamples and unknowns are recorded;
 - no parser, classifier, schema, or generalized source model has been written.
 
@@ -314,10 +430,13 @@ conclusions yet.
 Files to add:
 
 - `resources/source_review/review_manifest.json`
+- `resources/source_review/codebook.json`
 - `resources/source_review/document_roles.jsonl`
 - `resources/source_review/layout_families.jsonl`
 - `resources/source_review/publication_bundles.jsonl`
 - `resources/source_review/metadata_conflicts.jsonl`
+- `resources/source_review/audit_manifest.json`
+- `resources/source_review/audit_labels.jsonl`
 - `docs/sources/review-guide.md`
 - `docs/sources/document-role-taxonomy.md`
 
@@ -326,22 +445,46 @@ Do not add classifier tests in this phase.
 Work:
 
 1. Review every EASE-BI file because the collection is currently small.
-2. Review a Peraturan-OJK set covering all portal file kinds, major regulation
-   types, year bands, sectors, single-file bundles, multi-file bundles, duplicate
-   files, and confusing filenames.
+2. Review Peraturan-OJK in maximum-variation discovery batches covering all portal
+   file kinds, major regulation types, year bands, sectors, single-file bundles,
+   multi-file bundles, duplicate files, and confusing filenames.
 3. Include every rare category encountered during the walkthrough.
-4. Record the reviewer decision, evidence page, evidence text or visual description,
+4. Use constant comparison after every batch. Record whether a code was added,
+   split, merged, renamed, retired, or left unresolved and why.
+5. Build a versioned codebook. Every stable code must have a definition, unit of
+   analysis, inclusion rule, exclusion rule, positive example, negative boundary
+   example, and known counterexample or an explicit statement that none is yet known.
+6. Record the reviewer decision, evidence page or office-container part, evidence
+   text or visual description,
    document role, instrument-kind candidate, layout-family candidate, uncertainty,
    and source hashes.
-5. Describe relationships inside a publication bundle without assuming that all
+7. Describe relationships inside a publication bundle without assuming that all
    files are part of the normative instrument.
-6. Allow `unknown` and reviewer disagreement.
-7. Never generate a review label from code output.
+8. Label coarse functional moves only when they help distinguish roles or layouts.
+   Do not perform exhaustive `BAB`/`Pasal`/entity span annotation.
+9. Allow `unknown`, competing interpretations, and reviewer disagreement.
+10. Continue discovery until two consecutive documented OJK batches add no new role,
+    bundle shape, or layout family, after the planned variation-coverage grid is
+    complete. Define the batch size in the review guide before this check begins and
+    do not change it retroactively. Record the batch composition and result; do not
+    claim universal completeness from saturation.
+11. After freezing the discovery codebook, create a deterministic stratified random
+    OJK audit manifest from records not used to develop the codebook. Stratify using
+    known source variables without pre-labeling the answer. Pre-register the sample
+    size rationale, seed, selection algorithm, strata, and inclusion probabilities.
+12. Review and lock the audit labels using only the frozen codebook and source
+    evidence, before exposing classifier predictions to the reviewer.
+13. Never generate a human review label from classifier output, and never revise the
+    frozen codebook or rules using audit answers without declaring a new version and
+    drawing a new untouched audit set.
 
 Exit gate:
 
 - all EASE-BI files have reviewed roles or explicit unknowns;
-- the OJK review set covers every observed bundle and role family;
+- OJK discovery batches meet the documented operational saturation rule;
+- a frozen codebook contains positive, negative, and counterexample evidence;
+- a separate deterministic stratified random audit manifest and locked human labels
+  exist and have not been used to develop rules;
 - every label resolves to unchanged source bytes;
 - disagreements remain visible;
 - the taxonomy explains actual documents rather than hypothetical formats.
@@ -450,6 +593,13 @@ Work:
    mentions Pasal or an instrument number.
 7. Report a confusion matrix and false-primary count independently for each source
    and layout family.
+8. Report discovery/development results separately from untouched audit results. Do
+   not tune a rule, threshold, exception, or taxonomy definition on audit answers
+   and continue calling that sample independent.
+9. Treat EASE-BI classifier results as agreement with the reviewed census, not an
+   independent estimate of unseen-file accuracy. For the OJK audit, report both raw
+   stratum results and population-weighted estimates when sampling probabilities
+   differ.
 
 Exit gate:
 
@@ -657,6 +807,11 @@ Until the corresponding checkpoint passes, do not add:
 - frontend integration changes;
 - lifecycle inference;
 - LLM, embedding, reranking, NER, or graph dependencies;
+- an ontology, RDF model, or knowledge graph;
+- an Akoma Ntoso, IFLA LRM, Dublin Core, or PROV-O implementation;
+- Label Studio, doccano, or another annotation server before stable annotation units
+  and scale justify one;
+- a second note database used as an unofficial source of truth;
 - compatibility modules under deleted import paths.
 
 ## 14. Definition of source-understanding done
@@ -667,7 +822,11 @@ This plan is complete only when:
 - reviewed document roles and layout families are understood before automation;
 - exact duplicates preserve provenance without multiplying content;
 - EASE-BI is fully role-reviewed;
-- Peraturan-OJK has a deterministic, representative reviewed sample;
+- Peraturan-OJK discovery has reached the documented operational saturation rule;
+- the versioned codebook defines inclusion, exclusion, positive, negative, and
+  counterexample evidence for stable codes;
+- Peraturan-OJK has a deterministic stratified random audit set kept independent
+  from codebook and rule development;
 - document roles, instrument kinds, and layout families are separated;
 - no unknown file becomes a primary regulation by default;
 - metadata conflicts are explicit;
