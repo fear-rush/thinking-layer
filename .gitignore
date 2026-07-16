@@ -62,10 +62,10 @@ coverage/
 /frontend/blob-report/
 /frontend/test-results/
 
-# Large local corpus inputs and generated artifacts
+# Large local source inputs and disposable research artifacts
 data/
 downloads/
-processed/
+artifacts/
 backups/
 
 # Disposable evaluation runs; retained terminal reports remain trackable

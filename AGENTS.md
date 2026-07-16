@@ -15,13 +15,18 @@ The `frontend/` directory contains the web application that consumes this projec
 - Use Vitest for frontend unit and component tests. Do not introduce another JavaScript test runner unless explicitly requested.
 - Build UI with shadcn/ui components first. Before creating a custom primitive or component, check whether shadcn/ui provides a suitable component and compose or extend it when it does. Create custom UI only when shadcn/ui cannot meet the need.
 
-## Corpus Generation
+## Source Research
 
-The backend is undergoing a hard migration. Generated blocks, source-corpus rows, catalogs, reports, and indexes may be deleted and rebuilt whenever their schema or producing code changes. No compatibility path, incremental migration, backup, or preservation of obsolete generated artifacts is required.
+The backend and generated corpus have been reset. Work must follow `PLAN.md` and focus on understanding the two supported source systems before designing a parser or corpus.
 
-- OCR is disabled for this migration. Never enable or run OCR.
-- Every file listed in `reports/ocr_needed.json` must be excluded from parsing, cataloging, indexing, evaluation targets, and coverage claims until OCR work is explicitly authorized in a future request.
-- A rebuild must report the skipped OCR-needed file IDs and count so the API can expose the resulting corpus limitation honestly.
+- The only supported inputs are `data/ease-bi/` with `downloads/ease-bi/`, and `data/peraturan-ojk/` with `downloads/peraturan-ojk/`.
+- Treat metadata as harvested assertions and provenance. Never merge metadata text into downloaded document text or present it as citable legal wording.
+- Treat downloaded bytes as the evidence for wording and layout. Preserve every source occurrence and hash before deduplication.
+- OCR remains disabled, but OCR triage is not a milestone. Mark unreadable files as deferred and continue studying readable documents. When extraction or parsing is eventually run, record every file and affected page that appears to need OCR in `reports/ocr_needed.json` and `reports/ocr_needed.md` without running OCR.
+- Unknown, conflicting, unsupported, and unreadable files must remain explicit. Never default an unknown file to a primary regulation.
+- Do not add a corpus builder, legal AST, database, retrieval system, answer renderer, or query API before the corresponding source-understanding gates in `PLAN.md` pass.
+- Do not use mocks, fabricated source records, injected parser output, or runtime-generated expected values as evidence of source understanding or legal correctness.
+- Generated research artifacts belong under `artifacts/` and may be deleted and rebuilt without compatibility or migration support.
 
 ## React Server State
 

@@ -1,4 +1,9 @@
-.PHONY: check-demolition
+.PHONY: baseline-check
 
-check-demolition:
-	@! rg -n -i 'answer\.composer|retrieval\.(evidence|planning|query_tools|search|topic_coverage)|indexing\.(scoring|semantic|title)|config\.(heuristic_audit|heuristics)|lexicon\.(candidates|merge)|evaluation\.golden|confidence\.score' thinking_layer
+baseline-check:
+	@test -d data/ease-bi
+	@test -d data/peraturan-ojk
+	@test -d downloads/ease-bi
+	@test -d downloads/peraturan-ojk
+	@test ! -e processed
+	@uv lock --check

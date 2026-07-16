@@ -1,793 +1,681 @@
-# Backend Hard-Cutover Plan
+# Source-Understanding-First Rebuild Plan
 
-Status: Phases 0 through 2 complete. The clean corpus is published; Phase 3 is next.
+Status: hard reset complete; source understanding is next. There is no accepted
+corpus, parser, database, retrieval system, API, or accuracy claim.
 
-Scope: backend, generated corpus, catalog, index, API contract, evaluation, tests, resources, and reports
+Date of reset: 2026-07-16
 
-Compatibility policy: none
+Supported sources:
 
-OCR policy: disabled; every document in `reports/ocr_needed.json` is skipped
+- `ease-bi`
+- `peraturan-ojk`
 
-## Directive
+Compatibility policy: none. Deleted modules, commands, generated schemas, file
+formats, fixtures, and APIs will not receive compatibility wrappers.
 
-This is a hard replacement, not an incremental refactor. The current query planner, retrieval orchestration, answer heuristics, confidence model, golden evaluator, and backend test suite will be deleted. There will be one backend architecture, one corpus contract, one index schema, one API response contract, and one test strategy.
+OCR remains disabled, and OCR remediation is not part of this plan. If a file is
+unreadable during source study, record `deferred_unreadable` and continue. Later
+extraction and parsing must publish an OCR-needed report, but that report must not
+delay document-role or layout research.
 
-The migration will not provide:
+## 1. Why this reset exists
 
-- compatibility wrappers;
-- old and new execution paths;
-- schema adapters for obsolete generated artifacts;
-- fallback to the existing planner, search, confidence, composer, or evaluator;
-- deprecated API fields;
-- preservation of tests merely because they currently pass;
-- preservation of generated indexes or reports;
-- prompt-specific exceptions for known questions.
+The previous migration moved too quickly from downloaded files to a large corpus.
+It created a parser contract, legal AST, lifecycle graph, audits, and millions of
+generated units before the two remaining sources had been described and measured
+properly. Structural tests could pass while document roles were wrong. A BI
+licensing guide could default to `primary_regulation`; passing serialization and
+span checks did not make that classification legally correct.
 
-Breaking imports, CLI commands, generated artifacts, fixtures, API payloads, and frontend integration during the backend cutover is acceptable. All consumers must move to the new contract together.
+This rebuild starts from a narrower question:
 
-## Why the current backend is being replaced
+> What exactly did EASE-BI and Peraturan-OJK publish, how are their records and
+> files organized, and which observable source evidence distinguishes normative
+> regulations from abstracts, FAQs, explanations, attachments, forms, guidance,
+> and unknown material?
 
-The current runtime does not learn. It maps prompts through regexes, a manually expanded lexicon, issuer assumptions, hand-tuned boosts, query-specific branches, and a confidence mixture that can reward provenance while the cited clause is irrelevant. That is pattern memorization, not legal understanding.
+No corpus architecture is accepted until that question has a reviewed answer.
 
-The existing parser has useful ideas, especially legal paths and source spans, but useful code is not a reason to preserve its interface. Any algorithm reused during the rewrite must satisfy the new contract and new tests. Nothing survives solely for backward compatibility.
+## 2. Reset decisions already applied
 
-The demonstrated failures are architectural:
+The reset performs the following destructive changes:
 
-- a document-discovery question is forced through a provision-answer path;
-- document-title relevance leaks into claim relevance;
-- fragments are rendered without their governing lead-in;
-- issuer and topic mappings behave as hidden hard filters;
-- lifecycle state is unknown but answers can look authoritative;
-- confidence is not calibrated;
-- visible goldens encourage tuning to known prompts;
-- mocks can pass while the real API and index fail;
-- stale reports are presented too close to current evidence;
-- the test suite asserts implementation details instead of user-visible legal behavior.
+1. Remove all prior output under `processed/`.
+2. Remove the corpus builder, parser, normalizer, catalog, lifecycle, audit, and
+   serialized legal-domain implementation under `thinking_layer/corpus/` and
+   `thinking_layer/domain/`.
+3. Remove the placeholder API, CLI, answer, retrieval, indexing, lexicon, and
+   evaluation packages. They represented future architecture rather than verified
+   source understanding.
+4. Remove all backend tests and synthetic LiteParse fixtures. None are grandfathered
+   into the new design.
+5. Remove runtime dependencies for FastAPI, Uvicorn, Pydantic, Markdown-It, and
+   LiteParse. Dependencies will be added only when a measured source task requires
+   them.
+6. Keep the frontend source unchanged but frozen. It has no backend contract during
+   source research and is outside this plan until a later explicit cutover.
 
-## Non-negotiable target
+## 3. Measured starting facts
 
-The completed backend must:
+These are filesystem observations from the reset date, not accuracy claims and not
+future contracts.
 
-1. parse source-backed legal structure into complete, readable, citable units;
-2. build canonical instrument identities without collisions;
-3. record source-backed amendment, revocation, supersession, partial-revocation, and unknown lifecycle state;
-4. distinguish document discovery, exact lookup, rule, definition, value, procedure, comparison, and lifecycle questions;
-5. retrieve documents first and provisions only inside selected document scope;
-6. calculate passage relevance from claim text rather than title or generated search text;
-7. return complete source-backed context while citing the exact underlying units;
-8. expose independent evidence diagnostics rather than a probability-like confidence score;
-9. resolve every citation against the active database;
-10. pass real-index paraphrase, negative, lifecycle, readability, refusal, latency, and citation tests;
-11. expose skipped OCR-needed coverage as an explicit limitation;
-12. provide a deterministic evidence contract suitable for a later constrained LLM.
+### 3.1 EASE-BI
 
-## Destructive migration rules
+- 81 per-record JSON metadata files and one aggregate NDJSON file.
+- 80 downloaded files totaling approximately 63.5 MB.
+- 68 PDFs, 9 DOCX files, and 3 XLSX files.
+- Metadata tabs contain:
+  - 51 PDF `Ketentuan` records;
+  - 1 PDF `Ketentuan Terkait` record;
+  - 3 PDF `FAQ` records;
+  - 14 PDF, 9 DOCX, and 3 XLSX `Dokumen Persyaratan & Pedoman`
+    records.
+- The 68 PDFs contain 59 unique SHA-256 values.
+- Four within-source duplicate-hash groups contain nine copies beyond the first.
+- EASE metadata is useful for the tab, group path, label, source URL, media type,
+  and saved path. It is generally not a complete legal-instrument catalog.
 
-- Delete obsolete code before implementing its replacement. A temporarily broken branch is acceptable during the cutover.
-- Do not create compatibility modules under old import paths.
-- Do not preserve old JSON shapes, SQLite tables, CLI flags, test fixtures, or report formats.
-- Delete and recreate generated legal blocks, source-corpus rows, catalog tables, and indexes when the producing contract changes.
-- Do not use an incremental index migration. Build the new database from an empty target.
-- Do not copy the old golden suite into the new release gate.
-- Do not tune against the sealed evaluation set.
-- Do not add a query string, known answer phrase, regulation name, or issuer-specific exception merely to pass one question.
-- OCR remains disabled. Exclude every file in `reports/ocr_needed.json` from all generated datasets and report the exclusion.
+### 3.2 Peraturan-OJK
 
-## Target architecture
+- 1,551 per-record JSON metadata files and one aggregate NDJSON file.
+- 2,398 downloaded files totaling approximately 1.04 GB.
+- 2,395 PDFs and 3 incomplete `.part` files.
+- File-role labels in harvested metadata contain:
+  - 1,952 `peraturan` files;
+  - 237 `faq` files;
+  - 206 `abstrak` files.
+- Every per-record JSON currently supplies a title, regulation number, regulation
+  type, year, effective date, and sector. Those are harvested assertions and still
+  require document-level validation.
+- Metadata regulation types include POJK, SEOJK, PPBI, SEBI, Bapepam
+  classifications and regulations, statutes, government regulations, ministerial
+  instruments, and ADK regulations. Therefore `peraturan-ojk` is an OJK publication
+  portal, not a collection containing only OJK-issued instruments.
+- Metadata years range from 1953 through 2027. Future, malformed, or surprising
+  dates must be reported; they must not be silently normalized.
+- The 2,395 PDFs contain 2,323 unique SHA-256 values.
+- Sixty-nine within-source duplicate-hash groups contain 72 copies beyond the
+  first.
+
+### 3.3 Consequences of these facts
+
+- A metadata record is not the same thing as a downloaded file.
+- An OJK detail page is often a publication bundle containing multiple files with
+  different semantic roles.
+- A downloaded file is not automatically a regulation.
+- A duplicate file occurrence is not a new legal instrument.
+- A new byte sequence is not automatically a new legal instrument; two portal
+  copies may render the same regulation differently.
+- Source portal, issuer, instrument type, document role, media format, and layout
+  family are separate dimensions.
+- EASE-BI and Peraturan-OJK need separate source adapters and separate quality
+  reporting.
+
+## 4. Non-negotiable principles
+
+### 4.1 Metadata is a sidecar, not legal text
+
+Raw harvested metadata is retained unchanged and hashed. Parsed metadata may help
+identify, group, sample, and validate files. Metadata text must never be appended,
+prepended, blended, or indexed as though it came from a downloaded document.
+
+Each usable metadata value receives one evidence status:
+
+- `declared`: stated by the source portal;
+- `observed`: derived directly from file bytes or container structure;
+- `verified`: the portal assertion and downloaded document agree;
+- `conflict`: both exist and disagree;
+- `missing`: no usable value exists;
+- `not_applicable`: the field does not apply to that document role.
+
+Conflicts remain visible. The implementation must not choose a convenient value and
+erase the disagreement.
+
+### 4.2 Unknown is a valid result
+
+No classifier may default an unrecognized file to `primary_instrument`. Unknown,
+ambiguous, unsupported, and conflicting records remain outside normative parsing
+until reviewed.
+
+### 4.3 Preserve occurrences before deduplicating content
+
+The inventory must retain every portal record and every downloaded path. Exact
+content hashes may point several occurrences to one content blob, but provenance is
+never deleted. Instrument-level reconciliation happens only after role and identity
+evidence have been reviewed.
+
+### 4.4 Measure one source family at a time
+
+Results must be reported separately for:
+
+- EASE-BI versus Peraturan-OJK;
+- each media format;
+- each document role;
+- each layout family;
+- text-native versus unsupported/image-only files;
+- modern versus legacy publications where source evidence supports that grouping.
+
+An aggregate success rate cannot hide a bad family.
+
+### 4.5 No mock-based correctness
+
+Mocks, monkeypatches, fabricated portal records, injected parser outputs, and copied
+runtime output are prohibited as evidence of source understanding, extraction
+quality, role classification, legal hierarchy, citation correctness, retrieval, or
+API behavior.
+
+Tests may cover a pure utility only after the utility has an independently useful
+contract. Any legal or source-behavior expectation must refer to a real reviewed
+EASE-BI or Peraturan-OJK record and its source hash.
+
+### 4.6 No build pressure
+
+There is no target corpus size and no incentive to maximize accepted documents.
+Precision and honest exclusion are more important than coverage during this plan.
+
+## 5. Identity and authority model to establish
+
+The source-understanding layer must distinguish these identities:
+
+1. `source_record_id`: one harvested portal record.
+2. `publication_bundle_id`: one portal detail page or EASE list entry and all files
+   attached to it.
+3. `source_file_occurrence_id`: one path referenced by one source record.
+4. `content_blob_id`: SHA-256 of the downloaded bytes.
+5. `document_identity`: one semantic document after reviewed role classification.
+6. `instrument_identity`: issuer, instrument kind, normalized number, and year,
+   created only from verified evidence.
+
+Authority rules:
+
+- Downloaded bytes are authoritative for document wording and visual structure.
+- The portal record is authoritative only for what the portal declared.
+- A portal URL establishes provenance, not legal validity.
+- Filename and directory names are hints, not final identity evidence.
+- A document title page or equivalent explicit source statement may verify portal
+  metadata.
+- Lifecycle status is not inferred from a portal category, title similarity, year,
+  or newer-looking file. It requires explicit reviewed evidence.
+
+## 6. Document taxonomy to review
+
+The initial semantic role vocabulary is deliberately small:
+
+- `primary_instrument`: the normative instrument itself;
+- `abstract`: a portal-authored abstract or summary;
+- `faq`: questions and answers about an instrument or topic;
+- `explanation`: an official explanatory section or separate explanation document;
+- `attachment`: an attachment governed by an instrument;
+- `form_template`: a form, spreadsheet, letter template, or submission template;
+- `guideline`: procedural or implementation guidance that is not itself classified
+  as the primary instrument;
+- `supporting_material`: other related official material;
+- `unknown`: insufficient or conflicting evidence;
+- `deferred_unreadable`: cannot currently be read with the ordinary tools in use;
+  this result is recorded without starting a remediation workstream.
+
+Instrument kind is separate from document role. Examples include POJK, SEOJK, PADK,
+PBI, PADG, SEBI, statute, government regulation, ministerial regulation, decision,
+and legacy Bapepam instruments.
+
+Layout family is also separate. It will be discovered from reviewed files rather
+than hard-coded from agency names.
+
+## 7. Target source-understanding flow
 
 ```text
-downloaded source documents
-  -> source inventory with stable IDs and source hashes
-  -> document eligibility filter
-       exclude reports/ocr_needed.json before extraction
-  -> pinned, OCR-disabled LiteParse extraction
-       fresh JSON with Markdown, text, and layout items
-  -> LiteParse normalization
-       Markdown AST as semantic source; layout items validate page anchors
-  -> document-family and zone classifier
-  -> legal structure parser
-  -> versioned Legal JSON AST
-       source blocks + clean display/retrieval text + hierarchy + spans
-       contextual units + lifecycle and cross-reference evidence
-  -> regulation catalog and lifecycle graph
-  -> clean SQLite database
-       regulations
-       source_documents
-       lifecycle_relations
-       legal_nodes
-       contextual_units
-       lexical index
-  -> typed QuerySpec
-  -> document retrieval
-  -> provision retrieval within selected documents
-  -> evidence gates
-  -> mode-specific response renderer
-  -> database-resolved citations
-  -> API
-  -> real-index acceptance evaluation
+actual EASE publication bundles --------+
+actual OJK publication bundles ----------+--> direct human walkthrough
+                                                       |
+                                                       v
+                                      written source and document map
+                                                       |
+                                                       v
+                                      reviewed roles and layout families
+                                                       |
+                                                       v
+data/*.json + downloads/**/* -----------> inventory automation
+                                                       |
+                                                       v
+                                      measured metadata and duplicate profile
+                                                       |
+                                                       v
+                                      rules derived from reviewed evidence
+                                                       |
+                                                       v
+                                      extraction experiments by one family
 ```
 
-No title text, query expansion, or issuer prior may satisfy provision-level claim relevance.
+The flow stops at any failed gate. It does not continue automatically to a corpus.
 
-## Canonical Legal JSON AST
+## 8. Implementation phases
 
-The canonical generated corpus representation is a versioned Legal JSON AST, not
-Markdown alone, plain text, HTML, a vector chunk, or a graph. Markdown remains
-immutable source evidence inside the AST; all downstream representations are
-derived from the AST.
+### Phase 0: hard reset
 
-Each serialized `LegalDocumentV1` contains the source-document identity and hash,
-typed source blocks, legal nodes, contextual units, lifecycle and explicit
-cross-reference evidence, limitations, and a schema version. Every source-bearing
-block and node retains:
+Status: complete.
 
-- `raw_markdown`: the exact Markdown slice from the fresh LiteParse record;
-- `display_text`: Markdown presentation syntax removed, without changing legal
-  wording;
-- `retrieval_text`: whitespace-normalized `display_text`, never a separately
-  rewritten version of the text; and
-- exact Markdown ranges, source pages, and any validated visual anchors.
+Work:
 
-Raw Markdown is for provenance and range resolution. User-visible node text,
-contextual-unit display text, and indexed retrieval text must derive from the
-normalized text fields; they must not expose Markdown markers such as `#` or `**`.
-The raw LiteParse `text` field is retained as a fallback only when Markdown is
-absent and as geometry-validation evidence. It is never merged with present
-Markdown to produce a purportedly cleaner semantic source.
+- delete `processed/` and stale reports;
+- delete premature backend contracts and synthetic tests;
+- remove unused runtime dependencies;
+- document the two-source boundary;
+- add a baseline check that rejects old processed output.
 
-The artifact schema is validated during every build and published as JSON Schema.
-The immutable internal domain models may remain dataclasses; Pydantic models are
-used at the serialized corpus and API boundaries to validate `LegalDocumentV1` and
-emit the versioned JSON Schema. Any schema change destroys and rebuilds generated
-corpus, database, reports, and indexes.
+Exit gate:
 
-`markdown-it-py` is the required Python Markdown AST parser. Its block and inline
-tokens, including source maps, define the normalizer input. Do not add the
-JavaScript Unified/mdast stack or a second Markdown parser. HTML parsers are added
-only if an official HTML source becomes a separately approved canonical input;
-LiteParse JSON is not converted through HTML or Pandoc.
+- only `ease-bi` and `peraturan-ojk` exist under both `data/` and `downloads/`;
+- `processed/` does not exist;
+- no backend parser, corpus builder, database, retrieval, answer, or API is runnable;
+- the dependency lock matches the reset project configuration.
 
-## Fresh LiteParse extraction and normalization contract
+### Phase 1: direct source walkthrough
 
-Downloaded source documents are the only canonical input for this migration.
-All pre-cutover output under `processed/raw/liteparse/` is obsolete and must be
-deleted before a new run. It must never be accepted as corpus input, a fixture,
-or a source of extraction-quality claims.
+Purpose: understand the documents before designing automation.
 
-Before extraction, the builder creates a deterministic source inventory from the
-downloaded documents and their repository source records. Every inventory row has
-a stable file ID, repository-relative source path, source URL when available, and
-SHA-256 hash. `reports/ocr_needed.json` is joined against that inventory before
-LiteParse is started. Every listed row is skipped without opening, parsing, or OCR
-processing its source document, and the fresh extraction manifest reports its IDs,
-count, and reasons.
+Files to add:
 
-Every eligible document is extracted afresh with a pinned LiteParse version and a
-recorded configuration: OCR disabled, Markdown output, links enabled, word boxes
-enabled, and image output disabled. The fresh raw JSON is reproducible generated
-input, not source truth; its manifest records the extractor version, configuration,
-source-inventory hash, input hashes, output hashes, skipped OCR rows, failures, and
-Git hash. LiteParse Markdown is the canonical semantic representation for the
-new normalization run: it reconstructs headings, paragraphs, lists, tables, links,
-and images from page layout. The migration must not demote that structure to a broad
-plain-text string or attempt to reconstruct the entire document from word boxes.
+- `docs/sources/ease-bi-walkthrough.md`
+- `docs/sources/peraturan-ojk-walkthrough.md`
+- `docs/sources/open-questions.md`
+- `resources/source_review/walkthrough.jsonl`
 
-Each eligible raw page has three distinct, complementary representations:
+Do not add application code or tests in this phase.
 
-- `markdown` is the primary source for semantic normalization and legal parsing.
-- `text` is a plain-text fallback only when Markdown is absent. It is not permitted
-  to replace present Markdown merely because it appears visually cleaner.
-- `text_items` retain spatial coordinates, font information, and page geometry.
-  They validate Markdown-to-page alignment and produce visual anchors; they are
-  not an alternative semantic parser.
+Work:
 
-The normalizer must parse Markdown into a deterministic, provenance-preserving
-block tree. At minimum it must preserve heading level, paragraphs, ordered and
-unordered list items and nesting, tables with rows and cells, thematic/page
-breaks, links, images, and the exact source range of every resulting block. It
-must retain the raw Markdown alongside normalized display and retrieval text;
-normalization may remove presentation syntax and normalize Unicode/whitespace only,
-never silently delete, reorder, infer, spell-correct, or rewrite legal words.
-Encoding repair is allowed only for demonstrable mojibake, must be recorded as a
-per-block transform with before/after values, and must leave the raw source intact.
+1. Open the EASE-BI metadata records and their downloaded files together. Follow the
+   tab and group hierarchy as a user of the portal would see it.
+2. Open representative Peraturan-OJK detail records as publication bundles. Compare
+   the page metadata with each attached `peraturan`, `abstrak`, and `faq` file.
+3. Read enough of each selected file to answer: what is this document, who issued
+   it, what purpose does it serve, and is it itself normative?
+4. Write down recurring document roles, bundle shapes, title-page patterns,
+   explanation/attachment boundaries, forms, tables, and obvious legacy differences.
+5. Record confusing and contradictory cases without solving them in code.
+6. If a file is unreadable, mark it `deferred_unreadable` and continue immediately.
+   Do not investigate or repair it during this phase.
+7. Capture paths and hashes for every documented example so observations remain
+   tied to the actual bytes.
 
-Legal interpretation happens after block normalization, not while scanning raw
-page strings. The parser must first classify the document and its zones from
-source-backed signals: regulation, explanatory memorandum, attachment/form,
-decision, circular, FAQ, or other supporting material. It may create a legal
-path (`BAB`, `Bagian`, `Paragraf`, `Pasal`, `Ayat`, `Huruf`, `Angka`) only where
-the normalized structure and document zone support that meaning. A numbered FAQ
-question, table row, or attachment field is not an `Angka` legal provision merely
-because it begins with `1.`.
+Exit gate:
 
-Markdown tables and lists are first-class citation material. A table-derived
-node must preserve its table, row, and cell context; a list-derived node must
-retain its governing lead-in and nesting. Geometry may be used to confirm
-reading order, join a Markdown block to its page region, identify repeated page
-furniture, and produce page anchors. When Markdown and geometry disagree, the
-builder must record the disagreement and quarantine the affected block or
-document from searchable/citable legal units until reviewed; it must not guess.
+- the two walkthrough documents describe how each source publishes information;
+- at least one real example supports every proposed document role;
+- important counterexamples and unknowns are recorded;
+- no parser, classifier, schema, or generalized source model has been written.
 
-The normalized corpus must be auditable with these gates before publication:
+### Phase 2: reviewed document and bundle map
 
-1. every accepted node maps to an exact Markdown range and at least one source page;
-2. semantic block coverage accounts for all non-furniture Markdown content;
-3. legal anchors have valid parent hierarchy and are not inferred from unrelated FAQ,
-   table, form, or signature content;
-4. table/list children retain a readable governing context;
-5. Markdown-to-geometry mismatches, unsupported constructs, and quarantined source
-   IDs are reported with counts and reasons in the manifest; and
-6. representative BI and OJK fixtures are literal minimized copies of fresh,
-   OCR-disabled LiteParse records, including regulations, explanations,
-   attachments/tables, circulars, and FAQs; and
-7. the raw-extraction manifest accounts for every source-inventory row as extracted,
-   skipped for OCR, or failed with a recorded reason.
-8. every serialized Legal JSON AST instance validates against its published schema,
-   and every user-visible or indexed text field is derived from normalized display
-   text rather than raw Markdown; and
-9. a failed build persists a machine-readable audit report with its finding codes,
-   representative source IDs, counts, and input hashes before its staging output is
-   removed.
+Purpose: turn the walkthrough into human-reviewed evidence without automating the
+conclusions yet.
 
-No full corpus, database, coverage claim, or API result is published until these
-extraction and normalization gates pass on fresh OCR-disabled raw inputs.
+Files to add:
 
-## File destruction manifest
+- `resources/source_review/review_manifest.json`
+- `resources/source_review/document_roles.jsonl`
+- `resources/source_review/layout_families.jsonl`
+- `resources/source_review/publication_bundles.jsonl`
+- `resources/source_review/metadata_conflicts.jsonl`
+- `docs/sources/review-guide.md`
+- `docs/sources/document-role-taxonomy.md`
 
-The following files will be deleted rather than adapted.
+Do not add classifier tests in this phase.
 
-### Runtime modules to delete
+Work:
 
-- `thinking_layer/answer/alignment.py`
-- `thinking_layer/answer/composer.py`
-- `thinking_layer/answer/noise.py`
-- `thinking_layer/answer/quality.py`
-- `thinking_layer/retrieval/evidence.py`
-- `thinking_layer/retrieval/planning.py`
-- `thinking_layer/retrieval/query_tools.py`
-- `thinking_layer/retrieval/search.py`
-- `thinking_layer/retrieval/topic_coverage.py`
-- `thinking_layer/indexing/scoring.py`
-- `thinking_layer/indexing/semantic.py`
-- `thinking_layer/indexing/title.py`
-- `thinking_layer/config/heuristic_audit.py`
-- `thinking_layer/config/heuristics.py`
-- `thinking_layer/lexicon/candidates.py`
-- `thinking_layer/lexicon/merge.py`
-- `thinking_layer/evaluation/golden.py`
+1. Review every EASE-BI file because the collection is currently small.
+2. Review a Peraturan-OJK set covering all portal file kinds, major regulation
+   types, year bands, sectors, single-file bundles, multi-file bundles, duplicate
+   files, and confusing filenames.
+3. Include every rare category encountered during the walkthrough.
+4. Record the reviewer decision, evidence page, evidence text or visual description,
+   document role, instrument-kind candidate, layout-family candidate, uncertainty,
+   and source hashes.
+5. Describe relationships inside a publication bundle without assuming that all
+   files are part of the normative instrument.
+6. Allow `unknown` and reviewer disagreement.
+7. Never generate a review label from code output.
 
-Empty package initializers will be rewritten only when required by the new package layout.
+Exit gate:
 
-### Heuristic and golden resources to delete
+- all EASE-BI files have reviewed roles or explicit unknowns;
+- the OJK review set covers every observed bundle and role family;
+- every label resolves to unchanged source bytes;
+- disagreements remain visible;
+- the taxonomy explains actual documents rather than hypothetical formats.
 
-- `resources/query_lexicon.json`
-- `resources/query_lexicon.reviewed.json`
-- `resources/golden_questions.json`
-- `resources/config/answer_noise.json`
-- `resources/config/answer_ranking.json`
-- `resources/config/cross_regulator_confidence.json`
-- `resources/config/evaluation_rubrics.json`
-- `resources/config/evidence_confidence.json`
-- `resources/config/retrieval_ranking.json`
-- `resources/config/semantic_retrieval.json`
+### Phase 3: lossless two-source inventory
 
-Extraction configuration is not automatically trusted. The following files will be reviewed against the rewritten parser and either rewritten or deleted if their settings no longer have a measured purpose:
+Purpose: automate only the source relationships already understood in Phases 1 and
+2. This is the first phase that adds backend code.
 
-- `resources/config/extraction_heuristics.json`
-- `resources/config/extraction_spot_check.json`
-- `resources/config/lexicon_extraction.json`
-- `resources/indonesian-stopwords-complete.txt`
+Files to add:
 
-### Current backend tests to delete
+- `thinking_layer/sources/__init__.py`
+- `thinking_layer/sources/models.py`
+- `thinking_layer/sources/hashing.py`
+- `thinking_layer/sources/inventory.py`
+- `thinking_layer/sources/serialization.py`
+- `thinking_layer/sources/cli.py`
+- `thinking_layer/sources/adapters/__init__.py`
+- `thinking_layer/sources/adapters/ease_bi.py`
+- `thinking_layer/sources/adapters/peraturan_ojk.py`
+- `tests/source_acceptance/test_inventory_reconciliation.py`
 
-- `tests/acceptance/test_live_query_api.py`
-- `tests/browser_api_app.py`
-- `tests/test_answer_alignment.py`
-- `tests/test_answer_noise.py`
-- `tests/test_answer_quality.py`
-- `tests/test_api.py`
-- `tests/test_citations.py`
-- `tests/test_corpus_audit.py`
-- `tests/test_corpus_hygiene.py`
-- `tests/test_evidence_answer.py`
-- `tests/test_extraction.py`
-- `tests/test_extraction_pipeline.py`
-- `tests/test_geometry.py`
-- `tests/test_golden_evaluation.py`
-- `tests/test_imports_cli.py`
-- `tests/test_legal_units.py`
-- `tests/test_metadata.py`
-- `tests/test_normalization.py`
-- `tests/test_pipeline_contract.py`
-- `tests/test_pjp_title_retrieval.py`
-- `tests/test_query_planning.py`
-- `tests/test_query_presenter.py`
-- `tests/test_query_service_enumeration.py`
-- `tests/test_retrieval_legal_constraints.py`
-- `tests/test_topic_coverage.py`
+Work:
 
-The `tests/` tree will then be recreated from an empty directory. No assertion or fixture will be copied without being rewritten from the new public contract or an independently reviewed legal target.
+1. Read only per-record JSON files; compare aggregate NDJSON separately.
+2. Preserve raw record paths and SHA-256 values.
+3. Resolve every declared saved path and discover every downloaded occurrence.
+4. Record extension, basic file signature, size, SHA-256, source URL, portal record,
+   publication bundle, and raw role assertion.
+5. Report missing files, unreferenced files, duplicates, reused paths, incomplete
+   `.part` files, malformed records, and conflicts.
+6. Preserve every occurrence even when content hashes match.
+7. Do not extract document text or infer legal meaning.
+8. Write disposable output under `artifacts/source-understanding/inventory/`.
 
-### Stale reports to delete
+Required artifacts:
 
-- `reports/golden_full_terminal.json`
-- `reports/golden_preflight_terminal.json`
-- `reports/golden_smoke_terminal.json`
-- `reports/golden_terminal_analysis.md`
-- obsolete entries in `reports/REPORT_INDEX.md`
+- `source_records.ndjson`
+- `source_file_occurrences.ndjson`
+- `content_blobs.ndjson`
+- `inventory_manifest.json`
+- `inventory_findings.ndjson`
 
-`reports/ocr_needed.json` remains because it is the authoritative exclusion list. Corpus inventory reports may be regenerated in a new format; they are not compatibility artifacts.
+Exit gate:
 
-### Generated artifacts to destroy and recreate
+- all metadata records and downloaded files are accounted for;
+- counts reconcile separately for each source;
+- outputs preserve source hashes and reviewed bundle relationships;
+- rerunning without input changes produces identical semantic output.
 
-The implementation must discover the exact paths through `thinking_layer/config/paths.py`, then delete the generated artifacts for:
+### Phase 4: metadata characterization
 
-- legal-unit blocks;
-- source-corpus rows;
-- regulation catalog;
-- document catalog;
-- SQLite search and citation database;
-- semantic indexes, if present;
-- cached evaluation output;
-- generated reports that encode the old schema.
+Purpose: measure portal assertions using the document understanding already captured.
 
-### Raw extraction to destroy and recreate
+Files to add:
 
-- `processed/raw/liteparse/**`
+- `thinking_layer/sources/profile.py`
+- `thinking_layer/sources/metadata_fields.py`
+- `docs/sources/ease-bi.md`
+- `docs/sources/peraturan-ojk.md`
+- `docs/sources/metadata-authority.md`
+- `tests/source_acceptance/test_metadata_profiles.py`
 
-The old raw extraction is not a compatibility artifact and is not retained as an
-input baseline. It is deleted before the source-inventory and fresh-extraction run.
+Work:
 
-Fresh OCR-disabled raw extraction is generated input only. Downloaded source documents
-remain authoritative and define neither a compatibility path nor the new legal-unit
-or index contract by themselves.
+1. Measure field presence, null rate, type consistency, cardinality, and unexpected
+   values separately by source.
+2. Compare EASE tabs, groups, titles, labels, content types, URLs, and paths with the
+   reviewed files.
+3. Compare OJK regulation types, file kinds, numbers, dates, sectors, and bundle
+   membership with reviewed evidence.
+4. Preserve contradictions rather than normalizing them away.
+5. Detect repeated numbers and hashes without assuming semantic duplication.
+6. Document each field as a retained raw assertion, verified candidate, conflict,
+   ignored value, or unresolved value.
+7. Do not create final instrument identities yet.
 
-## New package layout
+Exit gate:
 
-### Domain contracts to add
+- both source profiles are reviewed against real documents;
+- normalized fields have explicit provenance;
+- metadata wording is never treated as document wording;
+- unknown and conflicting values remain visible.
 
-- `thinking_layer/domain/legal.py`
-  - instrument identity, source document, lifecycle relation, legal node, contextual unit, citation, and versioned Legal JSON AST models.
-- `thinking_layer/domain/query.py`
-  - `QuerySpec`, explicit constraints, answer mode, requested predicate, requested shape, and ambiguity model.
-- `thinking_layer/domain/evidence.py`
-  - document candidate, provision candidate, evidence group, and independent gate results.
-- `thinking_layer/domain/response.py`
-  - one API response contract with document results, findings, citations, limitations, and diagnostics.
+### Phase 5: role and bundle classification
 
-### Corpus implementation to add
+Purpose: implement only the distinctions demonstrated by reviewed source evidence.
 
-- `thinking_layer/corpus/liteparse_normalizer.py`
-  - parse LiteParse Markdown with `markdown-it-py` into a provenance-preserving block tree before legal parsing; derive clean display/retrieval text from inline tokens; use text-item geometry only to validate and anchor the Markdown-derived blocks.
-- `thinking_layer/corpus/parser.py`
-  - derive legal hierarchy and source spans from normalized LiteParse blocks, never from broad page strings or raw Markdown display text.
-- `thinking_layer/corpus/catalog.py`
-  - construct non-colliding regulation and source-document records.
-- `thinking_layer/corpus/lifecycle.py`
-  - build and validate source-backed lifecycle relations.
-- `thinking_layer/corpus/context.py`
-  - construct complete contextual units without destroying atomic citation targets.
-- `thinking_layer/corpus/builder.py`
-  - orchestrate a clean full build, validate Legal JSON AST artifacts, and emit reproducibility and durable failure manifests.
-- `thinking_layer/corpus/eligibility.py`
-  - load `reports/ocr_needed.json`, exclude those files, and emit coverage limitations.
+Files to add:
 
-### Index implementation to add
+- `thinking_layer/sources/roles.py`
+- `thinking_layer/sources/classification.py`
+- `thinking_layer/sources/bundles.py`
+- `tests/source_acceptance/test_document_roles.py`
+- `tests/source_acceptance/test_publication_bundles.py`
 
-- `thinking_layer/indexing/schema.py`
-  - define the only accepted SQLite schema.
-- `thinking_layer/indexing/bm25.py`
-  - generic lexical indexing and scoring with no prompt-specific boosts.
-- `thinking_layer/indexing/repository.py`
-  - typed database reads for catalog, nodes, context, and citations.
-- `thinking_layer/indexing/build.py`
-  - create a new database atomically from accepted corpus outputs.
+Work:
 
-### Retrieval implementation to add
+1. Apply source-specific portal assertions first as declared evidence.
+2. Validate those assertions using filename, media type, first-page evidence, and
+   bundle relationships only where the review set demonstrates a general rule.
+3. Keep role, instrument kind, and layout family in separate fields.
+4. Return `unknown` for missing or conflicting evidence.
+5. Never use numeric marker shape alone to identify a regulation.
+6. Never treat abstract, FAQ, form, or guideline content as normative because it
+   mentions Pasal or an instrument number.
+7. Report a confusion matrix and false-primary count independently for each source
+   and layout family.
 
-- `thinking_layer/retrieval/query_spec.py`
-  - parse explicit syntax and construct a typed query contract.
-- `thinking_layer/retrieval/document_search.py`
-  - rank canonical regulation documents.
-- `thinking_layer/retrieval/provision_search.py`
-  - rank claim-bearing units within selected documents.
-- `thinking_layer/retrieval/gates.py`
-  - independently validate document relevance, claim relevance, lifecycle, citation integrity, answer shape, readability, and corpus scope.
-- `thinking_layer/retrieval/pipeline.py`
-  - orchestrate one execution path without fallbacks.
+Exit gate:
 
-### Answer implementation to add
+- zero reviewed abstracts, FAQs, forms, guidelines, or unknown files are classified
+  as primary instruments;
+- every classification includes inspectable evidence and a rule identifier;
+- family-specific results are published without a hidden aggregate;
+- failed families remain excluded rather than patched with filename exceptions.
 
-- `thinking_layer/answer/document_list.py`
-  - render regulation-discovery results.
-- `thinking_layer/answer/extractive.py`
-  - render exact lookup and source-backed substantive findings.
-- `thinking_layer/answer/comparison.py`
-  - render independently supported sides without inventing missing comparisons.
-- `thinking_layer/answer/renderer.py`
-  - dispatch by answer mode and revalidate the final response.
+### Phase 6: layout-family discovery
 
-### Evaluation implementation to add
+Purpose: understand structure before writing a legal parser.
 
-- `thinking_layer/evaluation/datasets.py`
-  - load development, negative, lifecycle, and sealed manifests.
-- `thinking_layer/evaluation/citation_verifier.py`
-  - resolve every citation from SQLite rather than trusting API output.
-- `thinking_layer/evaluation/metrics.py`
-  - report retrieval, citation, status, readability, lifecycle, refusal, and latency metrics separately.
-- `thinking_layer/evaluation/runner.py`
-  - exercise the real query pipeline and pinned database.
-- `resources/evaluation/development.jsonl`
-- `resources/evaluation/negatives.jsonl`
-- `resources/evaluation/lifecycle.jsonl`
-- `resources/evaluation/holdout.jsonl`
-- `resources/regulation_relations.reviewed.json`
+Files to add:
 
-## Existing files to rewrite in place
+- `thinking_layer/sources/layouts.py`
+- `thinking_layer/sources/layout_evidence.py`
+- `docs/sources/layouts/ease-bi.md`
+- `docs/sources/layouts/peraturan-ojk-modern.md`
+- `docs/sources/layouts/peraturan-ojk-legacy.md`
+- `tests/source_acceptance/test_layout_family_assignments.py`
 
-These paths remain only because they are useful public entry points. Their internal contracts may break completely.
+Work:
 
+1. Inspect title pages, headers, footers, page numbering, normative openings,
+   chapters, articles, explanations, signatures, attachments, lists, and tables.
+2. Separate portal/document role from visual layout family.
+3. Identify documents containing multiple internal zones.
+4. Record unreadable layouts as deferred and continue with readable examples.
+5. Define family membership from observable structure, not agency reputation.
+6. Start with the smallest coherent family, expected to be modern text-native OJK
+   primary instruments, but confirm that expectation from review data.
+
+Exit gate:
+
+- every reviewed primary document has a reviewed layout family or `unknown`;
+- each accepted family has documented positive and negative boundary examples;
+- no legal hierarchy parser exists yet.
+
+### Phase 7: extraction experiments
+
+Purpose: select extraction behavior using measured real documents rather than parser
+convenience.
+
+Files to add only after the experiment design is reviewed:
+
+- `thinking_layer/extraction/`
+- `resources/extraction_review/`
+- `tests/extraction_acceptance/`
+- `docs/extraction/experiment.md`
+- `reports/ocr_needed.json`
+- `reports/ocr_needed.md`
+
+Work:
+
+1. Define review measurements before selecting or pinning an extraction library.
+2. Run extraction only on the readable reviewed sample. Deferred unreadable files do
+   not block the experiment.
+3. Measure title fidelity, paragraph order, list nesting, table structure, page
+   anchors, repeated furniture, character corruption, missing text, and attachment
+   boundaries.
+4. Report results by source, media type, role, and layout family.
+5. Preserve extractor raw output and configuration as disposable experiment
+   artifacts, not canonical corpus input.
+6. Add an extractor dependency only after it wins the documented experiment.
+7. Do not repair missing legal wording heuristically.
+8. Whenever extraction indicates that a file or particular pages need OCR, rebuild
+   `reports/ocr_needed.json` and its readable Markdown companion. Each finding must
+   include the source, source-record path, downloaded path, source URL when present,
+   byte hash, document role when known, reason, affected page numbers when known,
+   detecting stage, and tool/configuration evidence.
+9. The OCR-needed report is informational. Do not run OCR, and do not stop work on
+   other readable documents because the report is non-empty.
+
+Exit gate:
+
+- the selected extractor has reviewed family-specific evidence;
+- every accepted extracted block maps to source bytes and a source page or office
+  container location;
+- unsupported families remain excluded;
+- the OCR-needed JSON and Markdown reports exist, even when their finding lists are
+  empty, and account for every unreadable file or page encountered by the experiment;
+- no full-source extraction has run.
+
+### Phase 8: minimal legal parsing by family
+
+Purpose: parse one proven family without pretending the same grammar fits everything.
+
+Files are intentionally not named until Phase 6 establishes the family boundaries.
+Creating generic `corpus`, `legal_ast`, or `parser` packages before that decision is
+prohibited.
+
+Work:
+
+1. Begin with one reviewed, text-native, primary-instrument layout family.
+2. Define its expected legal anchors and zone transitions from reviewed documents.
+3. Parse only explicit source structure.
+4. Preserve unparsed blocks and coverage gaps.
+5. Test against independently reviewed real documents, including negative role and
+   boundary examples.
+6. Add another layout family only through a separate measured acceptance gate.
+7. Address BI PDF regulations, BI guidance, BI FAQ, DOCX, and XLSX separately; do not
+   force them through the OJK parser.
+8. If parsing discovers an unreadable file or page not already reported, add it to
+   the same OCR-needed reports with parser-stage evidence. Never silently drop the
+   affected pages or describe a partially read document as complete.
+
+Exit gate:
+
+- the selected family has measured anchor precision and recall;
+- false normative anchors are zero on reviewed negative roles;
+- source order, wording, and locations are preserved;
+- excluded content is counted and explained;
+- every parser-discovered OCR need resolves to an entry in both OCR-needed reports.
+
+### Phase 9: corpus decision checkpoint
+
+Only after Phases 1 through 8 pass may the project decide whether a corpus model,
+database, retrieval pipeline, API, or frontend migration should exist.
+
+At this checkpoint, write a new plan based on measured source facts. Do not carry
+forward schemas or module names from the deleted implementation merely because they
+previously existed.
+
+## 9. Accuracy definitions
+
+The word `accuracy` must name a measured property:
+
+- inventory accuracy: metadata/file reconciliation against actual paths;
+- file accuracy: detected format and basic properties against inspected files;
+- role accuracy: reviewed document-role classification;
+- identity accuracy: issuer/type/number/year agreement with explicit document
+  evidence;
+- extraction fidelity: wording, order, structure, and location preservation;
+- anchor accuracy: legal hierarchy precision and recall;
+- coverage: included, excluded, unsupported, unknown, and duplicate occurrences.
+
+There is no valid single overall accuracy number.
+
+## 10. Testing rules
+
+1. Do not restore the deleted synthetic LiteParse fixtures.
+2. Do not use mocks to claim successful parsing, classification, citation,
+   retrieval, or API behavior.
+3. Do not write expected output by copying current runtime output.
+4. Every source-behavior fixture must identify its original source record, path,
+   byte hash, review decision, and minimization method if minimized.
+5. Prefer acceptance checks that read the actual local source trees.
+6. A missing local source tree is a failed source acceptance run, not a passing
+   skipped test in release validation.
+7. Pure utility tests may cover hashing, deterministic serialization, and strict
+   normalization, but they do not count as source accuracy.
+8. Negative examples are mandatory for every classifier and parser family.
+9. Tests must assert exclusions and unknowns, not only successes.
+10. Any change to reviewed labels requires an explicit human review diff.
+
+## 11. Files removed by the reset
+
+Removed implementation areas:
+
+- `thinking_layer/corpus/`
+- `thinking_layer/domain/`
+- `thinking_layer/answer/`
+- `thinking_layer/retrieval/`
+- `thinking_layer/indexing/`
+- `thinking_layer/evaluation/`
+- `thinking_layer/lexicon/`
+- `thinking_layer/api/`
+- `thinking_layer/common/`
 - `thinking_layer/cli.py`
-  - replace old planning, evidence, answer, golden, and build commands with clean build, query, trace, evaluate, and audit commands.
-- `thinking_layer/config/paths.py`
-  - remove old generated paths and define the new build outputs.
-- `thinking_layer/common/text.py`
-  - keep only generic normalization proven by language-level tests.
-- `thinking_layer/common/io.py`
-  - support atomic writes and reproducibility manifests.
-- `thinking_layer/observability.py`
-  - record stage timings, candidate counts, gate failures, database hash, and skipped corpus coverage.
-- `thinking_layer/api/app.py`
-- `thinking_layer/api/dependencies.py`
-- `thinking_layer/api/routers/queries.py`
-- `thinking_layer/api/routers/documents.py`
-- `thinking_layer/api/routers/health.py`
-- `thinking_layer/api/schemas/queries.py`
-- `thinking_layer/api/schemas/documents.py`
-- `thinking_layer/api/schemas/health.py`
-- `thinking_layer/api/presenters/queries.py`
-- `thinking_layer/api/services/query_service.py`
-- `thinking_layer/api/services/documents.py`
-- `thinking_layer/api/services/health.py`
-  - replace the old query and citation contract with the new domain models and database repository.
-- `thinking_layer/api/routers/feedback.py`
-- `thinking_layer/api/schemas/feedback.py`
-- `thinking_layer/api/services/feedback.py`
-  - either update to the new response identity or delete if feedback has no immediate evaluation use.
-- `thinking_layer/corpus/audit.py`
-- `thinking_layer/corpus/corpus_audit.py`
-- `thinking_layer/corpus/quality.py`
-- `thinking_layer/corpus/spot_check.py`
-  - replace old block assumptions with new structural and coverage audits, or delete when duplicated by the builder.
 
-The following old corpus files will be deleted after their required algorithms have been independently reimplemented in the new package layout:
+Removed tests and fixtures:
 
-- `thinking_layer/corpus/build.py`
-- `thinking_layer/corpus/citations.py`
-- `thinking_layer/corpus/extraction.py`
-- `thinking_layer/corpus/extraction_pipeline.py`
-- `thinking_layer/corpus/geometry.py`
-- `thinking_layer/corpus/legal_units.py`
-- `thinking_layer/corpus/metadata.py`
-- `thinking_layer/corpus/normalization.py`
-- `thinking_layer/corpus/parser_comparison.py`
-- `thinking_layer/corpus/source_corpus.py`
-
-This is algorithm extraction, not interface preservation. Old imports and generated fields will not survive.
-
-## API hard cutover
-
-`POST /queries` remains the conceptual entry point but its payload and response version are not preserved. The frontend will be broken until it is updated later.
-
-The new response contains:
-
-- `request_id`;
-- `status`: `complete`, `partial`, `not_found`, `ambiguous`, or `unsupported_scope`;
-- `mode`;
-- `summary`;
-- `documents` for document discovery;
-- `findings` for provision answers;
-- database-resolved `citations`;
-- explicit `limitations`;
-- independent `diagnostics`;
-- `coverage`, including skipped OCR-needed documents;
-- stage timings.
-
-The following old behavior is removed:
-
-- probability-like `confidence.score`;
-- title-derived support for a finding;
-- representative provision blocks standing in for documents;
-- related-document output that is not independently relevant;
-- hidden query expansions;
-- arbitrary sibling enrichment;
-- exact-prompt branches;
-- successful status computed before final findings are validated.
-
-## Test strategy: delete and rebuild
-
-The new suite tests system behavior through real data boundaries. Mocks are permitted only for external failure injection such as a corrupt file or unavailable database. A mock may never be used as evidence of retrieval accuracy, citation validity, legal correctness, or API acceptance.
-
-### New unit tests
-
-- `tests/unit/domain/test_instrument_identity.py`
-- `tests/unit/domain/test_query_spec.py`
-- `tests/unit/corpus/test_liteparse_normalizer.py`
-- `tests/unit/corpus/test_parser_boundaries.py`
-- `tests/unit/corpus/test_context_assembly.py`
-- `tests/unit/corpus/test_ocr_exclusion.py`
-- `tests/unit/corpus/test_lifecycle_relations.py`
-- `tests/unit/indexing/test_schema.py`
-- `tests/unit/retrieval/test_evidence_gates.py`
-- `tests/unit/answer/test_response_contract.py`
-
-Unit fixtures must be minimal source-like legal text with independently written expected structure. They must not copy runtime output into expected values.
-
-### New integration tests
-
+- `tests/fixtures/fresh_liteparse/`
+- `tests/unit/corpus/`
+- `tests/unit/domain/`
 - `tests/integration/test_clean_corpus_build.py`
-- `tests/integration/test_clean_index_build.py`
-- `tests/integration/test_document_retrieval.py`
-- `tests/integration/test_provision_retrieval.py`
-- `tests/integration/test_citation_resolution.py`
-- `tests/integration/test_query_pipeline.py`
-- `tests/integration/test_api_real_database.py`
+- the remaining backend test package markers
 
-Integration tests build or use a pinned miniature SQLite database from source fixtures. They do not patch search results or inject expected candidates.
+Removed generated or stale state:
 
-Corpus fixtures must be literal, minimized copies of fresh LiteParse raw records,
-not hand-authored clean Markdown. They must cover a regulation, explanatory
-memorandum, attachment/table, circular, and FAQ so the normalizer is tested
-against the output it will actually consume.
+- `processed/`
 
-### New acceptance tests
+## 12. Files retained intentionally
 
-- `tests/acceptance/test_document_discovery.py`
-- `tests/acceptance/test_exact_lookup.py`
-- `tests/acceptance/test_rule_questions.py`
-- `tests/acceptance/test_definition_and_value.py`
-- `tests/acceptance/test_comparison.py`
-- `tests/acceptance/test_lifecycle.py`
-- `tests/acceptance/test_refusal_and_scope.py`
-- `tests/acceptance/test_paraphrase_families.py`
-- `tests/acceptance/test_readability.py`
-- `tests/acceptance/test_latency.py`
+- `data/ease-bi/` and `downloads/ease-bi/` as local source inputs;
+- `data/peraturan-ojk/` and `downloads/peraturan-ojk/` as local source inputs;
+- `thinking_layer/config/paths.py` with only source and artifact locations;
+- the root Python package marker;
+- project tooling configuration;
+- the frontend source, frozen and out of scope;
+- this plan and the reset README.
 
-Acceptance tests call the real API with the current full database. They verify database-resolved citations and user-visible behavior. The two demonstrated questions must be included only as members of larger paraphrase families, never as special single-case gates.
+## 13. Files that must not be added yet
 
-### Evaluation datasets
+Until the corresponding checkpoint passes, do not add:
 
-- Development cases are visible and may diagnose failure classes.
-- Each information need has independently written Indonesian paraphrases.
-- Negatives reuse topics with the wrong issuer, predicate, entity, date, or legal unit.
-- Lifecycle cases cover active, amended, revoked, partially revoked, unknown, and as-of queries.
-- Holdout cases are split by legal information need and document family, not by wording.
-- Holdout prompts remain sealed during tuning. Only aggregate metrics are inspected until a release cycle closes.
+- a corpus builder;
+- a legal JSON AST;
+- a SQLite schema;
+- lexical or semantic indexes;
+- query planning or retrieval;
+- answer rendering;
+- API query routes;
+- frontend integration changes;
+- lifecycle inference;
+- LLM, embedding, reranking, NER, or graph dependencies;
+- compatibility modules under deleted import paths.
 
-### Required metrics
+## 14. Definition of source-understanding done
 
-- document Recall@5, Recall@10, MRR, and nDCG@10;
-- provision Recall@5, Recall@20, MRR, and nDCG@20;
-- exact-anchor accuracy;
-- citation precision and recall;
-- complete-context rate;
-- answer-shape completeness;
-- lifecycle correctness;
-- false-answer and false-refusal rates;
-- status macro-F1 and confusion matrix;
-- paraphrase-family pass rate and worst-family score;
-- p50, p95, and maximum latency;
-- skipped-document count and corpus coverage;
-- source, corpus, database, evaluation, configuration, and Git hashes.
+This plan is complete only when:
 
-No aggregate accuracy number may hide a failed citation, lifecycle, refusal, or worst-family gate.
-
-## Implementation phases
-
-### Phase 0: source inventory and fresh OCR-disabled extraction
-
-1. Delete the complete old `processed/raw/liteparse/` generation.
-2. Build a deterministic source inventory from downloaded PDFs and their source
-   records. Do not derive the inventory from old raw extraction files.
-3. Validate that every `reports/ocr_needed.json` file ID resolves to exactly one
-   inventory row; fail on missing or duplicate IDs.
-4. Skip all OCR-needed inventory rows before invoking LiteParse and report their
-   IDs, count, and reasons in both the raw-extraction manifest and corpus manifest.
-5. Pin LiteParse as a project dependency and run it only with OCR disabled,
-   Markdown output, links enabled, word boxes enabled, and images disabled.
-6. Generate fresh raw JSON atomically from eligible source documents, with source
-   and output hashes, extractor version, configuration, and per-document failures.
-7. Create literal minimized fixtures only from this fresh raw output.
-
-Exit gate: no old raw extraction remains; every downloaded source is inventoried,
-skipped for OCR, freshly extracted, or recorded as failed; and no OCR-needed source
-was opened by LiteParse.
-
-### Phase 1: demolition
-
-1. Create a Git checkpoint only for forensic recovery, not runtime compatibility.
-2. Delete every file in the destruction manifest.
-3. Delete the current `tests/` tree.
-4. Delete old generated blocks, source corpus, catalogs, indexes, semantic artifacts, and evaluation caches.
-5. Remove dead imports, commands, Makefile targets, dependencies, and README instructions.
-6. Confirm that no old planner, search, confidence, composer, golden, or fallback symbol remains with `rg`.
-
-Exit gate: the old backend cannot run and no compatibility path exists.
-
-### Phase 2: domain and corpus truth layer
-
-1. Implement domain models and OCR eligibility filtering.
-2. Add the LiteParse Markdown normalizer before any legal hierarchy parser. Parse the
-   Markdown AST and preserve page, Markdown-range, block, list, table, and link
-   provenance; retain the raw source text unchanged. For every block, derive
-   `display_text` and `retrieval_text` from inline Markdown tokens and retain
-   `raw_markdown` only as evidence.
-3. Define `LegalDocumentV1`, validate every serialized corpus artifact against its
-   Pydantic-generated JSON Schema, and publish that schema with the build contract.
-4. Use `text_items` only to validate block-to-page alignment, derive visual anchors,
-   detect repeated page furniture, and report disagreements. Do not rebuild semantic
-   reading order from geometry when equivalent Markdown is present.
-5. Classify document family and content zones from normalized source evidence before
-   interpreting numeric markers. Support regulations, explanatory memoranda,
-   attachments/forms, decisions, circulars, and FAQs without conflating their
-   numbering systems.
-6. Rewrite legal structure parsing against representative unmodified fresh LiteParse
-   records from multiple BI and OJK document families. Parse legal hierarchy only in
-   supported legal zones; preserve other source-backed material as typed contextual
-   blocks, not fictitious legal provisions. Legal-node text and retrieval text must
-   use normalized block text while their citations retain raw Markdown ranges.
-7. Build atomic legal nodes, explicit hierarchy, contextual units, source spans, and
-   table/list context from the normalized block tree.
-8. Build collision-resistant instrument identity and source-document identity.
-9. Build source-backed lifecycle relations and preserve unknown state. Extract and
-   retain only explicit, source-backed cross references; do not resolve ambiguous
-   references by heuristic inference.
-10. Add structural and normalization audits for dangling fragments, missing lead-ins,
-    duplicate identities, relation cycles, bad spans, unresolved sources, Markdown
-    coverage, false legal anchors, raw-Markdown leakage into display fields, geometry
-    disagreement, schema validity, and quarantine reporting. The publication gate
-    must reject ambiguous spaced-character text and non-printing control characters;
-    it may repair only unambiguous title-cased character spacing and must never guess
-    missing legal wording. Persist a failure manifest before atomic staging cleanup.
-11. Write unit and clean-build integration tests using fresh LiteParse fixtures,
-    including regression fixtures for headings and inline formatting, tables, lists,
-    attachments, circulars, and FAQs; then run the complete build only after those
-    fixtures pass.
-
-Exit gate: accepted eligible documents produce reproducible, readable,
-database-ready units from Markdown-derived structure; every citable unit has
-Markdown and page provenance; non-legal/supporting material is typed correctly;
-every Legal JSON AST validates; OCR-needed and quarantined records are absent from
-legal-unit coverage and are reported explicitly.
-
-### Phase 3: clean database build
-
-1. Implement the new schema and repository.
-2. Build a fresh database from the rewritten corpus output.
-3. Index regulation records separately from provision text.
-4. Store exact citation nodes separately from contextual display units.
-5. Resolve every legal node, context node, source span, and lifecycle relation through typed repository calls.
-6. Emit a reproducibility manifest with all input and output hashes.
-
-Exit gate: an empty environment can create the complete database in one documented command, and all citations resolve from it.
-
-### Phase 4: typed query and two-stage retrieval
-
-1. Implement `QuerySpec` without importing the old lexicon.
-2. Use regex only for explicit legal syntax such as instrument number, year, Pasal, Ayat, Huruf, Angka, issuer names, and dates.
-3. Treat non-explicit issuer associations as soft document-ranking signals.
-4. Implement document search over canonical regulation records.
-5. Implement provision search only inside selected document IDs.
-6. Enforce claim-only passage relevance.
-7. Implement independent evidence gates and ambiguity behavior.
-8. Add real miniature-database integration tests before full-corpus tuning.
-
-Exit gate: paraphrases share typed intent without exact-prompt branches, and irrelevant clauses cannot pass because their document title matches.
-
-### Phase 5: answer and API cutover
-
-1. Implement mode-specific renderers.
-2. Assemble readable context only from stored source nodes.
-3. Calculate final status after rendering and revalidation.
-4. Replace API schemas, dependencies, services, presenters, routes, and OpenAPI contract.
-5. Remove the numeric confidence field.
-6. Expose coverage and lifecycle uncertainty explicitly.
-7. Leave the frontend broken until the later frontend migration.
-
-Exit gate: every finding is readable without opening the source, and opening its citations proves every rendered legal claim.
-
-### Phase 6: real evaluation
-
-1. Create independently reviewed development, negative, lifecycle, and sealed datasets.
-2. Implement database-backed citation verification.
-3. Implement separate metrics and hard failure gates.
-4. Run acceptance tests against the real full database.
-5. Measure the two demonstrated failure families across multiple paraphrases.
-6. Diagnose failures by layer and failure class; never patch the prompt string.
-7. Publish only reports containing exact dataset and database hashes.
-
-Exit gate: the system passes the agreed thresholds across families, not merely the original questions.
-
-### Phase 7: performance and later intelligence
-
-1. Profile stage latency before changing ranking.
-2. Optimize SQLite queries, candidate limits, tokenization, and cached immutable metadata.
-3. Establish the deterministic lexical baseline.
-4. Only then evaluate semantic retrieval, reranking, and constrained LLM query interpretation or synthesis behind isolated experiments.
-5. Promote an experiment only when held-out retrieval improves without citation, lifecycle, refusal, coverage, or latency regression.
-
-Source-backed cross-reference and lifecycle relations may be analyzed with an
-offline directed graph tool after the SQLite contract is stable; SQLite remains the
-canonical persisted relation store. JSON-LD/RDF, Neo4j, graph databases, spaCy,
-GLiNER, Lark/tree-sitter, semantic retrieval, rerankers, and LLMs are not required
-for the corpus truth layer. NLP may later propose review candidates, but it may
-never create legal hierarchy, lifecycle state, citation targets, or source text.
-
-Exit gate: measured improvement over the clean baseline, never replacement by reputation or intuition.
-
-## Build policy
-
-The hard migration intentionally rebuilds generated artifacts. The accepted build is full and clean:
-
-1. build and hash the source inventory from downloaded documents;
-2. load and validate the OCR exclusion list against that inventory;
-3. remove old generated outputs and old raw extraction;
-4. freshly extract eligible documents with pinned OCR-disabled LiteParse settings;
-5. publish the raw-extraction manifest, including skipped OCR IDs and reasons;
-6. normalize fresh LiteParse Markdown and validate its page anchors;
-7. validate and serialize the versioned Legal JSON AST from normalized blocks;
-8. parse supported legal hierarchy and typed supporting material from that AST;
-9. build the regulation catalog and lifecycle graph;
-10. build contextual and atomic legal units;
-11. create a new SQLite database from empty;
-12. run normalization, structural, schema, and citation audits; persist a failure
-    manifest before removing atomic staging output on any failed gate;
-13. run real-index evaluation;
-14. publish hashes, skipped-document coverage, extraction failures, schema version,
-    and normalization/quarantine coverage.
-
-There is no incremental build, old-schema reader, or fallback index during this migration.
-
-## Definition of done
-
-- No deleted module, heuristic resource, golden runner, old test, old report, fallback, or compatibility wrapper remains.
-- `rg` finds no exact-prompt branch for known questions.
-- One clean command reproduces fresh OCR-disabled raw extraction, the eligible corpus,
-  and database from downloaded source documents.
-- OCR is never invoked and all OCR-needed documents are explicitly excluded.
-- LiteParse Markdown is the semantic source of every accepted unit; `text_items`
-  validate its page anchors and never replace it as a competing parser.
-- Every generated corpus document validates as the published versioned Legal JSON
-  AST. Raw Markdown remains evidence only; displayed and indexed text contains no
-  Markdown presentation syntax.
-- Numbered FAQ content, forms, and table rows are never mislabeled as legal
-  provisions solely by marker shape.
-- Unsupported or contradictory source structure is quarantined and reported rather
-  than converted into a misleading citation.
-- Regulation identities do not collide.
-- Lifecycle claims are source-backed or explicitly unknown.
-- Document and provision retrieval are separate.
-- Provision relevance is claim-only.
-- Every rendered context unit is database-resolvable.
-- Every accepted citation resolves and matches its claim.
-- The API exposes no uncalibrated confidence score.
-- The new tests contain no mocked retrieval success.
-- Acceptance runs against the real API and full current database.
-- Paraphrase families, negatives, lifecycle cases, readability, refusals, and latency meet defined gates.
-- The demonstrated consumer-protection and advertising questions pass as members of generic families without special code.
-- README and API documentation describe only the new architecture.
-
-## Rule for every future patch
-
-A patch is rejected when it:
-
-- recognizes a specific prompt or expected answer;
-- adds an issuer or regulation special case without a domain-level source-backed rule;
-- changes a test expectation to match broken output;
-- mocks retrieval or citations in an acceptance test;
-- uses title relevance as claim support;
-- hides unknown lifecycle state;
-- restores an old schema, response field, fallback, or compatibility path;
-- improves one visible case while worsening family or holdout metrics.
-
-The only acceptable fixes change a general layer, explain the failure class, and improve independently measured behavior.
+- the two source trees reconcile completely;
+- reviewed document roles and layout families are understood before automation;
+- exact duplicates preserve provenance without multiplying content;
+- EASE-BI is fully role-reviewed;
+- Peraturan-OJK has a deterministic, representative reviewed sample;
+- document roles, instrument kinds, and layout families are separated;
+- no unknown file becomes a primary regulation by default;
+- metadata conflicts are explicit;
+- extraction quality is measured on real readable reviewed files;
+- later extraction and parsing produce complete machine-readable and human-readable
+  OCR-needed reports without making OCR a blocker;
+- one layout family is parsed accurately with real negative cases;
+- every claim reports exclusions and family-specific coverage;
+- no mock or synthetic fixture is used as evidence of legal correctness;
+- a new corpus/database plan is written from these results rather than inherited
+  from the deleted architecture.

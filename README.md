@@ -1,41 +1,28 @@
 # thinking-layer
 
-The backend is in a destructive hard-cutover migration. Phases 0 through 2 are
-complete; Phase 3—the clean SQLite database build—is next. The legacy retrieval,
-answering, API, and evaluation contracts remain removed and are not runnable.
+The backend and generated corpus have been deliberately reset. The repository is
+now in a source-understanding stage, not a corpus-building stage.
 
-The prior LiteParse output was discarded and replaced with a fresh, pinned,
-OCR-disabled extraction from downloaded source documents. The current fresh-run
-manifest inventories 3,816 PDFs: 3,767 were extracted, 48 OCR-required files were
-skipped, and one parse failure was recorded. OCR remains disabled; every file named
-by `reports/ocr_needed.json` is excluded before LiteParse is invoked and reported as
-an explicit coverage limitation.
+Only two harvested sources are in scope:
 
-The generated raw records live under `processed/raw/liteparse/` and are intentionally
-ignored by Git. They contain Markdown, text, text-item geometry, word boxes, source
-hashes, source URLs when harvested, extraction settings, and a reproducibility
-manifest. A missing harvested source URL remains `null`; URLs are never inferred from
-file names, titles, or paths. Do not replace them with legacy raw extraction.
+- `data/ease-bi/` with its downloaded files under `downloads/ease-bi/`;
+- `data/peraturan-ojk/` with its downloaded files under
+  `downloads/peraturan-ojk/`.
 
-The restored commands are:
+There is currently no parser, corpus, database, retrieval pipeline, answer service,
+or runnable backend API. Old generated output and synthetic corpus tests were
+deleted rather than preserved.
 
-```sh
-uv run python -m thinking_layer.cli extract
-uv run python -m thinking_layer.cli build
-```
+Metadata is treated as a source assertion and provenance sidecar. It must never be
+mixed into citable document text. Downloaded files are the evidence to inspect and
+eventually parse, after their roles and layout families have been reviewed.
 
-The clean build emits a versioned `LegalDocumentV1` JSON AST and its JSON Schema. It
-classifies regulations, explanations, attachments, circulars, and FAQs from source
-evidence. Legal paths are created only in normative regulation/decision zones.
-Markdown blocks are validated against LiteParse geometry; disagreements are
-quarantined and reported rather than guessed.
+The immediate work is direct document study: open real publication bundles, compare
+their metadata and files, and write down the roles and recurring structures. OCR,
+bulk extraction, parser code, and corpus generation must not delay that work.
+When extraction or parsing eventually encounters unreadable files or pages, it will
+document them in `reports/ocr_needed.json` and `reports/ocr_needed.md` for later OCR
+work without stopping progress on readable documents.
 
-The current full-corpus build is published under `processed/corpus/`. It contains
-3,182 publishable source documents, 1,249,627 citable legal nodes and contextual
-units, 79 lifecycle relations, 48 OCR exclusions, and 585 quarantined sources. The
-strict publication gate removes Markdown presentation syntax, safely joins only
-unambiguous title-cased spaced words, and quarantines ambiguous spaced text,
-non-printing control characters, unmappable source ranges, or records without a
-clean source-backed catalog title. The manifest records every exclusion along with
-the corresponding input/output hashes and geometry disagreements. Phase 3 can now
-build the clean SQLite database from this corpus contract.
+Run `make baseline-check` to confirm that the reset boundaries still hold. The
+detailed research and implementation sequence is in `PLAN.md`.
